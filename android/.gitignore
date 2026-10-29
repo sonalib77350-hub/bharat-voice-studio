@@ -1,0 +1,8 @@
+.gradle/
+build/
+local.properties
+*.jks
+*.keystore
+.idea/
+# copied from the repo-root index.html at build time
+app/src/main/assets/index.html

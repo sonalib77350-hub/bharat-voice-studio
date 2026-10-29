@@ -1,0 +1,69 @@
+# Builds the Bharat Voice Studio Android app (WebView wrapper around the root index.html)
+# and publishes the debug-signed APK to the "latest" GitHub Release.
+# GitHub Pages keeps serving index.html from the repo root; this workflow does not touch Pages.
+name: android
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - 'index.html'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      # Same approach as the green CaptureShieldVPN build: runner's preinstalled SDK.
+      - name: Install SDK packages
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+      - name: Bundle the web app
+        run: |
+          mkdir -p app/src/main/assets
+          cp ../index.html app/src/main/assets/index.html
+          ls -la app/src/main/assets
+      - name: Build APK
+        run: chmod +x gradlew && ./gradlew --no-daemon --stacktrace :app:assembleDebug
+      - name: Rename APK
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/BharatVoiceStudio.apk"
+          ls -la "$GITHUB_WORKSPACE/BharatVoiceStudio.apk"
+          "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging "$GITHUB_WORKSPACE/BharatVoiceStudio.apk" | head -n 5 || true
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs "$GITHUB_WORKSPACE/BharatVoiceStudio.apk" | head -n 3 || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BharatVoiceStudio-apk
+          path: BharatVoiceStudio.apk
+      - name: Move the "latest" tag to this commit
+        if: github.ref == 'refs/heads/main'
+        working-directory: .
+        run: |
+          git tag -f latest "$GITHUB_SHA"
+          git push -f origin refs/tags/latest
+      - name: Publish release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Bharat Voice Studio (latest Android build)
+          body: |
+            Debug-signed APK built from ${{ github.sha }} (run #${{ github.run_number }}).
+            Download BharatVoiceStudio.apk and open it on your Android phone (allow "install unknown apps").
+          prerelease: false
+          make_latest: true
+          files: BharatVoiceStudio.apk
+          fail_on_unmatched_files: true
