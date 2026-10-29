@@ -5,7 +5,7 @@ name: emulator-test
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, emulator-fixes]
     paths:
       - 'android/**'
       - 'index.html'
@@ -58,6 +58,7 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 75
     strategy:
       fail-fast: false
       matrix:
@@ -71,7 +72,13 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      - run: pip install websocket-client
+      - name: Test tools and a spoken test WAV
+        run: |
+          pip install websocket-client
+          sudo apt-get update -qq && sudo apt-get install -y -qq espeak-ng > /dev/null
+          mkdir -p testdata
+          espeak-ng -v en-us -s 140 -w testdata/speech.wav "Hello, my name is Sonali. Today the weather is very nice. I am learning to make videos in many languages."
+          ls -la testdata
       - name: Run tests on emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -79,9 +86,9 @@ jobs:
           arch: x86_64
           target: google_apis
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-boot-anim -camera-back none
           disable-animations: true
-          script: bash ci/run_emulator_tests.sh ${{ matrix.api }}
+          script: TEST_WAV=$PWD/testdata/speech.wav bash ci/run_emulator_tests.sh ${{ matrix.api }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

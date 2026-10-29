@@ -145,7 +145,36 @@
       fr.onload = function () { var s = String(fr.result); B.dlChunk(id, s.substring(s.indexOf(",") + 1)); off += CH; next(); };
       fr.onerror = function () { B.dlFail(id, "read error"); };
       fr.readAsDataURL(blob.slice(off, off + CH));
-    })();
+    
+  /* ---------------- clipboard (WebView often refuses navigator.clipboard) ---------------- */
+  try {
+    var orig = navigator.clipboard;
+    var cb = {
+      readText: function () { try { return Promise.resolve(String(B.clipRead() || "")); } catch (x) { return Promise.reject(x); } },
+      writeText: function (t) { try { B.clipWrite(String(t == null ? "" : t)); return Promise.resolve(); } catch (x) { return Promise.reject(x); } },
+      read: orig && orig.read ? orig.read.bind(orig) : function () { return Promise.reject(new Error("not supported")); },
+      write: orig && orig.write ? orig.write.bind(orig) : function () { return Promise.reject(new Error("not supported")); },
+      addEventListener: function () {}, removeEventListener: function () {}
+    };
+    Object.defineProperty(Navigator.prototype, "clipboard", { get: function () { return cb; }, configurable: true });
+  } catch (x) {}
+
+  /* ---------------- Android back button: navigate inside the page first ---------------- */
+  window.__bvsBack = function () {
+    try {
+      var vis = function (n) { var e = document.getElementById("view-" + n); return !!(e && !e.hidden); };
+      var menu = document.getElementById("profMenu");
+      if (menu && !menu.hidden) { menu.hidden = true; return true; }
+      if (vis("app")) {
+        var home = document.getElementById("tab-home");
+        if (home && home.getAttribute("aria-selected") !== "true") { home.click(); window.scrollTo(0, 0); return true; }
+        if (window.showView) { window.showView("landing"); return true; }
+      }
+      if (vis("auth") && window.showView) { window.showView("landing"); return true; }
+    } catch (x) {}
+    return false;
+  };
+})();
   }
   function saveUrl(url, name) {
     fetch(url).then(function (r) { return r.blob(); })
@@ -162,4 +191,33 @@
     e.preventDefault();
     saveUrl(href, el.getAttribute("download") || "");
   }, true);
+
+  /* ---------------- clipboard (WebView often refuses navigator.clipboard) ---------------- */
+  try {
+    var orig = navigator.clipboard;
+    var cb = {
+      readText: function () { try { return Promise.resolve(String(B.clipRead() || "")); } catch (x) { return Promise.reject(x); } },
+      writeText: function (t) { try { B.clipWrite(String(t == null ? "" : t)); return Promise.resolve(); } catch (x) { return Promise.reject(x); } },
+      read: orig && orig.read ? orig.read.bind(orig) : function () { return Promise.reject(new Error("not supported")); },
+      write: orig && orig.write ? orig.write.bind(orig) : function () { return Promise.reject(new Error("not supported")); },
+      addEventListener: function () {}, removeEventListener: function () {}
+    };
+    Object.defineProperty(Navigator.prototype, "clipboard", { get: function () { return cb; }, configurable: true });
+  } catch (x) {}
+
+  /* ---------------- Android back button: navigate inside the page first ---------------- */
+  window.__bvsBack = function () {
+    try {
+      var vis = function (n) { var e = document.getElementById("view-" + n); return !!(e && !e.hidden); };
+      var menu = document.getElementById("profMenu");
+      if (menu && !menu.hidden) { menu.hidden = true; return true; }
+      if (vis("app")) {
+        var home = document.getElementById("tab-home");
+        if (home && home.getAttribute("aria-selected") !== "true") { home.click(); window.scrollTo(0, 0); return true; }
+        if (window.showView) { window.showView("landing"); return true; }
+      }
+      if (vis("auth") && window.showView) { window.showView("landing"); return true; }
+    } catch (x) {}
+    return false;
+  };
 })();

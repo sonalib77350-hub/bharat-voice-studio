@@ -67,13 +67,21 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends Activity {
     private static final String TAG = "BVS";
-    private static final String START_URL = "file:///android_asset/index.html";
+    // The bundled web app is served from a virtual https origin (same idea as androidx WebViewAssetLoader):
+    // it is a secure context like the GitHub Pages site, so CORS, mic and clipboard behave the same, and
+    // file:// access can stay switched off.
+    static final String ASSET_HOST = "appassets.androidplatform.net";
+    private static final String ORIGIN = "https://" + ASSET_HOST;
+    private static final String START_URL = ORIGIN + "/index.html";
     private static final int REQ_FILE = 101;
     private static final int REQ_MIC_WEB = 201;
     private static final int REQ_MIC_SR = 202;
     private static final int REQ_STORAGE = 203;
 
     private final Handler main = new Handler(Looper.getMainLooper());
+    private boolean debuggable = false;
+    /** True only while the main frame shows our own bundled page; the JS bridge ignores calls otherwise. */
+    private volatile boolean trustedPage = false;
     private WebView web;
     private String shimJs = "";
 
@@ -117,8 +125,9 @@ public class MainActivity extends Activity {
             });
         }
 
-        if ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
-            WebView.setWebContentsDebuggingEnabled(true);
+        debuggable = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        if (debuggable) {
+            WebView.setWebContentsDebuggingEnabled(true); // debug builds only (used by the emulator tests)
         }
 
         WebSettings s = web.getSettings();
@@ -126,12 +135,16 @@ public class MainActivity extends Activity {
         s.setDomStorageEnabled(true);
         s.setDatabaseEnabled(true);
         s.setMediaPlaybackRequiresUserGesture(false);
-        s.setAllowFileAccess(true);
-        s.setAllowContentAccess(true);
-        s.setAllowFileAccessFromFileURLs(true);
-        s.setAllowUniversalAccessFromFileURLs(true);
-        s.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        s.setJavaScriptCanOpenWindowsAutomatically(true);
+        // Locked down: no file:// or content:// access, no http inside https, no geolocation, no form-data saving.
+        s.setAllowFileAccess(false);
+        s.setAllowContentAccess(false);
+        s.setAllowFileAccessFromFileURLs(false);
+        s.setAllowUniversalAccessFromFileURLs(false);
+        s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        s.setGeolocationEnabled(false);
+        s.setSaveFormData(false);
+        if (Build.VERSION.SDK_INT >= 26) s.setSafeBrowsingEnabled(true);
+        s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setSupportMultipleWindows(false);
         s.setLoadWithOverviewMode(true);
         s.setUseWideViewPort(true);
@@ -157,25 +170,25 @@ public class MainActivity extends Activity {
 
         initTts();
 
-        if (savedInstanceState != null) web.restoreState(savedInstanceState);
-        else web.loadUrl(START_URL);
+        // Always load fresh. (Restoring WebView state after the activity was recreated left a blank,
+        // black screen: the restored history pointed at the intercepted page without its content.)
+        web.loadUrl(START_URL);
     }
 
     private void handleBack() {
-        if (web != null && web.canGoBack()) web.goBack();
-        else finish();
+        if (web == null) { finish(); return; }
+        // Let the page go back first (auth -> landing, a tool tab -> Home, dashboard -> landing).
+        web.evaluateJavascript("(window.__bvsBack&&window.__bvsBack())?'1':'0'", r -> {
+            if (r != null && r.contains("1")) return;
+            if (web != null && web.canGoBack()) web.goBack();
+            else finish();
+        });
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public void onBackPressed() {
         handleBack();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (web != null) web.saveState(outState);
     }
 
     @Override
@@ -213,6 +226,10 @@ public class MainActivity extends Activity {
         return checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
     }
 
+    static boolean isOwn(String url) {
+        return url != null && (url.equals(ORIGIN) || url.startsWith(ORIGIN + "/"));
+    }
+
     private void openExternal(String url) {
         try {
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -239,8 +256,7 @@ public class MainActivity extends Activity {
         }
 
         private boolean handleUrl(String url) {
-            if (url.startsWith("file:") || url.startsWith("about:") || url.startsWith("javascript:")
-                    || url.startsWith("blob:") || url.startsWith("data:")) {
+            if (isOwn(url) || url.startsWith("about:") || url.startsWith("blob:") || url.startsWith("data:")) {
                 return false;
             }
             openExternal(url); // http(s), mailto:, intent:, target=_blank links -> system browser/app
@@ -250,27 +266,59 @@ public class MainActivity extends Activity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             // Serve the bundled index.html with the native shim injected before any page script runs.
-            String url = request.getUrl().toString();
-            if (request.isForMainFrame() && url.startsWith(START_URL)) {
-                String html = readAsset("index.html");
-                if (!html.isEmpty()) {
-                    String tag = "<script>" + shimJs + "</script>";
-                    Matcher m = Pattern.compile("<head[^>]*>", Pattern.CASE_INSENSITIVE).matcher(html);
-                    html = m.find() ? html.substring(0, m.end()) + tag + html.substring(m.end()) : tag + html;
-                    WebResourceResponse r = new WebResourceResponse("text/html", "UTF-8",
-                            new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8)));
-                    Map<String, String> h = new HashMap<>();
-                    h.put("Cache-Control", "no-cache");
-                    r.setResponseHeaders(h);
-                    return r;
-                }
+            Uri u = request.getUrl();
+            if (!"https".equals(u.getScheme()) || !ASSET_HOST.equals(u.getHost())) {
+                return super.shouldInterceptRequest(view, request);
             }
-            return super.shouldInterceptRequest(view, request);
+            String path = u.getPath() == null ? "" : u.getPath();
+            while (path.startsWith("/")) path = path.substring(1);
+            if (path.isEmpty()) path = "index.html";
+            if (path.contains("..")) return notFound();
+            Map<String, String> h = new HashMap<>();
+            h.put("Cache-Control", "no-cache");
+            h.put("Access-Control-Allow-Origin", ORIGIN);
+            if (path.equals("index.html")) {
+                String html = readAsset("index.html");
+                if (html.isEmpty()) return notFound();
+                String tag = "<script>" + shimJs + "</script>";
+                Matcher m = Pattern.compile("<head[^>]*>", Pattern.CASE_INSENSITIVE).matcher(html);
+                html = m.find() ? html.substring(0, m.end()) + tag + html.substring(m.end()) : tag + html;
+                WebResourceResponse r = new WebResourceResponse("text/html", "UTF-8",
+                        new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8)));
+                r.setResponseHeaders(h);
+                return r;
+            }
+            try {
+                InputStream in = getAssets().open(path);
+                String ext = path.lastIndexOf('.') >= 0 ? path.substring(path.lastIndexOf('.') + 1).toLowerCase(Locale.ROOT) : "";
+                String mime = ext.equals("js") ? "text/javascript" : ext.equals("css") ? "text/css"
+                        : ext.equals("json") ? "application/json" : ext.equals("wasm") ? "application/wasm"
+                        : ext.equals("svg") ? "image/svg+xml" : MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
+                WebResourceResponse r = new WebResourceResponse(mime == null ? "application/octet-stream" : mime,
+                        "UTF-8", in);
+                r.setResponseHeaders(h);
+                return r;
+            } catch (Exception e) {
+                Log.w(TAG, "missing asset " + path);
+                return notFound();
+            }
+        }
+
+        private WebResourceResponse notFound() {
+            return new WebResourceResponse("text/plain", "UTF-8", 404, "Not Found", new HashMap<>(),
+                    new ByteArrayInputStream(new byte[0]));
+        }
+
+        @Override
+        public void doUpdateVisitedHistory(WebView view, String url, boolean isReload) {
+            super.doUpdateVisitedHistory(view, url, isReload);
+            trustedPage = isOwn(url);
         }
 
         @Override
         public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+            trustedPage = isOwn(url);
             // Fallback in case interception did not happen (guarded inside the shim).
             if (!shimJs.isEmpty()) view.evaluateJavascript(shimJs, null);
         }
@@ -280,6 +328,8 @@ public class MainActivity extends Activity {
         @Override
         public void onPermissionRequest(final PermissionRequest request) {
             main.post(() -> {
+                Uri o = request.getOrigin();
+                if (o == null || !ASSET_HOST.equals(o.getHost())) { request.deny(); return; }
                 boolean wantsAudio = false;
                 for (String r : request.getResources()) {
                     if (PermissionRequest.RESOURCE_AUDIO_CAPTURE.equals(r)) wantsAudio = true;
@@ -341,7 +391,8 @@ public class MainActivity extends Activity {
 
         @Override
         public boolean onConsoleMessage(ConsoleMessage m) {
-            Log.d(TAG, m.message() + " @" + m.sourceId() + ":" + m.lineNumber());
+            // Page console goes to logcat only in debug builds (release logs nothing the page prints).
+            if (debuggable) Log.d(TAG, m.messageLevel() + " " + m.message() + " @" + m.sourceId() + ":" + m.lineNumber());
             return true;
         }
     }
@@ -695,11 +746,13 @@ public class MainActivity extends Activity {
     private class Bridge {
         @JavascriptInterface
         public void srStart(final int id, final String lang, final boolean interim, final int maxAlt) {
+            if (!trustedPage) return;
             main.post(() -> srStartOnMain(id, lang, interim, maxAlt));
         }
 
         @JavascriptInterface
         public void srStop(final int id) {
+            if (!trustedPage) return;
             main.post(() -> {
                 if (recognizer != null && srActiveId == id) recognizer.stopListening();
                 else if (pendingSrStart != null && (Integer) pendingSrStart[0] == id) {
@@ -711,6 +764,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void srAbort(final int id) {
+            if (!trustedPage) return;
             main.post(() -> {
                 if (recognizer != null && srActiveId == id) {
                     try { recognizer.cancel(); } catch (Exception ignored) {}
@@ -723,6 +777,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void ttsSpeak(String id, String text, String lang, String voice, double rate, double pitch, double vol) {
+            if (!trustedPage) return;
             final Object[] q = new Object[]{id, text == null ? "" : text, lang, voice, (float) rate, (float) pitch, (float) vol};
             main.post(() -> {
                 if (ttsReady) speakNow(q);
@@ -732,6 +787,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void ttsCancel() {
+            if (!trustedPage) return;
             main.post(() -> {
                 ttsQueue.clear();
                 if (tts != null) tts.stop();
@@ -740,11 +796,13 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public String ttsVoices() {
+            if (!trustedPage) return "";
             return voicesJson();
         }
 
         @JavascriptInterface
         public void dlBegin(String id, String name, String type) {
+            if (!trustedPage) return;
             try {
                 File f = File.createTempFile("dl", ".part", getCacheDir());
                 synchronized (dlFiles) {
@@ -758,6 +816,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void dlChunk(String id, String b64) {
+            if (!trustedPage) return;
             File f;
             synchronized (dlFiles) { f = dlFiles.get(id); }
             if (f == null) return;
@@ -770,11 +829,13 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void dlEnd(String id) {
+            if (!trustedPage) return;
             synchronized (dlFiles) { finishDownload(id); }
         }
 
         @JavascriptInterface
         public void dlFail(String id, String why) {
+            if (!trustedPage) return;
             synchronized (dlFiles) {
                 File f = dlFiles.remove(id);
                 dlMeta.remove(id);
@@ -786,7 +847,32 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void toast(String msg) {
+            if (!trustedPage) return;
             MainActivity.this.toast(msg);
+        }
+
+        @JavascriptInterface
+        public String clipRead() {
+            if (!trustedPage) return "";
+            try {
+                android.content.ClipboardManager cm = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                if (cm == null || !cm.hasPrimaryClip() || cm.getPrimaryClip() == null || cm.getPrimaryClip().getItemCount() == 0) return "";
+                CharSequence t = cm.getPrimaryClip().getItemAt(0).coerceToText(MainActivity.this);
+                return t == null ? "" : t.toString();
+            } catch (Exception e) {
+                return "";
+            }
+        }
+
+        @JavascriptInterface
+        public void clipWrite(final String text) {
+            if (!trustedPage) return;
+            main.post(() -> {
+                try {
+                    android.content.ClipboardManager cm = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    if (cm != null) cm.setPrimaryClip(android.content.ClipData.newPlainText("Bharat Voice Studio", text == null ? "" : text));
+                } catch (Exception ignored) {}
+            });
         }
     }
 }
