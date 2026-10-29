@@ -84,7 +84,9 @@ jobs:
           script: bash ci/run_emulator_tests.sh ${{ matrix.api }}
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: emulator-results-api${{ matrix.api }}, path: results/ }
+        with:
+          name: emulator-results-api${{ matrix.api }}
+          path: results/
       - name: Push results to a branch
         if: always()
         run: |
