@@ -1,0 +1,95 @@
+# Builds the APKs and tests them on Android emulators (API 30 and 34).
+# Results (screenshots, logcat, report) are uploaded as artifacts and also force-pushed to the
+# branches emu-results-api30 / emu-results-api34 so they can be read without artifact downloads.
+name: emulator-test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - 'index.html'
+      - 'hark*.css'
+      - 'hark.js'
+      - 'ci/**'
+      - '.github/workflows/emulator-test.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: emulator-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - name: Install SDK packages
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+      - name: Bundle the web app
+        run: |
+          mkdir -p app/src/main/assets
+          cp ../index.html app/src/main/assets/index.html
+          for f in ../hark.css ../hark-charts.css ../hark-hero.css ../hark.js; do [ -f "$f" ] && cp "$f" app/src/main/assets/; done
+          ls -la app/src/main/assets
+      - name: Build APKs
+        run: |
+          chmod +x gradlew
+          TASKS=":app:assembleDebug"
+          [ -f app/release.p12 ] && TASKS="$TASKS :app:assembleRelease"
+          ./gradlew --no-daemon --stacktrace $TASKS
+          mkdir -p "$GITHUB_WORKSPACE/apks"
+          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/apks/debug.apk"
+          [ -f app/build/outputs/apk/release/app-release.apk ] && cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/apks/release.apk"
+          for a in "$GITHUB_WORKSPACE"/apks/*.apk; do echo "== $a"; "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify -v --print-certs "$a" | head -n 12; done
+      - name: Fetch the currently published APK (for the upgrade test)
+        working-directory: .
+        run: curl -fsSL -o apks/previous-latest.apk "https://github.com/${{ github.repository }}/releases/download/latest/BharatVoiceStudio.apk" || rm -f apks/previous-latest.apk
+      - uses: actions/upload-artifact@v4
+        with: { name: apks, path: apks/ }
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [30, 34]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: apks, path: apks }
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - run: pip install websocket-client
+      - name: Run tests on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          target: google_apis
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: bash ci/run_emulator_tests.sh ${{ matrix.api }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: emulator-results-api${{ matrix.api }}, path: results/ }
+      - name: Push results to a branch
+        if: always()
+        run: |
+          mkdir -p results && cd results
+          echo "run ${{ github.run_id }} sha ${{ github.sha }}" > RUN.txt
+          git init -q && git checkout -q -b r && git add -A
+          git -c user.name=ci -c user.email=ci@users.noreply.github.com commit -qm "emulator results run ${{ github.run_id }} (${{ github.sha }})"
+          git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" r:refs/heads/emu-results-api${{ matrix.api }}
