@@ -91,7 +91,7 @@ def t_download_direct():
     to_app("home")
     name = "bvs-selftest-%d.txt" % int(time.time())
     b0 = downloads()
-    cdp.ev("""(function(){var b=new Blob(["Bharat Voice Studio download test \u0b13\u0b21\u0b3f\u0b06\n"],{type:'text/plain'});
+    cdp.ev("""(function(){var b=new Blob(["Bharat Voice Studio download test \\u0b13\\u0b21\\u0b3f\\u0b06\\n"],{type:'text/plain'});
       var u=URL.createObjectURL(b), a=document.createElement('a'); a.href=u; a.download=%s;
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(u)},5000);})()""" % json.dumps(name))
     new = []
@@ -660,12 +660,18 @@ def t_link():
         opts = cdp.ev("[].map.call(lkSubSel.options,function(o){return o.textContent})")
         setv("#tgtLang", next((o for o in cdp.ev("[].map.call(tgtLang.options,function(o){return o.value})") if o.startswith("od")), "hi-IN"))
         tap("#lkSubGo", "Subtitle se seedha translate")
+        started = wait_for("/sources try|hisse translate|Subtitle mil gaye/.test((document.getElementById('lkLog')||{}).innerText||'')", 10)
+        retry = ""
+        if not started:
+            retry = "tap did not start it (btn disabled=%s); clicked again via JS; " % cdp.ev("lkSubGo.disabled")
+            log("  " + retry)
+            cdp.ev("lkSubGo.click()")
         n = wait_for("""(function(){if(document.getElementById('pane-tr').hidden)return 0;
             return [].filter.call(document.querySelectorAll('#frRows tr'),function(r){return /[\u0B00-\u0B7F]/.test(r.innerText)}).length})()""", 200, 3)
         rows_ = cdp.ev("[].map.call(document.querySelectorAll('#frRows tr'),function(r){return r.innerText.replace(/\\s+/g,' ')}).slice(0,3)")
         lk_log = cdp.ev("(document.getElementById('lkLog')||{}).innerText||''")
         check("Link", "YouTube subtitles -> translated (Odia) transcript", "PASS" if n else "FAIL",
-              "subtitle tracks=%s odia rows=%s %s errors=%s log=%r" % (opts, n, rows_, pane_errors("lk"), (lk_log or "")[-300:]), shot("link_subs_translated"))
+              retry + "subtitle tracks=%s odia rows=%s %s errors=%s log=%r" % (opts, n, rows_, pane_errors("lk"), (lk_log or "")[-300:]), shot("link_subs_translated"))
 
 
 def t_needs_key():

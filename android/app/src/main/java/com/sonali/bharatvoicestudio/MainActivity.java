@@ -855,7 +855,7 @@ public class MainActivity extends Activity {
             if (!trustedPage) { Log.w(TAG, "dlBegin ignored: page not trusted"); return; }
             Log.i(TAG, "download begin " + name + " type=" + type);
             try {
-                File f = File.createTempFile("dl", ".part", getCacheDir());
+                File f = File.createTempFile("bvs-dl-", ".part", getCacheDir());
                 synchronized (dlFiles) {
                     dlFiles.put(id, f);
                     dlMeta.put(id, new String[]{name == null ? "" : name.trim(), type == null ? "" : type});
