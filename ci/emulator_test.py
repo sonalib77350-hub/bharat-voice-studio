@@ -222,7 +222,8 @@ def webview_bounds(fresh=False):
 
 POS = """(function(){var e=document.querySelector(%s), b=e.getBoundingClientRect();
   var x=b.left+Math.min(b.width/2, 60), y=b.top+b.height/2, top=document.elementFromPoint(x,y);
-  return {x:x, y:y, top:b.top, h:b.height, iw:innerWidth, hit: !!(top && (top===e || e.contains(top))),
+  var vv=window.visualViewport, ox=vv?vv.offsetLeft:0, oy=vv?vv.offsetTop:0, vw=vv?vv.width:innerWidth;
+  return {x:x, y:y, sx:x-ox, sy:y-oy, vw:vw, top:b.top, h:b.height, iw:innerWidth, hit: !!(top && (top===e || e.contains(top))),
           at: top ? (top.id || top.tagName) : null};})()"""
 
 
@@ -250,12 +251,14 @@ def tap(sel, label=None, js_fallback=False):
         else:
             same = 0
         prev = r
-    scale = (wb[2] - wb[0]) / r["iw"]
-    x, y = int(wb[0] + r["x"] * scale), int(wb[1] + r["y"] * scale)
+    # Map through the VISUAL viewport: old WebViews (API 30, v83) can show the page slightly zoomed
+    # (layout viewport wider than the screen), so innerWidth-based scaling taps the wrong spot.
+    scale = (wb[2] - wb[0]) / (r.get("vw") or r["iw"])
+    x, y = int(round(wb[0] + r["sx"] * scale)), int(round(wb[1] + r["sy"] * scale))
     adb("shell", "input", "tap", str(x), str(y))
     after = cdp.ev(POS % json.dumps(sel))
     moved = abs(after["y"] - r["y"]) >= 1
-    log("  tap %s -> (%d,%d) hit=%s at=%s moved_after=%s" % (label or sel, x, y, r["hit"], r["at"], moved))
+    log("  tap %s -> (%d,%d) hit=%s at=%s moved_after=%s css=(%.0f,%.0f) vw=%s iw=%s" % (label or sel, x, y, r["hit"], r["at"], moved, r["x"], r["y"], r.get("vw"), r["iw"]))
     time.sleep(1.2)
     return "tap"
 
@@ -374,9 +377,13 @@ def t_landing():
 
 
 def overflow(where):
-    o = cdp.ev("JSON.stringify({sw:document.documentElement.scrollWidth, iw:innerWidth, sx:scrollX})")
+    o = cdp.ev("""JSON.stringify({sw:document.documentElement.scrollWidth, iw:innerWidth, sx:scrollX, screen:screen.width,
+      vscale: window.visualViewport ? +visualViewport.scale.toFixed(3) : null,
+      wide: [].filter.call(document.querySelectorAll('body *'), function(e){var b=e.getBoundingClientRect(); return e.offsetParent && b.width>0 && b.right>screen.width+1})
+             .slice(0,6).map(function(e){return (e.id||e.tagName+'.'+(e.className||'')).slice(0,40)+':'+Math.round(e.getBoundingClientRect().right)})})""")
     o = json.loads(o)
-    check("Layout", "No sideways overflow on " + where, "PASS" if o["sw"] <= o["iw"] + 1 else "FAIL", o)
+    ok = o["sw"] <= o["iw"] + 1 and o["iw"] <= o["screen"] + 1
+    check("Layout", "No sideways overflow / zoom-out on " + where, "PASS" if ok else "FAIL", o)
 
 
 def t_landing_nav():

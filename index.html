@@ -141,6 +141,10 @@
       .x-lkfail ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; font: var(--type-body); }
       .x-lklog, #lkErr, #lkFail, #lkRetryRow { scroll-margin-top: 96px; }
       .x-btn { touch-action: manipulation; }
+      /* Old Android WebViews (v83) zoom the whole page out when anything is wider than the screen,
+         which shrinks everything and makes taps land off target. Keep form controls inside their box. */
+      html { overflow-x: hidden; }
+      .x-file, .x-input, .x-select, .x-text { max-width: 100%; min-width: 0; }
       #lkSubBox, #lkAudioBox { scroll-margin-top: 96px; scroll-margin-bottom: 96px; overflow-anchor: none; }
       @media (max-width: 400px) { .x-lkinfo img { width: 88px; } }
 
