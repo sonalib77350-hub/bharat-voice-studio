@@ -135,31 +135,110 @@
   def("SpeechSynthesisUtterance", SpeechSynthesisUtterance);
   def("speechSynthesis", synth);
 
-  /* ---------------- downloads of blob: / data: links ---------------- */
+  /* ---------------- downloads of blob: / data: links ----------------
+   * WebView cannot save blob:/data: URLs itself. We keep a reference to every Blob handed to
+   * URL.createObjectURL, read it as base64 with FileReader and stream it to the native bridge,
+   * which writes it into the phone's Download folder (MediaStore on Android 10+). */
+  var blobs = {};
+  try {
+    var oc = URL.createObjectURL.bind(URL), orv = URL.revokeObjectURL.bind(URL);
+    URL.createObjectURL = function (o) {
+      var u = oc(o);
+      try { if (o && typeof o.size === "number") blobs[u] = o; } catch (x) {}
+      return u;
+    };
+    // Keep the URL alive a little longer so a pending save can still read it.
+    URL.revokeObjectURL = function (u) { setTimeout(function () { delete blobs[u]; try { orv(u); } catch (x) {} }, 60000); };
+  } catch (x) {}
+
   function saveBlob(blob, name) {
     var id = "d" + Date.now() + Math.random().toString(36).slice(2), CH = 384 * 1024, off = 0;
+    console.log("[bvs] download start " + name + " " + blob.size + " bytes");
     B.dlBegin(id, String(name || ""), String(blob.type || ""));
-    (function next() {
+    function next() {
       if (off >= blob.size) { B.dlEnd(id); return; }
       var fr = new FileReader();
-      fr.onload = function () { var s = String(fr.result); B.dlChunk(id, s.substring(s.indexOf(",") + 1)); off += CH; next(); };
-      fr.onerror = function () { B.dlFail(id, "read error"); };
+      fr.onload = function () {
+        var s = String(fr.result);
+        B.dlChunk(id, s.substring(s.indexOf(",") + 1));
+        off += CH; next();
+      };
+      fr.onerror = function () { B.dlFail(id, "read error: " + (fr.error && fr.error.message)); };
       fr.readAsDataURL(blob.slice(off, off + CH));
-    })();
+    }
+    next();
+  }
+  function dataToBlob(url) {
+    var i = url.indexOf(","), head = url.substring(5, i), body = url.substring(i + 1);
+    var mime = head.split(";")[0] || "application/octet-stream";
+    if (!/;base64/i.test(head)) return new Blob([decodeURIComponent(body)], { type: mime });
+    var bin = atob(body);
+    var u8 = new Uint8Array(bin.length);
+    for (var k = 0; k < bin.length; k++) u8[k] = bin.charCodeAt(k);
+    return new Blob([u8], { type: mime });
   }
   function saveUrl(url, name) {
+    try {
+      if (blobs[url]) { saveBlob(blobs[url], name); return; }
+      if (/^data:/i.test(url)) { saveBlob(dataToBlob(url), name); return; }
+    } catch (e) { B.toast("Download nahi hua: " + ((e && e.message) || e)); return; }
     fetch(url).then(function (r) { return r.blob(); })
       .then(function (b) { saveBlob(b, name); })
       .catch(function (e) { B.toast("Download nahi hua: " + ((e && e.message) || e)); });
   }
   window.__bvsSaveUrl = saveUrl;
+  window.__bvsSaveBlob = saveBlob;
+  function fromAnchor(el) {
+    if (!el || !el.hasAttribute || !el.hasAttribute("download")) return false;
+    var href = el.href || "";
+    if (!/^(blob:|data:)/i.test(href)) return false;
+    saveUrl(href, el.getAttribute("download") || "");
+    return true;
+  }
+  // a.click() on a detached or attached <a download href=blob:...>
+  try {
+    var aclick = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function () {
+      if (fromAnchor(this)) return;
+      return aclick.apply(this, arguments);
+    };
+  } catch (x) {}
+  // Real taps on such links
   document.addEventListener("click", function (e) {
     var el = e.target;
     while (el && el.nodeName !== "A") el = el.parentNode;
-    if (!el || !el.hasAttribute || !el.hasAttribute("download")) return;
-    var href = el.href || "";
-    if (!/^(blob:|data:)/i.test(href)) return;
-    e.preventDefault();
-    saveUrl(href, el.getAttribute("download") || "");
+    if (el && el.hasAttribute && el.hasAttribute("download") && /^(blob:|data:)/i.test(el.href || "")) {
+      e.preventDefault();
+      fromAnchor(el);
+    }
   }, true);
+
+  /* ---------------- clipboard (WebView often refuses navigator.clipboard) ---------------- */
+  try {
+    var orig = navigator.clipboard;
+    var cb = {
+      readText: function () { try { return Promise.resolve(String(B.clipRead() || "")); } catch (x) { return Promise.reject(x); } },
+      writeText: function (t) { try { B.clipWrite(String(t == null ? "" : t)); return Promise.resolve(); } catch (x) { return Promise.reject(x); } },
+      read: orig && orig.read ? orig.read.bind(orig) : function () { return Promise.reject(new Error("not supported")); },
+      write: orig && orig.write ? orig.write.bind(orig) : function () { return Promise.reject(new Error("not supported")); },
+      addEventListener: function () {}, removeEventListener: function () {}
+    };
+    Object.defineProperty(Navigator.prototype, "clipboard", { get: function () { return cb; }, configurable: true });
+  } catch (x) {}
+
+  /* ---------------- Android back button: navigate inside the page first ---------------- */
+  window.__bvsBack = function () {
+    try {
+      var vis = function (n) { var e = document.getElementById("view-" + n); return !!(e && !e.hidden); };
+      var menu = document.getElementById("profMenu");
+      if (menu && !menu.hidden) { menu.hidden = true; return true; }
+      if (vis("app")) {
+        var home = document.getElementById("tab-home");
+        if (home && home.getAttribute("aria-selected") !== "true") { home.click(); window.scrollTo(0, 0); return true; }
+        if (window.showView) { window.showView("landing"); return true; }
+      }
+      if (vis("auth") && window.showView) { window.showView("landing"); return true; }
+    } catch (x) {}
+    return false;
+  };
 })();

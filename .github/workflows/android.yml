@@ -1,5 +1,5 @@
 # Builds the Bharat Voice Studio Android app (WebView wrapper around the root index.html)
-# and publishes the debug-signed APK to the "latest" GitHub Release.
+# and publishes the release APK (signed with the fixed key android/app/release.p12) to the "latest" GitHub Release.
 # GitHub Pages keeps serving index.html from the repo root; this workflow does not touch Pages.
 name: android
 on:
@@ -8,6 +8,8 @@ on:
     paths:
       - 'android/**'
       - 'index.html'
+      - 'hark*.css'
+      - 'hark.js'
       - '.github/workflows/android.yml'
   workflow_dispatch:
 
@@ -35,15 +37,18 @@ jobs:
         run: |
           mkdir -p app/src/main/assets
           cp ../index.html app/src/main/assets/index.html
+          cp ../hark.css ../hark-charts.css ../hark-hero.css ../hark.js app/src/main/assets/
           ls -la app/src/main/assets
       - name: Build APK
-        run: chmod +x gradlew && ./gradlew --no-daemon --stacktrace :app:assembleDebug
+        run: chmod +x gradlew && ./gradlew --no-daemon --stacktrace :app:assembleRelease
       - name: Rename APK
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/BharatVoiceStudio.apk"
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/BharatVoiceStudio.apk"
           ls -la "$GITHUB_WORKSPACE/BharatVoiceStudio.apk"
           "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging "$GITHUB_WORKSPACE/BharatVoiceStudio.apk" | head -n 5 || true
-          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs "$GITHUB_WORKSPACE/BharatVoiceStudio.apk" | head -n 3 || true
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs "$GITHUB_WORKSPACE/BharatVoiceStudio.apk" 
+          # fail if it is not signed with the fixed release key
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs "$GITHUB_WORKSPACE/BharatVoiceStudio.apk" | grep -qi 'e3f4cc543c523fdb54c4cf3af238ee6c140ef925cf730ae2c5873d8dfba76268'
       - uses: actions/upload-artifact@v4
         with:
           name: BharatVoiceStudio-apk
@@ -61,8 +66,9 @@ jobs:
           tag_name: latest
           name: Bharat Voice Studio (latest Android build)
           body: |
-            Debug-signed APK built from ${{ github.sha }} (run #${{ github.run_number }}).
+            Release APK (fixed signing key, updates install over each other) built from ${{ github.sha }} (run #${{ github.run_number }}).
             Download BharatVoiceStudio.apk and open it on your Android phone (allow "install unknown apps").
+            If an older Bharat Voice Studio (debug-signed, before Oct 29 2026) is installed, uninstall it once first.
           prerelease: false
           make_latest: true
           files: BharatVoiceStudio.apk

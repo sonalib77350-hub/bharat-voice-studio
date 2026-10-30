@@ -140,6 +140,12 @@
       .x-lkbox { display: grid; gap: 12px; }
       .x-lkfail ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; font: var(--type-body); }
       .x-lklog, #lkErr, #lkFail, #lkRetryRow { scroll-margin-top: 96px; }
+      .x-btn { touch-action: manipulation; }
+      /* Old Android WebViews (v83) zoom the whole page out when anything is wider than the screen,
+         which shrinks everything and makes taps land off target. Keep form controls inside their box. */
+      html { overflow-x: hidden; }
+      .x-file, .x-input, .x-select, .x-text { max-width: 100%; min-width: 0; }
+      #lkSubBox, #lkAudioBox { scroll-margin-top: 96px; scroll-margin-bottom: 96px; overflow-anchor: none; }
       @media (max-width: 400px) { .x-lkinfo img { width: 88px; } }
 
       /* ===== Aurora Glass Studio layer ===== */
@@ -841,7 +847,6 @@
                 <button class="x-btn" type="button" id="lkCancel" hidden>Cancel</button>
               </div>
               <div class="x-bar" id="lkBar" role="progressbar" aria-label="Download" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><span id="lkFill"></span></div>
-              <ol class="x-lklog" id="lkLog" aria-live="polite" hidden></ol>
 
               <div class="x-lkinfo" id="lkInfo" hidden>
                 <span id="lkThumb" hidden></span>
@@ -881,6 +886,10 @@
                 <button class="x-btn" type="button" id="lkCopy">Link copy karo</button>
                 <p class="x-ok" id="lkCopyMsg" hidden>Copy ho gaya ✓</p>
               </div>
+              <!-- Progress log sits BELOW the result boxes: new log lines must never push the
+                   "Subtitle se seedha translate" / "Translate karo" buttons while the user taps them. -->
+              <p class="x-small-head" id="lkLogHead" hidden>Progress</p>
+              <ol class="x-lklog" id="lkLog" aria-live="polite" hidden></ol>
             </div>
             </div>
 
@@ -3624,7 +3633,7 @@
         function lkLog(text, state) {
           var li = document.createElement("li");
           lkSet(li, state || "run", text);
-          $("lkLog").appendChild(li); $("lkLog").hidden = false;
+          $("lkLog").appendChild(li); $("lkLog").hidden = false; $("lkLogHead").hidden = false;
           $("lkLog").scrollTop = $("lkLog").scrollHeight;
           return li;
         }
@@ -3769,6 +3778,7 @@
           var sel = $("lkSubSel"); sel.textContent = "";
           list.forEach(function (s, i) { addOpt(sel, String(i), (s.name || s.code) + (s.auto ? " (auto)" : "")); });
           $("lkSubBox").hidden = false;
+          try { $("lkSubBox").scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
           lkLog(list.length + " subtitle mile — 'Subtitle se seedha translate' sabse tez hai.", "ok");
         }
 
@@ -4160,7 +4170,7 @@
 
         // --- main ---
         function lkReset() {
-          $("lkLog").textContent = ""; $("lkLog").hidden = true;
+          $("lkLog").textContent = ""; $("lkLog").hidden = true; $("lkLogHead").hidden = true;
           $("lkInfo").hidden = true; $("lkSubBox").hidden = true; $("lkAudioBox").hidden = true;
           $("lkFail").hidden = true; $("lkFailWhy").hidden = true; $("lkCopyMsg").hidden = true; lkErr(""); lkBar(null);
           var a = $("lkAudio"); a.pause(); a.removeAttribute("src"); a.load();
