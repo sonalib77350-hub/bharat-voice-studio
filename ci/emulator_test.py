@@ -75,7 +75,36 @@ def dump_logs(tag):
 
 
 def downloads():
-    return set(l.strip() for l in sh("ls -1 /sdcard/Download/").splitlines() if l.strip() and "No such" not in l)
+    a = set(l.strip() for l in sh("ls -1 /sdcard/Download/").splitlines() if l.strip() and "No such" not in l)
+    q = sh("content query --uri content://media/external/downloads --projection _display_name")
+    a |= set(m.strip() for m in re.findall(r"_display_name=([^,\n]+)", q))
+    return a
+
+
+def bvs_log(n=4):
+    return [l[19:].strip() for l in adb("logcat", "-d", "-s", "BVS:V").splitlines()
+            if "toast:" in l or "download" in l.lower() or "MediaStore" in l or "dl" in l[19:30]][-n:]
+
+
+def t_download_direct():
+    """Blob download through the same path the page uses (a.click() on <a download href=blob:>)."""
+    to_app("home")
+    name = "bvs-selftest-%d.txt" % int(time.time())
+    b0 = downloads()
+    cdp.ev("""(function(){var b=new Blob(["Bharat Voice Studio download test \u0b13\u0b21\u0b3f\u0b06\n"],{type:'text/plain'});
+      var u=URL.createObjectURL(b), a=document.createElement('a'); a.href=u; a.download=%s;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(u)},5000);})()""" % json.dumps(name))
+    new = []
+    for _ in range(10):
+        time.sleep(1)
+        new = sorted(downloads() - b0)
+        if name in new:
+            break
+    ls = sh("ls -l /sdcard/Download/")
+    body = sh("cat '/sdcard/Download/%s'" % name) if name in ls else ""
+    check("Downloads", "Blob download lands in /sdcard/Download (ls -l / MediaStore)",
+          "PASS" if name in ls and "download test" in body else "FAIL",
+          "new=%s body=%r ls=%r native=%s" % (new, body[:80], ls[-400:], bvs_log(4)))
 
 
 # ------------------------------------------------------------------ DevTools
@@ -182,7 +211,7 @@ def webview_bounds():
 
 def tap(sel, label=None, js_fallback=False):
     r = cdp.ev("""(function(){var e=document.querySelector(%s); if(!e) return null;
-      e.scrollIntoView({block:'center'}); var b=e.getBoundingClientRect(); var cs=getComputedStyle(e);
+      e.scrollIntoView({block:'center', inline:'nearest', behavior:'instant'}); var b=e.getBoundingClientRect(); var cs=getComputedStyle(e);
       return {w:b.width, vis: !!(e.offsetParent||cs.position==='fixed') && cs.visibility!=='hidden', dis: !!e.disabled};})()""" % json.dumps(sel))
     if not r or not r["vis"] or r["w"] == 0:
         if js_fallback and r is not None:
@@ -190,10 +219,15 @@ def tap(sel, label=None, js_fallback=False):
             time.sleep(1)
             return "js"
         raise RuntimeError("element %s not visible/tappable: %s" % (sel, r))
-    time.sleep(0.5)
-    r = cdp.ev("""(function(){var e=document.querySelector(%s), b=e.getBoundingClientRect();
-      var x=b.left+b.width/2, y=b.top+b.height/2, top=document.elementFromPoint(x,y);
-      return {x:x, y:y, iw:innerWidth, hit: !!(top && (top===e || e.contains(top)))};})()""" % json.dumps(sel))
+    prev = None
+    for _ in range(12):  # wait until the element stops moving (smooth scroll, keyboard animation)
+        time.sleep(0.4)
+        r = cdp.ev("""(function(){var e=document.querySelector(%s), b=e.getBoundingClientRect();
+          var x=b.left+Math.min(b.width/2, 60), y=b.top+b.height/2, top=document.elementFromPoint(x,y);
+          return {x:x, y:y, iw:innerWidth, hit: !!(top && (top===e || e.contains(top)))};})()""" % json.dumps(sel))
+        if prev and abs(prev["y"] - r["y"]) < 1 and abs(prev["x"] - r["x"]) < 1:
+            break
+        prev = r
     wb = webview_bounds()
     if not wb:
         raise RuntimeError("WebView not found in uiautomator dump")
@@ -217,6 +251,10 @@ def hide_kb():
 
 def type_into(sel, text):
     tap(sel)
+    if not cdp.ev("document.activeElement===document.querySelector(%s)" % json.dumps(sel)):
+        log("  focus did not land on %s after tap; focusing it so typing still uses the real keyboard" % sel)
+        cdp.ev("document.querySelector(%s).focus()" % json.dumps(sel))
+        time.sleep(0.5)
     adb("shell", "input", "text", text.replace(" ", "%s"))
     time.sleep(0.8)
 
@@ -279,11 +317,18 @@ def t_landing():
       origin:location.origin, secure:window.isSecureContext, shim:!!window.__bvsShim, title:document.title,
       heroH:(document.querySelector('.x-lhero h1')||{}).offsetHeight||0})"""))
     ev = shot("landing")
+    overflow("landing (%spx wide)" % cdp.ev("innerWidth"))
     hark_ok = any(s.startswith("hark.css:") and not s.endswith(":-1") and not s.endswith(":0") for s in st["sheets"])
     ok = st["views"] == ["landing"] and st["heroH"] > 0 and hark_ok
     check("Landing", "Landing page renders (not blank), design CSS loaded", "PASS" if ok else "FAIL", st, ev)
     check("Security", "Page runs on https app origin, secure context, native shim present",
           "PASS" if st["origin"].startswith("https://appassets") and st["secure"] and st["shim"] else "FAIL", st)
+
+
+def overflow(where):
+    o = cdp.ev("JSON.stringify({sw:document.documentElement.scrollWidth, iw:innerWidth, sx:scrollX})")
+    o = json.loads(o)
+    check("Layout", "No sideways overflow on " + where, "PASS" if o["sw"] <= o["iw"] + 1 else "FAIL", o)
 
 
 def t_landing_nav():
@@ -402,7 +447,7 @@ def t_tabs():
 
 
 def t_lang():
-    to_app("home")
+    to_app("tr")
     s0 = cdp.ev("[srcLang.value,tgtLang.value].join('>')")
     opts = cdp.ev("[].map.call(tgtLang.options,function(o){return o.value})")
     tap("#swap", "swap")
@@ -439,6 +484,8 @@ def t_free_translate():
         err = pane_errors("tr")
         ok = bool(re.search(SCRIPTS[pre], out)) and not err
         ev = shot("free_translate_" + pre)
+        if pre == "en":
+            overflow("Translate tab")
         check("Translate", "Free text translate Hindi -> %s" % code, "PASS" if ok else "FAIL", "out=%r err=%r" % (out[:200], err), ev)
         done.append(code)
     rom = next((o for o in opts if "roman" in o), None)
@@ -478,8 +525,21 @@ def t_voice_studio_free():
     tap("#fvPlay", "Play")
     ev = wait_for("__t.tts.filter(function(x){return x=='start'||x=='end'}).length", 15)
     err = pane_errors("vs")
+    first = cdp.ev("__t.tts.join(',')")
+    note = ""
+    if not ev and langs and any(l.startswith("en") for l in langs):
+        # Emulator images often have no Hindi TTS voice data: check the app said so, then try English.
+        note = "hi: tts=%s native=%s; " % (first, [l for l in bvs_log(6) if "awaaz" in l][-1:])
+        tap("#fvStop", "Stop")
+        setv("#fvText", "Hello, this is a speech test.")
+        setv("#fvLang", next(l for l in langs if l.startswith("en")))
+        time.sleep(1)
+        cdp.ev("__t.tts=[]")
+        tap("#fvPlay", "Play (English)")
+        ev = wait_for("__t.tts.filter(function(x){return x=='start'||x=='end'}).length", 15)
+        err = pane_errors("vs")
     check("Voice Studio", "Free Voice Studio: pick language/voice, Play", "PASS" if ev and not err else "FAIL",
-          "languages=%d voices-in-list=%s tts-events=%s errors=%s" % (len(langs or []), voices, cdp.ev("__t.tts.join(',')"), err), shot("voice_studio_free"))
+          "%slanguages=%d voices-in-list=%s tts-events=%s errors=%s" % (note, len(langs or []), voices, cdp.ev("__t.tts.join(',')"), err), shot("voice_studio_free"))
     tap("#fvStop", "Stop")
 
 
@@ -518,9 +578,9 @@ def t_file_picker():
     to_app("tr")
     tap("#frFile", "file input")
     time.sleep(3)
-    top = sh("dumpsys activity activities | grep -E 'topResumedActivity|mResumedActivity' | head -n 1")
+    top = sh("dumpsys activity activities | grep -E 'topResumedActivity|mResumedActivity'")
     ev = shot("file_picker")
-    opened = "documentsui" in top.lower() or "files" in top.lower()
+    opened = bool(re.search(r"documentsui|ChooserActivity|ResolverActivity|photopicker|\.files", top, re.I))
     adb("shell", "input", "keyevent", "4")
     time.sleep(2)
     _, back = alive()
@@ -564,6 +624,7 @@ def t_exports():
         err = pane_errors("tr")
         if err:
             res[b + "_msg"] = err
+        res[b + "_native"] = bvs_log(2)
     ok = all(isinstance(res.get(b), list) and res.get(b) for b in ["frTxt", "frSrt"])
     check("Export", "Transcript TXT and SRT download to phone's Download folder", "PASS" if ok else "FAIL", res, shot("exports"))
     to_app("home")
@@ -571,7 +632,7 @@ def t_exports():
     tap("#histAll", "History: Sab download karo")
     time.sleep(4)
     new = sorted(downloads() - b0)
-    check("History", "History 'Sab download karo' saves a file", "PASS" if new else "FAIL", new, shot("history"))
+    check("History", "History 'Sab download karo' saves a file", "PASS" if new else "FAIL", "%s native=%s" % (new, bvs_log(2)), shot("history"))
     if new:
         c = sh("cat '/sdcard/Download/%s' | head -c 300" % new[0])
         check("History", "Downloaded history file has the translations", "PASS" if re.search(r"[\u0B00-\u0B7F\u0980-\u09FFA-Za-z]{3}", c) else "FAIL", c[:300])
@@ -599,10 +660,12 @@ def t_link():
         opts = cdp.ev("[].map.call(lkSubSel.options,function(o){return o.textContent})")
         setv("#tgtLang", next((o for o in cdp.ev("[].map.call(tgtLang.options,function(o){return o.value})") if o.startswith("od")), "hi-IN"))
         tap("#lkSubGo", "Subtitle se seedha translate")
-        n = wait_for("document.getElementById('pane-tr').hidden?0:document.querySelectorAll('#frRows tr').length", 120, 3)
+        n = wait_for("""(function(){if(document.getElementById('pane-tr').hidden)return 0;
+            return [].filter.call(document.querySelectorAll('#frRows tr'),function(r){return /[\u0B00-\u0B7F]/.test(r.innerText)}).length})()""", 200, 3)
         rows_ = cdp.ev("[].map.call(document.querySelectorAll('#frRows tr'),function(r){return r.innerText.replace(/\\s+/g,' ')}).slice(0,3)")
+        lk_log = cdp.ev("(document.getElementById('lkLog')||{}).innerText||''")
         check("Link", "YouTube subtitles -> translated (Odia) transcript", "PASS" if n else "FAIL",
-              "subtitle tracks=%s rows=%s %s errors=%s" % (opts, n, rows_, pane_errors("lk")), shot("link_subs_translated"))
+              "subtitle tracks=%s odia rows=%s %s errors=%s log=%r" % (opts, n, rows_, pane_errors("lk"), (lk_log or "")[-300:]), shot("link_subs_translated"))
 
 
 def t_needs_key():
@@ -645,7 +708,7 @@ def t_free_subs():
         tap("#fdSrt", "Target SRT download")
         time.sleep(3)
         new = sorted(downloads() - b0)
-        check("Dubbing", "Free subtitles: Whisper -> translated SRT -> download", "PASS" if new else "FAIL", "downloaded=%s" % new, ev)
+        check("Dubbing", "Free subtitles: Whisper -> translated SRT -> download", "PASS" if new else "FAIL", "downloaded=%s native=%s" % (new, bvs_log(2)), ev)
     else:
         check("Dubbing", "Free subtitles: Whisper -> translated SRT", "FAIL", "state=%r err=%s prog=%r" % (ok, pane_errors("db"), text("#fdProg")), ev)
 
@@ -719,6 +782,7 @@ def main():
     ver = sh("getprop ro.build.version.release").strip() + " / API " + sh("getprop ro.build.version.sdk").strip()
     log("device: Android " + ver)
     if PREV:
+        adb("uninstall", PKG)
         out = adb("install", PREV, timeout=300)
         check("Install", "Install currently published APK (" + os.path.basename(PREV) + ")", "PASS" if "Success" in out else "FAIL", out.strip()[-200:])
         out = adb("install", "-r", APK, timeout=300)
@@ -753,7 +817,7 @@ def main():
                                   ("Translate", "languages", t_lang), ("Translate", "free_translate", t_free_translate),
                                   ("Speech", "tts", t_tts), ("Voice Studio", "voice_studio", t_voice_studio_free),
                                   ("Mic", "mic", t_mic), ("Files", "file_picker", t_file_picker), ("Files", "whisper", t_whisper),
-                                  ("Export", "exports", t_exports), ("Link", "link", t_link), ("Needs key", "needs_key", t_needs_key),
+                                  ("Downloads", "download_direct", t_download_direct), ("Export", "exports", t_exports), ("Link", "link", t_link), ("Needs key", "needs_key", t_needs_key),
                                   ("Dubbing", "free_subs", t_free_subs), ("Settings", "settings", t_settings), ("Help", "help", t_help),
                                   ("Security", "security", t_security), ("Security", "persistence", t_persistence)]:
             log("=== " + fn_name)

@@ -169,10 +169,25 @@ public class MainActivity extends Activity {
         }
 
         initTts();
+        warnOldWebView();
 
         // Always load fresh. (Restoring WebView state after the activity was recreated left a blank,
         // black screen: the restored history pointed at the intercepted page without its content.)
         web.loadUrl(START_URL);
+    }
+
+    /** Very old preinstalled WebViews (e.g. v83 on Android 11 images) cannot run the Whisper tools. */
+    private void warnOldWebView() {
+        if (Build.VERSION.SDK_INT < 26) return;
+        try {
+            android.content.pm.PackageInfo p = WebView.getCurrentWebViewPackage();
+            if (p == null || p.versionName == null) return;
+            int major = Integer.parseInt(p.versionName.split("\\.")[0]);
+            Log.i(TAG, "WebView " + p.packageName + " " + p.versionName);
+            if (major < 100) {
+                toast("Android System WebView purana hai (v" + major + "). Play Store se 'Android System WebView' update karo, warna Whisper file/subtitle tools nahi chalenge.");
+            }
+        } catch (Exception ignored) {}
     }
 
     private void handleBack() {
@@ -219,6 +234,7 @@ public class MainActivity extends Activity {
     }
 
     private void toast(final String msg) {
+        Log.i(TAG, "toast: " + msg);
         main.post(() -> Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show());
     }
 
@@ -596,6 +612,7 @@ public class MainActivity extends Activity {
                 }
                 @Override public void onError(String utteranceId, int errorCode) {
                     ttsEvent(utteranceId.split("\\|")[0], "error", errJson("synthesis-failed", "code " + errorCode));
+                    ttsHint(null);
                 }
                 @Override public void onStop(String utteranceId, boolean interrupted) {
                     ttsEvent(utteranceId.split("\\|")[0], "error", errJson("interrupted", ""));
@@ -605,6 +622,17 @@ public class MainActivity extends Activity {
             for (Object[] q : ttsQueue) speakNow(q);
             ttsQueue.clear();
         }));
+    }
+
+    private long lastTtsHint = 0;
+
+    /** One clear message (at most every 8 s) when the phone cannot speak a language. */
+    private void ttsHint(String language) {
+        long now = System.currentTimeMillis();
+        if (now - lastTtsHint < 8000) return;
+        lastTtsHint = now;
+        toast((language == null ? "Is bhasha ki" : language) + " awaaz phone mein install nahi hai / chal nahi payi → "
+                + "Settings › Text-to-speech › Google Speech Services › Install voice data se download karo (Wi-Fi par).");
     }
 
     private void ttsEvent(String id, String type, String json) {
@@ -649,9 +677,13 @@ public class MainActivity extends Activity {
             } catch (Exception ignored) {}
         }
         if (!voiceSet && lang != null && !lang.isEmpty()) {
-            int r = tts.setLanguage(Locale.forLanguageTag(lang.replace('_', '-')));
+            Locale loc = Locale.forLanguageTag(lang.replace('_', '-'));
+            int r = tts.setLanguage(loc);
             if (r == TextToSpeech.LANG_MISSING_DATA || r == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.w(TAG, "TTS language not available: " + lang);
+                Log.w(TAG, "TTS language not available: " + lang + " (" + r + ")");
+                ttsHint(loc.getDisplayLanguage(Locale.ENGLISH));
+                ttsEvent(id, "error", errJson("language-unavailable", "TTS voice for " + lang + " is not installed"));
+                return;
             }
         }
         tts.setSpeechRate(Math.max(0.1f, Math.min(rate, 10f)));
@@ -692,29 +724,46 @@ public class MainActivity extends Activity {
         }
         name = name.replaceAll("[\\\\/:*?\"<>|]", "_");
         try {
-            String where;
+            String where = null;
+            if (tmp.length() == 0) Log.w(TAG, "download " + name + " is empty (0 bytes)");
             if (Build.VERSION.SDK_INT >= 29) {
                 ContentResolver cr = getContentResolver();
-                ContentValues cv = new ContentValues();
-                cv.put(MediaStore.Downloads.DISPLAY_NAME, name);
-                cv.put(MediaStore.Downloads.MIME_TYPE, mime);
-                cv.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
-                cv.put(MediaStore.Downloads.IS_PENDING, 1);
-                Uri uri = cr.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
-                if (uri == null) throw new IllegalStateException("MediaStore insert failed");
-                try (OutputStream out = cr.openOutputStream(uri); InputStream in = new FileInputStream(tmp)) {
-                    copy(in, out);
+                Uri uri = null;
+                try {
+                    ContentValues cv = new ContentValues();
+                    cv.put(MediaStore.Downloads.DISPLAY_NAME, name);
+                    cv.put(MediaStore.Downloads.MIME_TYPE, mime);
+                    cv.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+                    cv.put(MediaStore.Downloads.IS_PENDING, 1);
+                    uri = cr.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
+                    if (uri == null) throw new IllegalStateException("MediaStore insert returned null");
+                    try (OutputStream out = cr.openOutputStream(uri, "w"); InputStream in = new FileInputStream(tmp)) {
+                        if (out == null) throw new IllegalStateException("openOutputStream returned null");
+                        copy(in, out);
+                        out.flush();
+                    }
+                    cv.clear();
+                    cv.put(MediaStore.Downloads.IS_PENDING, 0);
+                    cr.update(uri, cv, null, null);
+                    // MediaStore may have renamed it (e.g. "name (1).txt"): report the real name.
+                    try (android.database.Cursor c = cr.query(uri, new String[]{MediaStore.Downloads.DISPLAY_NAME}, null, null, null)) {
+                        if (c != null && c.moveToFirst()) name = c.getString(0);
+                    }
+                    where = "Download";
+                    Log.i(TAG, "MediaStore download uri " + uri);
+                } catch (Exception e) {
+                    Log.e(TAG, "MediaStore save failed, falling back to app folder", e);
+                    if (uri != null) try { cr.delete(uri, null, null); } catch (Exception ignored) {}
                 }
-                cv.clear();
-                cv.put(MediaStore.Downloads.IS_PENDING, 0);
-                cr.update(uri, cv, null, null);
-                where = "Downloads";
-            } else {
+            }
+            if (where == null) {
                 File dir;
-                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT < 29
+                        && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 } else {
-                    main.post(() -> requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQ_STORAGE));
+                    if (Build.VERSION.SDK_INT < 29)
+                        main.post(() -> requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQ_STORAGE));
                     dir = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
                 }
                 if (dir == null) dir = getFilesDir();
@@ -725,6 +774,7 @@ public class MainActivity extends Activity {
                 }
                 where = dir.getAbsolutePath();
             }
+            Log.i(TAG, "saved download " + name + " (" + tmp.length() + " bytes) -> " + where);
             toast("Save ho gaya: " + name + " (" + where + ")");
         } catch (Exception e) {
             Log.e(TAG, "save", e);
@@ -802,7 +852,8 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void dlBegin(String id, String name, String type) {
-            if (!trustedPage) return;
+            if (!trustedPage) { Log.w(TAG, "dlBegin ignored: page not trusted"); return; }
+            Log.i(TAG, "download begin " + name + " type=" + type);
             try {
                 File f = File.createTempFile("dl", ".part", getCacheDir());
                 synchronized (dlFiles) {
@@ -819,7 +870,7 @@ public class MainActivity extends Activity {
             if (!trustedPage) return;
             File f;
             synchronized (dlFiles) { f = dlFiles.get(id); }
-            if (f == null) return;
+            if (f == null) { Log.w(TAG, "dlChunk for unknown download " + id); return; }
             try (FileOutputStream out = new FileOutputStream(f, true)) {
                 out.write(Base64.decode(b64, Base64.DEFAULT));
             } catch (Exception e) {
@@ -829,7 +880,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void dlEnd(String id) {
-            if (!trustedPage) return;
+            if (!trustedPage) { Log.w(TAG, "dlEnd ignored: page not trusted"); return; }
             synchronized (dlFiles) { finishDownload(id); }
         }
 
