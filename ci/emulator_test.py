@@ -298,9 +298,36 @@ def to_app(tab="home"):
         tap(sel, "tab " + tab, js_fallback=True)
 
 
+def ensure_cdp():
+    """Reattach to WebView DevTools if the socket dropped (renderer restart, emulator hiccup)."""
+    try:
+        if cdp is not None and cdp.ws.connected:
+            cdp.ev("1")
+            return
+    except Exception:
+        pass
+    log("  DevTools socket lost; reconnecting")
+    pid, _ = alive()
+    if not pid:
+        sh("am start -W -n %s/.MainActivity" % PKG, timeout=90)
+        time.sleep(15)
+    connect()
+
+
 def run(area, function, fn):
     try:
-        fn()
+        ensure_cdp()
+    except Exception as e:
+        log("  reconnect failed: %r" % e)
+    try:
+        try:
+            fn()
+        except Exception as e:
+            if "socket" not in repr(e).lower() and "Connection" not in repr(e):
+                raise
+            log("  %s: DevTools connection dropped (%r); reconnecting and retrying once" % (function, e))
+            ensure_cdp()
+            fn()
     except Exception as e:
         ev = ""
         try:
