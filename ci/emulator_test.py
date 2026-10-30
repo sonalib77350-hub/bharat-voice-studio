@@ -193,20 +193,37 @@ HOOKS = r"""(function(){
  if(window.__t) return; window.__t={tts:[],sr:[],err:[]};
  var t=window.__bvsTTS; if(t) window.__bvsTTS=function(id,ty,p){__t.tts.push(ty+(p&&p.error?':'+p.error:''));return t.apply(this,arguments)};
  var s=window.__bvsSR; if(s) window.__bvsSR=function(id,ty,p){__t.sr.push(ty+(p&&p.error?':'+p.error+':'+(p.message||''):''));return s.apply(this,arguments)};
+ ['pointerdown','touchstart','click'].forEach(function(t){document.addEventListener(t,function(e){var g=e.target,p=e.touches&&e.touches[0]||e;
+   __t.ev=(__t.ev||[]).slice(-30); __t.ev.push(t+':'+(g&&(g.id||g.tagName))+'@'+Math.round(p.clientX||0)+','+Math.round(p.clientY||0)+(e.isTrusted?'':'(js)'));},true);});
  window.addEventListener('error',function(e){__t.err.push(String(e.message))});
  window.addEventListener('unhandledrejection',function(e){__t.err.push('rejection: '+String(e.reason&&e.reason.message||e.reason))});
 })()"""
 
 
-def webview_bounds():
+_wb = [None]
+
+
+def webview_bounds(fresh=False):
+    """Screen bounds of the WebView. Only its left/top/width are used (keyboard resizes change the height
+    only), so it is read once and cached: the slow uiautomator dump must not sit between measuring an
+    element and tapping it, or the page can move in between and the tap lands on something else."""
+    if _wb[0] and not fresh:
+        return _wb[0]
     for _ in range(3):
         sh("uiautomator dump /sdcard/ui.xml", timeout=40)
         xml = sh("cat /sdcard/ui.xml")
         m = re.search(r'class="android\.webkit\.WebView"[^>]*?bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"', xml)
         if m:
-            return tuple(int(v) for v in m.groups())
+            _wb[0] = tuple(int(v) for v in m.groups())
+            return _wb[0]
         time.sleep(1)
     return None
+
+
+POS = """(function(){var e=document.querySelector(%s), b=e.getBoundingClientRect();
+  var x=b.left+Math.min(b.width/2, 60), y=b.top+b.height/2, top=document.elementFromPoint(x,y);
+  return {x:x, y:y, top:b.top, h:b.height, iw:innerWidth, hit: !!(top && (top===e || e.contains(top))),
+          at: top ? (top.id || top.tagName) : null};})()"""
 
 
 def tap(sel, label=None, js_fallback=False):
@@ -219,22 +236,26 @@ def tap(sel, label=None, js_fallback=False):
             time.sleep(1)
             return "js"
         raise RuntimeError("element %s not visible/tappable: %s" % (sel, r))
-    prev = None
-    for _ in range(12):  # wait until the element stops moving (smooth scroll, keyboard animation)
-        time.sleep(0.4)
-        r = cdp.ev("""(function(){var e=document.querySelector(%s), b=e.getBoundingClientRect();
-          var x=b.left+Math.min(b.width/2, 60), y=b.top+b.height/2, top=document.elementFromPoint(x,y);
-          return {x:x, y:y, iw:innerWidth, hit: !!(top && (top===e || e.contains(top)))};})()""" % json.dumps(sel))
-        if prev and abs(prev["y"] - r["y"]) < 1 and abs(prev["x"] - r["x"]) < 1:
-            break
-        prev = r
     wb = webview_bounds()
     if not wb:
         raise RuntimeError("WebView not found in uiautomator dump")
+    prev, same = None, 0
+    for _ in range(25):  # wait until the element has not moved for 3 readings in a row
+        time.sleep(0.3)
+        r = cdp.ev(POS % json.dumps(sel))
+        if prev and abs(prev["y"] - r["y"]) < 1 and abs(prev["x"] - r["x"]) < 1 and r["hit"]:
+            same += 1
+            if same >= 2:
+                break
+        else:
+            same = 0
+        prev = r
     scale = (wb[2] - wb[0]) / r["iw"]
     x, y = int(wb[0] + r["x"] * scale), int(wb[1] + r["y"] * scale)
     adb("shell", "input", "tap", str(x), str(y))
-    log("  tap %s -> (%d,%d) hit=%s" % (label or sel, x, y, r["hit"]))
+    after = cdp.ev(POS % json.dumps(sel))
+    moved = abs(after["y"] - r["y"]) >= 1
+    log("  tap %s -> (%d,%d) hit=%s at=%s moved_after=%s" % (label or sel, x, y, r["hit"], r["at"], moved))
     time.sleep(1.2)
     return "tap"
 
@@ -603,16 +624,35 @@ def inject_file(sel, path, mime):
 
 def t_file_picker():
     to_app("tr")
-    tap("#frFile", "file input")
-    time.sleep(3)
-    top = sh("dumpsys activity activities | grep -E 'topResumedActivity|mResumedActivity'")
+    hide_kb()
+    opened, top, tries = False, "", []
+    for attempt in range(3):
+        cdp.ev("__t.ev=[]")
+        adb("logcat", "-c")
+        tap("#frFile", "file input")
+        for _ in range(8):
+            time.sleep(1)
+            top = sh("dumpsys activity activities | grep -E 'topResumedActivity|mResumedActivity'")
+            opened = bool(re.search(r"documentsui|ChooserActivity|ResolverActivity|photopicker|\.files", top, re.I))
+            if opened:
+                break
+        native = [l[19:].strip() for l in adb("logcat", "-d", "-s", "BVS:V").splitlines() if "chooser" in l.lower()]
+        tries.append("try %d opened=%s events=[%s] native=%s" % (attempt + 1, opened, cdp.ev("(__t.ev||[]).join(' ')"), native[-3:]))
+        if opened:
+            break
     ev = shot("file_picker")
-    opened = bool(re.search(r"documentsui|ChooserActivity|ResolverActivity|photopicker|\.files", top, re.I))
-    adb("shell", "input", "keyevent", "4")
-    time.sleep(2)
+    if opened:
+        adb("shell", "input", "keyevent", "4")
+        time.sleep(2)
+        top2 = sh("dumpsys activity activities | grep -E 'topResumedActivity|mResumedActivity'")
+        if not re.search(PKG, top2):  # a chooser dialog plus the picker can need two Backs
+            adb("shell", "input", "keyevent", "4")
+            time.sleep(2)
     _, back = alive()
+    cancel_ok = cdp.ev("true")  # page still answers after cancel (ValueCallback got null)
     check("Files", "Choose file opens Android file picker, Back returns to the app",
-          "PASS" if opened and PKG in back else "FAIL", "picker=%s | after back=%s" % (top.strip()[:140], back[:120]), ev)
+          "PASS" if opened and PKG in back and cancel_ok else "FAIL",
+          "picker=%s | after back=%s | %s" % (top.strip()[:140], back[:120], " / ".join(tries)), ev)
 
 
 def t_whisper():
@@ -686,18 +726,23 @@ def t_link():
     if st == "subs":
         opts = cdp.ev("[].map.call(lkSubSel.options,function(o){return o.textContent})")
         setv("#tgtLang", next((o for o in cdp.ev("[].map.call(tgtLang.options,function(o){return o.value})") if o.startswith("od")), "hi-IN"))
-        tap("#lkSubGo", "Subtitle se seedha translate")
-        started = wait_for("/sources try|hisse translate|Subtitle mil gaye/.test((document.getElementById('lkLog')||{}).innerText||'')", 10)
-        retry = ""
-        if not started:
-            retry = "tap did not start it (btn disabled=%s); clicked again via JS; " % cdp.ev("lkSubGo.disabled")
-            log("  " + retry)
-            cdp.ev("lkSubGo.click()")
+        # REAL adb taps only. Started = handler ran (button disabled while busy, or its log line appeared).
+        started_js = "lkSubGo.disabled || /sources try|hisse translate/.test((document.getElementById('lkLog')||{}).innerText||'') || !document.getElementById('pane-tr').hidden"
+        cdp.ev("document.getElementById('frClear').click()")  # setup only: empty transcript so only new Odia rows count
+        retry, started = "", False
+        for attempt in range(3):
+            cdp.ev("__t.ev=[]")
+            tap("#lkSubGo", "Subtitle se seedha translate")
+            started = wait_for(started_js, 8, 0.5)
+            evs = cdp.ev("(__t.ev||[]).join(' ')")
+            retry += "real tap %d: started=%s events=[%s]; " % (attempt + 1, bool(started), evs)
+            if started:
+                break
         n = wait_for("""(function(){if(document.getElementById('pane-tr').hidden)return 0;
             return [].filter.call(document.querySelectorAll('#frRows tr'),function(r){return /[\u0B00-\u0B7F]/.test(r.innerText)}).length})()""", 200, 3)
         rows_ = cdp.ev("[].map.call(document.querySelectorAll('#frRows tr'),function(r){return r.innerText.replace(/\\s+/g,' ')}).slice(0,3)")
         lk_log = cdp.ev("(document.getElementById('lkLog')||{}).innerText||''")
-        check("Link", "YouTube subtitles -> translated (Odia) transcript", "PASS" if n else "FAIL",
+        check("Link", "YouTube subtitles -> translated (Odia) transcript (real tap on 'Subtitle se seedha translate')", "PASS" if (n and started) else "FAIL",
               retry + "subtitle tracks=%s odia rows=%s %s errors=%s log=%r" % (opts, n, rows_, pane_errors("lk"), (lk_log or "")[-300:]), shot("link_subs_translated"))
 
 

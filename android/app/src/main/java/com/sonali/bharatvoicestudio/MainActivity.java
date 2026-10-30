@@ -363,11 +363,14 @@ public class MainActivity extends Activity {
 
         @Override
         public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> callback, FileChooserParams params) {
+            Log.i(TAG, "onShowFileChooser accept=" + java.util.Arrays.toString(params.getAcceptTypes()) + " mode=" + params.getMode());
             if (fileCallback != null) fileCallback.onReceiveValue(null);
             fileCallback = callback;
             Set<String> mimes = new LinkedHashSet<>();
             boolean any = false;
-            for (String a : params.getAcceptTypes()) {
+            String[] accept = params.getAcceptTypes();
+            if (accept == null) accept = new String[0];
+            for (String a : accept) {
                 if (a == null) continue;
                 for (String t : a.split(",")) {
                     t = t.trim().toLowerCase(Locale.ROOT);
@@ -397,10 +400,14 @@ public class MainActivity extends Activity {
             }
             try {
                 startActivityForResult(Intent.createChooser(i, "File chuno"), REQ_FILE);
-            } catch (ActivityNotFoundException e) {
+                Log.i(TAG, "file chooser started type=" + i.getType() + " mimes=" + mimes);
+            } catch (Exception e) {
+                // Never leave the page waiting: hand WebView an empty result so the next tap works again.
+                Log.w(TAG, "file chooser failed: " + e);
+                ValueCallback<Uri[]> cb = fileCallback;
                 fileCallback = null;
+                if (cb != null) cb.onReceiveValue(null);
                 toast("File picker nahi mila");
-                return false;
             }
             return true;
         }
@@ -417,6 +424,7 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode != REQ_FILE || fileCallback == null) return;
+        Log.i(TAG, "file chooser result=" + resultCode);
         Uri[] result = null;
         if (resultCode == RESULT_OK && data != null) {
             if (data.getClipData() != null && data.getClipData().getItemCount() > 0) {
