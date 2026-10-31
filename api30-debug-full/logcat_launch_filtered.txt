@@ -1,0 +1,106 @@
+10-31 07:04:02.077 D/AndroidRuntime( 1985): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:04:02.089 I/AndroidRuntime( 1985): Using default boot image
+10-31 07:04:02.089 I/AndroidRuntime( 1985): Leaving lock profiling enabled
+10-31 07:04:02.901 D/AndroidRuntime( 1985): Calling main entry com.android.commands.input.Input
+10-31 07:04:03.849 D/AndroidRuntime( 1985): Shutting down VM
+10-31 07:04:05.022 I/cr_CronetLibraryLoader( 1867): Cronet version: 84.0.4147.12, arch: i686
+10-31 07:04:05.425 I/cr_LibraryLoader( 1867): Loaded native library version number "83.0.4103.106"
+10-31 07:04:05.427 I/cr_CachingUmaRecorder( 1867): Flushed 3 samples from 3 histograms.
+10-31 07:04:05.432 I/cr_VariationsUtils( 1867): Requesting new seed from IVariationsSeedServer
+10-31 07:04:05.437 I/ActivityManager(  499): Start proc 2685:com.google.android.webview:webview_service/u0a145 for service {com.google.android.webview/org.chromium.android_webview.services.VariationsSeedServer}
+10-31 07:04:05.860 I/cr_VariationsUtils( 2685): Scheduling seed download job
+10-31 07:04:05.875 W/PackageManager(  499): Not removing non-existent package com.sonali.bharatvoicestudio
+10-31 07:04:05.956 I/cr_VariationsUtils( 2685): Downloading new seed
+10-31 07:04:06.791 I/cr_VariationsSeedFetch( 2685): Fetched first run seed in 827 ms
+10-31 07:04:07.017 I/MediaProvider( 1559): Invalidating LocalCallingIdentity cache for package com.sonali.bharatvoicestudio. Reason: package android.intent.action.PACKAGE_ADDED
+10-31 07:04:07.018 I/GsaVoiceInteractionSrv( 1591): O received Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) }
+10-31 07:04:07.023 D/AvrcpMediaPlayerList(  693): Name of package changed: com.sonali.bharatvoicestudio
+10-31 07:04:07.110 I/ActivityTaskManager(  499): START u0 {flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity} from uid 2000
+10-31 07:04:07.148 I/ActivityManager(  499): Start proc 2897:com.sonali.bharatvoicestudio/u0a167 for pre-top-activity {com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:04:07.164 I/aratvoicestudi( 2897): Late-enabling -Xcheck:jni
+10-31 07:04:07.177 I/aratvoicestudi( 2897): Unquickening 12 vdex files!
+10-31 07:04:07.178 W/aratvoicestudi( 2897): Unexpected CPU variant for X86 using defaults: x86_64
+10-31 07:04:07.266 D/NetworkSecurityConfig( 2897): No Network Security Config specified, using platform default
+10-31 07:04:07.266 D/NetworkSecurityConfig( 2897): No Network Security Config specified, using platform default
+10-31 07:04:07.284 I/WebViewFactory( 2897): Loading com.google.android.webview version 83.0.4103.106 (code 410410686)
+10-31 07:04:07.287 I/aratvoicestudi( 2897): The ClassLoaderContext is a special shared library.
+10-31 07:04:07.288 D/nativeloader( 2897): classloader namespace configured for unbundled product apk. library_path=/product/app/WebViewGoogle/lib/x86_64:/product/app/WebViewGoogle/WebViewGoogle.apk!/lib/x86_64:/product/app/TrichromeLibrary/TrichromeLibrary.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+10-31 07:04:07.301 D/libEGL  ( 2897): loaded /vendor/lib64/egl/libEGL_emulation.so
+10-31 07:04:07.302 D/libEGL  ( 2897): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+10-31 07:04:07.303 D/libEGL  ( 2897): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+10-31 07:04:07.327 I/aratvoicestudi( 2897): The ClassLoaderContext is a special shared library.
+10-31 07:04:07.328 D/nativeloader( 2897): classloader namespace configured for unbundled product apk. library_path=/product/app/WebViewGoogle/lib/x86_64:/product/app/WebViewGoogle/WebViewGoogle.apk!/lib/x86_64:/product/app/TrichromeLibrary/TrichromeLibrary.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+10-31 07:04:07.420 I/cr_VariationsUtils( 2897): Requesting new seed from IVariationsSeedServer
+10-31 07:04:07.425 I/cr_LibraryLoader( 2897): Loaded native library version number "83.0.4103.106"
+10-31 07:04:07.428 I/cr_CachingUmaRecorder( 2897): Flushed 3 samples from 3 histograms.
+10-31 07:04:07.504 I/ActivityManager(  499): Start proc 2963:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {com.sonali.bharatvoicestudio/org.chromium.content.app.SandboxedProcessService0:0}
+10-31 07:04:07.511 E/chromium( 2897): [ERROR:filesystem_posix.cc(62)] mkdir /data/user/0/com.sonali.bharatvoicestudio/cache/WebView/Crashpad: No such file or directory (2)
+10-31 07:04:07.530 I/TetheringManager( 2897): registerTetheringEventCallback:com.sonali.bharatvoicestudio
+10-31 07:04:07.587 W/chromium( 2897): [WARNING:dns_config_service_posix.cc(341)] Failed to read DnsConfig.
+10-31 07:04:07.687 I/cr_ChildProcessService( 2963): Creating new ChildProcessService pid=2963
+10-31 07:04:07.808 I/TextToSpeech( 2897): Sucessfully bound to com.google.android.tts
+10-31 07:04:07.808 I/BVS     ( 2897): WebView com.google.android.webview 83.0.4103.106
+10-31 07:04:07.808 I/BVS     ( 2897): toast: Android System WebView purana hai (v83). Play Store se 'Android System WebView' update karo, warna Whisper file/subtitle tools nahi chalenge.
+10-31 07:04:07.828 W/aratvoicestudi( 2897): Accessing hidden method Landroid/media/AudioManager;->getOutputLatency(I)I (greylist, reflection, allowed)
+10-31 07:04:07.843 W/cr_media( 2897): Requires BLUETOOTH permission
+10-31 07:04:07.856 I/cr_LibraryLoader( 2963): Loaded native library version number "83.0.4103.106"
+10-31 07:04:07.856 I/cr_CachingUmaRecorder( 2963): Flushed 1 samples from 1 histograms.
+10-31 07:04:07.951 D/CompatibilityChangeReporter( 2897): Compat change id reported: 147798919; UID 10167; state: ENABLED
+10-31 07:04:07.980 D/HostConnection( 2897): HostConnection::get() New Host Connection established 0x7f89986d1390, tid 2927
+10-31 07:04:07.983 D/HostConnection( 2897): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:04:07.991 D/EGL_emulation( 2897): eglCreateContext: 0x7f8988726380: maj 3 min 0 rcv 3
+10-31 07:04:07.993 D/EGL_emulation( 2897): eglMakeCurrent: 0x7f8988726380: ver 3 0 (tinfo 0x7f8928735610) (first time)
+10-31 07:04:08.026 I/Gralloc4( 2897): mapper 4.x is not supported
+10-31 07:04:08.027 D/HostConnection( 2897): createUnique: call
+10-31 07:04:08.027 D/HostConnection( 2897): HostConnection::get() New Host Connection established 0x7f89986d0550, tid 2927
+10-31 07:04:08.037 D/HostConnection( 2897): HostConnection::get() New Host Connection established 0x7f89986cff50, tid 3031
+10-31 07:04:08.124 D/HostConnection( 2897): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:04:08.149 I/cr_VariationsUtils( 2685): Throttling seed download job
+10-31 07:04:08.149 I/cr_VariationsUtils( 2685): Writing new seed to app's data directory
+10-31 07:04:08.162 D/HostConnection( 2897): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:04:08.165 D/EGL_emulation( 2897): eglCreateContext: 0x7f898870f300: maj 3 min 0 rcv 3
+10-31 07:04:08.189 D/EGL_emulation( 2897): eglMakeCurrent: 0x7f898870f300: ver 3 0 (tinfo 0x7f8928790ed0) (first time)
+10-31 07:04:08.260 I/VideoCapabilities( 2897): Unsupported profile 4 for video/mp4v-es
+10-31 07:04:08.261 W/cr_MediaCodecUtil( 2897): HW encoder for video/avc is not available on this device.
+10-31 07:04:08.357 D/EGL_emulation( 2897): eglCreateContext: 0x7f8988720340: maj 3 min 0 rcv 3
+10-31 07:04:08.959 I/TextToSpeech( 2897): Connected to ComponentInfo{com.google.android.tts/com.google.android.tts.service.GoogleTTSService}
+10-31 07:04:09.027 I/TextToSpeech( 2897): Set up connection to ComponentInfo{com.google.android.tts/com.google.android.tts.service.GoogleTTSService}
+10-31 07:04:09.334 I/aratvoicestudi( 2897): Background young concurrent copying GC freed 77460(4084KB) AllocSpace objects, 24(6584KB) LOS objects, 83% free, 4793KB/28MB, paused 21us total 155.290ms
+10-31 07:04:10.962 W/GCM     ( 1141): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-31 07:04:10.963 W/GCM     ( 1141): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-31 07:04:11.133 I/ChromeSync( 1485): [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+10-31 07:04:11.166 I/FontsPackageChangeOp( 1485): Package com.sonali.bharatvoicestudio has no metadata
+10-31 07:04:11.258 I/ChromeSync( 1485): [Persistence,AffiliationManager] One of affiliation or grouping data for android://qOse95fNFiiDwdgdBHJfRAYzF0kYWRKpOvKWoZ5_V_JPGgmIeVxAe5t9uRX9r8SR28zqFerhVZwrDk1tiLh8Pw==@com.sonali.bharatvoicestudio/ was not found. Marking affiliation data as stale...
+10-31 07:04:11.460 W/NotificationService(  499): Toast already killed. pkg=com.sonali.bharatvoicestudio token=android.os.BinderProxy@da7c0ff
+10-31 07:04:12.882 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.packageinstaller/com.android.packageinstaller.PackageInstalledReceiver
+10-31 07:04:12.885 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+10-31 07:04:12.885 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+10-31 07:04:12.885 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+10-31 07:04:12.885 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+10-31 07:04:12.885 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.ims/.receivers.RcsAutoStartReceiver
+10-31 07:04:13.803 I/OpenGLRenderer( 2897): Davey! duration=3070ms; Flags=0, IntendedVsync=37263046082, Vsync=37263046082, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=37263426526, AnimationStart=37263428560, PerformTraversalsStart=37263840307, DrawStart=37263957426, SyncQueued=37264151347, SyncStart=37264304412, IssueDrawCommandsStart=37264320974, SwapBuffers=40322668798, FrameCompleted=40333277297, DequeueBufferDuration=145301, QueueBufferDuration=784593, GpuCompleted=2310051800414478227, 
+10-31 07:04:13.805 I/Choreographer( 2897): Skipped 142 frames!  The application may be doing too much work on its main thread.
+10-31 07:04:13.811 W/BVS     ( 2897): missing asset favicon.ico
+10-31 07:04:13.891 E/ACS.ResponseHandler( 1867): #onFatalError: com.google.android.apps.gsa.shared.speech.b.o: errorCode: 13, engine: 2
+10-31 07:04:13.891 E/ACS.ResponseHandler( 1867): com.google.android.apps.gsa.shared.util.b.e: ACS.ResponseHandler: #onFatalError: com.google.android.apps.gsa.shared.speech.b.o: errorCode: 13, engine: 2
+10-31 07:04:13.891 I/OpenGLRenderer( 2897): Davey! duration=2439ms; Flags=0, IntendedVsync=37962974546, Vsync=40329641118, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=40334712296, AnimationStart=40334713268, PerformTraversalsStart=40336320905, DrawStart=40336399091, SyncQueued=40336577504, SyncStart=40355478581, IssueDrawCommandsStart=40355502526, SwapBuffers=40411527056, FrameCompleted=40421108207, DequeueBufferDuration=7648929, QueueBufferDuration=1481031, GpuCompleted=-5240954402221666299, 
+10-31 07:04:15.611 D/ArtManagerInternalImpl(  499): /data/misc/iorapd/com.sonali.bharatvoicestudio/11/com.sonali.bharatvoicestudio.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+10-31 07:04:15.612 I/ActivityTaskManager(  499): Displayed com.sonali.bharatvoicestudio/.MainActivity: +1s282ms
+10-31 07:04:15.825 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{a035c01 com.google.android.apps.messaging/10146} BLOCKED
+10-31 07:04:15.825 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{33caaa6 com.google.android.gm/10135} BLOCKED
+10-31 07:04:15.825 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{f376ce7 com.google.android.partnersetup/10117} BLOCKED
+10-31 07:04:15.825 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{f71f094 com.google.android.apps.youtube.music/10137} BLOCKED
+10-31 07:04:17.709 W/.apps.messagin( 3219): Verification of org.chromium.net.ExperimentalBidirectionalStream$Builder org.chromium.net.impl.CronetUrlRequestContext.newBidirectionalStreamBuilder(java.lang.String, org.chromium.net.BidirectionalStream$Callback, java.util.concurrent.Executor) took 130.726ms (45.90 bytecodes/s) (976B approximate peak alloc)
+10-31 07:04:17.905 I/cr_CronetLibraryLoader( 3219): Cronet version: 81.0.4044.96, arch: i686
+10-31 07:04:19.819 I/anhw    ( 1141): Scheduling Phenotype for a PhenotypeSyncImmediately(6, org.chromium.net.cronet) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]
+10-31 07:04:25.315 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{33caaa6 com.google.android.gm/10135} BLOCKED
+10-31 07:04:25.435 I/ActivityManager(  499): Start proc 4437:com.android.chrome/u0a132 for service {com.android.chrome/org.chromium.chrome.browser.customtabs.CustomTabsConnectionService}
+10-31 07:04:26.154 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{5f50593 com.google.android.youtube/10147} BLOCKED
+10-31 07:04:26.154 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{a035c01 com.google.android.apps.messaging/10146} BLOCKED
+10-31 07:04:26.154 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{3b859d0 com.android.camera2/10133} BLOCKED
+10-31 07:04:26.155 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{33caaa6 com.google.android.gm/10135} BLOCKED
+10-31 07:04:26.155 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{7bbcdc9 com.google.android.apps.wellbeing/10113} BLOCKED
+10-31 07:04:26.155 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{855d130 com.google.android.apps.maps/10134} BLOCKED
+10-31 07:04:26.155 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{6200cce com.google.android.videos/10143} BLOCKED
+10-31 07:04:26.155 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{891b8c8 com.google.android.calendar/10144} BLOCKED
+10-31 07:04:26.155 I/AppsFilter(  499): interaction: PackageSetting{ff8dde8 com.sonali.bharatvoicestudio/10167} -> PackageSetting{90b433c com.google.android.projection.gearhead/10116} BLOCKED

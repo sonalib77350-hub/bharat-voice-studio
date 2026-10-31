@@ -1,0 +1,10 @@
+[PASS] Install / Fresh install on Android 11 / API 30 :: Performing Streamed Install
+Success  
+[PASS] App / Launch: app alive 25 s after start, no crash :: pid=8839 top=mResumedActivity: ActivityRecord{52b1dc8 u0 com.sonali.bharatvoicestudio/.MainActivity t12}   01_launch_25s.png
+[PASS] App / App still running at the end of the test :: mResumedActivity: ActivityRecord{52b1dc8 u0 com.sonali.bharatvoicestudio/.MainActivity t12}  02_final.png
+
+--- page errors ---
+
+
+--- console (errors/warnings) ---
+

@@ -1,0 +1,34 @@
+{
+ "mode": "smoke",
+ "apk": "release.apk",
+ "checks": [
+  {
+   "area": "Install",
+   "function": "Install currently published APK (previous-latest.apk)",
+   "status": "PASS",
+   "detail": "Performing Streamed Install\nSuccess",
+   "evidence": ""
+  },
+  {
+   "area": "Install",
+   "function": "Update new APK over the published one without uninstalling",
+   "status": "PASS",
+   "detail": "Performing Streamed Install\nSuccess",
+   "evidence": ""
+  },
+  {
+   "area": "App",
+   "function": "Launch: app alive 25 s after start, no crash",
+   "status": "PASS",
+   "detail": "pid=8556 top=mResumedActivity: ActivityRecord{140faa u0 com.sonali.bharatvoicestudio/.MainActivity t11} ",
+   "evidence": "01_launch_25s.png"
+  },
+  {
+   "area": "App",
+   "function": "App still running at the end of the test",
+   "status": "PASS",
+   "detail": "mResumedActivity: ActivityRecord{140faa u0 com.sonali.bharatvoicestudio/.MainActivity t11}",
+   "evidence": "02_final.png"
+  }
+ ]
+}

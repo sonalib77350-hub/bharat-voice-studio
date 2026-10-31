@@ -1,0 +1,297 @@
+--------- beginning of system
+10-31 07:10:46.050 I/ActivityManager(  499): Killing 1464:com.android.dialer/u0a120 (adj 985): empty #17
+10-31 07:10:46.051 I/ActivityManager(  499): Killing 1505:android.process.acore/u0a79 (adj 985): empty #18
+--------- beginning of main
+10-31 07:10:46.058 I/Zygote  (  285): Process 1464 exited due to signal 9 (Killed)
+10-31 07:10:46.058 I/Zygote  (  285): Process 1505 exited due to signal 9 (Killed)
+10-31 07:10:46.058 D/CountryDetector(  499): No listener is left
+10-31 07:10:46.097 I/libprocessgroup(  499): Successfully killed process cgroup uid 10120 pid 1464 in 44ms
+10-31 07:10:46.097 I/libprocessgroup(  499): Successfully killed process cgroup uid 10079 pid 1505 in 0ms
+--------- beginning of kernel
+10-31 07:10:46.984 W/healthd (    0): battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=300000 cc=10 chg=a
+10-31 07:10:48.253 I/hwservicemanager(  162): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device manifest.
+10-31 07:10:48.253 I/Gralloc4( 8730): mapper 4.x is not supported
+10-31 07:10:48.257 D/HostConnection( 8730): createUnique: call
+10-31 07:10:48.257 D/HostConnection( 8730): HostConnection::get() New Host Connection established 0x7c006b501a90, tid 8730
+10-31 07:10:48.266 D/HostConnection( 8730): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:48.569 D/logd    (    0): logdr: UID=2000 GID=2000 PID=8740 n tail=0 logMask=99 pid=0 start=0ns timeout=0ns
+10-31 07:10:48.425 I/hwservicemanager(  162): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device manifest.
+10-31 07:10:48.426 I/Gralloc4( 8755): mapper 4.x is not supported
+10-31 07:10:48.429 D/HostConnection( 8755): createUnique: call
+10-31 07:10:48.429 D/HostConnection( 8755): HostConnection::get() New Host Connection established 0x7357b4131f90, tid 8755
+10-31 07:10:48.441 D/HostConnection( 8755): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:48.710 D/logd    (    0): logdr: UID=2000 GID=2000 PID=8757 n tail=0 logMask=99 pid=0 start=0ns timeout=0ns
+10-31 07:10:48.614 I/ActivityManager(  499): Force stopping com.sonali.bharatvoicestudio appid=10168 user=-1: deletePackageX
+10-31 07:10:48.615 I/ActivityManager(  499): Killing 8556:com.sonali.bharatvoicestudio/u0a168 (adj 0): stop com.sonali.bharatvoicestudio due to deletePackageX
+10-31 07:10:48.616 W/ActivityTaskManager(  499): Force removing ActivityRecord{140faa u0 com.sonali.bharatvoicestudio/.MainActivity t11 f}}: app died, no saved state
+10-31 07:10:48.630 I/Zygote  (  285): Process 8556 exited due to signal 9 (Killed)
+10-31 07:10:48.864 I/binder  (    0): undelivered transaction 513709, process died.
+10-31 07:10:48.636 I/Zygote  (  932): Process 8620 exited cleanly (0)
+10-31 07:10:48.872 I/binder  (    0): undelivered transaction 513698, process died.
+10-31 07:10:48.646 I/keystore(  429): clear_uid 10168
+10-31 07:10:48.646 I/ActivityManager(  499): Killing 8620:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a168i2 (adj 0): isolated not needed
+10-31 07:10:48.647 D/PackageManager(  499): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-31 07:10:48.647 D/PackageManager(  499): Clear ephemeral installer activity
+10-31 07:10:48.648 E/PermissionMonitor(  499): unknown permission type: -1for uid: 10168
+10-31 07:10:48.656 I/ActivityManager(  499): Killing 2872:com.google.android.gms.unstable/u0a122 (adj 975): empty #17
+10-31 07:10:48.658 I/libprocessgroup(  499): Successfully killed process cgroup uid 10168 pid 8556 in 43ms
+10-31 07:10:48.664 I/libprocessgroup(  499): Successfully killed process cgroup uid 99002 pid 8620 in 0ms
+10-31 07:10:48.675 W/ActivityManager(  499): Unable to start service Intent { act=android.service.appprediction.AppPredictionService cmp=com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiPredictionService } U=0: not found
+10-31 07:10:48.675 W/RemoteAppPredictionService(  499): could not bind to Intent { act=android.service.appprediction.AppPredictionService cmp=com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiPredictionService } using flags 67108865
+10-31 07:10:48.675 W/ActivityManager(  499): setHasOverlayUi called on unknown pid: 8556
+10-31 07:10:48.682 I/Zygote  (  285): Process 2872 exited due to signal 9 (Killed)
+10-31 07:10:48.707 I/libprocessgroup(  499): Successfully killed process cgroup uid 10122 pid 2872 in 43ms
+10-31 07:10:48.711 W/ThreadPoolDumper( 1867): Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+10-31 07:10:48.714 W/LocationOracle( 1867): No location history returned by ContextManager
+10-31 07:10:48.739 I/BgTaskExecutorImpl( 1867): Starting EXCLUSIVE background task TNG_MINUS_ONE_SYNC.
+10-31 07:10:48.742 I/TngMinusOneSync( 1867): Syncing TNG:-1
+10-31 07:10:48.744 E/MDD     ( 1867): DownloadProgressMonitor: Can't find file group for uri: android://com.google.android.googlequicksearchbox/files/sharedminusonemodule/shared/SharedMinusOneData.pb.tmp
+10-31 07:10:48.777 I/system_server(  499): Explicit concurrent copying GC freed 141814(6715KB) AllocSpace objects, 57(2752KB) LOS objects, 49% free, 13MB/27MB, paused 43us total 128.613ms
+10-31 07:10:48.777 W/JavaBinder(  499): BinderProxy is being destroyed but the application did not call unlinkToDeath to unlink all of its death recipients beforehand.  Releasing leaked death recipient: com.android.server.AlarmManagerService$2
+10-31 07:10:48.777 I/BpBinder(  499): onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+10-31 07:10:48.787 I/cmd     ( 8772): oneway function results will be dropped but finished with status OK and parcel size 4
+10-31 07:10:48.789 I/ActivityManager(  499): Force stopping com.sonali.bharatvoicestudio appid=10168 user=0: pkg removed
+10-31 07:10:48.799 I/abb     ( 2757): StartCommandInProcess(73657474696e67730067657400676c6f settings.get.glo [truncated])
+10-31 07:10:48.800 I/MediaProvider( 1559): Invalidating LocalCallingIdentity cache for package com.sonali.bharatvoicestudio. Reason: package android.intent.action.PACKAGE_REMOVED
+10-31 07:10:48.801 V/StorageManagerService(  499): Package com.sonali.bharatvoicestudio does not have legacy storage
+10-31 07:10:48.802 V/AvrcpMediaPlayerList(  693): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+10-31 07:10:48.803 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.android.musicfx/.Compatibility$Receiver
+10-31 07:10:48.803 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.apps.maps/com.google.android.libraries.social.peoplekit.thirdparty.viewcontrollers.ThirdPartyReceiver
+10-31 07:10:48.803 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.apps.photos/com.google.android.libraries.social.peoplekit.thirdparty.viewcontrollers.ThirdPartyReceiver
+10-31 07:10:48.803 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+10-31 07:10:48.803 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+10-31 07:10:48.803 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+10-31 07:10:48.804 I/GsaVoiceInteractionSrv( 1591): O received Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) }
+10-31 07:10:48.805 I/abb     ( 2757): oneway function results will be dropped but finished with status OK and parcel size 4
+10-31 07:10:48.813 I/RoleManagerService(  499): Granting default roles...
+10-31 07:10:48.814 I/abb     ( 2757): StartCommandInProcess(7061636b61676500696e7374616c6c00 package.install. [truncated])
+10-31 07:10:48.817 I/GeofencerStateMachine( 1141): removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_ALL packageName=com.sonali.bharatvoicestudio]
+10-31 07:10:48.825 I/InputReader(  499): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-31 07:10:48.827 W/WifiService(  499): Couldn't get PackageInfo for package:com.sonali.bharatvoicestudio
+10-31 07:10:48.827 D/WifiService(  499): Remove settings for package:com.sonali.bharatvoicestudio
+10-31 07:10:48.827 D/WifiConfigManager(  499): Remove all networks for app ApplicationInfo{6b118e1 com.sonali.bharatvoicestudio}
+10-31 07:10:48.831 D/WifiConfigStore(  499): Writing to stores completed in 3 ms.
+10-31 07:10:48.831 I/PasspointManager(  499): No app ops listener found for com.sonali.bharatvoicestudio
+10-31 07:10:48.835 D/CarrierSvcBindHelper( 1031): No carrier app for: 0
+10-31 07:10:48.839 I/RollbackManager(  499): broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=com.sonali.bharatvoicestudio
+10-31 07:10:48.845 I/ConditionProviders(  499): Disallowing condition provider com.sonali.bharatvoicestudio
+10-31 07:10:48.846 W/WifiService(  499): Couldn't get PackageInfo for package:com.sonali.bharatvoicestudio
+10-31 07:10:48.846 D/WifiService(  499): Remove settings for package:com.sonali.bharatvoicestudio
+10-31 07:10:48.846 D/WifiConfigManager(  499): Remove all networks for app ApplicationInfo{a06174a com.sonali.bharatvoicestudio}
+10-31 07:10:48.850 E/CarrierServices( 3114): [2] ecr.a: Invalid signature found for com.android.contacts: E39B7BFBE0A67D78292F6CC62E06CA27A2EBF255
+10-31 07:10:48.851 D/WifiConfigStore(  499): Writing to stores completed in 4 ms.
+10-31 07:10:48.851 I/PasspointManager(  499): No app ops listener found for com.sonali.bharatvoicestudio
+10-31 07:10:48.853 E/CarrierServices( 3114): [2] ecr.a: Invalid signature found for com.android.contacts: E39B7BFBE0A67D78292F6CC62E06CA27A2EBF255
+10-31 07:10:48.858 D/AF::TrackHandle(  379): OpPlayAudio: track:55 usage:13 not muted
+10-31 07:10:48.867 I/chatty  (  379): uid=1041(audioserver) Binder:379_8 identical 11 lines
+10-31 07:10:48.868 D/AF::TrackHandle(  379): OpPlayAudio: track:55 usage:13 not muted
+10-31 07:10:48.800 W/Binder:499_21(  499): type=1400 audit(0.0:513): avc: denied { getopt } for scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:10:48.872 D/AF::TrackHandle(  379): OpPlayAudio: track:55 usage:13 not muted
+10-31 07:10:48.873 I/chatty  (  379): uid=1041(audioserver) Binder:379_8 identical 1 line
+10-31 07:10:48.873 D/AF::TrackHandle(  379): OpPlayAudio: track:55 usage:13 not muted
+10-31 07:10:48.800 W/Binder:499_21(  499): type=1400 audit(0.0:514): avc: denied { getopt } for scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:10:48.885 I/ProvidersCache( 7246): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-31 07:10:48.896 W/RuleEvaluation(  499): Integrity rule files are not available.
+10-31 07:10:48.896 I/PackageManager(  499): Integrity check passed for file:///data/app/vmdl1799045676.tmp
+10-31 07:10:48.897 W/SQLiteLog( 1485): (28) double-quoted string literal: "com.sonali.bharatvoicestudio"
+10-31 07:10:48.903 D/CompatibilityChangeReporter(  499): Compat change id reported: 135549675; UID 10169; state: ENABLED
+10-31 07:10:48.800 W/Binder:499_21(  499): type=1400 audit(0.0:515): avc: denied { getopt } for scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:10:48.920 D/PackageManager(  499): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-31 07:10:48.920 D/PackageManager(  499): Clear ephemeral installer activity
+10-31 07:10:48.840 W/Binder:499_18(  499): type=1400 audit(0.0:516): avc: denied { getopt } for scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:10:48.925 D/Launcher.Model(  905): package removed received com.sonali.bharatvoicestudio
+10-31 07:10:48.925 D/PackageUpdatedTask(  905): Removing app iconcom.sonali.bharatvoicestudio
+10-31 07:10:48.928 I/Fitness ( 1141): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+10-31 07:10:48.930 D/ModelWriter(  905): removing items from db 
+10-31 07:10:48.930 D/ModelWriter(  905): java.lang.Exception
+10-31 07:10:48.930 D/ModelWriter(  905): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(SourceFile:4)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at com.android.launcher3.model.BaseModelUpdateTask.deleteAndBindComponentsRemoved(SourceFile:2)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at com.android.launcher3.model.PackageUpdatedTask.execute(SourceFile:158)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at com.android.launcher3.model.BaseModelUpdateTask.run(SourceFile:2)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at android.os.Handler.handleCallback(Handler.java:938)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at android.os.Looper.loop(Looper.java:223)
+10-31 07:10:48.930 D/ModelWriter(  905): 	at android.os.HandlerThread.run(HandlerThread.java:67)
+10-31 07:10:48.935 I/Icing   ( 1485): doRemovePackageData com.sonali.bharatvoicestudio [CONTEXT service_id=21 ]
+10-31 07:10:48.936 I/PackageDexOptimizer(  499): Running dexopt (dexoptNeeded=1) on: /data/app/~~S4ukI-zEepQOU2KNynEgxA==/com.sonali.bharatvoicestudio-IJtfQbVdehJYUZ_LCGR-lQ==/base.apk pkg=com.sonali.bharatvoicestudio isa=x86_64 dexoptFlags=boot_complete,profile_guided,public,enable_hidden_api_checks targetFilter=speed-profile oatDir=/data/app/~~S4ukI-zEepQOU2KNynEgxA==/com.sonali.bharatvoicestudio-IJtfQbVdehJYUZ_LCGR-lQ==/oat classLoaderContext=PCL[]{}
+10-31 07:10:48.937 V/installd(  426): DexInv: --- BEGIN '/data/app/~~S4ukI-zEepQOU2KNynEgxA==/com.sonali.bharatvoicestudio-IJtfQbVdehJYUZ_LCGR-lQ==/base.apk' ---
+10-31 07:10:48.963 D/ConnectivityService(  499): NetReassign [no changes]
+10-31 07:10:48.964 I/Icing   ( 1485): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36 [CONTEXT service_id=21 ]
+10-31 07:10:48.988 W/DriveInitializer( 1485): Awaiting to be initialized
+10-31 07:10:48.998 W/Icing   ( 1485): No valid account for uploading user actions [CONTEXT service_id=21 ]
+10-31 07:10:49.008 I/Icing   ( 1485): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0 [CONTEXT service_id=21 ]
+10-31 07:10:49.010 I/Icing   ( 1485): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30 [CONTEXT service_id=21 ]
+10-31 07:10:49.014 W/Icing   ( 1485): No valid account for uploading user actions [CONTEXT service_id=21 ]
+10-31 07:10:49.024 I/Icing   ( 1485): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0 [CONTEXT service_id=21 ]
+10-31 07:10:49.026 W/dex2oat32( 8814): Unexpected CPU variant for X86 using defaults: x86_64
+10-31 07:10:49.026 I/dex2oat32( 8814): /apex/com.android.art/bin/dex2oat32 --input-vdex-fd=-1 --output-vdex-fd=9 --updatable-bcp-packages-file=/system/etc/updatable-bcp-packages.txt --resolve-startup-const-strings=true --max-image-block-size=524288 --compiler-filter=speed-profile --classpath-dir=/data/app/~~S4ukI-zEepQOU2KNynEgxA==/com.sonali.bharatvoicestudio-IJtfQbVdehJYUZ_LCGR-lQ== --class-loader-context=PCL[]{} --generate-mini-debug-info --compact-dex-level=none --compilation-reason=install
+10-31 07:10:49.027 I/ContentMaintenance( 1485): Internal cache bytes used: 0; limit: 100000000; download size: 0
+10-31 07:10:49.027 I/PinnedContentDownloader( 1485): Finished downloading pinned content.
+10-31 07:10:49.029 I/RealtimeCacheCleanup( 1485): Beginning Realtime garbage collection.
+10-31 07:10:49.030 I/RealtimeCacheCleanup( 1485): Finished Realtime garbage collection.
+10-31 07:10:49.032 I/dex2oat32( 8814): setting boot class path to /apex/com.android.art/javalib/core-oj.jar:/apex/com.android.art/javalib/core-libart.jar:/apex/com.android.art/javalib/core-icu4j.jar:/apex/com.android.art/javalib/okhttp.jar:/apex/com.android.art/javalib/bouncycastle.jar:/apex/com.android.art/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/framework-atb-backward-compatibility.jar
+10-31 07:10:49.196 I/MediaProvider( 1559): Begin Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x5000010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+10-31 07:10:49.198 I/MediaProvider( 1559): End Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package:com.sonali.bharatvoicestudio flg=0x5000010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+10-31 07:10:49.242 I/dex2oat32( 8814): dex2oat took 224.123ms (141.787ms cpu) (threads: 2) arena alloc=1208B (1208B) java alloc=657KB (673240B) native alloc=2637KB (2701248B) free=1760KB (1802608B)
+10-31 07:10:49.248 V/installd(  426): DexInv: --- END '/data/app/~~S4ukI-zEepQOU2KNynEgxA==/com.sonali.bharatvoicestudio-IJtfQbVdehJYUZ_LCGR-lQ==/base.apk' (success) ---
+10-31 07:10:49.254 E/installd(  426): Couldn't opendir /data/app/vmdl1799045676.tmp: No such file or directory
+10-31 07:10:49.254 E/installd(  426): Failed to delete /data/app/vmdl1799045676.tmp: No such file or directory
+10-31 07:10:49.255 I/abb     ( 2757): oneway function results will be dropped but finished with status OK and parcel size 4
+10-31 07:10:49.258 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.packageinstaller/com.android.packageinstaller.PackageInstalledReceiver
+10-31 07:10:49.260 I/Telecom (  499): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@ALo
+10-31 07:10:49.263 I/MediaProvider( 1559): Invalidating LocalCallingIdentity cache for package com.sonali.bharatvoicestudio. Reason: package android.intent.action.PACKAGE_ADDED
+10-31 07:10:49.263 I/GsaVoiceInteractionSrv( 1591): O received Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) }
+10-31 07:10:49.265 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+10-31 07:10:49.265 V/AvrcpMediaPlayerList(  693): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_ADDED
+10-31 07:10:49.265 D/AvrcpMediaPlayerList(  693): Name of package changed: com.sonali.bharatvoicestudio
+10-31 07:10:49.265 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+10-31 07:10:49.265 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+10-31 07:10:49.265 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+10-31 07:10:49.265 W/BroadcastQueue(  499): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 (has extras) } to com.google.android.ims/.receivers.RcsAutoStartReceiver
+10-31 07:10:49.266 I/InputReader(  499): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-31 07:10:49.279 W/GCM     ( 1141): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-31 07:10:49.279 W/GCM     ( 1141): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-31 07:10:49.280 I/Auth    ( 1485): [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+10-31 07:10:49.280 I/Auth    ( 1485): [SupervisedAccountIntentOperation] This operation is disabled
+10-31 07:10:49.491 W/audit   (    0): audit_lost=12 audit_rate_limit=5 audit_backlog_limit=64
+10-31 07:10:49.517 E/audit   (    0): rate limit exceeded
+10-31 07:10:49.283 W/ActivityManager(  499): Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+10-31 07:10:49.283 I/ChromeSync( 1485): [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.sonali.bharatvoicestudio flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+10-31 07:10:49.283 D/CarrierSvcBindHelper( 1031): No carrier app for: 0
+10-31 07:10:49.292 D/CarrierConfigLoader( 1031): mHandler: 9 phoneId: 0
+10-31 07:10:49.295 I/FontsPackageChangeOp( 1485): Package com.sonali.bharatvoicestudio has no metadata
+10-31 07:10:49.298 I/ChromeSync( 1485): [Persistence,AffiliationManager] One of affiliation or grouping data for android://qOse95fNFiiDwdgdBHJfRAYzF0kYWRKpOvKWoZ5_V_JPGgmIeVxAe5t9uRX9r8SR28zqFerhVZwrDk1tiLh8Pw==@com.sonali.bharatvoicestudio/ was not found. Marking affiliation data as stale...
+10-31 07:10:49.299 W/ActivityManager(  499): Unbind failed: could not find connection for android.os.BinderProxy@4c44044
+10-31 07:10:49.299 E/GmsClient( 1485): unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+10-31 07:10:49.320 I/PermissionControllerServiceImpl(  719): Updating user sensitive for uid 10169
+10-31 07:10:49.321 I/ProvidersCache( 7246): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-31 07:10:49.252 W/Binder:499_18(  499): type=1400 audit(0.0:517): avc: denied { getopt } for scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:10:49.348 D/EventSequenceValidator(  499): inc AccIntentStartedEvents to 2
+10-31 07:10:49.349 I/ActivityTaskManager(  499): START u0 {flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity} from uid 2000
+10-31 07:10:49.361 I/perfetto(  419): ing_service_impl.cc:758 Configured tracing session 7, #sources:1, duration:5000 ms, #buffers:1, total buffer size:4096 KB, total sessions:1, uid:1071 session name: ""
+10-31 07:10:49.361 I/perfetto(  418): probes_producer.cc:230  Ftrace setup (target_buf=7)
+10-31 07:10:49.366 D/CompatibilityChangeReporter(  499): Compat change id reported: 135634846; UID 10169; state: DISABLED
+10-31 07:10:49.366 D/CompatibilityChangeReporter(  499): Compat change id reported: 143937733; UID 10169; state: ENABLED
+10-31 07:10:49.384 I/perfetto(  418): ftrace_procfs.cc:176    enabled ftrace
+10-31 07:10:49.619 W/perfetto(    0): enabled ftrace
+10-31 07:10:49.391 D/Zygote  (  285): Forked child process 8839
+10-31 07:10:49.392 I/ActivityManager(  499): Start proc 8839:com.sonali.bharatvoicestudio/u0a169 for pre-top-activity {com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:10:49.401 W/aratvoicestudi( 8839): Unexpected CPU variant for X86 using defaults: x86_64
+10-31 07:10:49.405 I/adbd    (  398): jdwp connection from 8839
+10-31 07:10:49.416 D/NetworkSecurityConfig( 8839): No Network Security Config specified, using platform default
+10-31 07:10:49.416 D/NetworkSecurityConfig( 8839): No Network Security Config specified, using platform default
+10-31 07:10:49.419 I/system_server(  499): Background concurrent copying GC freed 219028(10MB) AllocSpace objects, 51(2916KB) LOS objects, 49% free, 14MB/28MB, paused 36us total 169.250ms
+10-31 07:10:49.429 D/libEGL  ( 8839): loaded /vendor/lib64/egl/libEGL_emulation.so
+10-31 07:10:49.431 D/libEGL  ( 8839): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+10-31 07:10:49.431 I/WebViewFactory( 8839): Loading com.google.android.webview version 83.0.4103.106 (code 410410686)
+10-31 07:10:49.432 D/libEGL  ( 8839): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+10-31 07:10:49.432 I/aratvoicestudi( 8839): The ClassLoaderContext is a special shared library.
+10-31 07:10:49.433 D/nativeloader( 8839): classloader namespace configured for unbundled product apk. library_path=/product/app/WebViewGoogle/lib/x86_64:/product/app/WebViewGoogle/WebViewGoogle.apk!/lib/x86_64:/product/app/TrichromeLibrary/TrichromeLibrary.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+10-31 07:10:49.443 I/aratvoicestudi( 8839): The ClassLoaderContext is a special shared library.
+10-31 07:10:49.444 D/nativeloader( 8839): classloader namespace configured for unbundled product apk. library_path=/product/app/WebViewGoogle/lib/x86_64:/product/app/WebViewGoogle/WebViewGoogle.apk!/lib/x86_64:/product/app/TrichromeLibrary/TrichromeLibrary.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+10-31 07:10:49.465 I/cr_VariationsUtils( 8839): Requesting new seed from IVariationsSeedServer
+10-31 07:10:49.466 D/CompatibilityChangeReporter(  499): Compat change id reported: 136274596; UID 10169; state: ENABLED
+10-31 07:10:49.471 I/cr_LibraryLoader( 8839): Loaded native library version number "83.0.4103.106"
+10-31 07:10:49.471 I/cr_CachingUmaRecorder( 8839): Flushed 3 samples from 3 histograms.
+10-31 07:10:49.522 E/chromium( 8839): [ERROR:filesystem_posix.cc(62)] mkdir /data/user/0/com.sonali.bharatvoicestudio/cache/WebView/Crashpad: No such file or directory (2)
+10-31 07:10:49.522 D/CompatibilityChangeReporter(  499): Compat change id reported: 135634846; UID 10169; state: DISABLED
+10-31 07:10:49.523 D/CompatibilityChangeReporter(  499): Compat change id reported: 143937733; UID 10169; state: ENABLED
+10-31 07:10:49.525 D/Zygote  (  932): Forked child process 8874
+10-31 07:10:49.526 I/TetheringManager( 8839): registerTetheringEventCallback:com.sonali.bharatvoicestudio
+10-31 07:10:49.526 I/ActivityManager(  499): Start proc 8874:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i3 for  {com.sonali.bharatvoicestudio/org.chromium.content.app.SandboxedProcessService0:0}
+10-31 07:10:49.530 W/ocessService0:( 8874): Unexpected CPU variant for X86 using defaults: x86_64
+10-31 07:10:49.531 W/chromium( 8839): [WARNING:dns_config_service_posix.cc(341)] Failed to read DnsConfig.
+10-31 07:10:49.533 D/CompatibilityChangeReporter(  499): Compat change id reported: 136274596; UID 10169; state: ENABLED
+10-31 07:10:49.534 I/adbd    (  398): jdwp connection from 8874
+10-31 07:10:49.552 I/TextToSpeech( 8839): Sucessfully bound to com.google.android.tts
+10-31 07:10:49.552 I/BVS     ( 8839): WebView com.google.android.webview 83.0.4103.106
+10-31 07:10:49.552 I/BVS     ( 8839): toast: Android System WebView purana hai (v83). Play Store se 'Android System WebView' update karo, warna Whisper file/subtitle tools nahi chalenge.
+10-31 07:10:49.553 I/TTS.GoogleTTSService( 3024): Creating Google TTS service, version 22.10.313224691
+10-31 07:10:49.554 D/NetworkSecurityConfig( 8874): No Network Security Config specified, using platform default
+10-31 07:10:49.554 D/NetworkSecurityConfig( 8874): No Network Security Config specified, using platform default
+10-31 07:10:49.555 I/cr_ChildProcessService( 8874): Creating new ChildProcessService pid=8874
+10-31 07:10:49.558 W/cr_media( 8839): Requires BLUETOOTH permission
+10-31 07:10:49.560 W/TTS.Dispatcher( 3024): No network voice found, will fall back to local immediately
+10-31 07:10:49.575 I/cr_VariationsUtils( 8586): Throttling seed download job
+10-31 07:10:49.575 I/cr_VariationsUtils( 8586): Writing new seed to app's data directory
+10-31 07:10:49.581 D/CompatibilityChangeReporter( 8839): Compat change id reported: 147798919; UID 10169; state: ENABLED
+10-31 07:10:49.582 I/cr_LibraryLoader( 8874): Loaded native library version number "83.0.4103.106"
+10-31 07:10:49.582 I/cr_CachingUmaRecorder( 8874): Flushed 1 samples from 1 histograms.
+10-31 07:10:49.582 I/TextToSpeech( 8839): Connected to ComponentInfo{com.google.android.tts/com.google.android.tts.service.GoogleTTSService}
+10-31 07:10:49.586 D/HostConnection( 8839): HostConnection::get() New Host Connection established 0x7f89986cb810, tid 8905
+10-31 07:10:49.592 W/TTS.Dispatcher( 3024): The requested voice is not available for this app identifier
+10-31 07:10:49.592 I/TTS.GoogleTTSServiceImp( 3024): currentLocale = en-US
+10-31 07:10:49.593 W/TTS.Dispatcher( 3024): The requested voice is not available for this app identifier
+10-31 07:10:49.594 I/TTS.GoogleTTSServiceImp( 3024): For default lang en-us is name en-US-language (en-us-x-sfg-server)
+10-31 07:10:49.604 D/HostConnection( 8839): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:49.605 I/hwservicemanager(  162): getTransport: Cannot find entry android.hardware.configstore@1.0::ISurfaceFlingerConfigs/default in either framework or device manifest.
+10-31 07:10:49.606 D/HostConnection( 8839): HostConnection::get() New Host Connection established 0x7f89986cd790, tid 8859
+10-31 07:10:49.607 D/EGL_emulation( 8839): eglCreateContext: 0x7f89887201e0: maj 3 min 0 rcv 3
+10-31 07:10:49.607 D/EGL_emulation( 8839): eglMakeCurrent: 0x7f89887201e0: ver 3 0 (tinfo 0x7f8928737b60) (first time)
+10-31 07:10:49.609 D/HostConnection( 8839): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:49.610 D/EGL_emulation( 8839): eglCreateContext: 0x7f89887208c0: maj 3 min 0 rcv 3
+10-31 07:10:49.610 D/EGL_emulation( 8839): eglMakeCurrent: 0x7f89887208c0: ver 3 0 (tinfo 0x7f892873d020) (first time)
+10-31 07:10:49.624 I/TextToSpeech( 8839): Set up connection to ComponentInfo{com.google.android.tts/com.google.android.tts.service.GoogleTTSService}
+10-31 07:10:49.632 I/hwservicemanager(  162): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device manifest.
+10-31 07:10:49.633 I/Gralloc4( 8839): mapper 4.x is not supported
+10-31 07:10:49.637 D/HostConnection( 8839): createUnique: call
+10-31 07:10:49.637 D/HostConnection( 8839): HostConnection::get() New Host Connection established 0x7f89986cf590, tid 8859
+10-31 07:10:49.649 D/HostConnection( 8839): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:49.670 I/VideoCapabilities( 8839): Unsupported profile 4 for video/mp4v-es
+10-31 07:10:49.670 W/cr_MediaCodecUtil( 8839): HW encoder for video/avc is not available on this device.
+10-31 07:10:49.672 D/EGL_emulation( 8839): eglCreateContext: 0x7f8988722390: maj 3 min 0 rcv 3
+10-31 07:10:49.809 D/ArtManagerInternalImpl(  499): /data/misc/iorapd/com.sonali.bharatvoicestudio/11/com.sonali.bharatvoicestudio.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+10-31 07:10:49.810 D/EventSequenceValidator(  499): dec AccIntentStartedEvents to 1
+10-31 07:10:49.813 I/ActivityTaskManager(  499): Displayed com.sonali.bharatvoicestudio/.MainActivity: +460ms
+10-31 07:10:49.814 I/RoleManagerService(  499): Granting default roles...
+10-31 07:10:49.815 W/ServiceManager(  349): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10169 pid=8839
+10-31 07:10:49.815 D/PermissionCache(  349): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10169 => denied (115 us)
+10-31 07:10:49.846 W/TTS.Dispatcher( 3024): The requested voice is not available for this app identifier
+10-31 07:10:49.847 I/TTS.GoogleTTSServiceImp( 3024): currentLocale = en-US
+10-31 07:10:49.848 W/TTS.Dispatcher( 3024): The requested voice is not available for this app identifier
+10-31 07:10:49.848 I/TTS.GoogleTTSServiceImp( 3024): currentLocale = en-US
+10-31 07:10:49.848 W/TTS.Dispatcher( 3024): The requested voice is not available for this app identifier
+10-31 07:10:49.849 I/TTS.GoogleTTSServiceImp( 3024): For default lang en-us is name en-US-language (en-us-x-sfg-server)
+10-31 07:10:49.882 I/PBSessionCacheImpl( 1867): Deleted sessionId[8212946266473642] from persistence.
+10-31 07:10:49.892 W/SearchServiceCore( 1867): Abort, client detached.
+10-31 07:10:50.010 I/Icing   ( 1485): Indexing com.google.android.gms-apps from com.google.android.gms [CONTEXT service_id=21 ]
+10-31 07:10:50.020 I/Icing   ( 1485): Indexing done com.google.android.gms-apps [CONTEXT service_id=21 ]
+10-31 07:10:50.020 I/Icing   ( 1485): Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms [CONTEXT service_id=21 ]
+10-31 07:10:50.023 I/Icing   ( 1485): Indexing done com.google.android.gms-internal.3p:MobileApplication [CONTEXT service_id=21 ]
+10-31 07:10:50.364 I/Icing   ( 1485): Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms [CONTEXT service_id=21 ]
+10-31 07:10:50.365 I/Icing   ( 1485): Indexing done com.google.android.gms-internal.3p:MobileApplication [CONTEXT service_id=21 ]
+10-31 07:10:50.375 I/Icing   ( 1485): Indexing com.google.android.gms-apps from com.google.android.gms [CONTEXT service_id=21 ]
+10-31 07:10:50.376 I/Icing   ( 1485): Indexing done com.google.android.gms-apps [CONTEXT service_id=21 ]
+10-31 07:10:51.483 D/WifiNl80211Manager(  499): Scan result ready event
+10-31 07:10:51.483 D/WifiNative(  499): Scan result ready event
+10-31 07:10:53.093 W/NotificationService(  499): Toast already killed. pkg=com.sonali.bharatvoicestudio token=android.os.BinderProxy@e14efd5
+10-31 07:10:53.183 I/GmscoreIpa( 1485): Starting mediastore instant index
+10-31 07:10:53.187 D/CompatibilityChangeReporter(  499): Compat change id reported: 149924527; UID 10122; state: ENABLED
+10-31 07:10:53.187 D/CompatibilityChangeReporter(  499): Compat change id reported: 132649864; UID 10122; state: DISABLED
+10-31 07:10:53.766 I/PeriodicStatsRunner( 1379): PeriodicStatsRunner.call():180 call()
+10-31 07:10:53.766 I/PeriodicStatsRunner( 1379): PeriodicStatsRunner.call():184 No submit PeriodicStats since input started.
+10-31 07:10:54.362 I/perfetto(  418): probes_producer.cc:329  Producer stop (id=7)
+10-31 07:10:54.365 I/perfetto(  418): ftrace_procfs.cc:183    disabled ftrace
+10-31 07:10:54.366 E/libc    (  419): The property "ro.build.fingerprint" has a value with length 92 that is too large for __system_property_get()/__system_property_read(); use __system_property_read_callback() instead.
+10-31 07:10:54.599 W/perfetto(    0): disabled ftrace
+10-31 07:10:54.366 I/perfetto(  419): ng_service_impl.cc:1948 Tracing session 7 ended, total sessions:0
+10-31 07:10:54.367 I/iorapd  (  427): Perfetto TraceBuffer saved to file: /data/misc/iorapd/com.sonali.bharatvoicestudio/11/com.sonali.bharatvoicestudio.MainActivity/raw_traces/1793430654366778589.perfetto_trace.pb
+10-31 07:10:54.399 I/OpenGLRenderer( 8839): Davey! duration=1848ms; Flags=0, IntendedVsync=439079728766, Vsync=439079728766, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=439079975271, AnimationStart=439079977024, PerformTraversalsStart=439080355640, DrawStart=439080449405, SyncQueued=439080598923, SyncStart=439080703150, IssueDrawCommandsStart=439080724601, SwapBuffers=440927546418, FrameCompleted=440928710037, DequeueBufferDuration=81021, QueueBufferDuration=268711, GpuCompleted=0, 
+10-31 07:10:54.404 I/Choreographer( 8839): Skipped 105 frames!  The application may be doing too much work on its main thread.
+10-31 07:10:54.406 W/BVS     ( 8839): missing asset favicon.ico
+10-31 07:10:54.880 I/PeriodicStatsRunner( 1379): PeriodicStatsRunner.call():180 call()
+10-31 07:10:54.880 I/PeriodicStatsRunner( 1379): PeriodicStatsRunner.call():184 No submit PeriodicStats since input started.
+10-31 07:11:00.002 D/KeyguardClockSwitch(  710): Updating clock: 711
+10-31 07:11:04.092 W/WindowManager(  499): removeWindowToken: Attempted to remove non-existing token: android.os.Binder@293723d
+10-31 07:11:14.855 I/hwservicemanager(  162): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device manifest.
+10-31 07:11:14.855 I/Gralloc4( 8932): mapper 4.x is not supported
+10-31 07:11:14.858 D/HostConnection( 8932): createUnique: call
+10-31 07:11:14.859 D/HostConnection( 8932): HostConnection::get() New Host Connection established 0x76d052471990, tid 8932
+10-31 07:11:14.871 D/HostConnection( 8932): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:11:15.169 D/logd    (    0): logdr: UID=2000 GID=2000 PID=8942 n tail=0 logMask=99 pid=0 start=0ns timeout=0ns
+10-31 07:11:15.020 I/hwservicemanager(  162): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device manifest.
+10-31 07:11:15.020 I/Gralloc4( 8957): mapper 4.x is not supported
+10-31 07:11:15.023 D/HostConnection( 8957): createUnique: call
+10-31 07:11:15.023 D/HostConnection( 8957): HostConnection::get() New Host Connection established 0x7f29711f3e10, tid 8957
+10-31 07:11:15.035 D/HostConnection( 8957): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:11:15.305 D/logd    (    0): logdr: UID=2000 GID=2000 PID=8959 n tail=0 logMask=99 pid=0 start=0ns timeout=0ns

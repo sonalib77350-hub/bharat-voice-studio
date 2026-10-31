@@ -1,0 +1,243 @@
+{
+ "page_errors": [],
+ "console": [
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   "url": "https://appassets.androidplatform.net/favicon.ico"
+  },
+  {
+   "type": "log",
+   "text": "[bvs] download start bvs-selftest-1793430490.txt 47 bytes"
+  },
+  {
+   "type": "log",
+   "text": "[bvs] download start bharat-history-20261031-0708.txt 1430 bytes"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://pipedapi.adminforge.de/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://pipedapi.adminforge.de/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://pipedapi.r4fo.com/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://inv.nadeko.net/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://inv.nadeko.net/api/v1/videos/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://invidious.nerdvpn.de/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://invidious.nerdvpn.de/api/v1/videos/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://yewtu.be/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://yewtu.be/api/v1/videos/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://pipedapi.r4fo.com/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR",
+   "url": "https://invidious.nerdvpn.de/api/v1/captions/jNQXAC9IVRw?lang=en"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://pipedapi.drgns.space/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://yewtu.be/api/v1/captions/jNQXAC9IVRw?lang=en' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://yewtu.be/api/v1/captions/jNQXAC9IVRw?lang=en"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://pipedapi.darkness.services/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 401 ()",
+   "url": "https://corsproxy.io/?url=https%3A%2F%2Fproxy.piped.private.coffee%2Fapi%2Ftimedtext%3Fei%3DX2rlaujSHpaC7M8P8J3koAU%26expire%3D1793445071%26fmt%3Dttml%26hl%3Den-GB%26host%3Dwww.youtube.com%26ip%3D0.0.0.0%26ipbits%3D0%26key%3Dyt8%26lang%3Den%26opi%3D112496729%26signature%3DBFFDA8B1C30E035767DEB729515DA156882CBD2F.E00FFCFF65E018AB5ADA8306B9CEC1C20A786187%26sparams%3Dip%252Cipbits%252Cexpire%252Cv%252Cei%252Copi%252Cxoaf%26v%3DjNQXAC9IVRw%26xoaf%3D5%26xowf%3D1"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 401 ()",
+   "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.youtube.com%2Fapi%2Ftimedtext%3Fv%3DjNQXAC9IVRw%26lang%3Den%26fmt%3Djson3"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 401 ()",
+   "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.youtube.com%2Fapi%2Ftimedtext%3Fv%3DjNQXAC9IVRw%26lang%3Den%26fmt%3Dvtt"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://thingproxy.freeboard.io/fetch/https://proxy.piped.private.coffee/api/timedtext?ei=X2rlaujSHpaC7M8P8J3koAU&expire=1793445071&fmt=ttml&hl=en-GB&host=www.youtube.com&ip=0.0.0.0&ipbits=0&key=yt8&lang=en&opi=112496729&signature=BFFDA8B1C30E035767DEB729515DA156882CBD2F.E00FFCFF65E018AB5ADA8306B9CEC1C20A786187&sparams=ip%2Cipbits%2Cexpire%2Cv%2Cei%2Copi%2Cxoaf&v=jNQXAC9IVRw&xoaf=5&xowf=1"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://thingproxy.freeboard.io/fetch/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=json3"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "https://thingproxy.freeboard.io/fetch/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=vtt"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://invidious.f5.si/api/v1/captions/jNQXAC9IVRw?lang=en' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://invidious.f5.si/api/v1/captions/jNQXAC9IVRw?lang=en"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=json3' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=json3"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=vtt' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=vtt"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://cors.eu.org/https://proxy.piped.private.coffee/api/timedtext?ei=X2rlaujSHpaC7M8P8J3koAU&expire=1793445071&fmt=ttml&hl=en-GB&host=www.youtube.com&ip=0.0.0.0&ipbits=0&key=yt8&lang=en&opi=112496729&signature=BFFDA8B1C30E035767DEB729515DA156882CBD2F.E00FFCFF65E018AB5ADA8306B9CEC1C20A786187&sparams=ip%2Cipbits%2Cexpire%2Cv%2Cei%2Copi%2Cxoaf&v=jNQXAC9IVRw&xoaf=5&xowf=1' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-A",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://cors.eu.org/https://proxy.piped.private.coffee/api/timedtext?ei=X2rlaujSHpaC7M8P8J3koAU&expire=1793445071&fmt=ttml&hl=en-GB&host=www.youtube.com&ip=0.0.0.0&ipbits=0&key=yt8&lang=en&opi=112496729&signature=BFFDA8B1C30E035767DEB729515DA156882CBD2F.E00FFCFF65E018AB5ADA8306B9CEC1C20A786187&sparams=ip%2Cipbits%2Cexpire%2Cv%2Cei%2Copi%2Cxoaf&v=jNQXAC9IVRw&xoaf=5&xowf=1"
+  },
+  {
+   "type": "log-error",
+   "text": "Access to fetch at 'https://pipedapi.adminforge.de/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.",
+   "url": "https://appassets.androidplatform.net/index.html#pricing"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: net::ERR_FAILED",
+   "url": "https://pipedapi.adminforge.de/streams/jNQXAC9IVRw"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 403 ()",
+   "url": "https://api.sarvam.ai/translate"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 401 ()",
+   "url": "https://api.elevenlabs.io/v1/user/subscription"
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 403 ()",
+   "url": "https://api.sarvam.ai/text-to-speech"
+  },
+  {
+   "type": "log-error",
+   "text": "Mixed Content: The page at 'https://appassets.androidplatform.net/index.html#pricing' was loaded over HTTPS, but requested an insecure resource 'http://example.com/'. This request has been blocked; the content must be served over HTTPS.",
+   "url": null
+  },
+  {
+   "type": "log-error",
+   "text": "Fetch API cannot load file:///android_asset/index.html. URL scheme must be \"http\" or \"https\" for CORS request.",
+   "url": null
+  },
+  {
+   "type": "log-error",
+   "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   "url": "https://appassets.androidplatform.net/favicon.ico"
+  }
+ ]
+}

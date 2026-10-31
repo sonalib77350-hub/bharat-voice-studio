@@ -1,0 +1,12 @@
+[PASS] Install / Install currently published APK (previous-latest.apk) :: Performing Streamed Install
+Success  
+[PASS] Install / Update new APK over the published one without uninstalling :: Performing Streamed Install
+Success  
+[PASS] App / Launch: app alive 25 s after start, no crash :: pid=8556 top=mResumedActivity: ActivityRecord{140faa u0 com.sonali.bharatvoicestudio/.MainActivity t11}   01_launch_25s.png
+[PASS] App / App still running at the end of the test :: mResumedActivity: ActivityRecord{140faa u0 com.sonali.bharatvoicestudio/.MainActivity t11}  02_final.png
+
+--- page errors ---
+
+
+--- console (errors/warnings) ---
+

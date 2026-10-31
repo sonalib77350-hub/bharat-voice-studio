@@ -1,0 +1,364 @@
+10-31 07:07:53.707 D/AndroidRuntime( 7179): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:07:53.708 I/AndroidRuntime( 7179): Using default boot image
+10-31 07:07:53.708 I/AndroidRuntime( 7179): Leaving lock profiling enabled
+10-31 07:07:53.767 D/AndroidRuntime( 7179): Calling main entry com.android.commands.input.Input
+10-31 07:07:53.771 D/AndroidRuntime( 7179): Shutting down VM
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): Exception in upload method
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): com.google.android.apps.gsa.shared.o.d: Error code: 262182
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.shared.y.bt.c(SourceFile:7)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.libraries.gsa.e.a.aw.c(SourceFile:5)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.libraries.gsa.e.a.bu.a(SourceFile:8)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.libraries.gsa.e.a.e.a(SourceFile:10)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.libraries.gsa.e.a.a.run(SourceFile:3)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.aw.execute(SourceFile:3)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.b(SourceFile:73)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:72)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.cancel(SourceFile:48)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:158)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.h.cO(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:61)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.cancel(SourceFile:48)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:158)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.h.cO(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:61)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.cancel(SourceFile:48)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:158)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.h.cO(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:61)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.cancel(SourceFile:48)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:158)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.h.cO(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:61)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.cancel(SourceFile:48)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:158)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.c.cO(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.a(SourceFile:61)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.d.cancel(SourceFile:48)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.bk.cancel(SourceFile:1)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.s3.t.a(SourceFile:6)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.s3.p.a(SourceFile:1)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.s3.p.a(SourceFile:3)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.bw.g.a.f.a(SourceFile:10)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.bw.g.b.g.a(SourceFile:5)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.z.c.h.q.a(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.bw.g.a.f.a(SourceFile:10)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.bw.g.b.b.a(SourceFile:7)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.bw.g.a.f.a(SourceFile:10)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.staticplugins.s3request.c.e.a(SourceFile:8)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.staticplugins.s3request.c.c.a(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.libraries.gsa.l.a.s.a(SourceFile:6)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.common.v.a.bq.run(SourceFile:7)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.shared.util.c.a.bx.a(SourceFile:2)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.android.apps.gsa.shared.util.c.a.ca.run(SourceFile:1)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.apps.tiktok.concurrent.aq.run(SourceFile:1)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at com.google.apps.tiktok.concurrent.f.run(Unknown Source:3)
+10-31 07:07:53.867 E/cr_CronetUrlRequestContext( 1867): 	at java.lang.Thread.run(Thread.java:923)
+10-31 07:07:57.473 D/AndroidRuntime( 7204): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:07:57.478 I/AndroidRuntime( 7204): Using default boot image
+10-31 07:07:57.478 I/AndroidRuntime( 7204): Leaving lock profiling enabled
+10-31 07:07:57.565 D/AndroidRuntime( 7204): Calling main entry com.android.commands.input.Input
+10-31 07:07:57.572 D/AndroidRuntime( 7204): Shutting down VM
+10-31 07:07:57.575 I/BVS     ( 2897): onShowFileChooser accept=[audio/*, video/*] mode=0
+10-31 07:07:57.578 I/BVS     ( 2897): file chooser started type=*/* mimes=[audio/*, video/*]
+10-31 07:07:57.845 D/Documents( 7246): shouldRestrictStorageAccessFramework = true, packageName = com.sonali.bharatvoicestudio
+10-31 07:08:00.369 D/AndroidRuntime( 7382): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:00.371 I/AndroidRuntime( 7382): Using default boot image
+10-31 07:08:00.371 I/AndroidRuntime( 7382): Leaving lock profiling enabled
+10-31 07:08:00.420 D/AndroidRuntime( 7382): Calling main entry com.android.commands.input.Input
+10-31 07:08:00.525 D/AndroidRuntime( 7382): Shutting down VM
+10-31 07:08:00.528 I/BVS     ( 2897): file chooser result=0
+10-31 07:08:05.015 D/AndroidRuntime( 7416): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:05.025 I/AndroidRuntime( 7416): Using default boot image
+10-31 07:08:05.025 I/AndroidRuntime( 7416): Leaving lock profiling enabled
+10-31 07:08:05.115 D/AndroidRuntime( 7416): Calling main entry com.android.commands.input.Input
+10-31 07:08:05.122 D/AndroidRuntime( 7416): Shutting down VM
+10-31 07:08:08.771 D/AndroidRuntime( 7434): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:08.773 I/AndroidRuntime( 7434): Using default boot image
+10-31 07:08:08.773 I/AndroidRuntime( 7434): Leaving lock profiling enabled
+10-31 07:08:08.824 D/AndroidRuntime( 7434): Calling main entry com.android.commands.input.Input
+10-31 07:08:08.828 D/AndroidRuntime( 7434): Shutting down VM
+10-31 07:08:10.502 D/AndroidRuntime( 7449): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:10.503 I/AndroidRuntime( 7449): Using default boot image
+10-31 07:08:10.503 I/AndroidRuntime( 7449): Leaving lock profiling enabled
+10-31 07:08:10.557 D/AndroidRuntime( 7449): Calling main entry com.android.commands.content.Content
+10-31 07:08:10.562 D/AndroidRuntime( 7449): Shutting down VM
+10-31 07:08:10.976 D/BVS     ( 2897): LOG [bvs] download start bvs-selftest-1793430490.txt 47 bytes @:156
+10-31 07:08:10.977 I/BVS     ( 2897): download begin bvs-selftest-1793430490.txt type=text/plain
+10-31 07:08:11.014 I/MediaProvider( 1559): Using lower FS for /storage/emulated/0/Download/.pending-1794035291-bvs-selftest-1793430490.txt
+10-31 07:08:11.015 W/MediaProvider( 1559): Ignoring mutation of date_expires from com.sonali.bharatvoicestudio
+10-31 07:08:11.017 D/MediaProvider( 1559): Moving /storage/emulated/0/Download/.pending-1794035291-bvs-selftest-1793430490.txt to /storage/emulated/0/Download/bvs-selftest-1793430490.txt
+10-31 07:08:11.033 I/BVS     ( 2897): MediaStore download uri content://media/external/downloads/18
+10-31 07:08:11.033 I/BVS     ( 2897): saved download bvs-selftest-1793430490.txt (47 bytes) -> Download
+10-31 07:08:11.033 I/BVS     ( 2897): toast: Save ho gaya: bvs-selftest-1793430490.txt (Download)
+10-31 07:08:12.034 D/AndroidRuntime( 7465): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:12.036 I/AndroidRuntime( 7465): Using default boot image
+10-31 07:08:12.036 I/AndroidRuntime( 7465): Leaving lock profiling enabled
+10-31 07:08:12.083 D/AndroidRuntime( 7465): Calling main entry com.android.commands.content.Content
+10-31 07:08:12.089 D/AndroidRuntime( 7465): Shutting down VM
+10-31 07:08:14.488 D/AndroidRuntime( 7488): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:14.489 I/AndroidRuntime( 7488): Using default boot image
+10-31 07:08:14.489 I/AndroidRuntime( 7488): Leaving lock profiling enabled
+10-31 07:08:14.540 D/AndroidRuntime( 7488): Calling main entry com.android.commands.input.Input
+10-31 07:08:14.542 W/NotificationService(  499): Toast already killed. pkg=com.sonali.bharatvoicestudio token=android.os.BinderProxy@38f812d
+10-31 07:08:14.545 D/AndroidRuntime( 7488): Shutting down VM
+10-31 07:08:16.216 D/AndroidRuntime( 7503): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:16.217 I/AndroidRuntime( 7503): Using default boot image
+10-31 07:08:16.217 I/AndroidRuntime( 7503): Leaving lock profiling enabled
+10-31 07:08:16.265 D/AndroidRuntime( 7503): Calling main entry com.android.commands.content.Content
+10-31 07:08:16.270 D/AndroidRuntime( 7503): Shutting down VM
+10-31 07:08:17.647 D/AndroidRuntime( 7516): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:17.648 I/AndroidRuntime( 7516): Using default boot image
+10-31 07:08:17.648 I/AndroidRuntime( 7516): Leaving lock profiling enabled
+10-31 07:08:17.711 D/AndroidRuntime( 7516): Calling main entry com.android.commands.input.Input
+10-31 07:08:17.714 D/AndroidRuntime( 7516): Shutting down VM
+10-31 07:08:22.387 D/AndroidRuntime( 7535): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:22.388 I/AndroidRuntime( 7535): Using default boot image
+10-31 07:08:22.388 I/AndroidRuntime( 7535): Leaving lock profiling enabled
+10-31 07:08:22.437 D/AndroidRuntime( 7535): Calling main entry com.android.commands.content.Content
+10-31 07:08:22.441 D/AndroidRuntime( 7535): Shutting down VM
+10-31 07:08:23.827 D/AndroidRuntime( 7553): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:23.829 I/AndroidRuntime( 7553): Using default boot image
+10-31 07:08:23.829 I/AndroidRuntime( 7553): Leaving lock profiling enabled
+10-31 07:08:23.895 D/AndroidRuntime( 7553): Calling main entry com.android.commands.input.Input
+10-31 07:08:23.899 D/AndroidRuntime( 7553): Shutting down VM
+10-31 07:08:28.571 D/AndroidRuntime( 7568): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:28.572 I/AndroidRuntime( 7568): Using default boot image
+10-31 07:08:28.572 I/AndroidRuntime( 7568): Leaving lock profiling enabled
+10-31 07:08:28.626 D/AndroidRuntime( 7568): Calling main entry com.android.commands.content.Content
+10-31 07:08:28.634 D/AndroidRuntime( 7568): Shutting down VM
+10-31 07:08:30.587 D/AndroidRuntime( 7588): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:30.589 I/AndroidRuntime( 7588): Using default boot image
+10-31 07:08:30.589 I/AndroidRuntime( 7588): Leaving lock profiling enabled
+10-31 07:08:30.637 D/AndroidRuntime( 7588): Calling main entry com.android.commands.input.Input
+10-31 07:08:30.646 D/AndroidRuntime( 7588): Shutting down VM
+10-31 07:08:32.323 D/AndroidRuntime( 7603): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:32.324 I/AndroidRuntime( 7603): Using default boot image
+10-31 07:08:32.324 I/AndroidRuntime( 7603): Leaving lock profiling enabled
+10-31 07:08:32.384 D/AndroidRuntime( 7603): Calling main entry com.android.commands.content.Content
+10-31 07:08:32.389 D/AndroidRuntime( 7603): Shutting down VM
+10-31 07:08:33.772 D/AndroidRuntime( 7618): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:33.778 I/AndroidRuntime( 7618): Using default boot image
+10-31 07:08:33.778 I/AndroidRuntime( 7618): Leaving lock profiling enabled
+10-31 07:08:33.875 D/AndroidRuntime( 7618): Calling main entry com.android.commands.input.Input
+10-31 07:08:33.880 D/AndroidRuntime( 7618): Shutting down VM
+10-31 07:08:33.889 D/BVS     ( 2897): LOG [bvs] download start bharat-history-20261031-0708.txt 1430 bytes @:156
+10-31 07:08:33.892 I/BVS     ( 2897): download begin bharat-history-20261031-0708.txt type=text/plain;charset=utf-8
+10-31 07:08:33.946 W/MediaProvider( 1559): Ignoring mutation of date_expires from com.sonali.bharatvoicestudio
+10-31 07:08:33.960 I/BVS     ( 2897): MediaStore download uri content://media/external/downloads/19
+10-31 07:08:33.960 I/BVS     ( 2897): saved download bharat-history-20261031-0708.txt (1430 bytes) -> Download
+10-31 07:08:33.960 I/BVS     ( 2897): toast: Save ho gaya: bharat-history-20261031-0708.txt (Download)
+10-31 07:08:37.472 W/NotificationService(  499): Toast already killed. pkg=com.sonali.bharatvoicestudio token=android.os.BinderProxy@87fbad2
+10-31 07:08:39.557 D/AndroidRuntime( 7633): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:39.558 I/AndroidRuntime( 7633): Using default boot image
+10-31 07:08:39.559 I/AndroidRuntime( 7633): Leaving lock profiling enabled
+10-31 07:08:39.612 D/AndroidRuntime( 7633): Calling main entry com.android.commands.content.Content
+10-31 07:08:39.617 D/AndroidRuntime( 7633): Shutting down VM
+10-31 07:08:42.084 D/AndroidRuntime( 7659): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:42.085 I/AndroidRuntime( 7659): Using default boot image
+10-31 07:08:42.085 I/AndroidRuntime( 7659): Leaving lock profiling enabled
+10-31 07:08:42.134 D/AndroidRuntime( 7659): Calling main entry com.android.commands.input.Input
+10-31 07:08:42.138 D/AndroidRuntime( 7659): Shutting down VM
+10-31 07:08:44.731 D/AndroidRuntime( 7674): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:44.732 I/AndroidRuntime( 7674): Using default boot image
+10-31 07:08:44.732 I/AndroidRuntime( 7674): Leaving lock profiling enabled
+10-31 07:08:44.803 D/AndroidRuntime( 7674): Calling main entry com.android.commands.input.Input
+10-31 07:08:44.807 D/AndroidRuntime( 7674): Shutting down VM
+10-31 07:08:44.819 W/cr_AwAutofillManager( 2897): Autofill is disabled: AutofillManager isn't available in given Context.
+10-31 07:08:44.839 I/AndroidIME( 1379): AbstractIme.onActivate():84 LatinIme.onActivate() : EditorInfo = Package = com.sonali.bharatvoicestudio : Type = URI : Learning = Disable : Suggestion = Show : AutoCorrection = Disable : Microphone = Show : NoPersonalizedLearning = Disable : AutoStartVoiceInput = Disable, IncognitoMode = false
+10-31 07:08:44.857 I/ConversationToQueryExtension( 1379): ConversationToQueryExtension.isEnabledForHostApp():252 Conv2Query not enabled due to current app [com.sonali.bharatvoicestudio] not in whitelist
+10-31 07:08:46.542 D/AndroidRuntime( 7694): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:46.543 I/AndroidRuntime( 7694): Using default boot image
+10-31 07:08:46.544 I/AndroidRuntime( 7694): Leaving lock profiling enabled
+10-31 07:08:46.591 D/AndroidRuntime( 7694): Calling main entry com.android.commands.input.Input
+10-31 07:08:46.608 D/AndroidRuntime( 7694): Shutting down VM
+10-31 07:08:49.022 D/AndroidRuntime( 7707): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:49.026 I/AndroidRuntime( 7707): Using default boot image
+10-31 07:08:49.026 I/AndroidRuntime( 7707): Leaving lock profiling enabled
+10-31 07:08:49.094 D/AndroidRuntime( 7707): Calling main entry com.android.commands.input.Input
+10-31 07:08:49.098 D/AndroidRuntime( 7707): Shutting down VM
+10-31 07:08:49.722 D/BVS     ( 2897): ERROR Access to fetch at 'https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:50.656 D/BVS     ( 2897): ERROR Access to fetch at 'https://pipedapi.adminforge.de/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:51.768 D/BVS     ( 2897): ERROR Access to fetch at 'https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:54.084 W/cr_AwAutofillManager( 2897): Autofill is disabled: AutofillManager isn't available in given Context.
+10-31 07:08:54.777 D/BVS     ( 2897): ERROR Access to fetch at 'https://inv.nadeko.net/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:55.919 D/BVS     ( 2897): ERROR Access to fetch at 'https://invidious.nerdvpn.de/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:57.095 D/BVS     ( 2897): ERROR Access to fetch at 'https://yewtu.be/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.068 D/AndroidRuntime( 7738): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:08:58.069 I/AndroidRuntime( 7738): Using default boot image
+10-31 07:08:58.069 I/AndroidRuntime( 7738): Leaving lock profiling enabled
+10-31 07:08:58.118 D/AndroidRuntime( 7738): Calling main entry com.android.commands.input.Input
+10-31 07:08:58.123 D/AndroidRuntime( 7738): Shutting down VM
+10-31 07:08:58.224 D/BVS     ( 2897): ERROR Access to fetch at 'https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.288 D/BVS     ( 2897): ERROR Access to fetch at 'https://yewtu.be/api/v1/captions/jNQXAC9IVRw?lang=en' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.371 D/BVS     ( 2897): ERROR Access to fetch at 'https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.561 D/BVS     ( 2897): ERROR Access to fetch at 'https://invidious.f5.si/api/v1/captions/jNQXAC9IVRw?lang=en' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.580 D/BVS     ( 2897): ERROR Access to fetch at 'https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=json3' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.605 D/BVS     ( 2897): ERROR Access to fetch at 'https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=vtt' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.613 D/BVS     ( 2897): ERROR Access to fetch at 'https://cors.eu.org/https://proxy.piped.private.coffee/api/timedtext?ei=X2rlaujSHpaC7M8P8J3koAU&expire=1793445071&fmt=ttml&hl=en-GB&host=www.youtube.com&ip=0.0.0.0&ipbits=0&key=yt8&lang=en&opi=112496729&signature=BFFDA8B1C30E035767DEB729515DA156882CBD2F.E00FFCFF65E018AB5ADA8306B9CEC1C20A786187&sparams=ip%2Cipbits%2Cexpire%2Cv%2Cei%2Copi%2Cxoaf&v=jNQXAC9IVRw&xoaf=5&xowf=1' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:08:58.626 D/BVS     ( 2897): ERROR Access to fetch at 'https://pipedapi.adminforge.de/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. @https://appassets.androidplatform.net/index.html#pricing:0
+10-31 07:09:01.855 D/AndroidRuntime( 7774): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:01.856 I/AndroidRuntime( 7774): Using default boot image
+10-31 07:09:01.856 I/AndroidRuntime( 7774): Leaving lock profiling enabled
+10-31 07:09:01.905 D/AndroidRuntime( 7774): Calling main entry com.android.commands.input.Input
+10-31 07:09:01.909 D/AndroidRuntime( 7774): Shutting down VM
+10-31 07:09:05.068 D/AndroidRuntime( 7791): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:05.069 I/AndroidRuntime( 7791): Using default boot image
+10-31 07:09:05.069 I/AndroidRuntime( 7791): Leaving lock profiling enabled
+10-31 07:09:05.123 D/AndroidRuntime( 7791): Calling main entry com.android.commands.input.Input
+10-31 07:09:05.127 D/AndroidRuntime( 7791): Shutting down VM
+10-31 07:09:08.302 D/AndroidRuntime( 7808): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:08.303 I/AndroidRuntime( 7808): Using default boot image
+10-31 07:09:08.303 I/AndroidRuntime( 7808): Leaving lock profiling enabled
+10-31 07:09:08.351 D/AndroidRuntime( 7808): Calling main entry com.android.commands.input.Input
+10-31 07:09:08.355 D/AndroidRuntime( 7808): Shutting down VM
+10-31 07:09:11.508 D/AndroidRuntime( 7825): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:11.509 I/AndroidRuntime( 7825): Using default boot image
+10-31 07:09:11.509 I/AndroidRuntime( 7825): Leaving lock profiling enabled
+10-31 07:09:11.558 D/AndroidRuntime( 7825): Calling main entry com.android.commands.input.Input
+10-31 07:09:11.563 D/AndroidRuntime( 7825): Shutting down VM
+10-31 07:09:14.720 D/AndroidRuntime( 7844): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:14.722 I/AndroidRuntime( 7844): Using default boot image
+10-31 07:09:14.722 I/AndroidRuntime( 7844): Leaving lock profiling enabled
+10-31 07:09:14.770 D/AndroidRuntime( 7844): Calling main entry com.android.commands.input.Input
+10-31 07:09:14.774 D/AndroidRuntime( 7844): Shutting down VM
+10-31 07:09:17.924 D/AndroidRuntime( 7861): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:17.925 I/AndroidRuntime( 7861): Using default boot image
+10-31 07:09:17.925 I/AndroidRuntime( 7861): Leaving lock profiling enabled
+10-31 07:09:17.973 D/AndroidRuntime( 7861): Calling main entry com.android.commands.input.Input
+10-31 07:09:17.978 D/AndroidRuntime( 7861): Shutting down VM
+10-31 07:09:21.132 D/AndroidRuntime( 7878): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:21.134 I/AndroidRuntime( 7878): Using default boot image
+10-31 07:09:21.134 I/AndroidRuntime( 7878): Leaving lock profiling enabled
+10-31 07:09:21.184 D/AndroidRuntime( 7878): Calling main entry com.android.commands.input.Input
+10-31 07:09:21.189 D/AndroidRuntime( 7878): Shutting down VM
+10-31 07:09:24.335 D/AndroidRuntime( 7897): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:24.337 I/AndroidRuntime( 7897): Using default boot image
+10-31 07:09:24.337 I/AndroidRuntime( 7897): Leaving lock profiling enabled
+10-31 07:09:24.384 D/AndroidRuntime( 7897): Calling main entry com.android.commands.input.Input
+10-31 07:09:24.388 D/AndroidRuntime( 7897): Shutting down VM
+10-31 07:09:27.961 D/AndroidRuntime( 7910): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:27.962 I/AndroidRuntime( 7910): Using default boot image
+10-31 07:09:27.962 I/AndroidRuntime( 7910): Leaving lock profiling enabled
+10-31 07:09:28.009 D/AndroidRuntime( 7910): Calling main entry com.android.commands.input.Input
+10-31 07:09:28.013 D/AndroidRuntime( 7910): Shutting down VM
+10-31 07:09:29.670 W/cr_AwAutofillManager( 2897): Autofill is disabled: AutofillManager isn't available in given Context.
+10-31 07:09:29.679 W/cr_AwAutofillManager( 2897): Autofill is disabled: AutofillManager isn't available in given Context.
+10-31 07:09:30.692 D/AndroidRuntime( 7933): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:30.705 I/AndroidRuntime( 7933): Using default boot image
+10-31 07:09:30.705 I/AndroidRuntime( 7933): Leaving lock profiling enabled
+10-31 07:09:30.855 D/AndroidRuntime( 7933): Calling main entry com.android.commands.input.Input
+10-31 07:09:30.865 D/AndroidRuntime( 7933): Shutting down VM
+10-31 07:09:34.524 D/AndroidRuntime( 8037): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:34.525 I/AndroidRuntime( 8037): Using default boot image
+10-31 07:09:34.525 I/AndroidRuntime( 8037): Leaving lock profiling enabled
+10-31 07:09:34.580 D/AndroidRuntime( 8037): Calling main entry com.android.commands.input.Input
+10-31 07:09:34.585 D/AndroidRuntime( 8037): Shutting down VM
+10-31 07:09:37.181 D/AndroidRuntime( 8050): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:37.182 I/AndroidRuntime( 8050): Using default boot image
+10-31 07:09:37.182 I/AndroidRuntime( 8050): Leaving lock profiling enabled
+10-31 07:09:37.252 D/AndroidRuntime( 8050): Calling main entry com.android.commands.input.Input
+10-31 07:09:37.257 D/AndroidRuntime( 8050): Shutting down VM
+10-31 07:09:39.919 D/AndroidRuntime( 8081): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:39.926 I/AndroidRuntime( 8081): Using default boot image
+10-31 07:09:39.926 I/AndroidRuntime( 8081): Leaving lock profiling enabled
+10-31 07:09:40.006 D/AndroidRuntime( 8081): Calling main entry com.android.commands.input.Input
+10-31 07:09:40.010 D/AndroidRuntime( 8081): Shutting down VM
+10-31 07:09:42.581 D/AndroidRuntime( 8094): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:42.583 I/AndroidRuntime( 8094): Using default boot image
+10-31 07:09:42.583 I/AndroidRuntime( 8094): Leaving lock profiling enabled
+10-31 07:09:42.638 D/AndroidRuntime( 8094): Calling main entry com.android.commands.input.Input
+10-31 07:09:42.643 D/AndroidRuntime( 8094): Shutting down VM
+10-31 07:09:45.310 D/AndroidRuntime( 8118): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:45.311 I/AndroidRuntime( 8118): Using default boot image
+10-31 07:09:45.311 I/AndroidRuntime( 8118): Leaving lock profiling enabled
+10-31 07:09:45.374 D/AndroidRuntime( 8118): Calling main entry com.android.commands.input.Input
+10-31 07:09:45.379 D/AndroidRuntime( 8118): Shutting down VM
+10-31 07:09:48.452 D/AndroidRuntime( 8131): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:48.453 I/AndroidRuntime( 8131): Using default boot image
+10-31 07:09:48.453 I/AndroidRuntime( 8131): Leaving lock profiling enabled
+10-31 07:09:48.503 D/AndroidRuntime( 8131): Calling main entry com.android.commands.input.Input
+10-31 07:09:48.508 D/AndroidRuntime( 8131): Shutting down VM
+10-31 07:09:51.100 D/AndroidRuntime( 8144): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:51.108 I/AndroidRuntime( 8144): Using default boot image
+10-31 07:09:51.109 I/AndroidRuntime( 8144): Leaving lock profiling enabled
+10-31 07:09:51.177 D/AndroidRuntime( 8144): Calling main entry com.android.commands.input.Input
+10-31 07:09:51.181 D/AndroidRuntime( 8144): Shutting down VM
+10-31 07:09:57.333 D/AndroidRuntime( 8164): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:57.334 I/AndroidRuntime( 8164): Using default boot image
+10-31 07:09:57.334 I/AndroidRuntime( 8164): Leaving lock profiling enabled
+10-31 07:09:57.390 D/AndroidRuntime( 8164): Calling main entry com.android.commands.input.Input
+10-31 07:09:57.394 D/AndroidRuntime( 8164): Shutting down VM
+10-31 07:09:59.979 D/AndroidRuntime( 8177): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:09:59.980 I/AndroidRuntime( 8177): Using default boot image
+10-31 07:09:59.981 I/AndroidRuntime( 8177): Leaving lock profiling enabled
+10-31 07:10:00.047 D/AndroidRuntime( 8177): Calling main entry com.android.commands.input.Input
+10-31 07:10:00.057 D/AndroidRuntime( 8177): Shutting down VM
+10-31 07:10:03.629 D/AndroidRuntime( 8190): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-31 07:10:03.631 I/AndroidRuntime( 8190): Using default boot image
+10-31 07:10:03.631 I/AndroidRuntime( 8190): Leaving lock profiling enabled
+10-31 07:10:03.686 D/AndroidRuntime( 8190): Calling main entry com.android.commands.input.Input
+10-31 07:10:03.698 D/AndroidRuntime( 8190): Shutting down VM
+10-31 07:10:05.892 D/BVS     ( 2897): ERROR Mixed Content: The page at 'https://appassets.androidplatform.net/index.html#pricing' was loaded over HTTPS, but requested an insecure resource 'http://example.com/'. This request has been blocked; the content must be served over HTTPS. @:2
+10-31 07:10:05.892 D/BVS     ( 2897): ERROR Fetch API cannot load file:///android_asset/index.html. URL scheme must be "http" or "https" for CORS request. @:3
+10-31 07:10:06.448 I/ActivityManager(  499): Force stopping com.sonali.bharatvoicestudio appid=10167 user=0: from pid 8209
+10-31 07:10:06.448 I/ActivityManager(  499): Killing 2897:com.sonali.bharatvoicestudio/u0a167 (adj 0): stop com.sonali.bharatvoicestudio due to from pid 8209
+10-31 07:10:06.456 I/ActivityManager(  499): Killing 2963:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a167i0 (adj 0): isolated not needed
+10-31 07:10:06.458 W/ActivityTaskManager(  499): Force removing ActivityRecord{bb9c2c2 u0 com.sonali.bharatvoicestudio/.MainActivity t9 f}}: app died, no saved state
+10-31 07:10:06.465 W/InputDispatcher(  499): channel 'f607280 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+10-31 07:10:06.465 E/InputDispatcher(  499): channel 'f607280 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+10-31 07:10:06.475 W/InputDispatcher(  499): Attempted to unregister already unregistered input channel 'f607280 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity (server)'
+10-31 07:10:08.539 I/ActivityTaskManager(  499): START u0 {flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity} from uid 2000
+10-31 07:10:08.563 I/ActivityManager(  499): Start proc 8233:com.sonali.bharatvoicestudio/u0a167 for pre-top-activity {com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:10:08.564 I/aratvoicestudi( 8233): Late-enabling -Xcheck:jni
+10-31 07:10:08.576 I/aratvoicestudi( 8233): Unquickening 12 vdex files!
+10-31 07:10:08.576 W/aratvoicestudi( 8233): Unexpected CPU variant for X86 using defaults: x86_64
+10-31 07:10:08.609 D/NetworkSecurityConfig( 8233): No Network Security Config specified, using platform default
+10-31 07:10:08.609 D/NetworkSecurityConfig( 8233): No Network Security Config specified, using platform default
+10-31 07:10:08.614 D/libEGL  ( 8233): loaded /vendor/lib64/egl/libEGL_emulation.so
+10-31 07:10:08.615 D/libEGL  ( 8233): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+10-31 07:10:08.622 D/libEGL  ( 8233): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+10-31 07:10:08.629 I/WebViewFactory( 8233): Loading com.google.android.webview version 83.0.4103.106 (code 410410686)
+10-31 07:10:08.631 I/aratvoicestudi( 8233): The ClassLoaderContext is a special shared library.
+10-31 07:10:08.632 D/nativeloader( 8233): classloader namespace configured for unbundled product apk. library_path=/product/app/WebViewGoogle/lib/x86_64:/product/app/WebViewGoogle/WebViewGoogle.apk!/lib/x86_64:/product/app/TrichromeLibrary/TrichromeLibrary.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+10-31 07:10:08.646 I/aratvoicestudi( 8233): The ClassLoaderContext is a special shared library.
+10-31 07:10:08.647 D/nativeloader( 8233): classloader namespace configured for unbundled product apk. library_path=/product/app/WebViewGoogle/lib/x86_64:/product/app/WebViewGoogle/WebViewGoogle.apk!/lib/x86_64:/product/app/TrichromeLibrary/TrichromeLibrary.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+10-31 07:10:08.672 I/cr_LibraryLoader( 8233): Loaded native library version number "83.0.4103.106"
+10-31 07:10:08.672 I/cr_CachingUmaRecorder( 8233): Flushed 3 samples from 3 histograms.
+10-31 07:10:08.673 I/cr_VariationsUtils( 8233): Loaded seed with age 361s
+10-31 07:10:08.679 I/ActivityManager(  499): Start proc 8263:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i1 for  {com.sonali.bharatvoicestudio/org.chromium.content.app.SandboxedProcessService0:0}
+10-31 07:10:08.692 I/cr_ChildProcessService( 8263): Creating new ChildProcessService pid=8263
+10-31 07:10:08.697 I/TetheringManager( 8233): registerTetheringEventCallback:com.sonali.bharatvoicestudio
+10-31 07:10:08.700 W/chromium( 8233): [WARNING:dns_config_service_posix.cc(341)] Failed to read DnsConfig.
+10-31 07:10:08.722 I/TextToSpeech( 8233): Sucessfully bound to com.google.android.tts
+10-31 07:10:08.722 I/BVS     ( 8233): WebView com.google.android.webview 83.0.4103.106
+10-31 07:10:08.723 I/BVS     ( 8233): toast: Android System WebView purana hai (v83). Play Store se 'Android System WebView' update karo, warna Whisper file/subtitle tools nahi chalenge.
+10-31 07:10:08.724 W/aratvoicestudi( 8233): Accessing hidden method Landroid/media/AudioManager;->getOutputLatency(I)I (greylist, reflection, allowed)
+10-31 07:10:08.726 W/cr_media( 8233): Requires BLUETOOTH permission
+10-31 07:10:08.740 I/cr_LibraryLoader( 8263): Loaded native library version number "83.0.4103.106"
+10-31 07:10:08.740 I/cr_CachingUmaRecorder( 8263): Flushed 1 samples from 1 histograms.
+10-31 07:10:08.746 D/HostConnection( 8233): HostConnection::get() New Host Connection established 0x7f89986cba50, tid 8301
+10-31 07:10:08.747 D/CompatibilityChangeReporter( 8233): Compat change id reported: 147798919; UID 10167; state: ENABLED
+10-31 07:10:08.754 D/HostConnection( 8233): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:08.764 D/HostConnection( 8233): HostConnection::get() New Host Connection established 0x7f89986d1150, tid 8253
+10-31 07:10:08.768 D/HostConnection( 8233): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:08.770 D/EGL_emulation( 8233): eglCreateContext: 0x7f898871fa50: maj 3 min 0 rcv 3
+10-31 07:10:08.771 D/EGL_emulation( 8233): eglMakeCurrent: 0x7f898871fa50: ver 3 0 (tinfo 0x7f892872b6b0) (first time)
+10-31 07:10:08.783 D/EGL_emulation( 8233): eglCreateContext: 0x7f8988725a90: maj 3 min 0 rcv 3
+10-31 07:10:08.783 I/Gralloc4( 8233): mapper 4.x is not supported
+10-31 07:10:08.783 D/HostConnection( 8233): createUnique: call
+10-31 07:10:08.787 D/HostConnection( 8233): HostConnection::get() New Host Connection established 0x7f89986d0c10, tid 8253
+10-31 07:10:08.797 D/HostConnection( 8233): HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+10-31 07:10:08.797 D/EGL_emulation( 8233): eglMakeCurrent: 0x7f8988725a90: ver 3 0 (tinfo 0x7f8928781e70) (first time)
+10-31 07:10:08.844 I/VideoCapabilities( 8233): Unsupported profile 4 for video/mp4v-es
+10-31 07:10:08.845 W/cr_MediaCodecUtil( 8233): HW encoder for video/avc is not available on this device.
+10-31 07:10:08.847 D/EGL_emulation( 8233): eglCreateContext: 0x7f89887204a0: maj 3 min 0 rcv 3
+10-31 07:10:08.987 I/TextToSpeech( 8233): Connected to ComponentInfo{com.google.android.tts/com.google.android.tts.service.GoogleTTSService}
+10-31 07:10:08.989 D/ArtManagerInternalImpl(  499): /data/misc/iorapd/com.sonali.bharatvoicestudio/11/com.sonali.bharatvoicestudio.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+10-31 07:10:08.989 I/ActivityTaskManager(  499): Displayed com.sonali.bharatvoicestudio/.MainActivity: +448ms
+10-31 07:10:09.012 I/TextToSpeech( 8233): Set up connection to ComponentInfo{com.google.android.tts/com.google.android.tts.service.GoogleTTSService}
+10-31 07:10:11.044 I/OpenGLRenderer( 8233): Davey! duration=1810ms; Flags=0, IntendedVsync=395763057121, Vsync=395763057121, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=395763302848, AnimationStart=395763304832, PerformTraversalsStart=395763707883, DrawStart=395763790558, SyncQueued=395764164976, SyncStart=395764327118, IssueDrawCommandsStart=395764355220, SwapBuffers=397572872983, FrameCompleted=397573555515, DequeueBufferDuration=40686, QueueBufferDuration=287667, GpuCompleted=0, 
+10-31 07:10:11.045 I/Choreographer( 8233): Skipped 96 frames!  The application may be doing too much work on its main thread.
+10-31 07:10:11.083 W/BVS     ( 8233): missing asset favicon.ico
+10-31 07:10:12.252 W/NotificationService(  499): Toast already killed. pkg=com.sonali.bharatvoicestudio token=android.os.BinderProxy@ef6585f
