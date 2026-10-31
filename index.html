@@ -905,10 +905,16 @@
               <p class="x-trans" id="frOut" aria-live="polite"></p>
               <label class="x-label"><span class="x-rangehead"><span>Sunao ki speed</span><span class="x-rangeval" id="frRateVal">1.0×</span></span>
                 <input class="x-range" type="range" id="frRate" min="0.5" max="2" step="0.1" value="1" /></label>
+              <label class="x-label">Sunao ki awaaz <select class="x-select" id="frVoice">
+                <option value="">Browser awaaz</option>
+                <option value="mms">Open-source voice (Meta MMS)</option>
+              </select></label>
               <div class="x-actions">
                 <button class="x-btn" type="button" id="frSpeak">Sunao 🔊</button>
                 <button class="x-btn" type="button" id="frHush">Stop</button>
+                <button class="x-btn" type="button" id="frMmsDl" hidden>WAV download ⬇</button>
               </div>
+              <audio id="frMmsAudio" controls hidden style="width:100%"></audio>
             </div>
             <div class="x-panel" data-free>
               <p class="x-small-head">Live mic · koi time limit nahi</p>
@@ -1072,8 +1078,10 @@
                 <div class="x-actions">
                   <button class="x-btn x-btn--solid" type="button" id="fvPlay">Play ▶</button>
                   <button class="x-btn" type="button" id="fvStop">Stop</button>
+                  <button class="x-btn" type="button" id="fvMmsDl" hidden>WAV download ⬇</button>
                 </div>
-                <p class="x-help">Free browser awaaz sirf yahin sun sakte ho, download nahi hoti. Awaazein phone/browser par nirbhar hain.</p>
+                <audio id="fvMmsAudio" controls hidden style="width:100%"></audio>
+                <p class="x-help">Browser awaaz sirf yahin sun sakte ho. <b>Open-source voice (Meta MMS)</b> chuno to WAV download bhi hoti hai — model ek baar download hota hai (38–114 MB), phir phone mein save rehta hai.</p>
                 <p class="x-error" id="fvErr" role="alert" hidden></p>
               </div>
               <p class="x-tip" data-free data-noel>Asli jaisi Sarvam awaazein aur WAV download: Yeh feature sirf Sarvam key se chalega.</p>
@@ -1605,6 +1613,10 @@
             <!-- ===== HELP ===== -->
             <div class="x-tabpanel" id="pane-help" role="tabpanel" aria-labelledby="tab-help" hidden>
               <div class="x-pane-head" data-both><h2>Help</h2><p>Keys kaise banaye, aur best result kaise milega.</p></div>
+              <div class="x-panel" data-both id="ossCredits">
+                <h3>Open-source credits</h3>
+                <p class="x-help">Open-source voice: <a class="link" href="https://huggingface.co/facebook/mms-tts" target="_blank" rel="noopener noreferrer">Meta MMS-TTS</a> — CC-BY-NC-4.0 (sirf non-commercial use). Browser mein chalane ke liye <a class="link" href="https://github.com/microsoft/onnxruntime" target="_blank" rel="noopener noreferrer">onnxruntime-web</a> — MIT.</p>
+              </div>
               <div class="x-panel" data-both>
                 <div class="x-keyhead"><h3>Sarvam key kaise milegi</h3><span class="pill">~₹100 free credit</span></div>
                 <ol class="x-howto">
@@ -3429,6 +3441,93 @@
             synth.speak(u);
           });
         }
+        // --- Open-source voice: Meta MMS-TTS (VITS) via onnxruntime-web, runs on the phone ---
+        var MMS_ORT = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/";
+        var MMS_MODELS = {
+          hi: ["Xenova/mms-tts-hin", "onnx/model_quantized.onnx"], en: ["Xenova/mms-tts-eng", "onnx/model_quantized.onnx"],
+          bn: ["payam1394/traxlate-mms-tts-ben", "onnx/model_quantized.onnx"], ta: ["payam1394/traxlate-mms-tts-tam", "onnx/model_quantized.onnx"],
+          ur: ["payam1394/traxlate-mms-tts-urd", "onnx/model_quantized.onnx"], kn: ["onnx-community/mms-tts-kan-ONNX", "onnx/model_quantized.onnx"]
+        };
+        ["or", "te", "mr", "gu", "ml", "pa", "as"].forEach(function (c) { MMS_MODELS[c] = ["naklitechie/mms-tts-" + c + "-ONNX", "model.onnx"]; });
+        function mmsKey(lang) { var b = String(lang || "").split("-")[0].toLowerCase(); return b === "od" ? "or" : b; }
+        function mmsSupported(lang) { return !!MMS_MODELS[mmsKey(lang)]; }
+        var mmsOrt = null, mmsSessions = {}, mmsVocabs = {};
+        async function mmsFetch(url, label) {
+          var cache = null;
+          try { if (window.caches) cache = await caches.open("bvs-mms-v1"); } catch (e) { cache = null; }
+          var hit = cache && await cache.match(url);
+          if (hit) return hit.arrayBuffer();
+          var res = await fetch(url);
+          if (!res.ok) throw new Error("Model download nahi hua (" + res.status + "). Internet check karo.");
+          var total = +res.headers.get("content-length") || 0, got = 0, parts = [], last = 0;
+          if (res.body && res.body.getReader) {
+            var rd = res.body.getReader();
+            for (;;) {
+              var r = await rd.read(); if (r.done) break;
+              parts.push(r.value); got += r.value.length;
+              if (label && Date.now() - last > 1500) { last = Date.now(); toast(label + ": " + (got / 1048576).toFixed(1) + (total ? " / " + (total / 1048576).toFixed(0) : "") + " MB"); }
+            }
+          } else { var ab0 = await res.arrayBuffer(); parts.push(new Uint8Array(ab0)); got = ab0.byteLength; }
+          var buf = new Uint8Array(got), o = 0;
+          parts.forEach(function (p) { buf.set(p, o); o += p.length; });
+          if (cache) { try { await cache.put(url, new Response(buf.slice().buffer, { headers: { "content-type": "application/octet-stream" } })); } catch (e) {} }
+          return buf.buffer;
+        }
+        async function mmsLoad(k) {
+          if (!mmsOrt) {
+            mmsOrt = await import(MMS_ORT + "ort.bundle.min.mjs");
+            mmsOrt.env.wasm.wasmPaths = MMS_ORT; mmsOrt.env.wasm.numThreads = 1;
+          }
+          var m = MMS_MODELS[k], base = "https://huggingface.co/" + m[0] + "/resolve/main/";
+          if (!mmsVocabs[k]) mmsVocabs[k] = JSON.parse(new TextDecoder().decode(await mmsFetch(base + "vocab.json")));
+          if (!mmsSessions[k]) {
+            var model = await mmsFetch(base + m[1], "Open-source voice download");
+            toast("Open-source voice taiyaar ho rahi hai…");
+            mmsSessions[k] = await mmsOrt.InferenceSession.create(new Uint8Array(model), { executionProviders: ["wasm"] });
+          }
+          return { s: mmsSessions[k], v: mmsVocabs[k] };
+        }
+        async function mmsSpeak(text, lang) {
+          var k = mmsKey(lang);
+          if (!MMS_MODELS[k]) throw new Error("Is bhasha ki open-source voice nahi hai.");
+          var L = await mmsLoad(k), out = [], total = 0, gap = new Float32Array(3200);
+          var parts = chunkText(text, 200);
+          for (var i = 0; i < parts.length; i++) {
+            var ids = [0];
+            Array.from(parts[i].toLowerCase()).forEach(function (ch) { if (L.v[ch] != null) ids.push(L.v[ch], 0); });
+            if (ids.length < 3) continue;
+            var n = ids.length, big = new BigInt64Array(n), mask = new BigInt64Array(n);
+            for (var j = 0; j < n; j++) { big[j] = BigInt(ids[j]); mask[j] = BigInt(1); }
+            var r = await L.s.run({ input_ids: new mmsOrt.Tensor("int64", big, [1, n]), attention_mask: new mmsOrt.Tensor("int64", mask, [1, n]) });
+            var w = (r.waveform || r[L.s.outputNames[0]]).data;
+            if (out.length) { out.push(gap); total += gap.length; }
+            out.push(w); total += w.length;
+          }
+          if (!total) throw new Error("Is text mein bolne layak akshar nahi mile.");
+          var all = new Float32Array(total), o = 0;
+          out.forEach(function (a) { all.set(a, o); o += a.length; });
+          var res = { blob: wavFrom(all, 16000), duration: total / 16000, lang: k };
+          window.bvsMms.last = res;
+          return res;
+        }
+        window.bvsMms = { speak: mmsSpeak, supported: mmsSupported, last: null };
+        var mmsOut = {};
+        async function mmsRun(p, text, lang, rate, btn) {
+          var au = $(p + "MmsAudio"), dl = $(p + "MmsDl");
+          if (synth) synth.cancel();
+          if (btn) btn.disabled = true;
+          try {
+            var r = await mmsSpeak(text, lang);
+            mmsOut[p] = { blob: r.blob, name: "bvs-mms-" + r.lang + "-" + Date.now() + ".wav" };
+            if (au.src) URL.revokeObjectURL(au.src);
+            au.src = URL.createObjectURL(r.blob); au.hidden = false; au.playbackRate = rate || 1;
+            dl.hidden = false;
+            try { var pl = au.play(); if (pl && pl.catch) pl.catch(function () {}); } catch (e) {}
+            return r;
+          } finally { if (btn) btn.disabled = false; }
+        }
+        function mmsStop(p) { try { $(p + "MmsAudio").pause(); } catch (e) {} }
+        ["fr", "fv"].forEach(function (p) { $(p + "MmsDl").addEventListener("click", function () { var it = mmsOut[p]; if (it) saveBlob(it.blob, it.name); }); });
         function progFn(p) {
           return function (t, f) { $(p + "Prog").textContent = t; $(p + "Bar").hidden = !t; $(p + "Fill").style.width = Math.round(Math.min(1, f || 0) * 100) + "%"; };
         }
@@ -3446,9 +3545,13 @@
           oops("frErr", "");
           var t = $("frOut").textContent.trim() || frRows.map(function (r) { return r.trans; }).join(" ").trim();
           if (!t) return oops("frErr", "Pehle kuch translate karo.");
+          if ($("frVoice").value === "mms" && mmsSupported(tgt.value)) {
+            mmsRun("fr", t, tgt.value, +$("frRate").value, this).catch(function (e) { oops("frErr", e.message); });
+            return;
+          }
           try { speakFree(t, tgt.value, voicesFor(tgt.value)[0], +$("frRate").value); } catch (e) { oops("frErr", e.message); }
         });
-        $("frHush").addEventListener("click", function () { if (synth) synth.cancel(); });
+        $("frHush").addEventListener("click", function () { if (synth) synth.cancel(); mmsStop("fr"); });
 
         // --- timestamped transcript ---
         var frRows = [];
@@ -3585,9 +3688,12 @@
         LANGS.forEach(function (l) { addOpt(fvLang, l[0], l[1]); });
         fvLang.value = "hi-IN";
         function fillVoices() {
+          var keep = fvVoice.value;
           fvList = voicesFor(fvLang.value); fvVoice.textContent = "";
           if (!fvList.length) addOpt(fvVoice, "", "Is bhasha ki awaaz nahi mili (default)");
           fvList.forEach(function (v, i) { addOpt(fvVoice, String(i), v.name + " (" + v.lang + ")"); });
+          if (mmsSupported(fvLang.value)) addOpt(fvVoice, "mms", "Open-source voice (Meta MMS)");
+          if (keep === "mms" && mmsSupported(fvLang.value)) fvVoice.value = "mms";
         }
         fvLang.addEventListener("change", fillVoices);
         // Browser voice list loads only when the Voice tab first opens
@@ -3602,10 +3708,14 @@
         $("fvPlay").addEventListener("click", function () {
           var t = $("fvText").value.trim(); oops("fvErr", "");
           if (!t) return oops("fvErr", "Pehle text likho.");
+          if (fvVoice.value === "mms") {
+            mmsRun("fv", t, fvLang.value, +$("fvRate").value, this).catch(function (e) { oops("fvErr", e.message); });
+            return;
+          }
           try { speakFree(t, fvLang.value, fvVoice.value === "" ? null : fvList[+fvVoice.value], +$("fvRate").value, +$("fvPitch").value); }
           catch (e) { oops("fvErr", e.message); }
         });
-        $("fvStop").addEventListener("click", function () { if (synth) synth.cancel(); });
+        $("fvStop").addEventListener("click", function () { if (synth) synth.cancel(); mmsStop("fv"); });
 
         // ================= Link se Translate =================
         var PIPED = ["pipedapi.kavin.rocks", "pipedapi.adminforge.de", "pipedapi.leptons.xyz", "api.piped.private.coffee", "pipedapi.r4fo.com"];

@@ -4,6 +4,10 @@
 name: emulator-test
 on:
   workflow_dispatch:
+    inputs:
+      apis:
+        description: 'API levels as JSON list'
+        default: '[30, 34]'
   push:
     branches: [main, emulator-fixes]
     paths:
@@ -62,7 +66,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: [30, 34]
+        api: ${{ fromJSON(github.event.inputs.apis || '[30, 34]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -88,6 +92,8 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-boot-anim -camera-back none
           disable-animations: true
+          ram-size: 4096M
+          disk-size: 6000M
           script: TEST_WAV=$PWD/testdata/speech.wav bash ci/run_emulator_tests.sh ${{ matrix.api }}
       - uses: actions/upload-artifact@v4
         if: always()

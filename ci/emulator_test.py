@@ -598,6 +598,52 @@ def t_voice_studio_free():
     tap("#fvStop", "Stop")
 
 
+def mms_one(lang, sample):
+    to_app("vs")
+    cdp.ev("window.bvsMms&&(window.bvsMms.last=null);document.getElementById('fvErr').hidden=true;document.getElementById('fvMmsDl').hidden=true")
+    setv("#fvLang", lang)
+    time.sleep(1)
+    has = cdp.ev("[].some.call(fvVoice.options,function(o){return o.value=='mms'})")
+    if not has:
+        check("Voice Studio", "Open-source voice (Meta MMS) %s -> WAV" % lang, "FAIL", "no MMS option in voice list for " + lang, shot("mms_%s_noopt" % lang))
+        return
+    setv("#fvVoice", "mms")
+    setv("#fvText", sample)
+    t0 = time.time()
+    tap("#fvPlay", "Play (MMS %s)" % lang)
+    r = wait_for("(function(){var e=document.getElementById('fvErr');if(!e.hidden&&e.textContent.trim())return 'ERR '+e.textContent.trim();"
+                 "var l=window.bvsMms&&window.bvsMms.last;return l&&!document.getElementById('fvMmsDl').hidden?('OK '+l.duration):''})()", 600, 3)
+    secs = time.time() - t0
+    if not r or not str(r).startswith("OK"):
+        check("Voice Studio", "Open-source voice (Meta MMS) %s -> WAV" % lang, "FAIL", "result=%r after %ds toasts=%s" % (r, secs, bvs_log(4)), shot("mms_%s_fail" % lang))
+        return
+    page_dur = float(str(r)[3:])
+    b0 = downloads()
+    tap("#fvMmsDl", "WAV download (MMS)")
+    new = []
+    for _ in range(15):
+        time.sleep(1)
+        new = sorted(n for n in downloads() - b0 if n.endswith(".wav"))
+        if new:
+            break
+    fdur, size, head = 0.0, 0, ""
+    if new:
+        st = sh("stat -c %%s '/sdcard/Download/%s'" % new[0]).strip()
+        size = int(st) if st.isdigit() else 0
+        head = sh("head -c 4 '/sdcard/Download/%s'" % new[0])[:4]
+        fdur = max(0, size - 44) / 32000.0
+    ok = new and head == "RIFF" and fdur > 0.5
+    check("Voice Studio", "Open-source voice (Meta MMS) %s -> WAV saved to Download, duration > 0.5 s" % lang, "PASS" if ok else "FAIL",
+          "file=%s size=%d header=%r file_duration=%.2fs page_duration=%.2fs synth_time=%ds native=%s" % (new, size, head, fdur, page_dur, secs, bvs_log(2)),
+          shot("mms_%s" % lang))
+    tap("#fvStop", "Stop")
+
+
+def t_mms():
+    mms_one("hi-IN", "नमस्ते, मेरा नाम सोनाली है। आज मौसम बहुत अच्छा है।")
+    mms_one("od-IN", "ନମସ୍କାର, ମୋ ନାଁ ସୋନାଲି। ଆଜି ପାଗ ବହୁତ ଭଲ।")
+
+
 def t_mic():
     sh("pm grant %s android.permission.RECORD_AUDIO" % PKG)
     gum = cdp.ev("""navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){var n=s.getAudioTracks().length;s.getTracks().forEach(function(t){t.stop()});return 'ok tracks='+n}).catch(function(e){return 'error '+e.name+': '+e.message})""", True)
@@ -900,7 +946,7 @@ def main():
                                   ("Auth", "signup", t_signup), ("Auth", "logout_login", t_logout_login), ("Auth", "google", t_google),
                                   ("Auth", "trydemo", t_trydemo), ("Navigation", "back", t_back), ("Tabs", "tabs", t_tabs),
                                   ("Translate", "languages", t_lang), ("Translate", "free_translate", t_free_translate),
-                                  ("Speech", "tts", t_tts), ("Voice Studio", "voice_studio", t_voice_studio_free),
+                                  ("Speech", "tts", t_tts), ("Voice Studio", "voice_studio", t_voice_studio_free), ("Voice Studio", "mms", t_mms),
                                   ("Mic", "mic", t_mic), ("Files", "file_picker", t_file_picker), ("Files", "whisper", t_whisper),
                                   ("Downloads", "download_direct", t_download_direct), ("Export", "exports", t_exports), ("Link", "link", t_link), ("Needs key", "needs_key", t_needs_key),
                                   ("Dubbing", "free_subs", t_free_subs), ("Settings", "settings", t_settings), ("Help", "help", t_help),
