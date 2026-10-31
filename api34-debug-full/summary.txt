@@ -1,0 +1,140 @@
+[PASS] Install / Fresh install on Android 14 / API 34 :: Performing Streamed Install
+Success  
+[PASS] App / Launch: app alive 25 s after start, no crash :: pid=3163 top=topResumedActivity=ActivityRecord{3e1b4b3 u0 com.sonali.bharatvoicestudio/.MainActivity t8}   01_launch_25s.png
+[PASS] Layout / No sideways overflow / zoom-out on landing (320px wide) :: {'sw': 320, 'iw': 320, 'sx': 0, 'screen': 320, 'vscale': 1, 'wide': []}  
+[PASS] Landing / Landing page renders (not blank), design CSS loaded :: {'views': ['landing'], 'sheets': ['css2?family=Inter:wght@400;500:-1', 'hark.css:220', 'hark-charts.css:7', 'hark-hero.css:1', 'inline:178', 'inline:197'], 'origin': 'https://appassets.androidplatform.net', 'secure': True, 'shim': True, 'title': 'Bharat Voice Studio', 'heroH': 125}  02_landing.png
+[PASS] Security / Page runs on https app origin, secure context, native shim present :: {'views': ['landing'], 'sheets': ['css2?family=Inter:wght@400;500:-1', 'hark.css:220', 'hark-charts.css:7', 'hark-hero.css:1', 'inline:178', 'inline:197'], 'origin': 'https://appassets.androidplatform.net', 'secure': True, 'shim': True, 'title': 'Bharat Voice Studio', 'heroH': 125}  
+[PASS] Landing / Top links (Products/Voices/Pricing) scroll to section :: scrollY 0 -> 2513  03_landing_pricing.png
+[PASS] Landing / Product cards open the matching tool (vs,tr,vc,db,lk,tr) :: ok=['vs', 'tr', 'vc', 'db', 'lk', 'tr'] failed=[]  04_card_last.png
+[PASS] Auth / Sign up button opens Create account screen :: ['auth']  05_signup_screen.png
+[PASS] Auth / Empty form shows validation error :: Email daalo.  
+[PASS] Auth / Typing with the Android keyboard works in all fields :: Sonali|sonali@example.com|9  
+[PASS] Auth / Show/Hide password toggle :: type=text  
+[PASS] Auth / Create account -> dashboard :: ['app'] greet='Namaste, Sonali'  06_dashboard_signup.png
+[PASS] Auth / Profile menu -> Log out returns to landing :: ['landing']  
+[PASS] Auth / Log in with email -> dashboard :: title='Welcome back' ['app'] greet='Namaste, sonali'  07_dashboard_login.png
+[PASS] Auth / Google (demo) login -> dashboard :: step=True ['app']  08_dashboard_google.png
+[PASS] Auth / Try demo -> dashboard as Guest :: ['app'] 'Namaste, Guest'  
+[PASS] Navigation / Android Back: tool tab -> Home -> landing (app does not close) :: after1 home=true, after2 views=['landing'], top=topResumedActivity=ActivityRecord{c96d4c1 u0 com.sonali.bharatvoicestudio/.MainActivity t9}  09_after_back.png
+[PASS] Tabs / Tab 'Home' (home) opens :: Namaste, Guest Aaj kya karna hai? Ek tile dabao, seedha wahi tool khulega. 🎤 Bolo & Translate Mic se bolo, turant doosri bhasha mein. 🔗 Link se Translate YouT  10_tab_home.png
+[PASS] Tabs / Tab 'Translate' (tr) opens :: Translate Bolo, file daalo ya likho — translation chat ki tarah neeche aayega. Text likho (Free translate) Translate Sunao ki speed 1.0× Sunao ki awaaz Browser   11_tab_tr.png
+[PASS] Tabs / Tab 'Link' (lk) opens :: Link se Translate Video ya audio ka link daalo — audio ya subtitle laake translate karenge. Video/audio ka link Paste YouTube, Instagram, Facebook, X, ya seedha  12_tab_lk.png
+[PASS] Tabs / Tab 'Voice' (vs) opens :: Voice Studio Text likho, awaaz chuno, suno aur download karo. Free browser awaaz Bhasha Odia Hindi English Bengali Marathi Telugu Tamil Kannada Malayalam Gujara  13_tab_vs.png
+[PASS] Tabs / Tab 'Clone' (vc) opens :: Voice Clone Apni awaaz ka 15 second clip do, phir kuch bhi apni awaaz mein bulwao. Voice Clone Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 f  14_tab_vc.png
+[PASS] Tabs / Tab 'Dub' (db) opens :: Video Dubbing Video ko doosri bhasha mein dub karo, ya free mein subtitles banao. Video dubbing Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100   15_tab_db.png
+[PASS] Tabs / Tab '11L Voices' (el) opens :: ElevenLabs Voices Apni voices, poori Voice Library aur Instant Clone — "Use" dabao, TTS aur Changer mein lag jayegi. ElevenLabs key daalo Settings mein apni Ele  16_tab_el.png
+[PASS] Tabs / Tab 'SFX' (sfx) opens :: Sound Effects Likho kaisi awaaz chahiye — baarish, darwaza, crowd — MP3 ban jayegi. ElevenLabs key daalo Sound effects ElevenLabs key se chalte hain. Settings k  17_tab_sfx.png
+[PASS] Tabs / Tab 'Changer' (chg) opens :: Voice Changer Apni recording do — wahi baat, wahi andaaz, doosri awaaz mein. ElevenLabs key daalo Voice Changer ElevenLabs key se chalta hai. Settings kholo  18_tab_chg.png
+[PASS] Tabs / Tab 'Isolator' (iso) opens :: Voice Isolator Background shor, music aur echo hatao — sirf saaf awaaz bachegi. ElevenLabs key daalo Voice Isolator ElevenLabs key se chalta hai. Settings kholo  19_tab_iso.png
+[PASS] Tabs / Tab 'Music' (mus) opens :: Music Gaane ka mood likho, lambai chuno — ElevenLabs music bana dega. ElevenLabs key daalo Music ElevenLabs key se chalta hai. Settings kholo  20_tab_mus.png
+[PASS] Tabs / Tab 'API Keys' (more) opens :: API Keys Dono keys yahin daalo, status dekho aur engine chuno. Keys sirf is session ki memory mein rehti hain. 🔒 Keys sirf is session ke liye rakhi jaati hain   21_tab_more.png
+[PASS] Tabs / Tab 'Help' (help) opens :: Help Keys kaise banaye, aur best result kaise milega. Open-source credits Open-source voice: Meta MMS-TTS — CC-BY-NC-4.0 (sirf non-commercial use). Browser mein  22_tab_help.png
+[PASS] Translate / Language pickers: swap and quick chips :: start unknown>hi-IN, after swap hi-IN>en-IN, after chip 'ଓଡ଼ିଆOdia' hi-IN>od-IN; 24 target languages  23_languages.png
+[PASS] Layout / No sideways overflow / zoom-out on Translate tab :: {'sw': 320, 'iw': 320, 'sx': 0, 'screen': 320, 'vscale': 1, 'wide': ['tab-vc:353', 'SPAN.:336', 'tab-db:423', 'SPAN.:401', 'tab-el:493', 'SPAN.:488']}  
+[PASS] Translate / Free text translate Hindi -> en-IN :: out='hello how are you? My name is Sonali.' err=[]  24_free_translate_en.png
+[PASS] Translate / Free text translate Hindi -> od-IN :: out='ନମସ୍କାର ତୁମେ କେମିତି ଅଛ? ମୋର ନାମ ସୋନାଲି |' err=[]  25_free_translate_od.png
+[PASS] Translate / Free text translate Hindi -> bn-IN :: out='হ্যালো আপনি কেমন আছেন? আমার নাম সোনালী।' err=[]  26_free_translate_bn.png
+[PASS] Translate / Free text translate Hindi -> ta-IN :: out='ஹலோ எப்படி இருக்கிறீர்கள்? என் பெயர் சோனாலி.' err=[]  27_free_translate_ta.png
+[PASS] Translate / Free text translate Hindi -> gu-IN :: out='હેલો તમે કેમ છો? મારું નામ સોનાલી છે.' err=[]  28_free_translate_gu.png
+[PASS] History / Translations are added to History :: 5 history items, hinglish option='hi-IN-roman'  
+[PASS] Speech / Sunao (text to speech) on translated text :: native TTS events=start, voices=17, errors=[] (audio itself not audible on CI)  29_sunao.png
+[PASS] Speech / Stop button stops speech :: speaking=False  
+[PASS] Voice Studio / Free Voice Studio: pick language/voice, Play :: languages=23 voices-in-list=2 tts-events=start errors=[]  30_voice_studio_free.png
+[PASS] Voice Studio / Open-source voice (Meta MMS) hi-IN -> WAV saved to Download, duration > 0.5 s :: file=['bvs-mms-hi-1793430486820.wav'] size=152108 header='RIFF' file_duration=4.75s page_duration=4.75s synth_time=25s native=['5378  6734 I BVS     : saved download bvs-mms-hi-1793430486820.wav (152108 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bvs-mms-hi-1793430486820.wav (Download)']  31_mms_hi_in.png
+[PASS] Voice Studio / Open-source voice (Meta MMS) od-IN -> WAV saved to Download, duration > 0.5 s :: file=['bvs-mms-or-1793430523350.wav'] size=163372 header='RIFF' file_duration=5.10s page_duration=5.10s synth_time=27s native=['5378  6734 I BVS     : saved download bvs-mms-or-1793430523350.wav (163372 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bvs-mms-or-1793430523350.wav (Download)']  32_mms_od_in.png
+[PASS] Mic / WebView microphone access (getUserMedia) with permission granted :: ok tracks=1  
+[PASS] Mic / Live mic (speech recognition) starts listening :: events=start,speechstart interim='Sun raha hai… bolo (hi-IN)'  33_mic_live.png
+[PASS] Files / Choose file opens Android file picker, Back returns to the app :: picker=topResumedActivity=ActivityRecord{487b0a7 u0 com.google.android.documentsui/com.android.documentsui.picker.PickActivity t9} | after back=topResumedActivity=ActivityRecord{c96d4c1 u0 com.sonali.bharatvoicestudio/.MainActivity t9} | try 1 opened=True events=[pointerdown:frFile@97,308 touchstart:frFile@97,308 click:frFile@97,308] native=['5378  5378 I BVS     : onShowFileChooser accept=[audio/*, video/*] mode=0', '5378  5378 I BVS     : file chooser started type=*/* mimes=[audio/*, video/*]']  34_file_picker.png
+[PASS] Files / File upload (English speech WAV) -> Whisper transcript + Hindi translation :: rows=1 in 24s: ['00:00 Hello, my name is Sohali. …'] | progress='Translate: 1 / 3' errors=[]  35_whisper_result.png
+[PASS] Downloads / Blob download lands in /sdcard/Download (ls -l / MediaStore) :: new=['bvs-selftest-1793430583.txt'] body='Bharat Voice Studio download test ଓଡିଆ\n' ls='total 328\n-rwxrwx--- 1 u0_a174 media_rw 152108 2026-10-31 07:08 bvs-mms-hi-1793430486820.wav\n-rwxrwx--- 1 u0_a174 media_rw 163372 2026-10-31 07:08 bvs-mms-or-1793430523350.wav\n-rwxrwx--- 1 u0_a174 media_rw     47 2026-10-31 07:09 bvs-selftest-1793430583.txt\n' native=['5378  6734 I BVS     : download begin bvs-selftest-1793430583.txt type=text/plain', '5378  6734 I BVS     : MediaStore download uri content://media/external/downloads/1000000021', '5378  6734 I BVS     : saved download bvs-selftest-1793430  
+[PASS] Export / Transcript TXT and SRT download to phone's Download folder :: {'frTxt': ['transcript-hi.txt'], 'frTxt_native': ['5378  6734 I BVS     : saved download transcript-hi.txt (387 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: transcript-hi.txt (Download)'], 'frSrt': ['transcript-hi.srt'], 'frSrt_native': ['5378  6734 I BVS     : saved download transcript-hi.srt (342 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: transcript-hi.srt (Download)']}  36_exports.png
+[PASS] History / History 'Sab download karo' saves a file :: ['bharat-history-20261031-0710.txt'] native=['5378  6734 I BVS     : saved download bharat-history-20261031-0710.txt (2023 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bharat-history-20261031-0710.txt (Download)']  37_history.png
+[PASS] History / Downloaded history file has the translations :: ﻿BHARAT VoiceStudio — Session history
+Download: 31/10/2026, 07:10:07
+
+== Text aur translations (8) ==
+
+[07:07:15] Free translate · Hindi → English
+Original: नमस्ते, आप कैसे हैं? मेरा नाम सोनाली है।
+Translation: hello how are you? M  
+[PASS] Link / Paste button pastes the copied link :: field='https://www.youtube.com/watch?v=jNQXAC9IVRw' errors=[]  
+[PASS] Link / YouTube link -> fetch video info/subtitles/audio :: state='subs' title='Me at the zoo' log="deo ID: jNQXAC9IVRw\n✗ Piped (pipedapi.kavin.rocks) se info — block hua (CORS/network)\n✗ Piped (pipedapi.adminforge.de) se info — block hua (CORS/network)\n✗ Piped (pipedapi.leptons.xyz) se info — block hua (CORS/network)\n✓ Piped (api.piped.private.coffee) se info…\n✓ 2 subtitle mile — 'Subtitle se seedha translate' sabse tez hai.\n✗ Piped (pipedapi.r4fo.com) se info — block hua (CORS/network)\n✗ Invidious (inv.nadeko.net) se info — block hua (CORS/network)\n… Invidious (invidious.nerdvpn.de) se info…" fail=''  38_link_result.png
+[PASS] Link / YouTube subtitles -> translated (Odia) transcript (real tap on 'Subtitle se seedha translate') :: real tap 1: started=True events=[pointerdown:lkSubGo@112,43 touchstart:lkSubGo@112,43 click:lkSubGo@112,38 click:frClear@0,0(js)]; subtitle tracks=['English', 'Deutsch'] odia rows=2 ['00:01 All right, so here we are, in front of the elephants the cool thing about these guys is that theyhave really... ଠିକ ଅଛି, ତେଣୁ ଆମେ ଏଠାରେ, ହାତୀମାନଙ୍କ ସାମ୍ନାରେ ଏହି ପିଲାମାନଙ୍କ ବିଷୟରେ ଥଣ୍ଡା କଥା ହେଉଛି ଯେ ସେମାନେ ପ୍ରକୃତରେ ...', "00:07 really really long trunks and that's cool (baaaaaaaaaaahhh!!) and that's pretty much all there is to say ବାସ୍ତବରେ ଲମ୍ବା ଲମ୍ୱା ଏବଂ ଏହା ବହୁତ ଭଲ (ବାଆଆଆଆଆ !!)"] errors=[] log='adeko.net)   39_link_subs_translated.png
+[NEEDS KEY] Needs key / Voice Clone: tab opens and explains a key is needed :: message shown: Voice Clone Apni awaaz ka 15 second clip do, phir kuch bhi apni awaaz mein bulwao. Voice Clone Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 free credit). Yeh feature sirf Sarvam key se chalega. API Key  40_needs_key_vc.png
+[NEEDS KEY] Needs key / Video Dubbing (full dub): tab opens and explains a key is needed :: message shown: Video Dubbing Video ko doosri bhasha mein dub karo, ya free mein subtitles banao. Video dubbing Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 free credit). Yeh feature sirf Sarvam key se chalega. Free m  41_needs_key_db.png
+[NEEDS KEY] Needs key / ElevenLabs voices: tab opens and explains a key is needed :: message shown: ElevenLabs Voices Apni voices, poori Voice Library aur Instant Clone — "Use" dabao, TTS aur Changer mein lag jayegi. ElevenLabs key daalo Settings mein apni ElevenLabs API key save karo, phir saari voices yahan dikhengi.  42_needs_key_el.png
+[NEEDS KEY] Needs key / Sound effects: tab opens and explains a key is needed :: message shown: Sound Effects Likho kaisi awaaz chahiye — baarish, darwaza, crowd — MP3 ban jayegi. ElevenLabs key daalo Sound effects ElevenLabs key se chalte hain. Settings kholo  43_needs_key_sfx.png
+[NEEDS KEY] Needs key / Voice changer: tab opens and explains a key is needed :: message shown: Voice Changer Apni recording do — wahi baat, wahi andaaz, doosri awaaz mein. ElevenLabs key daalo Voice Changer ElevenLabs key se chalta hai. Settings kholo  44_needs_key_chg.png
+[NEEDS KEY] Needs key / Voice isolator: tab opens and explains a key is needed :: message shown: Voice Isolator Background shor, music aur echo hatao — sirf saaf awaaz bachegi. ElevenLabs key daalo Voice Isolator ElevenLabs key se chalta hai. Settings kholo  45_needs_key_iso.png
+[NEEDS KEY] Needs key / Music: tab opens and explains a key is needed :: message shown: Music Gaane ka mood likho, lambai chuno — ElevenLabs music bana dega. ElevenLabs key daalo Music ElevenLabs key se chalta hai. Settings kholo  46_needs_key_mus.png
+[PASS] Dubbing / Free subtitles: Whisper -> translated SRT -> download :: downloaded=['speech-hi.srt'] native=['5378  6734 I BVS     : saved download speech-hi.srt (342 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: speech-hi.srt (Download)']  47_free_subtitles.png
+[PASS] Settings / Sarvam key: Save checks the key and reports a wrong key :: message='Key galat hai → Settings (API Keys) kholo, sahi key paste karke Save dabao.'  48_settings_sarvam.png
+[PASS] Settings / ElevenLabs key: Show toggle + Save reports a wrong key :: type=text message='Key galat hai → elevenlabs.io → Profile → API Keys se dobara copy karke yahan paste karo, Save dabao.'  49_settings_el.png
+[NEEDS KEY] Needs key / Sarvam HD voices (Voice Studio) without a valid key show a clear message :: engine='Sarvam' message=['Sarvam API key galat hai → Settings (API Keys) kholo, sahi key paste karke Save dabao.']  50_sarvam_without_key.png
+[PASS] Settings / Engine switch Sarvam/ElevenLabs/Free :: after sarvam='Sarvam' after free='Free'  
+[PASS] Help / Help tab shows instructions :: 895 chars  51_help.png
+[PASS] Security / No cleartext http and no file:// access from the page :: http blocked, file blocked  
+[PASS] Security / API keys are session-only (gone after restart, not in app files) :: after restart fields='|', files containing key='none'  
+[PASS] App / Relaunch after force-stop shows landing :: ['landing']  52_relaunch.png
+[PASS] App / App still running at the end of the test :: topResumedActivity=ActivityRecord{7fafd9c u0 com.sonali.bharatvoicestudio/.MainActivity t10}  53_final.png
+
+--- page errors ---
+
+
+--- console (errors/warnings) ---
+log-error: Failed to load resource: the server responded with a status of 404 (Not Found)
+log-error: Failed to load resource: the server responded with a status of 404 (Not Found)
+warning: Unable to determine content-length from response headers. Will expand buffer when needed.
+warning: Unable to determine content-length from response headers. Will expand buffer when needed.
+warning: dtype not specified for "encoder_model". Using the default dtype (q8) for this device (wasm).
+warning: dtype not specified for "decoder_model_merged". Using the default dtype (q8) for this device (wasm).
+warning: Unable to determine content-length from response headers. Will expand buffer when needed.
+warning: Unable to determine content-length from response headers. Will expand buffer when needed.
+warning: Unable to determine content-length from response headers. Will expand buffer when needed.
+warning: Unable to determine content-length from response headers. Will expand buffer when needed.
+log-warning: Failed to create WebGPU Context Provider
+log-error: Access to fetch at 'https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://pipedapi.adminforge.de/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Access to fetch at 'https://inv.nadeko.net/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://invidious.nerdvpn.de/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://yewtu.be/api/v1/videos/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Access to fetch at 'https://pipedapi.leptons.xyz/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR
+log-error: Access to fetch at 'https://yewtu.be/api/v1/captions/jNQXAC9IVRw?lang=en' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://pipedapi.kavin.rocks/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Failed to load resource: the server responded with a status of 401 ()
+log-error: Failed to load resource: the server responded with a status of 401 ()
+log-error: Failed to load resource: the server responded with a status of 401 ()
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+log-error: Access to fetch at 'https://invidious.f5.si/api/v1/captions/jNQXAC9IVRw?lang=en' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=json3' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://cors.eu.org/https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&fmt=vtt' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://cors.eu.org/https://proxy.piped.private.coffee/api/timedtext?ei=X2rlaujSHpaC7M8P8J3koAU&expire=1793445071&fmt=ttml&hl=en-GB&host=www.youtube.com&ip=0.0.0.0&ipbits=0&key=yt8&lang=en&opi=112496729&signature=BFFDA8B1C30E035767DEB729515DA156882CBD2F.E00FFCFF65E018AB5ADA8306B9CEC1C20A786187&sparams=ip%2Cipbits%2Cexpire%2Cv%2Cei%2Copi%2Cxoaf&v=jNQXAC9IVRw&xoaf=5&xowf=1' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-A
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Access to fetch at 'https://pipedapi.adminforge.de/streams/jNQXAC9IVRw' from origin 'https://appassets.androidplatform.net' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+log-error: Failed to load resource: net::ERR_FAILED
+log-error: Failed to load resource: the server responded with a status of 403 ()
+log-error: Failed to load resource: the server responded with a status of 401 ()
+log-error: Failed to load resource: the server responded with a status of 403 ()
+log-error: Mixed Content: The page at 'https://appassets.androidplatform.net/index.html' was loaded over HTTPS, but requested an insecure resource 'http://example.com/'. This request has been blocked; the content must be served over HTTPS.
+log-error: Fetch API cannot load file:///android_asset/index.html. URL scheme "file" is not supported.
+log-error: Failed to load resource: the server responded with a status of 404 (Not Found)

@@ -1,0 +1,503 @@
+{
+ "mode": "full",
+ "apk": "debug.apk",
+ "checks": [
+  {
+   "area": "Install",
+   "function": "Fresh install on Android 14 / API 34",
+   "status": "PASS",
+   "detail": "Performing Streamed Install\nSuccess",
+   "evidence": ""
+  },
+  {
+   "area": "App",
+   "function": "Launch: app alive 25 s after start, no crash",
+   "status": "PASS",
+   "detail": "pid=3163 top=topResumedActivity=ActivityRecord{3e1b4b3 u0 com.sonali.bharatvoicestudio/.MainActivity t8} ",
+   "evidence": "01_launch_25s.png"
+  },
+  {
+   "area": "Layout",
+   "function": "No sideways overflow / zoom-out on landing (320px wide)",
+   "status": "PASS",
+   "detail": "{'sw': 320, 'iw': 320, 'sx': 0, 'screen': 320, 'vscale': 1, 'wide': []}",
+   "evidence": ""
+  },
+  {
+   "area": "Landing",
+   "function": "Landing page renders (not blank), design CSS loaded",
+   "status": "PASS",
+   "detail": "{'views': ['landing'], 'sheets': ['css2?family=Inter:wght@400;500:-1', 'hark.css:220', 'hark-charts.css:7', 'hark-hero.css:1', 'inline:178', 'inline:197'], 'origin': 'https://appassets.androidplatform.net', 'secure': True, 'shim': True, 'title': 'Bharat Voice Studio', 'heroH': 125}",
+   "evidence": "02_landing.png"
+  },
+  {
+   "area": "Security",
+   "function": "Page runs on https app origin, secure context, native shim present",
+   "status": "PASS",
+   "detail": "{'views': ['landing'], 'sheets': ['css2?family=Inter:wght@400;500:-1', 'hark.css:220', 'hark-charts.css:7', 'hark-hero.css:1', 'inline:178', 'inline:197'], 'origin': 'https://appassets.androidplatform.net', 'secure': True, 'shim': True, 'title': 'Bharat Voice Studio', 'heroH': 125}",
+   "evidence": ""
+  },
+  {
+   "area": "Landing",
+   "function": "Top links (Products/Voices/Pricing) scroll to section",
+   "status": "PASS",
+   "detail": "scrollY 0 -> 2513",
+   "evidence": "03_landing_pricing.png"
+  },
+  {
+   "area": "Landing",
+   "function": "Product cards open the matching tool (vs,tr,vc,db,lk,tr)",
+   "status": "PASS",
+   "detail": "ok=['vs', 'tr', 'vc', 'db', 'lk', 'tr'] failed=[]",
+   "evidence": "04_card_last.png"
+  },
+  {
+   "area": "Auth",
+   "function": "Sign up button opens Create account screen",
+   "status": "PASS",
+   "detail": "['auth']",
+   "evidence": "05_signup_screen.png"
+  },
+  {
+   "area": "Auth",
+   "function": "Empty form shows validation error",
+   "status": "PASS",
+   "detail": "Email daalo.",
+   "evidence": ""
+  },
+  {
+   "area": "Auth",
+   "function": "Typing with the Android keyboard works in all fields",
+   "status": "PASS",
+   "detail": "Sonali|sonali@example.com|9",
+   "evidence": ""
+  },
+  {
+   "area": "Auth",
+   "function": "Show/Hide password toggle",
+   "status": "PASS",
+   "detail": "type=text",
+   "evidence": ""
+  },
+  {
+   "area": "Auth",
+   "function": "Create account -> dashboard",
+   "status": "PASS",
+   "detail": "['app'] greet='Namaste, Sonali'",
+   "evidence": "06_dashboard_signup.png"
+  },
+  {
+   "area": "Auth",
+   "function": "Profile menu -> Log out returns to landing",
+   "status": "PASS",
+   "detail": "['landing']",
+   "evidence": ""
+  },
+  {
+   "area": "Auth",
+   "function": "Log in with email -> dashboard",
+   "status": "PASS",
+   "detail": "title='Welcome back' ['app'] greet='Namaste, sonali'",
+   "evidence": "07_dashboard_login.png"
+  },
+  {
+   "area": "Auth",
+   "function": "Google (demo) login -> dashboard",
+   "status": "PASS",
+   "detail": "step=True ['app']",
+   "evidence": "08_dashboard_google.png"
+  },
+  {
+   "area": "Auth",
+   "function": "Try demo -> dashboard as Guest",
+   "status": "PASS",
+   "detail": "['app'] 'Namaste, Guest'",
+   "evidence": ""
+  },
+  {
+   "area": "Navigation",
+   "function": "Android Back: tool tab -> Home -> landing (app does not close)",
+   "status": "PASS",
+   "detail": "after1 home=true, after2 views=['landing'], top=topResumedActivity=ActivityRecord{c96d4c1 u0 com.sonali.bharatvoicestudio/.MainActivity t9}",
+   "evidence": "09_after_back.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Home' (home) opens",
+   "status": "PASS",
+   "detail": "Namaste, Guest Aaj kya karna hai? Ek tile dabao, seedha wahi tool khulega. 🎤 Bolo & Translate Mic se bolo, turant doosri bhasha mein. 🔗 Link se Translate YouT",
+   "evidence": "10_tab_home.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Translate' (tr) opens",
+   "status": "PASS",
+   "detail": "Translate Bolo, file daalo ya likho — translation chat ki tarah neeche aayega. Text likho (Free translate) Translate Sunao ki speed 1.0× Sunao ki awaaz Browser ",
+   "evidence": "11_tab_tr.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Link' (lk) opens",
+   "status": "PASS",
+   "detail": "Link se Translate Video ya audio ka link daalo — audio ya subtitle laake translate karenge. Video/audio ka link Paste YouTube, Instagram, Facebook, X, ya seedha",
+   "evidence": "12_tab_lk.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Voice' (vs) opens",
+   "status": "PASS",
+   "detail": "Voice Studio Text likho, awaaz chuno, suno aur download karo. Free browser awaaz Bhasha Odia Hindi English Bengali Marathi Telugu Tamil Kannada Malayalam Gujara",
+   "evidence": "13_tab_vs.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Clone' (vc) opens",
+   "status": "PASS",
+   "detail": "Voice Clone Apni awaaz ka 15 second clip do, phir kuch bhi apni awaaz mein bulwao. Voice Clone Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 f",
+   "evidence": "14_tab_vc.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Dub' (db) opens",
+   "status": "PASS",
+   "detail": "Video Dubbing Video ko doosri bhasha mein dub karo, ya free mein subtitles banao. Video dubbing Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 ",
+   "evidence": "15_tab_db.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab '11L Voices' (el) opens",
+   "status": "PASS",
+   "detail": "ElevenLabs Voices Apni voices, poori Voice Library aur Instant Clone — \"Use\" dabao, TTS aur Changer mein lag jayegi. ElevenLabs key daalo Settings mein apni Ele",
+   "evidence": "16_tab_el.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'SFX' (sfx) opens",
+   "status": "PASS",
+   "detail": "Sound Effects Likho kaisi awaaz chahiye — baarish, darwaza, crowd — MP3 ban jayegi. ElevenLabs key daalo Sound effects ElevenLabs key se chalte hain. Settings k",
+   "evidence": "17_tab_sfx.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Changer' (chg) opens",
+   "status": "PASS",
+   "detail": "Voice Changer Apni recording do — wahi baat, wahi andaaz, doosri awaaz mein. ElevenLabs key daalo Voice Changer ElevenLabs key se chalta hai. Settings kholo",
+   "evidence": "18_tab_chg.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Isolator' (iso) opens",
+   "status": "PASS",
+   "detail": "Voice Isolator Background shor, music aur echo hatao — sirf saaf awaaz bachegi. ElevenLabs key daalo Voice Isolator ElevenLabs key se chalta hai. Settings kholo",
+   "evidence": "19_tab_iso.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Music' (mus) opens",
+   "status": "PASS",
+   "detail": "Music Gaane ka mood likho, lambai chuno — ElevenLabs music bana dega. ElevenLabs key daalo Music ElevenLabs key se chalta hai. Settings kholo",
+   "evidence": "20_tab_mus.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'API Keys' (more) opens",
+   "status": "PASS",
+   "detail": "API Keys Dono keys yahin daalo, status dekho aur engine chuno. Keys sirf is session ki memory mein rehti hain. 🔒 Keys sirf is session ke liye rakhi jaati hain ",
+   "evidence": "21_tab_more.png"
+  },
+  {
+   "area": "Tabs",
+   "function": "Tab 'Help' (help) opens",
+   "status": "PASS",
+   "detail": "Help Keys kaise banaye, aur best result kaise milega. Open-source credits Open-source voice: Meta MMS-TTS — CC-BY-NC-4.0 (sirf non-commercial use). Browser mein",
+   "evidence": "22_tab_help.png"
+  },
+  {
+   "area": "Translate",
+   "function": "Language pickers: swap and quick chips",
+   "status": "PASS",
+   "detail": "start unknown>hi-IN, after swap hi-IN>en-IN, after chip 'ଓଡ଼ିଆOdia' hi-IN>od-IN; 24 target languages",
+   "evidence": "23_languages.png"
+  },
+  {
+   "area": "Layout",
+   "function": "No sideways overflow / zoom-out on Translate tab",
+   "status": "PASS",
+   "detail": "{'sw': 320, 'iw': 320, 'sx': 0, 'screen': 320, 'vscale': 1, 'wide': ['tab-vc:353', 'SPAN.:336', 'tab-db:423', 'SPAN.:401', 'tab-el:493', 'SPAN.:488']}",
+   "evidence": ""
+  },
+  {
+   "area": "Translate",
+   "function": "Free text translate Hindi -> en-IN",
+   "status": "PASS",
+   "detail": "out='hello how are you? My name is Sonali.' err=[]",
+   "evidence": "24_free_translate_en.png"
+  },
+  {
+   "area": "Translate",
+   "function": "Free text translate Hindi -> od-IN",
+   "status": "PASS",
+   "detail": "out='ନମସ୍କାର ତୁମେ କେମିତି ଅଛ? ମୋର ନାମ ସୋନାଲି |' err=[]",
+   "evidence": "25_free_translate_od.png"
+  },
+  {
+   "area": "Translate",
+   "function": "Free text translate Hindi -> bn-IN",
+   "status": "PASS",
+   "detail": "out='হ্যালো আপনি কেমন আছেন? আমার নাম সোনালী।' err=[]",
+   "evidence": "26_free_translate_bn.png"
+  },
+  {
+   "area": "Translate",
+   "function": "Free text translate Hindi -> ta-IN",
+   "status": "PASS",
+   "detail": "out='ஹலோ எப்படி இருக்கிறீர்கள்? என் பெயர் சோனாலி.' err=[]",
+   "evidence": "27_free_translate_ta.png"
+  },
+  {
+   "area": "Translate",
+   "function": "Free text translate Hindi -> gu-IN",
+   "status": "PASS",
+   "detail": "out='હેલો તમે કેમ છો? મારું નામ સોનાલી છે.' err=[]",
+   "evidence": "28_free_translate_gu.png"
+  },
+  {
+   "area": "History",
+   "function": "Translations are added to History",
+   "status": "PASS",
+   "detail": "5 history items, hinglish option='hi-IN-roman'",
+   "evidence": ""
+  },
+  {
+   "area": "Speech",
+   "function": "Sunao (text to speech) on translated text",
+   "status": "PASS",
+   "detail": "native TTS events=start, voices=17, errors=[] (audio itself not audible on CI)",
+   "evidence": "29_sunao.png"
+  },
+  {
+   "area": "Speech",
+   "function": "Stop button stops speech",
+   "status": "PASS",
+   "detail": "speaking=False",
+   "evidence": ""
+  },
+  {
+   "area": "Voice Studio",
+   "function": "Free Voice Studio: pick language/voice, Play",
+   "status": "PASS",
+   "detail": "languages=23 voices-in-list=2 tts-events=start errors=[]",
+   "evidence": "30_voice_studio_free.png"
+  },
+  {
+   "area": "Voice Studio",
+   "function": "Open-source voice (Meta MMS) hi-IN -> WAV saved to Download, duration > 0.5 s",
+   "status": "PASS",
+   "detail": "file=['bvs-mms-hi-1793430486820.wav'] size=152108 header='RIFF' file_duration=4.75s page_duration=4.75s synth_time=25s native=['5378  6734 I BVS     : saved download bvs-mms-hi-1793430486820.wav (152108 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bvs-mms-hi-1793430486820.wav (Download)']",
+   "evidence": "31_mms_hi_in.png"
+  },
+  {
+   "area": "Voice Studio",
+   "function": "Open-source voice (Meta MMS) od-IN -> WAV saved to Download, duration > 0.5 s",
+   "status": "PASS",
+   "detail": "file=['bvs-mms-or-1793430523350.wav'] size=163372 header='RIFF' file_duration=5.10s page_duration=5.10s synth_time=27s native=['5378  6734 I BVS     : saved download bvs-mms-or-1793430523350.wav (163372 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bvs-mms-or-1793430523350.wav (Download)']",
+   "evidence": "32_mms_od_in.png"
+  },
+  {
+   "area": "Mic",
+   "function": "WebView microphone access (getUserMedia) with permission granted",
+   "status": "PASS",
+   "detail": "ok tracks=1",
+   "evidence": ""
+  },
+  {
+   "area": "Mic",
+   "function": "Live mic (speech recognition) starts listening",
+   "status": "PASS",
+   "detail": "events=start,speechstart interim='Sun raha hai… bolo (hi-IN)'",
+   "evidence": "33_mic_live.png"
+  },
+  {
+   "area": "Files",
+   "function": "Choose file opens Android file picker, Back returns to the app",
+   "status": "PASS",
+   "detail": "picker=topResumedActivity=ActivityRecord{487b0a7 u0 com.google.android.documentsui/com.android.documentsui.picker.PickActivity t9} | after back=topResumedActivity=ActivityRecord{c96d4c1 u0 com.sonali.bharatvoicestudio/.MainActivity t9} | try 1 opened=True events=[pointerdown:frFile@97,308 touchstart:frFile@97,308 click:frFile@97,308] native=['5378  5378 I BVS     : onShowFileChooser accept=[audio/*, video/*] mode=0', '5378  5378 I BVS     : file chooser started type=*/* mimes=[audio/*, video/*]']",
+   "evidence": "34_file_picker.png"
+  },
+  {
+   "area": "Files",
+   "function": "File upload (English speech WAV) -> Whisper transcript + Hindi translation",
+   "status": "PASS",
+   "detail": "rows=1 in 24s: ['00:00 Hello, my name is Sohali. …'] | progress='Translate: 1 / 3' errors=[]",
+   "evidence": "35_whisper_result.png"
+  },
+  {
+   "area": "Downloads",
+   "function": "Blob download lands in /sdcard/Download (ls -l / MediaStore)",
+   "status": "PASS",
+   "detail": "new=['bvs-selftest-1793430583.txt'] body='Bharat Voice Studio download test ଓଡିଆ\\n' ls='total 328\\n-rwxrwx--- 1 u0_a174 media_rw 152108 2026-10-31 07:08 bvs-mms-hi-1793430486820.wav\\n-rwxrwx--- 1 u0_a174 media_rw 163372 2026-10-31 07:08 bvs-mms-or-1793430523350.wav\\n-rwxrwx--- 1 u0_a174 media_rw     47 2026-10-31 07:09 bvs-selftest-1793430583.txt\\n' native=['5378  6734 I BVS     : download begin bvs-selftest-1793430583.txt type=text/plain', '5378  6734 I BVS     : MediaStore download uri content://media/external/downloads/1000000021', '5378  6734 I BVS     : saved download bvs-selftest-1793430583.txt (47 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bvs-selftest-1793430583.txt (Download)']",
+   "evidence": ""
+  },
+  {
+   "area": "Export",
+   "function": "Transcript TXT and SRT download to phone's Download folder",
+   "status": "PASS",
+   "detail": "{'frTxt': ['transcript-hi.txt'], 'frTxt_native': ['5378  6734 I BVS     : saved download transcript-hi.txt (387 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: transcript-hi.txt (Download)'], 'frSrt': ['transcript-hi.srt'], 'frSrt_native': ['5378  6734 I BVS     : saved download transcript-hi.srt (342 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: transcript-hi.srt (Download)']}",
+   "evidence": "36_exports.png"
+  },
+  {
+   "area": "History",
+   "function": "History 'Sab download karo' saves a file",
+   "status": "PASS",
+   "detail": "['bharat-history-20261031-0710.txt'] native=['5378  6734 I BVS     : saved download bharat-history-20261031-0710.txt (2023 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: bharat-history-20261031-0710.txt (Download)']",
+   "evidence": "37_history.png"
+  },
+  {
+   "area": "History",
+   "function": "Downloaded history file has the translations",
+   "status": "PASS",
+   "detail": "﻿BHARAT VoiceStudio — Session history\nDownload: 31/10/2026, 07:10:07\n\n== Text aur translations (8) ==\n\n[07:07:15] Free translate · Hindi → English\nOriginal: नमस्ते, आप कैसे हैं? मेरा नाम सोनाली है।\nTranslation: hello how are you? M",
+   "evidence": ""
+  },
+  {
+   "area": "Link",
+   "function": "Paste button pastes the copied link",
+   "status": "PASS",
+   "detail": "field='https://www.youtube.com/watch?v=jNQXAC9IVRw' errors=[]",
+   "evidence": ""
+  },
+  {
+   "area": "Link",
+   "function": "YouTube link -> fetch video info/subtitles/audio",
+   "status": "PASS",
+   "detail": "state='subs' title='Me at the zoo' log=\"deo ID: jNQXAC9IVRw\\n✗ Piped (pipedapi.kavin.rocks) se info — block hua (CORS/network)\\n✗ Piped (pipedapi.adminforge.de) se info — block hua (CORS/network)\\n✗ Piped (pipedapi.leptons.xyz) se info — block hua (CORS/network)\\n✓ Piped (api.piped.private.coffee) se info…\\n✓ 2 subtitle mile — 'Subtitle se seedha translate' sabse tez hai.\\n✗ Piped (pipedapi.r4fo.com) se info — block hua (CORS/network)\\n✗ Invidious (inv.nadeko.net) se info — block hua (CORS/network)\\n… Invidious (invidious.nerdvpn.de) se info…\" fail=''",
+   "evidence": "38_link_result.png"
+  },
+  {
+   "area": "Link",
+   "function": "YouTube subtitles -> translated (Odia) transcript (real tap on 'Subtitle se seedha translate')",
+   "status": "PASS",
+   "detail": "real tap 1: started=True events=[pointerdown:lkSubGo@112,43 touchstart:lkSubGo@112,43 click:lkSubGo@112,38 click:frClear@0,0(js)]; subtitle tracks=['English', 'Deutsch'] odia rows=2 ['00:01 All right, so here we are, in front of the elephants the cool thing about these guys is that theyhave really... ଠିକ ଅଛି, ତେଣୁ ଆମେ ଏଠାରେ, ହାତୀମାନଙ୍କ ସାମ୍ନାରେ ଏହି ପିଲାମାନଙ୍କ ବିଷୟରେ ଥଣ୍ଡା କଥା ହେଉଛି ଯେ ସେମାନେ ପ୍ରକୃତରେ ...', \"00:07 really really long trunks and that's cool (baaaaaaaaaaahhh!!) and that's pretty much all there is to say ବାସ୍ତବରେ ଲମ୍ବା ଲମ୍ୱା ଏବଂ ଏହା ବହୁତ ଭଲ (ବାଆଆଆଆଆ !!)\"] errors=[] log='adeko.net) se info — block hua (CORS/network)✗ Invidious (invidious.nerdvpn.de) se info — block hua (CORS/network)✗ Invidious (yewtu.be) se info — block hua (CORS/network)✓ Subtitle mil gaye — Subtitle file (seedha) (32 mein se)✓ Ho gaya — 2 hisse. Translate tab ke Transcript mein SRT aur Sunao hai.'",
+   "evidence": "39_link_subs_translated.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Voice Clone: tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: Voice Clone Apni awaaz ka 15 second clip do, phir kuch bhi apni awaaz mein bulwao. Voice Clone Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 free credit). Yeh feature sirf Sarvam key se chalega. API Key",
+   "evidence": "40_needs_key_vc.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Video Dubbing (full dub): tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: Video Dubbing Video ko doosri bhasha mein dub karo, ya free mein subtitles banao. Video dubbing Clone aur dubbing ke liye Sarvam key chahiye (sign up par ~₹100 free credit). Yeh feature sirf Sarvam key se chalega. Free m",
+   "evidence": "41_needs_key_db.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "ElevenLabs voices: tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: ElevenLabs Voices Apni voices, poori Voice Library aur Instant Clone — \"Use\" dabao, TTS aur Changer mein lag jayegi. ElevenLabs key daalo Settings mein apni ElevenLabs API key save karo, phir saari voices yahan dikhengi.",
+   "evidence": "42_needs_key_el.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Sound effects: tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: Sound Effects Likho kaisi awaaz chahiye — baarish, darwaza, crowd — MP3 ban jayegi. ElevenLabs key daalo Sound effects ElevenLabs key se chalte hain. Settings kholo",
+   "evidence": "43_needs_key_sfx.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Voice changer: tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: Voice Changer Apni recording do — wahi baat, wahi andaaz, doosri awaaz mein. ElevenLabs key daalo Voice Changer ElevenLabs key se chalta hai. Settings kholo",
+   "evidence": "44_needs_key_chg.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Voice isolator: tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: Voice Isolator Background shor, music aur echo hatao — sirf saaf awaaz bachegi. ElevenLabs key daalo Voice Isolator ElevenLabs key se chalta hai. Settings kholo",
+   "evidence": "45_needs_key_iso.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Music: tab opens and explains a key is needed",
+   "status": "NEEDS KEY",
+   "detail": "message shown: Music Gaane ka mood likho, lambai chuno — ElevenLabs music bana dega. ElevenLabs key daalo Music ElevenLabs key se chalta hai. Settings kholo",
+   "evidence": "46_needs_key_mus.png"
+  },
+  {
+   "area": "Dubbing",
+   "function": "Free subtitles: Whisper -> translated SRT -> download",
+   "status": "PASS",
+   "detail": "downloaded=['speech-hi.srt'] native=['5378  6734 I BVS     : saved download speech-hi.srt (342 bytes) -> Download', '5378  6734 I BVS     : toast: Save ho gaya: speech-hi.srt (Download)']",
+   "evidence": "47_free_subtitles.png"
+  },
+  {
+   "area": "Settings",
+   "function": "Sarvam key: Save checks the key and reports a wrong key",
+   "status": "PASS",
+   "detail": "message='Key galat hai → Settings (API Keys) kholo, sahi key paste karke Save dabao.'",
+   "evidence": "48_settings_sarvam.png"
+  },
+  {
+   "area": "Settings",
+   "function": "ElevenLabs key: Show toggle + Save reports a wrong key",
+   "status": "PASS",
+   "detail": "type=text message='Key galat hai → elevenlabs.io → Profile → API Keys se dobara copy karke yahan paste karo, Save dabao.'",
+   "evidence": "49_settings_el.png"
+  },
+  {
+   "area": "Needs key",
+   "function": "Sarvam HD voices (Voice Studio) without a valid key show a clear message",
+   "status": "NEEDS KEY",
+   "detail": "engine='Sarvam' message=['Sarvam API key galat hai → Settings (API Keys) kholo, sahi key paste karke Save dabao.']",
+   "evidence": "50_sarvam_without_key.png"
+  },
+  {
+   "area": "Settings",
+   "function": "Engine switch Sarvam/ElevenLabs/Free",
+   "status": "PASS",
+   "detail": "after sarvam='Sarvam' after free='Free'",
+   "evidence": ""
+  },
+  {
+   "area": "Help",
+   "function": "Help tab shows instructions",
+   "status": "PASS",
+   "detail": "895 chars",
+   "evidence": "51_help.png"
+  },
+  {
+   "area": "Security",
+   "function": "No cleartext http and no file:// access from the page",
+   "status": "PASS",
+   "detail": "http blocked, file blocked",
+   "evidence": ""
+  },
+  {
+   "area": "Security",
+   "function": "API keys are session-only (gone after restart, not in app files)",
+   "status": "PASS",
+   "detail": "after restart fields='|', files containing key='none'",
+   "evidence": ""
+  },
+  {
+   "area": "App",
+   "function": "Relaunch after force-stop shows landing",
+   "status": "PASS",
+   "detail": "['landing']",
+   "evidence": "52_relaunch.png"
+  },
+  {
+   "area": "App",
+   "function": "App still running at the end of the test",
+   "status": "PASS",
+   "detail": "topResumedActivity=ActivityRecord{7fafd9c u0 com.sonali.bharatvoicestudio/.MainActivity t10}",
+   "evidence": "53_final.png"
+  }
+ ]
+}

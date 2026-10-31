@@ -1,0 +1,10 @@
+[PASS] Install / Fresh install on Android 14 / API 34 :: Performing Streamed Install
+Success  
+[PASS] App / Launch: app alive 25 s after start, no crash :: pid=8497 top=topResumedActivity=ActivityRecord{7ebc42a u0 com.sonali.bharatvoicestudio/.MainActivity t12}   01_launch_25s.png
+[PASS] App / App still running at the end of the test :: topResumedActivity=ActivityRecord{7ebc42a u0 com.sonali.bharatvoicestudio/.MainActivity t12}  02_final.png
+
+--- page errors ---
+
+
+--- console (errors/warnings) ---
+

@@ -1,0 +1,440 @@
+10-31 07:04:03.548 I/cr_LibraryLoader( 2709): Successfully loaded native library
+10-31 07:04:03.553 I/cr_CachingUmaRecorder( 2709): Flushed 22 samples from 21 histograms.
+10-31 07:04:03.713 I/cr_WVCFactoryProvider( 1687): Loaded version=113.0.5672.136 minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+10-31 07:04:03.733 D/TextToSpeechManagerPerUserService(  522): Connected successfully to TTS engine: com.google.android.tts
+10-31 07:04:03.734 I/TextToSpeech( 1621): Connected to TTS engine
+10-31 07:04:03.858 I/cr_VariationsUtils( 1687): Failed reading seed file "/data/user/0/com.google.android.googlequicksearchbox/app_webview/variations_seed_new"
+10-31 07:04:03.859 I/cr_VariationsUtils( 1687): Failed reading seed file "/data/user/0/com.google.android.googlequicksearchbox/app_webview/variations_seed"
+10-31 07:04:03.859 I/cr_LibraryLoader( 1687): Successfully loaded native library
+10-31 07:04:03.859 I/cr_CachingUmaRecorder( 1687): Flushed 8 samples from 8 histograms.
+10-31 07:04:03.880 I/cr_VariationsUtils( 1687): Requesting new seed from IVariationsSeedServer
+10-31 07:04:03.988 I/TextToSpeech( 1621): Setting up the connection to TTS engine...
+10-31 07:04:04.035 I/ActivityManager(  522): Start proc 2962:com.google.android.webview:webview_service/u0a134 for service {com.google.android.webview/org.chromium.android_webview.services.VariationsSeedServer}
+10-31 07:04:04.050 W/PackageManager(  522): Not removing non-existent package com.sonali.bharatvoicestudio
+10-31 07:04:04.889 I/cr_CronetLibraryLoader( 1687): Cronet version: 113.0.5672.51, arch: x86_64
+10-31 07:04:04.959 I/cr_CronetLibraryLoader( 1687): Cronet version: 102.0.4973.2, arch: x86_64
+10-31 07:04:05.086 I/cr_WebViewApkApp( 2962): Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:webview_service
+10-31 07:04:05.247 V/BackupManagerService(  522): [UserID:0] restoreAtInstall pkg=com.sonali.bharatvoicestudio token=1 restoreSet=0
+10-31 07:04:05.248 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{1f67110 com.google.android.youtube/10139} BLOCKED
+10-31 07:04:05.249 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ec13409 com.google.android.gm/10141} BLOCKED
+10-31 07:04:05.250 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e14160e com.google.android.devicelockcontroller/10175} BLOCKED
+10-31 07:04:05.250 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a19d82f com.google.android.partnersetup/10124} BLOCKED
+10-31 07:04:05.250 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{398e3c com.google.android.apps.youtube.music/10156} BLOCKED
+10-31 07:04:05.250 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{4007c5 com.google.android.cellbroadcastreceiver/10180} BLOCKED
+10-31 07:04:05.251 I/AppsFilter(  522): interaction: PackageSetting{10bf1d3 com.sonali.bharatvoicestudio/10192} -> PackageSetting{4ff851a com.google.android.inputmethod.latin/10140} BLOCKED
+10-31 07:04:05.338 D/SystemServerTimingAsync(  522): ssm.onUnlockedUser-0_com.android.server.texttospeech.TextToSpeechManagerService
+10-31 07:04:05.339 V/SystemServerTimingAsync(  522): ssm.onUnlockedUser-0_com.android.server.texttospeech.TextToSpeechManagerService took to complete: 0ms
+10-31 07:04:05.714 I/ActivityTaskManager(  522): START u0 {flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-31 07:04:05.863 I/ActivityManager(  522): Start proc 3163:com.sonali.bharatvoicestudio/u0a192 for next-top-activity {com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:04:06.059 V/WindowManagerShell(  842): Transition requested: android.os.BinderProxy@c01de79 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity } baseActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} topActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} origActivity=null realActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} numActivities=1 lastActiveTime=43641 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@92ac7be} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{b07201f com.sonali.bharatvoicestudio.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-31 07:04:06.464 I/aratvoicestudio( 3163): Late-enabling -Xcheck:jni
+10-31 07:04:06.489 I/aratvoicestudio( 3163): Using CollectorTypeCC GC.
+10-31 07:04:06.489 W/aratvoicestudio( 3163): Unexpected CPU variant for x86: x86_64.
+10-31 07:04:06.489 W/aratvoicestudio( 3163): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-31 07:04:06.625 I/SafetyLabelChangedBroadcastReceiver(  847): received broadcast packageName: com.sonali.bharatvoicestudio, current user: UserHandle{0}, packageChangeEvent: NEW_INSTALL, intent user: UserHandle{0}
+10-31 07:04:06.714 I/SdkSandboxManager(  522): No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10192, mPackageName='com.sonali.bharatvoicestudio, mAppProcessToken='null'}
+10-31 07:04:06.781 I/cr_VariationsUtils( 2962): Scheduling seed download job
+10-31 07:04:06.917 D/CompatibilityChangeReporter( 3163): Compat change id reported: 171979766; UID 10192; state: ENABLED
+10-31 07:04:06.917 D/CompatibilityChangeReporter( 3163): Compat change id reported: 242716250; UID 10192; state: ENABLED
+10-31 07:04:06.942 V/WindowManager(  522): Sent Transition #6 createdAt=10-31 07:04:05.693 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity } baseActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} topActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} origActivity=null realActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} numActivities=1 lastActiveTime=43641 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{496e4ab Task{168e1e9 #8 type=standard A=10192:com.sonali.bharatvoicestudio}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{52da708 com.sonali.bharatvoicestudio.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-31 07:04:06.942 V/WindowManager(  522):     info={id=6 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{496e4ab Task{168e1e9 #8 type=standard A=10192:com.sonali.bharatvoicestudio}}} m=OPEN f=NONE leash=Surface(name=Task=8)/@0xc39a07 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{RemoteToken{584bea1 Task{817b5f3 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x2a16653 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:04:06.953 W/ziparchive( 3163): Unable to open '/data/app/~~UIAcs7EzVSOd-ISXAXt0yw==/com.sonali.bharatvoicestudio-1rSbkBdd8q5m9aBz05YSoA==/base.dm': No such file or directory
+10-31 07:04:06.953 W/ziparchive( 3163): Unable to open '/data/app/~~UIAcs7EzVSOd-ISXAXt0yw==/com.sonali.bharatvoicestudio-1rSbkBdd8q5m9aBz05YSoA==/base.dm': No such file or directory
+10-31 07:04:07.011 D/nativeloader( 3163): Configuring clns-6 for other apk /data/app/~~UIAcs7EzVSOd-ISXAXt0yw==/com.sonali.bharatvoicestudio-1rSbkBdd8q5m9aBz05YSoA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~UIAcs7EzVSOd-ISXAXt0yw==/com.sonali.bharatvoicestudio-1rSbkBdd8q5m9aBz05YSoA==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.sonali.bharatvoicestudio
+10-31 07:04:07.087 V/GraphicsEnvironment( 3163): Currently set values for:
+10-31 07:04:07.087 V/GraphicsEnvironment( 3163):   angle_gl_driver_selection_pkgs=[]
+10-31 07:04:07.087 V/GraphicsEnvironment( 3163):   angle_gl_driver_selection_values=[]
+10-31 07:04:07.088 V/GraphicsEnvironment( 3163): ANGLE GameManagerService for com.sonali.bharatvoicestudio: false
+10-31 07:04:07.088 V/GraphicsEnvironment( 3163): com.sonali.bharatvoicestudio is not listed in per-application setting
+10-31 07:04:07.088 V/GraphicsEnvironment( 3163): Neither updatable production driver nor prerelease driver is supported.
+10-31 07:04:07.332 D/libEGL  ( 3163): loaded /vendor/lib64/egl/libEGL_emulation.so
+10-31 07:04:07.336 D/libEGL  ( 3163): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+10-31 07:04:07.338 D/libEGL  ( 3163): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+10-31 07:04:07.462 I/WebViewFactory( 3163): Loading com.google.android.webview version 113.0.5672.136 (code 567263637)
+10-31 07:04:07.484 W/ziparchive( 3163): Unable to open '/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.dm': No such file or directory
+10-31 07:04:07.484 W/ziparchive( 3163): Unable to open '/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.dm': No such file or directory
+10-31 07:04:07.484 W/aratvoicestudio( 3163): Entry not found
+10-31 07:04:07.485 D/nativeloader( 3163): Configuring clns-7 for other apk /data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.apk. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/lib/x86_64:/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+10-31 07:04:07.487 D/nativeloader( 3163): Configuring clns-8 for other apk /data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/WebViewGoogle.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/lib/x86_64:/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a9009c0 com.android.cts.priv.ctsshim/10178} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{cccd6f9 com.google.android.youtube/10139} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a4d963e com.android.internal.display.cutout.emulation.corner/10025} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{8c40c9f com.android.internal.display.cutout.emulation.double/10048} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{94c01ec com.google.android.onetimeinitializer/10126} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{67ae9b5 com.google.android.ext.shared/10100} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{c88d84a com.android.internal.systemui.navbar.gestural_wide_back/10007} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{b66d3bb com.android.virtualmachine.res/10181} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ced50d8 com.google.android.federatedcompute/10182} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ebd6c31 com.android.managedprovisioning.auto_generated_rro_product__/10024} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{c842f16 com.android.carrierconfig.auto_generated_rro_vendor__/10078} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ba4f097 com.android.systemui.emulation.pixel_3_xl/10034} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{252a284 com.android.systemui.emulation.pixel_4_xl/10059} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{cb9a6d com.android.systemui.emulation.pixel_fold/10009} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d0c26a2 com.android.simappdialog.auto_generated_rro_product__/10030} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{53dff33 com.android.htmlviewer/10115} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{39962f0 com.google.android.health.connect.backuprestore/10177} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a147069 com.android.systemui.auto_generated_rro_product__/10031} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{f2a0aee com.google.android.apps.messaging/10130} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{64f5b8f com.google.android.soundpicker/10137} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d49be1c com.google.android.marvin.talkbackoverlay/10077} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{5faaa25 com.google.android.configupdater/10129} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{92fe7fa com.android.internal.emulation.pixel_3a_xl/10044} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{77021ab com.android.internal.emulation.pixel_6_pro/10018} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a42a008 com.android.internal.emulation.pixel_7_pro/10004} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{950c3a1 com.android.internal.emulation.pixel_8_pro/10058} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{28489c6 com.android.internal.emulation.pixel_3a/10053} BLOCKED
+10-31 07:04:07.487 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{98d2d87 com.android.internal.emulation.pixel_4a/10011} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{265b4b4 com.android.internal.emulation.pixel_6a/10023} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{994f8dd com.android.internal.emulation.pixel_7a/10033} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{2f7c52 com.google.android.overlay.googlewebview/10049} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{5851b23 com.google.android.hotspot2.osulogin/10191} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{8036820 com.android.simappdialog/10112} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{bed45d9 com.android.internal.display.cutout.emulation.hole/10073} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e250b9e com.android.internal.display.cutout.emulation.tall/10065} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{984467f com.android.internal.systemui.navbar.threebutton/10068} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{6e64c com.android.camera2/10145} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{7e36695 com.android.systemui.auto_generated_rro_vendor__/10076} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{15243aa com.google.android.deskclock/10153} BLOCKED
+10-31 07:04:07.488 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{20cb9b com.android.internal.systemui.navbar.twobutton/10020} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e68f076 com.google.android.gm/10141} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d368677 com.android.internal.systemui.navbar.gestural_extra_wide_back/10045} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{439b2e4 com.android.systemui.emulation.pixel_3/10015} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{16ad34d com.android.systemui.emulation.pixel_4/10037} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{16b9e02 com.android.systemui.emulation.pixel_5/10071} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{c831313 com.android.systemui.emulation.pixel_6/10074} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{7511950 com.android.systemui.emulation.pixel_7/10072} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{71e5749 com.android.systemui.emulation.pixel_8/10070} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{1f9984e com.android.nfc.auto_generated_rro_product__/10027} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e01cd6f com.android.printspooler/10103} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{6367a7c com.android.emergency.auto_generated_rro_product__/10041} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{66c1f05 com.google.android.connectivity.resources.goldfish.overlay/10079} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{daec268 com.android.dreams.basic/10104} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{714a681 com.google.android.networkstack.tethering.emulator/10022} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{74c6326 com.android.providers.settings.auto_generated_rro_product__/10002} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{71ffb67 com.google.android.as.oss/10122} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{fe19d14 com.android.traceur.auto_generated_rro_product__/10005} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{26429bd com.google.android.devicelockcontroller/10175} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e8b8bb2 com.google.android.dialer/10128} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{3a6e703 com.android.internal.emulation.pixel_3/10046} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{7c57680 com.android.internal.emulation.pixel_4/10060} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{2ea4b9 com.android.internal.emulation.pixel_5/10012} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a22b0fe com.android.internal.emulation.pixel_6/10038} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{526f05f com.android.internal.emulation.pixel_7/10067} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{74b7aac com.android.internal.emulation.pixel_8/10039} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{78bd375 com.google.android.captiveportallogin/10113} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{274df0a com.android.musicfx/10088} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{28279e6 com.google.android.apps.maps/10152} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{374337b com.google.android.modulemetadata/10146} BLOCKED
+10-31 07:04:07.493 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{c4b9598 com.google.android.markup/10135} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{f5331f1 com.android.providers.settings.auto_generated_rro_vendor__/10080} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{109e1d6 com.google.android.rkpdapp/10188} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{5888c57 com.android.server.telecom.auto_generated_rro_product__/10032} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{8307344 com.google.android.overlay.googleconfig/10055} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a57fc2d com.android.bips.auto_generated_rro_product__/10035} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e1a4562 com.google.android.apps.customization.pixel/10144} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e1f96f3 com.google.android.tag/10082} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{6637fb0 com.google.android.overlay.permissioncontroller/10003} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{b652e29 com.google.android.partnersetup/10124} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{adb55ae com.google.android.apps.wallpaper.nexus/10142} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{612af4f com.google.android.apps.nexuslauncher/10169} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d78e6dc com.google.android.nearby.halfsheet/10173} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{cf983e5 com.android.theme.font.notoserifsource/10066} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{48b1eba com.google.android.safetycenter.resources/10170} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{74f16b com.android.internal.display.cutout.emulation.waterfall/10040} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{71b94c8 com.android.internal.systemui.navbar.transparent/10029} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{8c37961 com.google.android.connectivity.resources/10172} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{c3c6c86 com.android.providers.contacts.auto_generated_rro_product__/10019} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{46f3947 com.google.android.feedback/10162} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ab93574 com.google.android.printservice.recommendation/10109} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{9f9161a com.google.android.calendar/10143} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{add4a9d com.android.systemui.emulation.pixel_3a_xl/10021} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{f62cb12 com.android.systemui.emulation.pixel_6_pro/10063} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{8dc22e3 com.android.systemui.emulation.pixel_7_pro/10054} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{6ee34e0 com.android.systemui.emulation.pixel_8_pro/10001} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{cc8f399 com.google.mainline.telemetry/10151} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d1e865e com.android.carrierconfig.auto_generated_rro_product__/10064} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{da40a3f com.android.providers.partnerbookmarks/10101} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{5b1bf0c com.android.wallpaper.livepicker/10090} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{42c3055 com.android.providers.telephony.auto_generated_rro_product__/10062} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{448aa6a com.android.phone.auto_generated_rro_vendor__/10081} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ed90b5b com.google.mainline.adservices/10136} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{741bff8 com.android.imsserviceentitlement/10117} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{14c7cd1 com.google.android.healthconnect.controller/10176} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{63f0336 com.android.internal.emulation.pixel_2_xl/10016} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d930237 com.android.internal.emulation.pixel_3_xl/10056} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{fcee3a4 com.android.internal.emulation.pixel_4_xl/10047} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{94b150d com.android.internal.emulation.pixel_fold/10006} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a701cc2 com.android.bookmarkprovider/10114} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a8b8ad3 com.google.android.overlay.pixelconfigcommon/10014} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{3e89610 com.android.systemui.accessibility.accessibilitymenu.auto_generated_rro_product__/10050} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{820f509 com.android.systemui.emulation.pixel_3a/10013} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ea7430e com.android.systemui.emulation.pixel_4a/10000} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e7a012f com.android.systemui.emulation.pixel_6a/10042} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{fa9033c com.android.systemui.emulation.pixel_7a/10017} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{65ad8c5 com.google.android.settings.intelligence/10118} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{fc081a5 com.google.android.projection.gearhead/10123} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{18821a com.google.android.uwb.resources/10185} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{715a97a com.android.cts.ctsshim/10179} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{c2f814b com.google.android.wifi.resources/10189} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{4a11728 com.google.android.wifi.dialog/10190} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e953c41 com.google.android.apps.wallpaper/10160} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{92ca5e6 com.google.android.odad/10121} BLOCKED
+10-31 07:04:07.494 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{872e727 com.android.settings.auto_generated_rro_product__/10028} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a847dd4 com.android.internal.systemui.navbar.gestural/10051} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{eb85b7d com.google.android.apps.youtube.music/10156} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{d3a72 com.android.bluetoothmidiservice/10107} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{39ccec3 com.android.storagemanager.auto_generated_rro_product__/10026} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e95a340 com.google.android.cellbroadcastreceiver/10180} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{f43279 com.android.phone.auto_generated_rro_product__/10061} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{1f08bbe android.auto_generated_rro_product__/10069} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{f3941f com.android.internal.systemui.navbar.gestural_narrow_back/10052} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{dd1b36c com.google.android.inputmethod.latin/10140} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{87c7d35 android.auto_generated_rro_vendor__/10075} BLOCKED
+10-31 07:04:07.495 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{725a5ca com.google.android.apps.restore/10120} BLOCKED
+10-31 07:04:07.514 W/aratvoicestudio( 3163): Accessing hidden method Landroid/os/Trace;->isTagEnabled(J)Z (unsupported, reflection, allowed)
+10-31 07:04:07.514 W/aratvoicestudio( 3163): Accessing hidden method Landroid/os/Trace;->traceBegin(JLjava/lang/String;)V (unsupported, reflection, allowed)
+10-31 07:04:07.514 W/aratvoicestudio( 3163): Accessing hidden method Landroid/os/Trace;->traceEnd(J)V (unsupported, reflection, allowed)
+10-31 07:04:07.514 W/aratvoicestudio( 3163): Accessing hidden method Landroid/os/Trace;->asyncTraceBegin(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+10-31 07:04:07.514 W/aratvoicestudio( 3163): Accessing hidden method Landroid/os/Trace;->asyncTraceEnd(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+10-31 07:04:07.520 I/cr_WVCFactoryProvider( 3163): Loaded version=113.0.5672.136 minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+10-31 07:04:07.537 I/cr_VariationsUtils( 3163): Failed reading seed file "/data/user/0/com.sonali.bharatvoicestudio/app_webview/variations_seed_new"
+10-31 07:04:07.537 I/cr_VariationsUtils( 3163): Failed reading seed file "/data/user/0/com.sonali.bharatvoicestudio/app_webview/variations_seed"
+10-31 07:04:07.538 I/cr_VariationsUtils( 3163): Requesting new seed from IVariationsSeedServer
+10-31 07:04:07.578 I/cr_LibraryLoader( 3163): Successfully loaded native library
+10-31 07:04:07.582 I/cr_VariationsUtils( 2962): Downloading new seed
+10-31 07:04:07.587 I/cr_CachingUmaRecorder( 3163): Flushed 8 samples from 8 histograms.
+10-31 07:04:07.775 D/CarrierSvcBindHelper( 1052): onPackageAdded: com.sonali.bharatvoicestudio
+10-31 07:04:07.811 D/ImsResolver( 1052): maybeAddedImsService, packageName: com.sonali.bharatvoicestudio
+10-31 07:04:08.055 D/CompatibilityChangeReporter( 3163): Compat change id reported: 183155436; UID 10192; state: ENABLED
+10-31 07:04:08.486 W/chromium( 3163): [WARNING:dns_config_service_android.cc(115)] Failed to read DnsConfig.
+10-31 07:04:08.497 D/TextToSpeechManagerPerUserService(  522): Unbinding TTS engine: com.google.android.tts. Reason: client disconnection request
+10-31 07:04:08.499 W/TextToSpeechManagerPerUserService(  522): Disconnected from TTS engine
+10-31 07:04:08.515 I/TextToSpeech( 1621): Disconnected from TTS engine
+10-31 07:04:08.519 I/ActivityManager(  522): Start proc 3413:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {com.sonali.bharatvoicestudio/org.chromium.content.app.SandboxedProcessService0:0}
+10-31 07:04:08.901 E/chromium( 3163): [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.sonali.bharatvoicestudio/cache/WebView/Default/HTTP Cache/Code Cache/wasm: No such file or directory (2)
+10-31 07:04:08.901 E/chromium( 3163): [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+10-31 07:04:08.901 E/chromium( 3163): [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.sonali.bharatvoicestudio/cache/WebView/Default/HTTP Cache/Code Cache/js: No such file or directory (2)
+10-31 07:04:08.901 E/chromium( 3163): [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+10-31 07:04:08.982 I/ActivityManager(  522): Start proc 3488:com.google.android.webview:webview_apk/u0a134 for service {com.google.android.webview/org.chromium.android_webview.nonembedded.AwComponentUpdateService}
+10-31 07:04:08.985 I/cr_VariationsSeedFetch( 2962): Fetched first run seed in 1403 ms
+10-31 07:04:09.092 I/cr_WebViewApkApp( 3413): Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+10-31 07:04:09.126 I/cr_ChildProcessService( 3413): Creating new ChildProcessService pid=3413
+10-31 07:04:09.305 D/CarrierSvcBindHelper( 1052): onPackageModified: com.sonali.bharatvoicestudio
+10-31 07:04:09.306 D/CompatibilityChangeReporter( 3163): Compat change id reported: 214741472; UID 10192; state: ENABLED
+10-31 07:04:09.323 D/CompatibilityChangeReporter( 3163): Compat change id reported: 171228096; UID 10192; state: ENABLED
+10-31 07:04:09.517 D/ImsResolver( 1052): maybeAddedImsService, packageName: com.sonali.bharatvoicestudio
+10-31 07:04:09.537 I/cr_WebViewApkApp( 3488): Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:webview_apk
+10-31 07:04:09.564 I/AiAiEcho( 1621): AppFetcherImplV2 updateApps package:[com.sonali.bharatvoicestudio], userId:[0], reason:[package is added.].
+10-31 07:04:09.581 D/AutofillManager( 3163): Fill dialog is enabled:false, hints=[]
+10-31 07:04:09.647 I/TextToSpeech( 3163): Sucessfully bound to com.google.android.tts
+10-31 07:04:09.647 I/BVS     ( 3163): WebView com.google.android.webview 113.0.5672.136
+10-31 07:04:09.649 D/TextToSpeechManagerPerUserService(  522): Trying to start connection to TTS engine: com.google.android.tts
+10-31 07:04:09.671 D/TextToSpeechManagerPerUserService(  522): Connected successfully to TTS engine: com.google.android.tts
+10-31 07:04:09.671 I/TextToSpeech( 3163): Connected to TTS engine
+10-31 07:04:09.672 W/cr_media( 3163): BLUETOOTH_CONNECT permission is missing.
+10-31 07:04:09.674 W/cr_media( 3163): registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+10-31 07:04:09.690 I/cr_LibraryLoader( 3413): Successfully loaded native library
+10-31 07:04:09.690 I/cr_CachingUmaRecorder( 3413): Flushed 2 samples from 2 histograms.
+10-31 07:04:09.691 I/TextToSpeech( 3163): Setting up the connection to TTS engine...
+10-31 07:04:09.695 D/CompatibilityChangeReporter( 3163): Compat change id reported: 237531167; UID 10192; state: DISABLED
+10-31 07:04:09.696 W/OpenGLRenderer( 3163): Unknown dataspace 0
+10-31 07:04:09.879 W/TextToSpeech( 3163): stop failed: TTS engine connection not fully set up
+10-31 07:04:09.883 D/TextToSpeechManagerPerUserService(  522): Unbinding TTS engine: com.google.android.tts. Reason: client disconnection request
+10-31 07:04:09.883 W/InputManager-JNI(  522): Input channel object '3ce7b12 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity (client)' was disposed without first being removed with the input manager!
+10-31 07:04:09.889 I/cr_LibraryLoader( 3488): Successfully loaded native library
+10-31 07:04:09.895 W/TextToSpeechManagerPerUserService(  522): Disconnected from TTS engine
+10-31 07:04:09.895 I/TextToSpeech( 3163): Disconnected from TTS engine
+10-31 07:04:09.942 D/AutofillManager( 3163): Fill dialog is enabled:false, hints=[]
+10-31 07:04:09.949 I/TextToSpeech( 3163): Sucessfully bound to com.google.android.tts
+10-31 07:04:09.949 I/BVS     ( 3163): WebView com.google.android.webview 113.0.5672.136
+10-31 07:04:09.955 D/TextToSpeechManagerPerUserService(  522): Trying to start connection to TTS engine: com.google.android.tts
+10-31 07:04:09.991 D/CoreBackPreview(  522): Window{e14d422 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@b43a634, mPriority=-1, mIsAnimationCallback=false}
+10-31 07:04:10.000 D/CompatibilityChangeReporter( 3163): Compat change id reported: 193247900; UID 10192; state: ENABLED
+10-31 07:04:10.001 D/CoreBackPreview(  522): Window{e14d422 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@28ef1a0, mPriority=0, mIsAnimationCallback=false}
+10-31 07:04:10.002 D/TextToSpeechManagerPerUserService(  522): Connected successfully to TTS engine: com.google.android.tts
+10-31 07:04:10.012 I/TextToSpeech( 3163): Connected to TTS engine
+10-31 07:04:10.015 I/TextToSpeech( 3163): Setting up the connection to TTS engine...
+10-31 07:04:10.027 I/cr_VariationsUtils( 2962): Throttling seed download job
+10-31 07:04:10.027 I/cr_VariationsUtils( 2962): Writing new seed to app's data directory
+10-31 07:04:10.057 W/OpenGLRenderer( 3163): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-31 07:04:10.081 I/Gralloc4( 3163): mapper 4.x is not supported
+10-31 07:04:10.212 I/AiAiEcho( 1621): AppFetcherImpl onPackageChanged com.sonali.bharatvoicestudio.
+10-31 07:04:10.213 I/AiAiEcho( 1621): AppIndexer Package:[com.sonali.bharatvoicestudio] UserProfile:[0] Enabled:[true].
+10-31 07:04:10.213 I/AiAiEcho( 1621): AppFetcherImplV2 updateApps package:[com.sonali.bharatvoicestudio], userId:[0], reason:[package is updated.].
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): IOException during downloadToFile.
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): java.io.IOException: Cleartext HTTP traffic to edgedl.me.gvt1.com not permitted
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): 	at com.android.okhttp.HttpHandler$CleartextURLFilter.checkURLPermitted(HttpHandler.java:127)
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): 	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.execute(HttpURLConnectionImpl.java:462)
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): 	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getResponse(HttpURLConnectionImpl.java:411)
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): 	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getResponseCode(HttpURLConnectionImpl.java:542)
+10-31 07:04:10.329 W/cr_AWNetworkFetcherTask( 3488): 	at org.chromium.android_webview.nonembedded.NetworkFetcherTask.download(chromium-TrichromeWebViewGoogle6432.apk-stable-567263637:48)
+10-31 07:04:10.332 I/WindowManager(  522): finishDrawing of relaunch: Window{e14d422 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} 3315ms
+10-31 07:04:10.336 W/ziparchive(  522): Unable to open '/data/app/~~UIAcs7EzVSOd-ISXAXt0yw==/com.sonali.bharatvoicestudio-1rSbkBdd8q5m9aBz05YSoA==/base.dm': No such file or directory
+10-31 07:04:10.337 I/ActivityTaskManager(  522): Displayed com.sonali.bharatvoicestudio/.MainActivity for user 0: +4s646ms
+10-31 07:04:10.396 W/InputManager-JNI(  522): Input channel object 'f355788 Splash Screen com.sonali.bharatvoicestudio (client)' was disposed without first being removed with the input manager!
+10-31 07:04:10.416 I/ImeTracker(  522): com.sonali.bharatvoicestudio:d4a384ab: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-31 07:04:10.416 I/ImeTracker(  522): com.sonali.bharatvoicestudio:d4a384ab: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-31 07:04:10.431 I/GoogleInputMethodService( 1530): GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.sonali.bharatvoicestudio fieldId=0 fieldName=null extras=null}, false)
+10-31 07:04:10.537 I/cr_CronetLibraryLoader( 2548): Cronet version: 113.0.5672.51, arch: x86_64
+10-31 07:04:10.805 D/SystemServerTimingAsync(  522): ssm.onCompletedEventUser-0_{|Unlocked|}_com.android.server.texttospeech.TextToSpeechManagerService
+10-31 07:04:10.805 V/SystemServerTimingAsync(  522): ssm.onCompletedEventUser-0_{|Unlocked|}_com.android.server.texttospeech.TextToSpeechManagerService took to complete: 0ms
+10-31 07:04:12.710 D/EGL_emulation( 3163): app_time_stats: avg=793.47ms min=51.22ms max=2134.10ms count=3
+10-31 07:04:12.769 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{fa8322e com.google.android.gm/10141} BLOCKED
+10-31 07:04:15.270 I/cr_CronetLibraryLoader( 1412): Cronet version: 113.0.5672.51, arch: x86_64
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{831618e com.android.camera2/10145} BLOCKED
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{a93fdaf com.google.android.gm/10141} BLOCKED
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{ca885bc com.google.android.devicelockcontroller/10175} BLOCKED
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e8b8bb2 com.google.android.dialer/10128} BLOCKED
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{7e86945 com.google.android.rkpdapp/10188} BLOCKED
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{3599cbc com.google.android.projection.gearhead/10123} BLOCKED
+10-31 07:04:16.552 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{e66089a com.google.android.apps.youtube.music/10156} BLOCKED
+10-31 07:04:17.215 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{6f63c7 com.google.android.settings.intelligence/10118} BLOCKED
+10-31 07:04:17.219 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{2be4df4 com.google.android.settings.intelligence/10118} BLOCKED
+10-31 07:04:17.653 D/EGL_emulation( 3163): app_time_stats: avg=351.21ms min=8.86ms max=4717.36ms count=14
+10-31 07:04:17.743 I/aratvoicestudio( 3163): Background concurrent copying GC freed 224961(10MB) AllocSpace objects, 37(9132KB) LOS objects, 49% free, 2832KB/5664KB, paused 22us,13us total 141.500ms
+10-31 07:04:17.743 W/BVS     ( 3163): missing asset favicon.ico
+10-31 07:04:17.749 I/Choreographer( 3163): Skipped 240 frames!  The application may be doing too much work on its main thread.
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): Exception in upload method
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): com.google.android.apps.gsa.shared.r.d: Error code: 262182
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.ab.bk.d(PG:5)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.ar.d(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.bo.b(PG:5)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.e.a(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.a.run(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:12)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.c.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.bu.cancel(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:17)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.bk.b.h.run(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:12)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.aj.a(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.c.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.o.c(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.r.a(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.c.e(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.c.c(PG:3)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.e.a(PG:5)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.n.hh(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.cd.g.a.f.e(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:22)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.ks(PG:6)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.o.e(PG:14)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.p.run(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.e.run(PG:2)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:04:18.958 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.l.run(PG:5)
+10-31 07:04:22.440 I/FontLog ( 1412): Package com.sonali.bharatvoicestudio has no metadata [CONTEXT service_id=132 ]
+10-31 07:04:22.480 I/BlockstoreStorage( 1447): Clearing Blockstore Data for package com.sonali.bharatvoicestudio [CONTEXT service_id=258 ]
+10-31 07:04:26.769 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{2e588f1 com.google.android.apps.messaging/10130} BLOCKED
+10-31 07:04:26.769 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{6daecd6 com.google.android.gm/10141} BLOCKED
+10-31 07:04:26.769 I/AppsFilter(  522): interaction: PackageSetting{bfebf43 com.sonali.bharatvoicestudio/10192} -> PackageSetting{2e43b57 com.google.android.settings.intelligence/10118} BLOCKED
+10-31 07:04:33.258 I/HeterodyneSyncScheduler( 1412): Scheduling Phenotype for a PhenotypeSyncImmediately(6, org.chromium.net.cronet) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): Exception in upload method
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): com.google.android.apps.gsa.shared.r.d: Error code: 262182
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.ab.bk.d(PG:5)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.ar.d(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.bo.b(PG:5)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.e.a(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.libraries.gsa.c.a.a.run(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:12)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.c.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.bu.cancel(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:17)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.bk.b.h.run(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.bf.execute(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.i(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:12)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.j.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.aj.a(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.m(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.c.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.l(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.common.util.concurrent.d.cancel(PG:8)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.o.c(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.r.a(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.c.e(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.c.c(PG:3)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.e.a(PG:5)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.n.hh(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.cd.g.a.f.e(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:22)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.ks(PG:6)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.o.e(PG:14)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.s3.p.run(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.e.run(PG:2)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:04:34.039 E/cr_CronetUrlRequestContext( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.l.run(PG:5)

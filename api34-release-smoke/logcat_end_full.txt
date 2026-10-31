@@ -1,0 +1,983 @@
+--------- beginning of system
+10-31 07:12:28.160 I/ActivityManager(  522): Force stopping com.sonali.bharatvoicestudio appid=10193 user=-1: deletePackageX
+--------- beginning of main
+10-31 07:12:28.160 E/libprocessgroup(  522): No such cgroup attribute: /sys/fs/cgroup/uid_4294877489/cgroup.freeze
+10-31 07:12:28.160 W/libprocessgroup(  522): Failed to apply Frozen process profile: No such file or directory
+10-31 07:12:28.162 D/DisplayManagerService(  522): Drop pending events for gone uid 10193
+10-31 07:12:28.163 I/ActivityManager(  522): Killing 8203:com.sonali.bharatvoicestudio/u0a193 (adj 0): stop com.sonali.bharatvoicestudio due to deletePackageX
+10-31 07:12:28.164 I/ActivityManager(  522): Killing 8239:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a193i3 (adj 0): isolated not needed
+10-31 07:12:28.165 W/ActivityTaskManager(  522): Force removing ActivityRecord{bf8a8a6 u0 com.sonali.bharatvoicestudio/.MainActivity t11 f}}: app died, no saved state
+10-31 07:12:28.166 V/WindowManagerShell(  842): Transition requested: android.os.BinderProxy@1b691ac TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=11 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} numActivities=0 lastActiveTime=519862 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@2269e75} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-31 07:12:28.169 I/BpBinder(  401): onLastStrongRef automatically unlinking death recipients: 
+10-31 07:12:28.173 E/libprocessgroup(  522): No such cgroup attribute: /sys/fs/cgroup/uid_4294877489/cgroup.freeze
+10-31 07:12:28.173 W/libprocessgroup(  522): Failed to apply Unfrozen process profile: No such file or directory
+10-31 07:12:28.174 W/ProcessStats(  522): Tracking association SourceState{fc8da61 com.google.android.googlequicksearchbox:search/10132 BTop #14541} whose proc state 2 is better than process ProcessState{45e5072 com.google.android.gms/10131 pkg=com.google.android.gms} proc state 14 (93 skipped)
+10-31 07:12:28.185 W/AppSearchIcing(  522): icing-search-engine.cc:283: Error: 5, Message: Document (com.google.android.googlequicksearchbox$OneSearchZeroStateGoogleSuggestions/default, zp) not found.
+10-31 07:12:28.189 D/OneSearchSuggestProvider( 1097): Created the binder channel successfully for end point service =com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService , mChannel=z1{delegate=s1{logId=17, target=directaddress:///AndroidComponentAddress%5BIntent%20%7B%20act=grpc.io.action.BIND%20cmp=com.google.android.googlequicksearchbox/com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService%20%7D%5D}} , mOneSearchConnection=X1.T@6d5075c
+--------- beginning of kernel
+10-31 07:12:28.399 I/binder_alloc(    0): 8203: binder_alloc_buf, no vma
+10-31 07:12:28.400 I/binder  (    0): cannot allocate buffer: vma cleared, target dead or dying
+10-31 07:12:28.400 I/binder  (    0): 522:2262 transaction async to 8203:0 failed 774750/29189/-3, size 880-16 line 3406
+10-31 07:12:28.198 I/Zygote  (  337): Process 8203 exited due to signal 9 (Killed)
+10-31 07:12:28.199 D/TextToSpeechManagerPerUserService(  522): Unbinding TTS engine: com.google.android.tts. Reason: client process death is reported
+10-31 07:12:28.199 I/ImeTracker(  522): com.sonali.bharatvoicestudio:de7708a9: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_REMOVE_CLIENT
+10-31 07:12:28.200 I/ImeTracker(  522): com.sonali.bharatvoicestudio:de7708a9: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-31 07:12:28.201 I/libprocessgroup(  522): Successfully killed process cgroup uid 99003 pid 8239 in 35ms
+10-31 07:12:28.201 V/ActivityManager(  522): Got obituary of 8203:com.sonali.bharatvoicestudio
+10-31 07:12:28.202 W/TextToSpeechManagerPerUserService(  522): Disconnected from TTS engine
+10-31 07:12:28.204 I/TextToSpeechManagerPerUserService(  522): Failed running callback method: android.os.DeadObjectException
+10-31 07:12:28.204 W/ServiceConnector.Impl(  522): mayInterruptIfRunning not supported - ignoring
+10-31 07:12:28.209 E/IPCThreadState(  522): Binder transaction failure: 774750/29189/-3
+10-31 07:12:28.209 W/WindowManager(  522): Failed to deliver inset control state change to w=Window{6958fd4 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:12:28.209 W/WindowManager(  522): android.os.DeadObjectException
+10-31 07:12:28.209 W/WindowManager(  522): 	at android.os.BinderProxy.transactNative(Native Method)
+10-31 07:12:28.209 W/WindowManager(  522): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+10-31 07:12:28.209 W/WindowManager(  522): 	at android.view.IWindow$Stub$Proxy.insetsControlChanged(IWindow.java:479)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.WindowState.notifyInsetsControlChanged(WindowState.java:3802)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.InsetsStateController.lambda$notifyPendingInsetsControlChanged$3(InsetsStateController.java:343)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.InsetsStateController.$r8$lambda$8yykPRG1GyNq_J17QvL9d5xANMc(InsetsStateController.java:0)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.InsetsStateController$$ExternalSyntheticLambda2.run(R8$$SyntheticClass:0)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.WindowAnimator.executeAfterPrepareSurfacesRunnables(WindowAnimator.java:294)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.RootWindowContainer.performSurfacePlacementNoTrace(RootWindowContainer.java:811)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.RootWindowContainer.performSurfacePlacement(RootWindowContainer.java:756)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.WindowSurfacePlacer.performSurfacePlacementLoop(WindowSurfacePlacer.java:177)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.WindowSurfacePlacer.performSurfacePlacement(WindowSurfacePlacer.java:126)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.WindowManagerService.relayoutWindow(WindowManagerService.java:2410)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.Session.relayout(Session.java:249)
+10-31 07:12:28.209 W/WindowManager(  522): 	at android.view.IWindowSession$Stub.onTransact(IWindowSession.java:701)
+10-31 07:12:28.209 W/WindowManager(  522): 	at com.android.server.wm.Session.onTransact(Session.java:178)
+10-31 07:12:28.209 W/WindowManager(  522): 	at android.os.Binder.execTransactInternal(Binder.java:1339)
+10-31 07:12:28.209 W/WindowManager(  522): 	at android.os.Binder.execTransact(Binder.java:1275)
+10-31 07:12:28.209 I/Zygote  (  991): Process 8239 exited due to signal 9 (Killed)
+10-31 07:12:28.213 I/WindowManager(  522): WIN DEATH: Window{6958fd4 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:12:28.214 W/InputManager-JNI(  522): Input channel object '6958fd4 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity (client)' was disposed without first being removed with the input manager!
+10-31 07:12:28.216 I/A       ( 1687): onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+10-31 07:12:28.216 I/A       ( 1687): onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+10-31 07:12:28.237 W/A       ( 1687): Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+10-31 07:12:28.240 D/DisplayManagerService(  522): Drop pending events for gone uid 99003
+10-31 07:12:28.245 V/WindowManagerShell(  842): onTransitionReady android.os.BinderProxy@1b691ac: {id=14 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@c0440d6} m=CLOSE f=NONE leash=Surface(name=Task=11)/@0x2374e0a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@514ff57} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x10f767b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{58f9173 token=android.os.Binder@ebb99e2})/@0x7d11c98 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:28.246 V/WindowManagerShell(  842): Playing animation for (#14)android.os.BinderProxy@1b691ac@0
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.transition.DefaultMixedHandler@de77ad5
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@8ba62ea
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@c7b99db
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.recents.RecentsTransitionHandler@3e36c78
+10-31 07:12:28.246 V/ShellRecents(  842): RecentsTransitionHandler.startAnimation: no controller found
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.pip.PipTransition@fb1ef51
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.splitscreen.StageCoordinator@f53c3b6
+10-31 07:12:28.246 V/WindowManagerShell(  842):  try handler com.android.wm.shell.transition.RemoteTransitionHandler@10ff8b7
+10-31 07:12:28.247 V/WindowManagerShell(  842): Transition doesn't have explicit remote, search filters for match for {id=14 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@c0440d6} m=CLOSE f=NONE leash=Surface(name=Task=11)/@0x2374e0a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@514ff57} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x10f767b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{58f9173 token=android.os.Binder@ebb99e2})/@0x7d11c98 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:28.247 V/WindowManagerShell(  842):  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@68fdddf, appThread = android.app.IApplicationThread$Stub$Proxy@a559a2c, debugName = LauncherToDream }}
+10-31 07:12:28.247 V/WindowManagerShell(  842):  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@5743cf5, appThread = android.app.IApplicationThread$Stub$Proxy@78eca8a, debugName = QuickstepLaunchHome }}
+10-31 07:12:28.247 V/WindowManagerShell(  842):  Delegate animation for #14 to null
+10-31 07:12:28.247 V/WindowManagerShell(  842):  try handler com.android.wm.shell.transition.DefaultTransitionHandler@4835290
+10-31 07:12:28.247 V/WindowManagerShell(  842): start default transition animation, info = {id=14 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@c0440d6} m=CLOSE f=NONE leash=Surface(name=Task=11)/@0x2374e0a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@514ff57} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x10f767b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{58f9173 token=android.os.Binder@ebb99e2})/@0x7d11c98 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:28.247 V/WindowManagerShell(  842): loadAnimation: anim=android.view.animation.AnimationSet@e21272d animAttr=0x10 type=CLOSE isEntrance=true
+10-31 07:12:28.248 V/WindowManagerShell(  842): loadAnimation: anim=android.view.animation.AnimationSet@e32e6b0 animAttr=0x11 type=CLOSE isEntrance=false
+10-31 07:12:28.249 V/WindowManagerShell(  842):  animated by com.android.wm.shell.transition.DefaultTransitionHandler@4835290
+10-31 07:12:28.258 V/WindowManagerShell(  842): Transition animation finished (aborted=false), notifying core (#14)android.os.BinderProxy@1b691ac@0
+10-31 07:12:28.264 D/PackageManager(  522): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-31 07:12:28.264 D/PackageManager(  522): Clear ephemeral installer activity
+10-31 07:12:28.469 I/logd    (    0): start watching /data/system/packages.list ...
+10-31 07:12:28.471 I/logd    (    0): ReadPackageList, total packages: 199
+10-31 07:12:28.276 W/WindowManager(  522): Exception thrown during dispatchAppVisibility Window{6958fd4 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity EXITING}
+10-31 07:12:28.276 W/WindowManager(  522): android.os.DeadObjectException
+10-31 07:12:28.276 W/WindowManager(  522): 	at android.os.BinderProxy.transactNative(Native Method)
+10-31 07:12:28.276 W/WindowManager(  522): 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+10-31 07:12:28.276 W/WindowManager(  522): 	at android.view.IWindow$Stub$Proxy.dispatchAppVisibility(IWindow.java:546)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.WindowState.sendAppVisibilityToClients(WindowState.java:3271)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.WindowContainer.sendAppVisibilityToClients(WindowContainer.java:1221)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.WindowToken.setClientVisible(WindowToken.java:409)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.ActivityRecord.setClientVisible(ActivityRecord.java:6946)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.ActivityRecord.postApplyAnimation(ActivityRecord.java:5637)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.ActivityRecord.commitVisibility(ActivityRecord.java:5580)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.Transition.finishTransition(Transition.java:1151)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.TransitionController.finishTransition(TransitionController.java:868)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.WindowOrganizerController.finishTransition(WindowOrganizerController.java:396)
+10-31 07:12:28.276 W/WindowManager(  522): 	at android.window.IWindowOrganizerController$Stub.onTransact(IWindowOrganizerController.java:286)
+10-31 07:12:28.276 W/WindowManager(  522): 	at com.android.server.wm.WindowOrganizerController.onTransact(WindowOrganizerController.java:181)
+10-31 07:12:28.276 W/WindowManager(  522): 	at android.os.Binder.execTransactInternal(Binder.java:1339)
+10-31 07:12:28.276 W/WindowManager(  522): 	at android.os.Binder.execTransact(Binder.java:1275)
+10-31 07:12:28.276 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.277 I/Process (  522): Sending signal. PID: 8203 SIG: 9
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): Invalid input from icing corpus JSON flag.
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): android.util.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 123 column 2
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at android.util.JsonReader.syntaxError(JsonReader.java:1162)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at android.util.JsonReader.checkLenient(JsonReader.java:840)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at android.util.JsonReader.nextInArray(JsonReader.java:615)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at android.util.JsonReader.peek(JsonReader.java:345)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at android.util.JsonReader.hasNext(JsonReader.java:321)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.searchbox.c.b.b.k.c(PG:7)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.searchbox.c.b.b.k.<init>(PG:5)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.staticplugins.searchboxroot.features.n.a.c.<init>(PG:16)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.staticplugins.searchboxroot.b.a(PG:14)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.staticplugins.searchboxroot.x.<init>(PG:7)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.binaries.velvet.app.akd.b(PG:15)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at dagger.a.e.b(PG:1)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.staticplugins.searchboxroot.a.a.a(PG:3)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.binaries.velvet.app.ok.f(Unknown Source:2541)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.binaries.velvet.app.ok.b(PG:1)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.apps.gsa.search.core.service.g.a.c.a(PG:2)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.libraries.gsa.k.a.f.a(PG:2)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.common.util.concurrent.dx.a(PG:1)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.common.util.concurrent.cv.run(PG:4)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.common.util.concurrent.dz.run(PG:1)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.libraries.i.ae.run(PG:1)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.libraries.i.k.run(PG:2)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at com.google.android.libraries.i.p.run(PG:4)
+10-31 07:12:28.278 W/CorpusConfigHelper( 1687): 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:12:28.278 I/ImeTracker(  522): com.google.android.apps.nexuslauncher:ad8eda8a: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-31 07:12:28.278 I/ImeTracker(  522): com.google.android.apps.nexuslauncher:ad8eda8a: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-31 07:12:28.279 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.280 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.280 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.281 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.281 I/A       ( 1687): Merging legacy hotword config map with new proto.
+10-31 07:12:28.281 I/A       ( 1687): Adding from config to map. Locale: cmn-Hant-TW modelPrefix: x_google Location:4e7cae00daee30ec565c34e3aa67a51f isSpeakerIdSupported: true
+10-31 07:12:28.281 I/A       ( 1687): Adding from config to map. Locale: id-ID modelPrefix: x_google Location:cfffcc1a4c1c084c003c8eb27f73d770 isSpeakerIdSupported: true
+10-31 07:12:28.281 I/A       ( 1687): Adding from config to map. Locale: ko-KR modelPrefix: x_google Location:0b132163a2eb2c1194b202067475724b isSpeakerIdSupported: true
+10-31 07:12:28.281 I/A       ( 1687): Skipping. Expected model: 2 Found: 1
+10-31 07:12:28.281 I/A       ( 1687): Adding from config to map. Locale: zh-TW modelPrefix: x_google Location:4e7cae00daee30ec565c34e3aa67a51f isSpeakerIdSupported: true
+10-31 07:12:28.281 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.281 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.281 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.284 I/A       ( 1687): Created gRPC endpoint to "search" for service class com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService
+10-31 07:12:28.288 I/AiAiEcho( 1621): Predicting[0]: 
+10-31 07:12:28.288 I/AiAiEcho( 1621): EchoTargets: 
+10-31 07:12:28.288 I/AiAiEcho( 1621): Filtered by AiAi flag check: 
+10-31 07:12:28.288 I/AiAiEcho( 1621): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+10-31 07:12:28.288 I/AiAiEcho( 1621): #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-31 07:12:28.292 I/BgTaskExecutorImpl( 1687): Starting EXCLUSIVE background task UPLOAD_ASSISTANT_DEVICE_SETTINGS.
+10-31 07:12:28.295 I/MicroDetectionState( 1687): Should stop hotword detection immediately - true
+10-31 07:12:28.296 I/MicroDetectionState( 1687): Should stop hotword detection immediately - true
+10-31 07:12:28.298 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.298 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:28.301 I/GoogleInputMethodService( 1530): GoogleInputMethodService.onFinishInput():3227 
+10-31 07:12:28.301 I/GoogleInputMethodService( 1530): GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 0, unlocked = true
+10-31 07:12:28.301 I/GoogleInputMethodService( 1530): GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.google.android.apps.nexuslauncher fieldId=0 fieldName=null extras=null}, false)
+10-31 07:12:28.301 I/GoogleInputMethodService( 1530): GoogleInputMethodService.shouldHideHeaderOnInitialState():4008 ShouldHideHeaderOnInitialState = false
+10-31 07:12:28.301 I/GoogleInputMethodService( 1530): GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 2, unlocked = true
+10-31 07:12:28.302 W/ActivityManager(  522): setHasOverlayUi called on unknown pid: 8203
+10-31 07:12:28.303 E/BpTransactionCompletedListener(  401): Failed to transact (-32)
+10-31 07:12:28.304 I/A       ( 1687): onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+10-31 07:12:28.304 I/A       ( 1687): onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+10-31 07:12:28.305 V/WindowManager(  522): Sent Transition #14 createdAt=10-31 07:12:28.165 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=11 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} numActivities=0 lastActiveTime=519862 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{962ff5f Task{611d7f2 #11 type=standard A=10193:com.sonali.bharatvoicestudio}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-31 07:12:28.305 V/WindowManager(  522):     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-31 07:12:28.306 V/WindowManager(  522):     info={id=14 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{962ff5f Task{611d7f2 #11 type=standard A=10193:com.sonali.bharatvoicestudio}}} m=CLOSE f=NONE leash=Surface(name=Task=11)/@0x20f37b4 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{RemoteToken{584bea1 Task{817b5f3 #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x2a16653 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{58f9173 token=android.os.Binder@ebb99e2})/@0xf201a9a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:28.306 V/WindowManager(  522): Finish Transition #14: created at 10-31 07:12:28.165 collect-started=0.021ms request-sent=0.081ms started=3.83ms ready=3.821ms sent=78.811ms finished=109.375ms
+10-31 07:12:28.313 I/DropBoxManagerService(  522): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+10-31 07:12:28.313 I/DropBoxManagerService(  522): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+10-31 07:12:28.313 I/DropBoxManagerService(  522): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+10-31 07:12:28.314 I/DropBoxManagerService(  522): add tag=system_server_strictmode isTagEnabled=true flags=0x2
+10-31 07:12:28.314 V/WindowManagerShell(  842): Track 0 became idle
+10-31 07:12:28.314 V/WindowManagerShell(  842): All active transition animations finished
+10-31 07:12:28.314 W/Looper  (  842): Slow dispatch took 57ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.DefaultTransitionHandler$$ExternalSyntheticLambda0@57bddc m=0
+10-31 07:12:28.315 W/Looper  (  842): Slow delivery took 45ms wmshell.main h=android.os.Handler c=android.window.TaskOrganizer$1$$ExternalSyntheticLambda3@55d0ee5 m=0
+10-31 07:12:28.315 I/ActivityManager(  522): Force stopping com.sonali.bharatvoicestudio appid=10193 user=0: pkg removed
+10-31 07:12:28.328 I/abb     ( 2968): StartCommandInProcess(73657474696e67730067657400676c6f settings.get.glo [truncated])
+10-31 07:12:28.331 W/binder:522_C(  522): type=1400 audit(0.0:111): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.339 W/binder:522_C(  522): type=1400 audit(0.0:112): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.348 I/abb     ( 2968): StartCommandInProcess(7061636b61676500696e7374616c6c00 package.install. [truncated])
+10-31 07:12:28.343 W/binder:522_C(  522): type=1400 audit(0.0:113): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.358 I/A       ( 1687): group apa_head_suggest present without account in *
+10-31 07:12:28.359 I/A       ( 1687): incrementApaDataDownloadStoreStatus(latency = PT0.07S, appVersion = 13.17.16.23, status = OK, locale = *, fileGroupnames = apa_head_suggest, accountScoped = false, localGroupsAvailable = false, timeSinceSearchBoot = Optional[PT8M30.686S] (FIVE_TO_TEN_MINUTES), timeSinceDataDownloadInit = PT7M28.346S (FIVE_TO_TEN_MINUTES))
+10-31 07:12:28.366 W/Looper  (  842): Drained
+10-31 07:12:28.367 W/binder:522_13(  522): type=1400 audit(0.0:114): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.376 D/CarrierSvcBindHelper( 1052): onPackageRemoved: com.sonali.bharatvoicestudio
+10-31 07:12:28.377 D/CarrierSvcBindHelper( 1052): No carrier app for: 0
+10-31 07:12:28.385 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+10-31 07:12:28.386 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+10-31 07:12:28.389 D/ActivityManager(  522): sync unfroze 2431 com.google.android.documentsui for 3
+10-31 07:12:28.391 E/TaskPersister(  522): File error accessing recents directory (directory doesn't exist?).
+10-31 07:12:28.397 D/ActivityManager(  522): sync unfroze 2709 com.android.chrome for 3
+10-31 07:12:28.400 W/MediaProvider( 1624): WorkProfileOwnerApps cache is empty
+10-31 07:12:28.427 D/CompatibilityChangeReporter(  522): Compat change id reported: 143937733; UID 10154; state: ENABLED
+10-31 07:12:28.432 D/Zygote  (  337): Forked child process 8409
+10-31 07:12:28.433 D/ControlsListingControllerImpl(  842): ServiceConfig reloaded, count: 0
+10-31 07:12:28.437 I/ActivityManager(  522): Start proc 8409:com.google.android.apps.docs/u0a154 for content provider {com.google.android.apps.docs/com.google.android.apps.docs.common.storagebackend.StorageBackendContentProvider}
+10-31 07:12:28.438 I/MediaProvider( 1624): Begin Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+10-31 07:12:28.447 D/MediaProvider( 1624): Deleted 0 Android/media items belonging to com.sonali.bharatvoicestudio on /data/user/0/com.google.android.providers.media.module/databases/external.db
+10-31 07:12:28.451 W/WifiService(  522): Couldn't get PackageInfo for package:com.sonali.bharatvoicestudio
+10-31 07:12:28.454 D/WifiService(  522): Remove settings for package:com.sonali.bharatvoicestudio
+10-31 07:12:28.454 D/WifiConfigManager(  522): Remove all networks for app ApplicationInfo{e0b3fcf com.sonali.bharatvoicestudio}
+10-31 07:12:28.455 V/StorageManagerService(  522): Package com.sonali.bharatvoicestudio does not have legacy storage
+10-31 07:12:28.455 I/RollbackManager(  522): broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=com.sonali.bharatvoicestudio
+10-31 07:12:28.455 E/AppOps  (  522): attributionTag VCN not declared in manifest of android
+10-31 07:12:28.456 D/WifiConfigStore(  522): Writing to stores completed in 2 ms.
+10-31 07:12:28.457 I/PasspointManager(  522): No app ops listener found for com.sonali.bharatvoicestudio
+10-31 07:12:28.457 W/WifiService(  522): Couldn't get PackageInfo for package:com.sonali.bharatvoicestudio
+10-31 07:12:28.457 D/WifiService(  522): Remove settings for package:com.sonali.bharatvoicestudio
+10-31 07:12:28.457 D/WifiConfigManager(  522): Remove all networks for app ApplicationInfo{67a0348 com.sonali.bharatvoicestudio}
+10-31 07:12:28.460 D/WifiConfigStore(  522): Writing to stores completed in 3 ms.
+10-31 07:12:28.460 I/PasspointManager(  522): No app ops listener found for com.sonali.bharatvoicestudio
+10-31 07:12:28.465 D/MediaGrants( 1624): Removed 0 media_grants for 0 user for com.sonali.bharatvoicestudio. Reason: Package orphaned
+10-31 07:12:28.466 I/MediaProvider( 1624): End Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+10-31 07:12:28.469 I/InputReader(  522): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS
+10-31 07:12:28.473 D/ActivityManager(  522): sync unfroze 847 com.google.android.permissioncontroller for 3
+10-31 07:12:28.478 I/droid.apps.docs( 8409): Using CollectorTypeCC GC.
+10-31 07:12:28.479 W/droid.apps.docs( 8409): Unexpected CPU variant for x86: x86_64.
+10-31 07:12:28.479 W/droid.apps.docs( 8409): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-31 07:12:28.481 D/StylusManager(  842): Stylus InputDevice changed: 14 virtio_input_multi_touch_11
+10-31 07:12:28.481 E/droid.apps.docs( 8409): Not starting debugger since process cannot load the jdwp agent.
+10-31 07:12:28.491 I/RoleService(  522): Granting default roles...
+10-31 07:12:28.494 D/CompatibilityChangeReporter(  522): Compat change id reported: 168419799; UID 10154; state: DISABLED
+10-31 07:12:28.494 D/CompatibilityChangeReporter(  522): Compat change id reported: 273564678; UID 10154; state: DISABLED
+10-31 07:12:28.497 D/CompatibilityChangeReporter(  522): Compat change id reported: 265195908; UID 10154; state: ENABLED
+10-31 07:12:28.499 D/SafetySourceDataValidator(  522): No cert check requested for package com.google.android.permissioncontroller
+10-31 07:12:28.500 D/BoundBrokerSvc( 5373): onBind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+10-31 07:12:28.500 I/Telecom (  522): CarModeTracker: Package com.sonali.bharatvoicestudio is not tracked.: SSH.oR@AWs🔒
+10-31 07:12:28.501 D/BoundBrokerSvc( 5373): Loading bound service for intent: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+10-31 07:12:28.501 I/Telecom (  522): InCallController: updateCarModeForConnections: car mode apps: : SSH.oR@AWs🔒
+10-31 07:12:28.501 D/PersistedStoragePackageUninstalledReceiver(  847): Received android.intent.action.PACKAGE_FULLY_REMOVED for com.sonali.bharatvoicestudio for u0
+10-31 07:12:28.502 I/Telecom (  522): InCallController: update carmode current:UserHandle{0} parent:null: SSH.oR@AWs🔒
+10-31 07:12:28.506 D/ActivityManager(  522): sync unfroze 2090 android.process.media for 3
+10-31 07:12:28.510 I/ConditionProviders(  522): Disallowing condition provider com.sonali.bharatvoicestudio (userSet: true)
+10-31 07:12:28.510 D/BoundBrokerSvc( 5373): onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+10-31 07:12:28.512 W/WindowMagnificationMgr(  522): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-31 07:12:28.512 D/CompatibilityChangeReporter( 8409): Compat change id reported: 171979766; UID 10154; state: ENABLED
+10-31 07:12:28.512 D/CompatibilityChangeReporter( 8409): Compat change id reported: 242716250; UID 10154; state: DISABLED
+10-31 07:12:28.513 D/StylusManager(  842): Stylus InputDevice changed: 13 virtio_input_multi_touch_10
+10-31 07:12:28.513 D/StylusManager(  842): Stylus InputDevice changed: 12 virtio_input_multi_touch_9
+10-31 07:12:28.514 D/StylusManager(  842): Stylus InputDevice changed: 5 virtio_input_multi_touch_2
+10-31 07:12:28.514 D/StylusManager(  842): Stylus InputDevice changed: 6 virtio_input_multi_touch_3
+10-31 07:12:28.514 D/StylusManager(  842): Stylus InputDevice changed: 7 virtio_input_multi_touch_4
+10-31 07:12:28.514 D/StylusManager(  842): Stylus InputDevice changed: 4 virtio_input_multi_touch_1
+10-31 07:12:28.514 D/StylusManager(  842): Stylus InputDevice changed: 11 virtio_input_multi_touch_8
+10-31 07:12:28.515 D/StylusManager(  842): Stylus InputDevice changed: 8 virtio_input_multi_touch_5
+10-31 07:12:28.515 D/StylusManager(  842): Stylus InputDevice changed: 9 virtio_input_multi_touch_6
+10-31 07:12:28.515 D/StylusManager(  842): Stylus InputDevice changed: 10 virtio_input_multi_touch_7
+10-31 07:12:28.516 I/netd    (  336): tetherGetStats() -> {[]} <0.30ms>
+10-31 07:12:28.524 I/NetworkRecognitionRnr( 1687): Using pair HTTP connection
+10-31 07:12:28.525 W/LocationOracle( 1687): getBestLocation(): no location is available
+10-31 07:12:28.528 D/SearchTargetUtil( 1097):  query= size=15
+10-31 07:12:28.528 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=patriots defensive tackle trade block,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=patriots defensive tackle trade block searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 02b7cd16-b6ab-47aa-8169-f64d5fa715fc
+10-31 07:12:28.528 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=budget homelab cloud replacement guide,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=budget homelab cloud replacement guide searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 58227c85-6eaa-489b-888b-1f44bdad7bcc
+10-31 07:12:28.528 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=michael douglas on jack nicholson,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=michael douglas on jack nicholson searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: a40f26bc-13b7-4270-bcc2-bc194067c15c
+10-31 07:12:28.529 I/A       ( 1687): [Upload] Connected
+10-31 07:12:28.529 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=el salvador haití,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=el salvador haití searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: cbcb6ddf-1cc3-4406-a86a-bf02b7456f45
+10-31 07:12:28.529 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=myglamper hitch mounted tent trailer,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=myglamper hitch mounted tent trailer searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 99da0309-baa4-4542-831a-f4c915ca9fd9
+10-31 07:12:28.529 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=amazon new assassin thriller streaming date,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=amazon new assassin thriller streaming date searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 5218a1ea-fc09-4053-b9b0-ea276d1eb399
+10-31 07:12:28.529 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=jimmy donaldson beast industries exit rules,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=jimmy donaldson beast industries exit rules searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 5f42d1df-79df-416f-9223-804be1610ee0
+10-31 07:12:28.530 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=michigan nebraska volleyball game,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=michigan nebraska volleyball game searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: f323efed-1e93-41f5-96e7-d8e9e172eed3
+10-31 07:12:28.530 D/SearchTargetUtil( 1097): layoutType=extra_tall_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{bitmap_url=,suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=true,is_personal=false,suggest_raw_text=pokemon delta reign booster bundle,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=Pokemon Delta Reign Booster Bundle searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: af7dfd59-468a-4c93-9207-06f5a07c3977
+10-31 07:12:28.530 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=ssi payment,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=ssi payment searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 5926812b-0d11-4bdf-a7b2-932df161ed82
+10-31 07:12:28.530 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=mars meteorite,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=mars meteorite searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: fcafc10c-5e72-407d-a763-ae534c2588c5
+10-31 07:12:28.531 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=prime video zombie movie sequel,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=prime video zombie movie sequel searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 706eb0d8-09c0-4376-9260-84cecba7e975
+10-31 07:12:28.531 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=falcon 9 launch,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=falcon 9 launch searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 7ead22e5-0109-4b40-90ce-788115246226
+10-31 07:12:28.531 D/SearchTargetUtil( 1097): layoutType=extra_tall_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{bitmap_url=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAwCAMAAACsRTNeAAAApVBMVEX////TAADSAADUAAABM2kgP3AAImEAH2AACFgAGl0AAFUAAFcAK2X11dXjfX0AMWjW3OPWIyP339/VCQni5OkAJWIAEFr5+fqttMOJlKqBjaXT1t67wc3r7fAAF1z22trhcnLvurqgqbo5UXvFytRufJhcbY54hZ/qpKQAAE5LX4QqRnQUOWxldJOSnLD96+rfZGTZOzvomprcU1Psra3khobxxcVz6XaKAAACnklEQVQ4jbWUaZOaQBCGe47AAMMhyH1oFMR4je5m/f8/LT2gG3VNrEpV3g8N0zz0RdEA/0vT10jwo36F1IbcpS+iGD6X/Euk27cOwuecS7F4eJ4sLlS6kAbnvpksl84u+3RytIaRbPLFoliKGIMY2zZty4NhCO3MN4n5TTP4bhzHUu4wTZNDma2gtPhOojPmvj8w0m5tn8e8cnhcQNV22F1it5bk0i5tqRlzOYV6E/cplHwHZbnXE5ABpF28SmG6HeIYOSwsLgJYWhkEvZ5zIFbQJhzPvTHm6kQvud/JfTJNzUp3szD3TYe5OtHJsWbpSz0VXybQZkPHO/RcfNeaK6xZykwIKAYkj32nanTN1bXmAKaruKihNethwIfG35ZQY801BMvHmhdYcLk0McljzUVcYNziWyf9rOfW8Mk6OfjMPh4YXzTCsizRJFZji8YalFx9Y83xNNAqP82NyqAZGBNUGCqAUCkF4ShQWroBcWGOlE4gpGgVHeWe0LzdMm8kokoRwt5TQiK8ktmRRfT7LQMeI2twCQWYEapgTl2YMA8eGHYaGTQhzN7UMyai6W9G6xlDfl4ZBevwOcPeZyPD5kdd7VeGzCNyHhnsizxnPI8c2RjH+/hDHA8fRteaz2pk0vPsLheQKHrsK6Tze8ZjX5gz9T6Z2YnN4UweGTUnFyZucPaMruGeiQijDMOLLR5WSel6E3rEZMiEF+bEGKFs7rZJjyf8XXHfKBdcSkFNGBkYSo962lPDHnbfwRH5sJXUGmZUf12Uq01dCHv84aAyEmdbZIG+Dz8IHVZPmRVbR/jl567KNg5K7Ft9wCFXq+G8qeBOQZVvbWenqcp37GVeBfBMdZ44Peyd5vC3/ZtuGtlsXixfHFf3gkDtXyP/qF/ATj3rj8a2lwAAAABJRU5ErkJggg==,suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=true,is_personal=false,suggest_raw_text=football nfl,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=football nfl searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 7dd5d93e-45f2-4ed9-953b-b9cb2d49af9e
+10-31 07:12:28.532 D/SearchTargetUtil( 1097): layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=crimson desert dlc,group_id=web304219,response_id=144fb20e-4def-4b7e-be58-b0942c7f7aaa,support_query_builder=false,} searchAction=crimson desert dlc searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 775ded55-59fd-4447-a16b-427dbeb23491
+10-31 07:12:28.533 W/LocationOracle( 1687): No location returned by GMS core getLastLocation()
+10-31 07:12:28.538 E/A       ( 1687): onError
+10-31 07:12:28.538 E/A       ( 1687): com.google.android.apps.gsa.shared.speech.a.m: errorCode: 65561, engine: 2
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.staticplugins.dc.a.e.a(PG:3)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.s3.n.hh(PG:1)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.cd.g.a.f.e(PG:2)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:22)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.ks(PG:6)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.s3.o.e(PG:14)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.s3.p.run(PG:1)
+10-31 07:12:28.538 E/A       ( 1687): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-31 07:12:28.538 E/A       ( 1687): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.e.run(PG:2)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.bi.run(PG:1)
+10-31 07:12:28.538 E/A       ( 1687): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-31 07:12:28.538 E/A       ( 1687): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-31 07:12:28.538 E/A       ( 1687): 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.shared.util.c.a.l.run(PG:5)
+10-31 07:12:28.538 E/A       ( 1687): Caused by: com.google.android.apps.gsa.shared.speech.a.o: errorCode: 65586, engine: 2
+10-31 07:12:28.538 E/A       ( 1687): 	... 15 more
+10-31 07:12:28.538 E/A       ( 1687): Caused by: com.google.android.apps.gsa.shared.speech.a.k: errorCode: 401, engine: 2
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.assistant.shared.n.h.a(PG:5)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.s3.producers.j.hE(PG:2)
+10-31 07:12:28.538 E/A       ( 1687): 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:16)
+10-31 07:12:28.538 E/A       ( 1687): 	... 12 more
+10-31 07:12:28.540 I/NetworkRecognitionRnr( 1687): Using pair HTTP connection
+10-31 07:12:28.541 I/A       ( 1687): [Upload] Connected
+10-31 07:12:28.541 W/A       ( 1687): Failed to sync device settings.
+10-31 07:12:28.541 I/A       ( 1687): Retrying to sync device settings.
+10-31 07:12:28.542 E/RoleControllerServiceImpl(  847): Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+10-31 07:12:28.545 D/CompatibilityChangeReporter(  522): Compat change id reported: 170503758; UID 10154; state: ENABLED
+10-31 07:12:28.545 I/PackageManager(  522): Integrity check passed for file:///data/app/vmdl879934637.tmp
+10-31 07:12:28.549 D/nativeloader( 8409): Configuring clns-6 for other apk /system/framework/org.apache.http.legacy.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/product/app/Drive/lib/x86_64:/product/app/Drive/Drive.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.apps.docs
+10-31 07:12:28.549 D/ApplicationLoaders( 8409): Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-31 07:12:28.549 D/ApplicationLoaders( 8409): Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-31 07:12:28.549 I/Role    (  847): com.google.android.gms not qualified for android.app.role.SYSTEM_CALL_STREAMING due to missing RequiredComponent{mIntentFilterData=IntentFilterData{mAction='android.telecom.CallStreamingService', mCategories='[]', mDataScheme='null', mDataType='null'}, mMinTargetSdkVersion=1, mFlags='0', mPermission='android.permission.BIND_CALL_STREAMING_SERVICE', mQueryFlags=0, mMetaData=[]}
+10-31 07:12:28.549 E/RoleControllerServiceImpl(  847): Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.SYSTEM_CALL_STREAMING
+10-31 07:12:28.551 W/Role    (  847): Default holder doesn't have required signing certificate: com.google.android.apps.work.clouddpc:23962F4B43B9857638EA66F4D419518EAE282491ACDA4B94707BD59003C45E58
+10-31 07:12:28.553 I/netd    (  336): bandwidthRemoveInterfaceQuota(eth0) <0.50ms>
+10-31 07:12:28.553 I/netd    (  336): bandwidthSetInterfaceQuota(eth0, 9223372036854775807) <0.28ms>
+10-31 07:12:28.576 D/nativeloader( 8409): InitLlndkLibrariesProduct: libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libRS.so:libandroid_net.so:libbinder_ndk.so:libc.so:libcgrouprc.so:libclang_rt.asan-x86_64-android.so:libcom.android.tethering.connectivity_native.so:libdl.so:libft2.so:liblog.so:libm.so:libmediandk.so:libnativewindow.so:libneuralnetworks.so:libselinux.so:libsync.so:libvndksupport.so:libvulkan.so
+10-31 07:12:28.576 D/nativeloader( 8409): Configuring product-clns-7 for unbundled product apk /product/app/Drive/Drive.apk. target_sdk_version=33, uses_libraries=, library_path=/product/app/Drive/lib/x86_64:/product/app/Drive/Drive.apk!/lib/x86_64:/product/lib64:/system/product/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.apps.docs:/product/lib64:/system/product/lib64
+10-31 07:12:28.579 D/nativeloader( 8409): InitVndkspLibrariesProduct: android.hardware.common-V2-ndk.so:android.hardware.common.fmq-V1-ndk.so:android.hardware.graphics.allocator-V2-ndk.so:android.hardware.graphics.common-V4-ndk.so:android.hardware.graphics.common@1.0.so:android.hardware.graphics.common@1.1.so:android.hardware.graphics.common@1.2.so:android.hardware.graphics.composer3-V1-ndk.so:android.hardware.graphics.mapper@2.0.so:android.hardware.graphics.mapper@2.1.so:android.hardware.graphics.mapper@3.0.so:android.hardware.graphics.mapper@4.0.so:android.hardware.renderscript@1.0.so:android.hidl.memory.token@1.0.so:android.hidl.memory@1.0-impl.so:android.hidl.memory@1.0.so:android.hidl.safe_union@1.0.so:libRSCpuRef.so:libRSDriver.so:libRS_internal.so:libbase.so:libbcinfo.so:libblas.so:libc++.so:libcompiler_rt.so:libcutils.so:libdmabufheap.so:libgralloctypes.so:libhardware.so:libhidlbase.so:libhidlmemory.so:libion.so:libjsoncpp.so:liblzma.so:libprocessgroup.so:libunwindstack.so:libutils.so:libutilscallstack.so:libz.so
+10-31 07:12:28.587 I/s.nexuslauncher( 1097): Background concurrent copying GC freed 44550(1883KB) AllocSpace objects, 8(144KB) LOS objects, 49% free, 7151KB/13MB, paused 21us,10us total 224.551ms
+10-31 07:12:28.597 I/ogle.android.as( 1621): Background concurrent copying GC freed 62687(2996KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 6828KB/13MB, paused 22us,14us total 258.164ms
+10-31 07:12:28.615 I/.gms.persistent( 5320): Background concurrent copying GC freed 141664(6131KB) AllocSpace objects, 8(344KB) LOS objects, 49% free, 13MB/27MB, paused 24us,15us total 295.719ms
+10-31 07:12:28.620 I/ndroid.systemui(  842): Background concurrent copying GC freed 21744(1309KB) AllocSpace objects, 3(172KB) LOS objects, 49% free, 12MB/25MB, paused 34us,19us total 271.545ms
+10-31 07:12:28.622 I/earchbox:search( 1687): JIT allocated 79KB for compiled code of java.lang.Object com.google.android.apps.gsa.binaries.velvet.app.akj.a()
+10-31 07:12:28.623 I/earchbox:search( 1687): Compiler allocated 4274KB to compile java.lang.Object com.google.android.apps.gsa.binaries.velvet.app.akj.a()
+10-31 07:12:28.630 D/PackageManager(  522): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-31 07:12:28.630 D/PackageManager(  522): Clear ephemeral installer activity
+10-31 07:12:28.834 I/logd    (    0): start watching /data/system/packages.list ...
+10-31 07:12:28.835 I/logd    (    0): ReadPackageList, total packages: 200
+10-31 07:12:28.635 W/JobScheduler(  522): Job didn't exist in JobStore: 2c57a88 #u0a132/-353 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+10-31 07:12:28.644 V/GraphicsEnvironment( 8409): Currently set values for:
+10-31 07:12:28.644 V/GraphicsEnvironment( 8409):   angle_gl_driver_selection_pkgs=[]
+10-31 07:12:28.644 V/GraphicsEnvironment( 8409):   angle_gl_driver_selection_values=[]
+10-31 07:12:28.644 V/GraphicsEnvironment( 8409): ANGLE GameManagerService for com.google.android.apps.docs: false
+10-31 07:12:28.644 V/GraphicsEnvironment( 8409): com.google.android.apps.docs is not listed in per-application setting
+10-31 07:12:28.645 V/GraphicsEnvironment( 8409): Neither updatable production driver nor prerelease driver is supported.
+10-31 07:12:28.645 E/UninstallPackageIntentO( 5373): Package still installed com.sonali.bharatvoicestudio
+10-31 07:12:28.648 I/BlockstoreStorage( 5373): Clearing all the Blockstore Data for package com.sonali.bharatvoicestudio [CONTEXT service_id=258 ]
+10-31 07:12:28.649 I/BlockstoreStorage( 5373): Clearing all the Blockstore Data for 1 packages [CONTEXT service_id=258 ]
+10-31 07:12:28.651 I/ProximityAuth( 5320): [RecentAppsMediator] Package removed: (user=UserHandle{0}) com.sonali.bharatvoicestudio
+10-31 07:12:28.654 I/Fitness ( 5320): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+10-31 07:12:28.661 W/SQLiteLog( 5373): (28) double-quoted string literal: "com.sonali.bharatvoicestudio"
+10-31 07:12:28.672 D/CompatibilityChangeReporter(  522): Compat change id reported: 161145287; UID 10154; state: DISABLED
+10-31 07:12:28.674 I/artd    ( 8115): Merge skipped because there are no existing profiles
+10-31 07:12:28.674 W/ziparchive( 8115): Unable to open '/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.dm': No such file or directory
+10-31 07:12:28.674 W/ziparchive( 8115): Unable to open '/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.dm': No such file or directory
+10-31 07:12:28.677 I/artd    ( 8115): Running dex2oat: /apex/com.android.art/bin/art_exec --drop-capabilities --set-task-profile=Dex2OatBootComplete --set-priority=background --keep-fds=7:8:9:10 -- /apex/com.android.art/bin/dex2oat64 --zip-fd=7 --zip-location=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.apk --oat-fd=8 --oat-location=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/oat/x86_64/base.odex --output-vdex-fd=9 --swap-fd=10 --class-loader-context=PCL[] --classpath-dir=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww== --instruction-set=x86_64 --instruction-set-features=default --instruction-set-variant=x86_64 --compiler-filter=verify --compilation-reason=install --compact-dex-level=none --max-image-block-size=524288 --resolve-startup-const-strings=true --generate-mini-debug-info --runtime-arg -Xtarget-sdk-version:36 --runtime-arg -Xhidden-api-policy:enabled --runtime-arg -Xms64m --runtime-arg -Xmx512m --comments=app-version-name:1.0.11,app-version-code:11,art-version:340818082
+10-31 07:12:28.677 I/artd    ( 8115): Opened FDs: 7:/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.apk 8:/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/oat/x86_64/base.odex.Va5dBO.tmp 9:/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/oat/x86_64/base.vdex.kO2J4L.tmp 10:/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/oat/x86_64/base.odex.swap.cJA1co.tmp 
+10-31 07:12:28.691 W/droid.apps.docs( 8409): Accessing hidden field Ljava/util/Collections$SynchronizedCollection;->mutex:Ljava/lang/Object; (max-target-o, reflection, denied)
+10-31 07:12:28.691 W/droid.apps.docs( 8409): Accessing hidden method Ljava/util/Collections$SynchronizedSet;-><init>(Ljava/util/Set;Ljava/lang/Object;)V (max-target-o, reflection, denied)
+10-31 07:12:28.691 W/droid.apps.docs( 8409): Accessing hidden method Ljava/util/Collections$SynchronizedCollection;-><init>(Ljava/util/Collection;Ljava/lang/Object;)V (max-target-o, reflection, denied)
+10-31 07:12:28.696 I/Icing   ( 5373): doRemovePackageData com.sonali.bharatvoicestudio
+10-31 07:12:28.701 D/CompatibilityChangeReporter(  522): Compat change id reported: 261072174; UID 10154; state: DISABLED
+10-31 07:12:28.702 D/Launcher.Model( 1097): package removed received com.sonali.bharatvoicestudio
+10-31 07:12:28.703 I/AiAiEcho( 1621): AppFetcherImplV2 onPackageRemoved com.sonali.bharatvoicestudio.
+10-31 07:12:28.703 D/PackageUpdatedTask( 1097): Removing app iconcom.sonali.bharatvoicestudio
+10-31 07:12:28.708 D/ModelWriter( 1097): removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[com.sonali.bharatvoicestudio] removedComponents=[]]
+10-31 07:12:28.717 I/gle.android.gms( 5373): Background concurrent copying GC freed 10205(612KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 13MB/26MB, paused 20us,22us total 375.543ms
+10-31 07:12:28.718 W/dex2oat64( 8453): Unexpected CPU variant for x86: x86_64.
+10-31 07:12:28.718 W/dex2oat64( 8453): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-31 07:12:28.719 W/dex2oat64( 8453): Mismatch between dex2oat instruction set features to use (ISA: X86_64 Feature string: -ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) and those from CPP defines (ISA: X86_64 Feature string: ssse3,sse4.1,sse4.2,-avx,-avx2,popcnt) for the command line:
+10-31 07:12:28.719 W/dex2oat64( 8453): /apex/com.android.art/bin/dex2oat64 --zip-fd=7 --zip-location=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.apk --oat-fd=8 --oat-location=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/oat/x86_64/base.odex --output-vdex-fd=9 --swap-fd=10 --class-loader-context=PCL[] --classpath-dir=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww== --instruction-set=x86_64 --instruction-set-features=default --instruction-set-variant=x86_64 --compiler-filter=verify --compilation-reason=install --compact-dex-level=none --max-image-block-size=524288 --resolve-startup-const-strings=true --generate-mini-debug-info --runtime-arg -Xtarget-sdk-version:36 --runtime-arg -Xhidden-api-policy:enabled --runtime-arg -Xms64m --runtime-arg -Xmx512m --comments=app-version-name:1.0.11,app-version-code:11,art-version:340818082
+10-31 07:12:28.719 I/dex2oat64( 8453): /apex/com.android.art/bin/dex2oat64 --output-vdex-fd=9 --class-loader-context=PCL[] --classpath-dir=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww== --compiler-filter=verify --compilation-reason=install --compact-dex-level=none --max-image-block-size=524288 --resolve-startup-const-strings=true --generate-mini-debug-info --comments=app-version-name:1.0.11,app-version-code:11,art-version:340818082
+10-31 07:12:28.738 I/dex2oat64( 8453): Using CollectorTypeCC GC.
+10-31 07:12:28.763 I/AiAiEcho( 1621): [pnb-agg] Reload pnb aggregation on events deleted
+10-31 07:12:28.763 I/AiAiEcho( 1621): [pnb-agg] pnb aggregation disabled.
+10-31 07:12:28.769 D/CompatibilityChangeReporter( 8409): Compat change id reported: 183155436; UID 10154; state: ENABLED
+10-31 07:12:28.770 W/Primes  ( 8409): Primes not initialized, returning default (no-op) Primes instance which will ignore all calls. Please call Primes.initialize(...) before using any Primes API.
+10-31 07:12:28.770 W/Primes  ( 8409): qci: FULL
+10-31 07:12:28.770 W/Primes  ( 8409): 	at nkq.a(PG:1)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at gkz.cU(PG:14)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at rwm.cU(PG:1)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at eqf.cU(PG:17)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at rwm.cU(PG:1)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at gdq.cU(PG:67)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at rwm.cU(PG:1)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at igo.provideInitializers(PG:9)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at com.google.android.apps.docs.drive.inject.corecomponentfactory.CoreComponentFactoryImpl.getSingletonComponent(PG:4)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at emc.onCreate(PG:10)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at com.google.android.apps.docs.drive.DriveApplication.onCreate(PG:45)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1316)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:6998)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2236)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.os.Handler.dispatchMessage(Handler.java:106)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.os.Looper.loopOnce(Looper.java:205)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.os.Looper.loop(Looper.java:294)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at java.lang.reflect.Method.invoke(Native Method)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+10-31 07:12:28.770 W/Primes  ( 8409): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): unable to load native_crash_handler_jni
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): java.lang.UnsatisfiedLinkError: dlopen failed: library "libnative_crash_handler_jni.so" not found
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): 	at java.lang.Runtime.loadLibrary0(Runtime.java:1082)
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): 	at java.lang.Runtime.loadLibrary0(Runtime.java:1003)
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): 	at java.lang.System.loadLibrary(System.java:1661)
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): 	at com.google.android.libraries.performance.primes.metrics.crash.NativeCrashHandlerImpl.b(PG:2)
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): 	at nnf.run(Unknown Source:4)
+10-31 07:12:28.789 W/NativeCrashHandlerImpl( 8409): 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:12:28.797 W/CacheStorage( 8409): cache doesn't exist
+10-31 07:12:28.805 E/DocsApplication( 8409): from onCreate Completable for sending summary about blocked SyncRequests
+10-31 07:12:28.805 E/DocsApplication( 8409): java.lang.IllegalStateException
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at eye.h(PG:7)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at emc.lambda$onCreate$4$com-google-android-apps-docs-DocsApplication(PG:36)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at dyd.run(PG:1)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at tbt.d(PG:3)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at szc.e(PG:1)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at tcc$a.run(PG:1)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at szn$a.run(PG:2)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at tgf.run(PG:2)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at tgf.call(PG:1)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:307)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-31 07:12:28.805 E/DocsApplication( 8409): 	at java.lang.Thread.run(Thread.java:1012)
+10-31 07:12:28.812 I/Icing   ( 5373): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+10-31 07:12:28.822 D/PackageManager(  522): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-31 07:12:28.822 D/PackageManager(  522): Clear ephemeral installer activity
+10-31 07:12:28.852 I/dex2oat64( 8453): dex2oat took 134.838ms (110.751ms cpu) (threads: 2) arena alloc=0B (0B) java alloc=565KB (578960B) native alloc=1065KB (1090624B) free=907KB (929008B)
+10-31 07:12:28.853 I/AiAiEcho( 1621): EchoSearch: WidgetFetcherImpl is initialized with [28] widgets [reason=package removed for userId: 0]
+10-31 07:12:28.857 I/artd    ( 8115): dex2oat returned code 0
+10-31 07:12:28.857 I/ArtService(  522): Dexopt result: [packageName = com.sonali.bharatvoicestudio] DexContainerFileDexoptResult{dexContainerFile=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.apk, primaryAbi=true, abi=x86_64, actualCompilerFilter=verify, status=PERFORMED, dex2oatWallTimeMillis=184, dex2oatCpuTimeMillis=120, sizeBytes=2172988, sizeBeforeBytes=0}
+10-31 07:12:28.858 V/BackupManagerService(  522): [UserID:0] restoreAtInstall pkg=com.sonali.bharatvoicestudio token=4 restoreSet=0
+10-31 07:12:28.858 V/BackupManagerService(  522): [UserID:0] Finishing install immediately
+10-31 07:12:28.860 W/WindowMagnificationMgr(  522): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-31 07:12:28.860 D/PackageInstallerSession(  522): Marking session 879934637 as applied
+10-31 07:12:28.859 W/binder:522_13(  522): type=1400 audit(0.0:115): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.863 W/binder:522_13(  522): type=1400 audit(0.0:116): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.863 W/binder:522_13(  522): type=1400 audit(0.0:117): avc:  denied  { getopt } for  scontext=u:r:system_server:s0 tcontext=u:r:shell:s0 tclass=unix_stream_socket permissive=0
+10-31 07:12:28.889 D/CompatibilityChangeReporter( 8409): Compat change id reported: 194532703; UID 10154; state: ENABLED
+10-31 07:12:28.889 D/CompatibilityChangeReporter( 8409): Compat change id reported: 253665015; UID 10154; state: DISABLED
+10-31 07:12:28.890 D/CompatibilityChangeReporter(  522): Compat change id reported: 271850009; UID 10154; state: DISABLED
+10-31 07:12:28.890 D/CompatibilityChangeReporter(  522): Compat change id reported: 253665015; UID 10154; state: DISABLED
+10-31 07:12:28.890 D/CompatibilityChangeReporter(  522): Compat change id reported: 194532703; UID 10154; state: ENABLED
+10-31 07:12:28.892 D/ConnectivityService(  522): requestNetwork for uid/pid:1000/522 asUid: 10154 activeRequest: null callbackRequest: 157 [NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10154 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+10-31 07:12:28.893 D/ConnectivityService(  522): NetReassign [158 : null → 100] [c 0] [a 0] [i 1]
+10-31 07:12:28.893 D/WifiNetworkFactory(  522): got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10154 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-31 07:12:28.893 D/UntrustedWifiNetworkFactory(  522): got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10154 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-31 07:12:28.893 D/OemPaidWifiNetworkFactory(  522): got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10154 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-31 07:12:28.893 D/MultiInternetWifiNetworkFactory(  522): got request NetworkRequest [ REQUEST id=158, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10154 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-31 07:12:28.894 D/CompatibilityChangeReporter(  522): Compat change id reported: 168419799; UID 10194; state: DISABLED
+10-31 07:12:28.894 D/CompatibilityChangeReporter(  522): Compat change id reported: 273564678; UID 10194; state: DISABLED
+10-31 07:12:28.915 D/CarrierSvcBindHelper( 1052): onPackageAdded: com.sonali.bharatvoicestudio
+10-31 07:12:28.917 D/CarrierSvcBindHelper( 1052): No carrier app for: 0
+10-31 07:12:28.919 D/OomAdjuster(  522): Not killing cached processes
+10-31 07:12:28.921 I/FontLog ( 5320): Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-31 07:12:28.922 I/FontLog ( 5320): Query [Noto Color Emoji Compat] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:28.922 I/SdkSandboxManager(  522): No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10194, mPackageName='com.sonali.bharatvoicestudio, mAppProcessToken='null'}
+10-31 07:12:28.923 E/AppOps  (  522): attributionTag VCN not declared in manifest of android
+10-31 07:12:28.925 I/InputReader(  522): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS
+10-31 07:12:28.926 I/GsaVoiceInteractionSrv( 1628): O received Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) }
+10-31 07:12:28.927 I/FontLog ( 5320): Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-31 07:12:28.931 I/FontLog ( 5320): Pulling font file for id = 20, cache size = 12 [CONTEXT service_id=132 ]
+10-31 07:12:28.933 D/CompatibilityChangeReporter(  522): Compat change id reported: 161252188; UID 10194; state: DISABLED
+10-31 07:12:28.935 W/ActivityTaskManager(  522): callingPackage for (uid=2000, pid=8493) has no WPC
+10-31 07:12:28.936 I/FontLog ( 5320): Pulling font file for id = 20, cache size = 12 [CONTEXT service_id=132 ]
+10-31 07:12:28.937 D/CompatibilityChangeReporter(  522): Compat change id reported: 265464455; UID 10194; state: DISABLED
+10-31 07:12:28.937 D/CompatibilityChangeReporter(  522): Compat change id reported: 265452344; UID 10194; state: DISABLED
+10-31 07:12:28.938 D/CompatibilityChangeReporter(  522): Compat change id reported: 266124927; UID 10194; state: DISABLED
+10-31 07:12:28.938 D/ImsResolver( 1052): maybeAddedImsService, packageName: com.sonali.bharatvoicestudio
+10-31 07:12:28.938 D/CompatibilityChangeReporter(  522): Compat change id reported: 265451093; UID 10194; state: DISABLED
+10-31 07:12:28.938 D/CompatibilityChangeReporter(  522): Compat change id reported: 265456536; UID 10194; state: DISABLED
+10-31 07:12:28.939 D/CompatibilityChangeReporter(  522): Compat change id reported: 255940284; UID 10194; state: DISABLED
+10-31 07:12:28.939 D/CompatibilityChangeReporter(  522): Compat change id reported: 236283604; UID 10194; state: DISABLED
+10-31 07:12:28.940 D/CompatibilityChangeReporter(  522): Compat change id reported: 263959004; UID 10194; state: DISABLED
+10-31 07:12:28.940 D/CompatibilityChangeReporter(  522): Compat change id reported: 264304459; UID 10194; state: DISABLED
+10-31 07:12:28.940 D/CompatibilityChangeReporter(  522): Compat change id reported: 264301586; UID 10194; state: DISABLED
+10-31 07:12:28.941 D/CompatibilityChangeReporter(  522): Compat change id reported: 254631730; UID 10194; state: DISABLED
+10-31 07:12:28.941 D/CompatibilityChangeReporter(  522): Compat change id reported: 273509367; UID 10194; state: DISABLED
+10-31 07:12:28.941 D/CompatibilityChangeReporter(  522): Compat change id reported: 263259275; UID 10194; state: DISABLED
+10-31 07:12:28.942 D/CompatibilityChangeReporter(  522): Compat change id reported: 174042980; UID 10194; state: DISABLED
+10-31 07:12:28.942 D/CompatibilityChangeReporter(  522): Compat change id reported: 174042936; UID 10194; state: DISABLED
+10-31 07:12:28.942 D/CompatibilityChangeReporter(  522): Compat change id reported: 181136395; UID 10194; state: DISABLED
+10-31 07:12:28.942 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_ADDED
+10-31 07:12:28.943 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_ADDED
+10-31 07:12:28.944 I/SafetyLabelChangedBroadcastReceiver(  847): received broadcast packageName: com.sonali.bharatvoicestudio, current user: UserHandle{0}, packageChangeEvent: NEW_INSTALL, intent user: UserHandle{0}
+10-31 07:12:28.944 D/CompatibilityChangeReporter(  522): Compat change id reported: 194480991; UID 10194; state: ENABLED
+10-31 07:12:28.948 D/TransparencyService(  522): Not an update. Skipping...
+10-31 07:12:28.953 I/ActivityManager(  522): Flag disabled. Ignoring finishAttachApplication from uid: 10154. pid: 8409
+10-31 07:12:28.959 D/CompatibilityChangeReporter(  522): Compat change id reported: 218533173; UID 10194; state: ENABLED
+10-31 07:12:28.959 D/CompatibilityChangeReporter(  522): Compat change id reported: 262645982; UID 10194; state: ENABLED
+10-31 07:12:28.960 D/CompatibilityChangeReporter(  522): Compat change id reported: 184838306; UID 10194; state: DISABLED
+10-31 07:12:28.960 D/CompatibilityChangeReporter(  522): Compat change id reported: 185004937; UID 10194; state: DISABLED
+10-31 07:12:28.961 D/CompatibilityChangeReporter(  522): Compat change id reported: 197654537; UID 10194; state: ENABLED
+10-31 07:12:28.961 D/CompatibilityChangeReporter(  522): Compat change id reported: 205907456; UID 10194; state: ENABLED
+10-31 07:12:28.963 I/ActivityTaskManager(  522): START u0 {flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-31 07:12:28.965 D/SplashScreenView(  842): Build android.window.SplashScreenView{a10c02a V.E...... ......ID 0,0-0,0}
+10-31 07:12:28.965 D/SplashScreenView(  842): Icon: view: android.widget.ImageView{e2ace1b V.ED..... ......I. 0,0-0,0 #10204f0 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@6e82bb8 size: 192
+10-31 07:12:28.965 D/SplashScreenView(  842): Branding: view: android.view.View{67cdd91 G.ED..... ......I. 0,0-0,0 #10204ef android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-31 07:12:28.967 D/StylusManager(  842): Stylus InputDevice changed: 14 virtio_input_multi_touch_11
+10-31 07:12:28.968 V/WindowManagerShell(  842): Transition requested: android.os.BinderProxy@dd2b4f6 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=12 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity } baseActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} topActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} origActivity=null realActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} numActivities=1 lastActiveTime=546889 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@21e30f7} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{fd04b64 com.sonali.bharatvoicestudio.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-31 07:12:28.976 I/PermissionControllerServiceImpl(  847): Updating user sensitive for uid 10194
+10-31 07:12:28.977 I/PermissionControllerServiceImpl(  847): Updating user sensitive for uid 10194
+10-31 07:12:28.979 D/CarrierSvcBindHelper( 1052): onPackageModified: com.sonali.bharatvoicestudio
+10-31 07:12:28.979 D/CarrierSvcBindHelper( 1052): No carrier app for: 0
+10-31 07:12:28.980 D/CompatibilityChangeReporter(  522): Compat change id reported: 135634846; UID 10194; state: DISABLED
+10-31 07:12:28.980 D/CompatibilityChangeReporter(  522): Compat change id reported: 177438394; UID 10194; state: DISABLED
+10-31 07:12:28.980 D/CompatibilityChangeReporter(  522): Compat change id reported: 135772972; UID 10194; state: DISABLED
+10-31 07:12:28.980 D/CompatibilityChangeReporter(  522): Compat change id reported: 135754954; UID 10194; state: ENABLED
+10-31 07:12:28.981 D/CompatibilityChangeReporter(  522): Compat change id reported: 143937733; UID 10194; state: ENABLED
+10-31 07:12:28.986 I/InputReader(  522): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS
+10-31 07:12:28.986 I/BpBinder(  401): onLastStrongRef automatically unlinking death recipients: 
+10-31 07:12:28.989 D/Zygote  (  337): Forked child process 8497
+10-31 07:12:28.994 I/ActivityManager(  522): Start proc 8497:com.sonali.bharatvoicestudio/u0a194 for next-top-activity {com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}
+10-31 07:12:28.994 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-31 07:12:28.997 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-31 07:12:29.002 D/StylusManager(  842): Stylus InputDevice changed: 13 virtio_input_multi_touch_10
+10-31 07:12:29.002 D/StylusManager(  842): Stylus InputDevice changed: 12 virtio_input_multi_touch_9
+10-31 07:12:29.002 D/StylusManager(  842): Stylus InputDevice changed: 5 virtio_input_multi_touch_2
+10-31 07:12:29.007 D/StylusManager(  842): Stylus InputDevice changed: 6 virtio_input_multi_touch_3
+10-31 07:12:29.012 D/StylusManager(  842): Stylus InputDevice changed: 7 virtio_input_multi_touch_4
+10-31 07:12:29.029 D/CompatibilityChangeReporter(  522): Compat change id reported: 265195908; UID 10194; state: ENABLED
+10-31 07:12:29.031 I/aratvoicestudio( 8497): Using CollectorTypeCC GC.
+10-31 07:12:29.031 W/aratvoicestudio( 8497): Unexpected CPU variant for x86: x86_64.
+10-31 07:12:29.031 W/aratvoicestudio( 8497): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-31 07:12:29.044 D/StylusManager(  842): Stylus InputDevice changed: 4 virtio_input_multi_touch_1
+10-31 07:12:29.045 E/aratvoicestudio( 8497): Not starting debugger since process cannot load the jdwp agent.
+10-31 07:12:29.051 D/ImsResolver( 1052): maybeAddedImsService, packageName: com.sonali.bharatvoicestudio
+10-31 07:12:29.053 V/WindowManagerShell(  842): onTransitionReady android.os.BinderProxy@dd2b4f6: {id=15 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@df187da} m=OPEN f=NONE leash=Surface(name=Task=12)/@0xde447ef sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@3d7740b} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x9f7a2fc sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:29.053 V/WindowManagerShell(  842): Playing animation for (#15)android.os.BinderProxy@dd2b4f6@0
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.transition.DefaultMixedHandler@de77ad5
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@8ba62ea
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@c7b99db
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.recents.RecentsTransitionHandler@3e36c78
+10-31 07:12:29.053 V/ShellRecents(  842): RecentsTransitionHandler.startAnimation: no controller found
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.pip.PipTransition@fb1ef51
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.splitscreen.StageCoordinator@f53c3b6
+10-31 07:12:29.053 V/WindowManagerShell(  842):  try handler com.android.wm.shell.transition.RemoteTransitionHandler@10ff8b7
+10-31 07:12:29.053 V/WindowManagerShell(  842): Transition doesn't have explicit remote, search filters for match for {id=15 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@df187da} m=OPEN f=NONE leash=Surface(name=Task=12)/@0xde447ef sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@3d7740b} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x9f7a2fc sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:29.053 V/WindowManagerShell(  842):  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@68fdddf, appThread = android.app.IApplicationThread$Stub$Proxy@a559a2c, debugName = LauncherToDream }}
+10-31 07:12:29.054 V/WindowManagerShell(  842):  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@5743cf5, appThread = android.app.IApplicationThread$Stub$Proxy@78eca8a, debugName = QuickstepLaunchHome }}
+10-31 07:12:29.054 V/WindowManagerShell(  842):  Delegate animation for #15 to null
+10-31 07:12:29.054 V/WindowManagerShell(  842):  try handler com.android.wm.shell.transition.DefaultTransitionHandler@4835290
+10-31 07:12:29.054 V/WindowManagerShell(  842): start default transition animation, info = {id=15 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@df187da} m=OPEN f=NONE leash=Surface(name=Task=12)/@0xde447ef sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@3d7740b} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x9f7a2fc sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:29.054 V/WindowManagerShell(  842): loadAnimation: anim=android.view.animation.AnimationSet@f047a6 animAttr=0x13 type=OPEN isEntrance=false
+10-31 07:12:29.054 V/WindowManagerShell(  842): loadAnimation: anim=android.view.animation.AnimationSet@bc93832 animAttr=0x12 type=OPEN isEntrance=true
+10-31 07:12:29.054 V/WindowManagerShell(  842):  animated by com.android.wm.shell.transition.DefaultTransitionHandler@4835290
+10-31 07:12:29.063 D/StylusManager(  842): Stylus InputDevice changed: 11 virtio_input_multi_touch_8
+10-31 07:12:29.067 D/StylusManager(  842): Stylus InputDevice changed: 8 virtio_input_multi_touch_5
+10-31 07:12:29.067 I/ProvidersCache( 2431): Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-31 07:12:29.068 W/oid.documentsui( 2431): Long monitor contention with owner pool-28-thread-3 (8398) at void com.android.documentsui.roots.ProvidersCache$MultiProviderUpdateTask.handleDocumentsProvider(android.content.pm.ProviderInfo, com.android.documentsui.base.UserId)(ProvidersCache.java:645) waiters=4 in void com.android.documentsui.roots.ProvidersCache$MultiProviderUpdateTask.handleDocumentsProvider(android.content.pm.ProviderInfo, com.android.documentsui.base.UserId) for 675ms
+10-31 07:12:29.069 D/StylusManager(  842): Stylus InputDevice changed: 9 virtio_input_multi_touch_6
+10-31 07:12:29.070 V/WindowManager(  522): Sent Transition #15 createdAt=10-31 07:12:28.945 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=12 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.sonali.bharatvoicestudio/.MainActivity } baseActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} topActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} origActivity=null realActivity=ComponentInfo{com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity} numActivities=1 lastActiveTime=546889 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{459fdb0 Task{ee62101 #12 type=standard A=10194:com.sonali.bharatvoicestudio}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{bbcd429 com.sonali.bharatvoicestudio.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-31 07:12:29.076 V/WindowManagerShell(  842): Transition animation finished (aborted=false), notifying core (#15)android.os.BinderProxy@dd2b4f6@0
+10-31 07:12:29.076 D/StylusManager(  842): Stylus InputDevice changed: 10 virtio_input_multi_touch_7
+10-31 07:12:29.077 V/WindowManager(  522):     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-31 07:12:29.078 D/StylusManager(  842): Stylus InputDevice changed: 14 virtio_input_multi_touch_11
+10-31 07:12:29.078 V/WindowManagerShell(  842): Track 0 became idle
+10-31 07:12:29.078 V/WindowManagerShell(  842): All active transition animations finished
+10-31 07:12:29.079 V/WindowManager(  522):     info={id=15 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{459fdb0 Task{ee62101 #12 type=standard A=10194:com.sonali.bharatvoicestudio}}} m=OPEN f=NONE leash=Surface(name=Task=12)/@0x2c00068 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{RemoteToken{584bea1 Task{817b5f3 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x2a16653 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+10-31 07:12:29.079 V/WindowManager(  522): Finish Transition #15: created at 10-31 07:12:28.945 collect-started=0.017ms request-sent=17.428ms started=24.323ms ready=96.531ms sent=103.854ms finished=131.719ms
+10-31 07:12:29.084 D/CompatibilityChangeReporter( 8497): Compat change id reported: 171979766; UID 10194; state: ENABLED
+10-31 07:12:29.084 D/CompatibilityChangeReporter( 8497): Compat change id reported: 242716250; UID 10194; state: ENABLED
+10-31 07:12:29.085 D/CompatibilityChangeReporter(  522): Compat change id reported: 170503758; UID 10194; state: ENABLED
+10-31 07:12:29.092 D/nativeloader( 8497): Configuring clns-6 for other apk /data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~FsN6yPxPLQjtg-uCq_ff9A==/com.sonali.bharatvoicestudio-sa_hMmFxMqsVAAElc9cWww==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.sonali.bharatvoicestudio
+10-31 07:12:29.108 V/GraphicsEnvironment( 8497): Currently set values for:
+10-31 07:12:29.109 V/GraphicsEnvironment( 8497):   angle_gl_driver_selection_pkgs=[]
+10-31 07:12:29.109 V/GraphicsEnvironment( 8497):   angle_gl_driver_selection_values=[]
+10-31 07:12:29.112 V/GraphicsEnvironment( 8497): ANGLE GameManagerService for com.sonali.bharatvoicestudio: false
+10-31 07:12:29.112 V/GraphicsEnvironment( 8497): com.sonali.bharatvoicestudio is not listed in per-application setting
+10-31 07:12:29.112 V/GraphicsEnvironment( 8497): Neither updatable production driver nor prerelease driver is supported.
+10-31 07:12:29.117 I/ActivityManager(  522): Flag disabled. Ignoring finishAttachApplication from uid: 10194. pid: 8497
+10-31 07:12:29.143 W/DynamiteModule( 8409): Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+10-31 07:12:29.147 W/ProviderHelper( 5320): Unknown dynamite feature providerinstaller.dynamite
+10-31 07:12:29.148 W/ProviderInstaller( 8409): Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+10-31 07:12:29.151 D/nativeloader( 8409): Configuring clns-8 for other apk /system/framework/com.android.media.remotedisplay.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/product/priv-app/PrebuiltGmsCore/lib/x86_64:/product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+10-31 07:12:29.152 D/nativeloader( 8409): Configuring clns-9 for other apk /system/framework/com.android.location.provider.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/product/priv-app/PrebuiltGmsCore/lib/x86_64:/product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+10-31 07:12:29.153 D/ApplicationLoaders( 8409): Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-31 07:12:29.153 D/ApplicationLoaders( 8409): Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-31 07:12:29.155 D/nativeloader( 8409): Configuring product-clns-10 for unbundled product apk /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk. target_sdk_version=33, uses_libraries=, library_path=/product/priv-app/PrebuiltGmsCore/lib/x86_64:/product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!/lib/x86_64:/product/lib64:/system/product/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms:/product/lib64:/system/product/lib64
+10-31 07:12:29.160 V/NativeCrypto( 8409): Registering com/google/android/gms/org/conscrypt/NativeCrypto's 295 native methods...
+10-31 07:12:29.168 I/ProviderInstaller( 8409): Installed default security provider GmsCore_OpenSSL
+10-31 07:12:29.171 D/libEGL  ( 8497): loaded /vendor/lib64/egl/libEGL_emulation.so
+10-31 07:12:29.172 D/libEGL  ( 8497): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+10-31 07:12:29.173 D/libEGL  ( 8497): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+10-31 07:12:29.190 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.drive.directsharing.ChooserTargetService
+10-31 07:12:29.190 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.drive.directsharing.ChooserTargetService
+10-31 07:12:29.202 I/WebViewFactory( 8497): Loading com.google.android.webview version 113.0.5672.136 (code 567263637)
+10-31 07:12:29.204 D/PackageManager(  522): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-31 07:12:29.204 D/PackageManager(  522): Clear ephemeral installer activity
+10-31 07:12:29.207 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.documentcreation.WidgetDocumentCreatorActivity
+10-31 07:12:29.207 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.documentcreation.WidgetDocumentCreatorActivity
+10-31 07:12:29.207 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.documentcreation.ExternalDocumentCreatorActivity
+10-31 07:12:29.207 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.documentcreation.ExternalDocumentCreatorActivity
+10-31 07:12:29.208 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.widgets.NewDocumentWidgetActivity
+10-31 07:12:29.208 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.widgets.NewDocumentWidgetActivity
+10-31 07:12:29.208 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.export.FileContentProvider
+10-31 07:12:29.208 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.export.FileContentProvider
+10-31 07:12:29.209 W/ziparchive( 8497): Unable to open '/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.dm': No such file or directory
+10-31 07:12:29.209 W/ziparchive( 8497): Unable to open '/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.dm': No such file or directory
+10-31 07:12:29.210 W/aratvoicestudio( 8497): Entry not found
+10-31 07:12:29.210 D/nativeloader( 8497): Configuring clns-7 for other apk /data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.apk. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/lib/x86_64:/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+10-31 07:12:29.211 D/nativeloader( 8497): Configuring clns-8 for other apk /data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/WebViewGoogle.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/lib/x86_64:/data/app/~~BIkYk1oQCol4Wx2i0uqluw==/com.google.android.webview-1oEWLA5yskIO-p_iA_ae5w==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~eX9XX3CFRKVe5WYpNAcugw==/com.google.android.trichromelibrary_567263637-xTdHx4J5Os3ZzWdXy7mUeA==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+10-31 07:12:29.212 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.copypaste.AndroidClipboardContentProvider
+10-31 07:12:29.212 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.copypaste.AndroidClipboardContentProvider
+10-31 07:12:29.217 W/DynamiteModule( 8409): Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+10-31 07:12:29.218 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.copypaste.AndroidImageContentProvider
+10-31 07:12:29.218 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.copypaste.AndroidImageContentProvider
+10-31 07:12:29.224 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.inserttool.clipboard.InsertToolClipboardContentProvider
+10-31 07:12:29.224 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.inserttool.clipboard.InsertToolClipboardContentProvider
+10-31 07:12:29.224 W/ProviderHelper( 5320): Unknown dynamite feature providerinstaller.dynamite
+10-31 07:12:29.225 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.inserttool.clipboard.InsertToolImageContentProvider
+10-31 07:12:29.225 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.shared.inserttool.clipboard.InsertToolImageContentProvider
+10-31 07:12:29.225 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.kix.conversion.KixOnlineImportActivity
+10-31 07:12:29.225 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.kix.conversion.KixOnlineImportActivity
+10-31 07:12:29.226 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.ritz.conversion.RitzOnlineImportActivity
+10-31 07:12:29.226 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.ritz.conversion.RitzOnlineImportActivity
+10-31 07:12:29.226 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.punch.conversion.PunchOnlineImportActivity
+10-31 07:12:29.226 W/gkg     ( 8409): (Possibly expected) - Error changing state for com.google.android.apps.docs.editors.punch.conversion.PunchOnlineImportActivity
+10-31 07:12:29.227 W/ProviderInstaller( 8409): Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+10-31 07:12:29.231 I/cr_WVCFactoryProvider( 8497): Loaded version=113.0.5672.136 minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+10-31 07:12:29.232 I/resolv  (  336): GetAddrInfoHandler::run: {100 100 100 983140 10154 0}
+10-31 07:12:29.233 I/resolv  (  336): res_nmkquery: (QUERY, IN, AAAA)
+10-31 07:12:29.239 I/resolv  (  336): res_nmkquery: (QUERY, IN, A)
+10-31 07:12:29.251 I/cr_LibraryLoader( 8497): Successfully loaded native library
+10-31 07:12:29.251 I/cr_CachingUmaRecorder( 8497): Flushed 8 samples from 8 histograms.
+10-31 07:12:29.252 W/WindowMagnificationMgr(  522): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-31 07:12:29.253 I/cr_VariationsUtils( 8497): Failed reading seed file "/data/user/0/com.sonali.bharatvoicestudio/app_webview/variations_seed_new"
+10-31 07:12:29.254 I/cr_VariationsUtils( 8497): Failed reading seed file "/data/user/0/com.sonali.bharatvoicestudio/app_webview/variations_seed"
+10-31 07:12:29.254 I/cr_VariationsUtils( 8497): Requesting new seed from IVariationsSeedServer
+10-31 07:12:29.256 D/CompatibilityChangeReporter(  522): Compat change id reported: 161145287; UID 10194; state: ENABLED
+10-31 07:12:29.263 I/resolv  (  336): res_nsend: used send_dg 273 terrno: 0
+10-31 07:12:29.263 I/resolv  (  336): doQuery: rcode=0, ancount=8, return value=273
+10-31 07:12:29.267 W/PackageManager(  522): Failed registering loading progress callback. Package is fully loaded.
+10-31 07:12:29.268 I/AiAiEcho( 1621): AppFetcherImplV2 updateApps package:[com.sonali.bharatvoicestudio], userId:[0], reason:[package is added.].
+10-31 07:12:29.271 I/Icing   ( 5373): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+10-31 07:12:29.277 I/resolv  (  336): res_nsend: used send_dg 177 terrno: 0
+10-31 07:12:29.277 I/resolv  (  336): doQuery: rcode=0, ancount=8, return value=177
+10-31 07:12:29.278 D/TrafficStats( 8409): tagSocket(98) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:29.282 D/CompatibilityChangeReporter( 8497): Compat change id reported: 183155436; UID 10194; state: ENABLED
+10-31 07:12:29.284 D/ActivityManager(  522): sync unfroze 2962 com.google.android.webview:webview_service for 6
+10-31 07:12:29.284 D/CompatibilityChangeReporter(  522): Compat change id reported: 261072174; UID 10194; state: ENABLED
+10-31 07:12:29.288 D/CompatibilityChangeReporter(  522): Compat change id reported: 135634846; UID 99004; state: DISABLED
+10-31 07:12:29.288 D/CompatibilityChangeReporter(  522): Compat change id reported: 143937733; UID 10194; state: ENABLED
+10-31 07:12:29.297 W/WindowMagnificationMgr(  522): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+10-31 07:12:29.302 I/AiAiEcho( 1621): EchoSearch: WidgetFetcherImpl is initialized with [28] widgets [reason=package added for userId: 0]
+10-31 07:12:29.311 D/Zygote  (  991): Forked child process 8551
+10-31 07:12:29.318 W/chromium( 8497): [WARNING:dns_config_service_android.cc(115)] Failed to read DnsConfig.
+10-31 07:12:29.318 I/ocessService0:0( 8551): Using CollectorTypeCC GC.
+10-31 07:12:29.319 W/ocessService0:0( 8551): Unexpected CPU variant for x86: x86_64.
+10-31 07:12:29.319 W/ocessService0:0( 8551): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-31 07:12:29.320 I/ActivityManager(  522): Start proc 8551:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i4 for  {com.sonali.bharatvoicestudio/org.chromium.content.app.SandboxedProcessService0:0}
+10-31 07:12:29.331 I/system_server(  522): Background concurrent copying GC freed 925199(38MB) AllocSpace objects, 86(2452KB) LOS objects, 45% free, 28MB/52MB, paused 110us,42us total 1.034s
+10-31 07:12:29.334 E/ocessService0:0( 8551): Not starting debugger since process cannot load the jdwp agent.
+10-31 07:12:29.348 I/Icing   ( 5373): Indexing com.google.android.gms-apps from com.google.android.gms
+10-31 07:12:29.348 I/Icing   ( 5373): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+10-31 07:12:29.356 E/chromium( 8497): [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.sonali.bharatvoicestudio/cache/WebView/Default/HTTP Cache/Code Cache/wasm: No such file or directory (2)
+10-31 07:12:29.356 E/chromium( 8497): [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+10-31 07:12:29.357 E/chromium( 8497): [ERROR:simple_file_enumerator.cc(21)] opendir /data/user/0/com.sonali.bharatvoicestudio/cache/WebView/Default/HTTP Cache/Code Cache/js: No such file or directory (2)
+10-31 07:12:29.357 E/chromium( 8497): [ERROR:simple_index_file.cc(614)] Could not reconstruct index from disk
+10-31 07:12:29.360 D/CompatibilityChangeReporter( 8497): Compat change id reported: 214741472; UID 10194; state: ENABLED
+10-31 07:12:29.361 D/CompatibilityChangeReporter( 8551): Compat change id reported: 171979766; UID 99004; state: ENABLED
+10-31 07:12:29.362 D/CompatibilityChangeReporter( 8551): Compat change id reported: 242716250; UID 99004; state: ENABLED
+10-31 07:12:29.363 D/CompatibilityChangeReporter( 8497): Compat change id reported: 171228096; UID 10194; state: ENABLED
+10-31 07:12:29.367 I/LoadedApk( 8551): No resource references to update in package com.google.android.trichromelibrary
+10-31 07:12:29.369 I/cr_WebViewApkApp( 8551): Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+10-31 07:12:29.373 I/ActivityManager(  522): Flag disabled. Ignoring finishAttachApplication from uid: 99004. pid: 8551
+10-31 07:12:29.373 I/Icing   ( 5373): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+10-31 07:12:29.374 I/Icing   ( 5373): Indexing done com.google.android.gms-apps
+10-31 07:12:29.375 W/SystemServiceRegistry( 8551): No service published for: virtualdevice
+10-31 07:12:29.375 I/cr_ChildProcessService( 8551): Creating new ChildProcessService pid=8551
+10-31 07:12:29.376 I/AiAiEcho( 1621): AppFetcherImpl onPackageChanged com.sonali.bharatvoicestudio.
+10-31 07:12:29.381 I/AiAiEcho( 1621): AppIndexer Package:[com.sonali.bharatvoicestudio] UserProfile:[0] Enabled:[true].
+10-31 07:12:29.382 D/AutofillManager( 8497): Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+10-31 07:12:29.383 I/AiAiEcho( 1621): AppFetcherImplV2 updateApps package:[com.sonali.bharatvoicestudio], userId:[0], reason:[package is updated.].
+10-31 07:12:29.391 I/TextToSpeech( 8497): Sucessfully bound to com.google.android.tts
+10-31 07:12:29.391 I/BVS     ( 8497): WebView com.google.android.webview 113.0.5672.136
+10-31 07:12:29.396 D/TextToSpeechManagerPerUserService(  522): Trying to start connection to TTS engine: com.google.android.tts
+10-31 07:12:29.402 W/cr_media( 8497): BLUETOOTH_CONNECT permission is missing.
+10-31 07:12:29.405 D/ControlsListingControllerImpl(  842): ServiceConfig reloaded, count: 0
+10-31 07:12:29.407 I/cr_LibraryLoader( 8551): Successfully loaded native library
+10-31 07:12:29.407 I/cr_CachingUmaRecorder( 8551): Flushed 2 samples from 2 histograms.
+10-31 07:12:29.413 I/GsaVoiceInteractionSrv( 1628): O received Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 (has extras) }
+10-31 07:12:29.417 W/cr_media( 8497): registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+10-31 07:12:29.419 I/GoogleTtsServicePeer( 2710): Creating Google TTS service, version googletts.google-speech-apk_20230123.02_p3.506463867
+10-31 07:12:29.420 D/CompatibilityChangeReporter( 8497): Compat change id reported: 237531167; UID 10194; state: DISABLED
+10-31 07:12:29.421 D/ControlsListingControllerImpl(  842): ServiceConfig reloaded, count: 0
+10-31 07:12:29.426 W/SystemServiceRegistry( 8551): No service published for: uimode
+10-31 07:12:29.431 W/OpenGLRenderer( 8497): Unknown dataspace 0
+10-31 07:12:29.451 D/CompatibilityChangeReporter(  522): Compat change id reported: 161252188; UID 10194; state: DISABLED
+10-31 07:12:29.468 D/TextToSpeechManagerPerUserService(  522): Connected successfully to TTS engine: com.google.android.tts
+10-31 07:12:29.472 I/TextToSpeech( 8497): Connected to TTS engine
+10-31 07:12:29.480 I/cr_VariationsUtils( 2962): Throttling seed download job
+10-31 07:12:29.480 I/cr_VariationsUtils( 2962): Writing new seed to app's data directory
+10-31 07:12:29.484 D/CoreBackPreview(  522): Window{26f5236 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@9cb1d36, mPriority=-1, mIsAnimationCallback=false}
+10-31 07:12:29.485 D/CoreBackPreview(  522): Window{26f5236 u0 com.sonali.bharatvoicestudio/com.sonali.bharatvoicestudio.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@c261437, mPriority=0, mIsAnimationCallback=false}
+10-31 07:12:29.490 D/CompatibilityChangeReporter( 8497): Compat change id reported: 193247900; UID 10194; state: ENABLED
+10-31 07:12:29.495 W/ServiceManagerCppClient(  401): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10194 pid=8497
+10-31 07:12:29.495 D/PermissionCache(  401): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10194 => denied (92 us)
+10-31 07:12:29.495 W/ServiceManagerCppClient(  401): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10194 pid=0
+10-31 07:12:29.495 D/PermissionCache(  401): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10194 => denied (216 us)
+10-31 07:12:29.496 W/ServiceManagerCppClient(  401): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10194 pid=0
+10-31 07:12:29.496 W/ServiceManagerCppClient(  401): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10194 pid=8497
+10-31 07:12:29.496 D/PermissionCache(  401): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10194 => denied (1044 us)
+10-31 07:12:29.496 D/PermissionCache(  401): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10194 => denied (980 us)
+10-31 07:12:29.496 W/ServiceManagerCppClient(  401): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10194 pid=8497
+10-31 07:12:29.496 D/PermissionCache(  401): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10194 => denied (52 us)
+10-31 07:12:29.496 W/ServiceManagerCppClient(  401): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10194 pid=0
+10-31 07:12:29.496 D/PermissionCache(  401): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10194 => denied (83 us)
+10-31 07:12:29.497 I/RoleService(  522): Granting default roles...
+10-31 07:12:29.515 W/OpenGLRenderer( 8497): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-31 07:12:29.528 I/FontLog ( 5320): Received query name=Google Sans&weight=700&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-31 07:12:29.528 I/FontLog ( 5320): Query [name=Google Sans&weight=700&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:29.529 I/FontLog ( 5320): Fetch {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-31 07:12:29.530 W/RankedDispatcher( 2710): The requested voice is not available for this app identifier
+10-31 07:12:29.533 I/GoogleTTSServiceImpl( 2710): currentLocale = en-US
+10-31 07:12:29.534 E/RoleControllerServiceImpl(  847): Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+10-31 07:12:29.535 W/RankedDispatcher( 2710): The requested voice is not available for this app identifier
+10-31 07:12:29.535 I/hwservicemanager(  135): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-31 07:12:29.739 I/servicemanager(    0): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-31 07:12:29.536 I/Gralloc4( 8497): mapper 4.x is not supported
+10-31 07:12:29.537 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:29.538 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:29.544 I/Icing   ( 5373): Indexing com.google.android.gms-apps from com.google.android.gms
+10-31 07:12:29.544 I/Role    (  847): com.google.android.gms not qualified for android.app.role.SYSTEM_CALL_STREAMING due to missing RequiredComponent{mIntentFilterData=IntentFilterData{mAction='android.telecom.CallStreamingService', mCategories='[]', mDataScheme='null', mDataType='null'}, mMinTargetSdkVersion=1, mFlags='0', mPermission='android.permission.BIND_CALL_STREAMING_SERVICE', mQueryFlags=0, mMetaData=[]}
+10-31 07:12:29.545 I/Fitness ( 5320): OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-31 07:12:29.545 E/RoleControllerServiceImpl(  847): Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.SYSTEM_CALL_STREAMING
+10-31 07:12:29.563 I/FontLog ( 5320): Pulling font file for id = 21, cache size = 13 [CONTEXT service_id=132 ]
+10-31 07:12:29.572 I/Auth    ( 5373): [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+10-31 07:12:29.573 D/BoundBrokerSvc( 5373): onBind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+10-31 07:12:29.573 D/BoundBrokerSvc( 5373): Loading bound service for intent: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+10-31 07:12:29.576 I/BlockstoreStorage( 5373): Clearing Blockstore Data for package com.sonali.bharatvoicestudio [CONTEXT service_id=258 ]
+10-31 07:12:29.578 I/BlockstoreStorage( 5373): Keyless data not found or its IsLastInstallationData = false. [CONTEXT service_id=258 ]
+10-31 07:12:29.579 W/Role    (  847): Default holder doesn't have required signing certificate: com.google.android.apps.work.clouddpc:23962F4B43B9857638EA66F4D419518EAE282491ACDA4B94707BD59003C45E58
+10-31 07:12:29.583 I/Dck     ( 5373): doesDeviceHaveSupportedWirelessCapabilities: wccSysProp:0, wccMendel:3, deviceWccOverride:false [CONTEXT service_id=289 ]
+10-31 07:12:29.588 I/Fitness ( 5320): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-31 07:12:29.589 I/ProximityAuth( 5320): [RecentAppsMediator] Package added: (user=UserHandle{0}) com.sonali.bharatvoicestudio
+10-31 07:12:29.589 I/Dck     ( 5373): isDckModuleEligible: isAtLeastR:true, hasWccSupport:false, downloadAllowed:false [CONTEXT service_id=289 ]
+10-31 07:12:29.589 W/Dck     ( 5373): Dck module not eligible for asynchronous downloading [CONTEXT service_id=289 ]
+10-31 07:12:29.590 W/GCM     ( 5320): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-31 07:12:29.591 I/FontLog ( 5320): Package com.sonali.bharatvoicestudio has no metadata [CONTEXT service_id=132 ]
+10-31 07:12:29.591 I/Icing   ( 5373): Indexing done com.google.android.gms-apps
+10-31 07:12:29.592 W/GCM     ( 5320): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+10-31 07:12:29.608 I/Fitness ( 5320): OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-31 07:12:29.613 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:29.613 I/Fitness ( 5320): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-31 07:12:29.620 I/FontLog ( 5320): Received query name=Noto Color Emoji Compat&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-31 07:12:29.620 I/FontLog ( 5320): Query [name=Noto Color Emoji Compat&weight=400&besteffort=false] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:29.627 D/BoundBrokerSvc( 5373): onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+10-31 07:12:29.633 I/FontLog ( 5320): Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-31 07:12:29.636 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:29.644 I/FontLog ( 5320): Pulling font file for id = 22, cache size = 14 [CONTEXT service_id=132 ]
+10-31 07:12:29.649 I/FontLog ( 5320): Received query name=Google Sans&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-31 07:12:29.649 I/FontLog ( 5320): Query [name=Google Sans&weight=400&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:29.652 I/FontLog ( 5320): Font PFD returned from cache for {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:29.665 I/FontLog ( 5320): Fetch {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-31 07:12:29.715 I/Icing   ( 5373): Indexing com.google.android.gms-apps from com.google.android.gms
+10-31 07:12:29.720 I/FontLog ( 5320): Pulling font file for id = 23, cache size = 15 [CONTEXT service_id=132 ]
+10-31 07:12:29.739 I/GoogleTTSServiceImpl( 2710): For default lang en-us is name en-US-language (en-us-x-iog-server)
+10-31 07:12:29.772 I/FontLog ( 5320): Received query name=Google Sans&weight=500&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-31 07:12:29.772 I/FontLog ( 5320): Query [name=Google Sans&weight=500&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:29.773 I/FontLog ( 5320): Font PFD returned from cache for {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-31 07:12:29.774 I/FontLog ( 5320): Fetch {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-31 07:12:29.792 W/ServiceManagerCppClient(  522): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10194 pid=0
+10-31 07:12:29.793 D/PermissionCache(  522): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10194 => denied (1292 us)
+10-31 07:12:29.793 W/ServiceManagerCppClient(  522): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10194 pid=0
+10-31 07:12:29.793 D/PermissionCache(  522): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10194 => denied (275 us)
+10-31 07:12:29.793 W/ServiceManagerCppClient(  522): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10194 pid=0
+10-31 07:12:29.794 D/PermissionCache(  522): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10194 => denied (172 us)
+10-31 07:12:29.796 I/FontLog ( 5320): Pulling font file for id = 24, cache size = 16 [CONTEXT service_id=132 ]
+10-31 07:12:29.796 I/ActivityTaskManager(  522): Displayed com.sonali.bharatvoicestudio/.MainActivity for user 0: +861ms
+10-31 07:12:29.802 I/TextToSpeech( 8497): Setting up the connection to TTS engine...
+10-31 07:12:29.823 I/resolv  (  336): GetAddrInfoHandler::run: {100 100 100 983140 10194 0}
+10-31 07:12:29.826 I/resolv  (  336): res_nmkquery: (QUERY, IN, A)
+10-31 07:12:29.826 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7579476c1e10
+10-31 07:12:29.826 I/resolv  (  336): doQuery: rcode=0, ancount=1, return value=54
+10-31 07:12:29.827 D/CompatibilityChangeReporter(  522): Compat change id reported: 218533173; UID 10154; state: ENABLED
+10-31 07:12:29.827 D/CompatibilityChangeReporter(  522): Compat change id reported: 262645982; UID 10154; state: DISABLED
+10-31 07:12:29.830 I/resolv  (  336): GetAddrInfoHandler::run: {100 100 100 983140 10194 0}
+10-31 07:12:29.832 I/resolv  (  336): res_nmkquery: (QUERY, IN, AAAA)
+10-31 07:12:29.832 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578a76c6b30
+10-31 07:12:29.832 I/resolv  (  336): doQuery: rcode=0, ancount=1, return value=66
+10-31 07:12:29.835 W/InputManager-JNI(  522): Input channel object 'fe8ddcf Splash Screen com.sonali.bharatvoicestudio (client)' was disposed without first being removed with the input manager!
+10-31 07:12:29.840 D/OneSearchSuggestProvider( 1097): Shut down the binder channel
+10-31 07:12:29.841 I/IPCThreadState( 1097): oneway function results for code 2 on binder at 0x71c603ae84c0 will be dropped but finished with status UNKNOWN_TRANSACTION
+10-31 07:12:29.844 I/resolv  (  336): res_nmkquery: (QUERY, IN, AAAA)
+10-31 07:12:29.844 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578a76c5e10
+10-31 07:12:29.844 I/resolv  (  336): doQuery: rcode=0, ancount=1, return value=63
+10-31 07:12:29.848 I/resolv  (  336): res_nmkquery: (QUERY, IN, A)
+10-31 07:12:29.848 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7579476c0610
+10-31 07:12:29.848 I/resolv  (  336): doQuery: rcode=0, ancount=1, return value=51
+10-31 07:12:29.852 I/PBSessionCacheImpl( 1687): Deleted sessionId[7421297894473392] from persistence.
+10-31 07:12:29.858 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:29.859 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:29.859 W/SearchServiceCore( 1687): Abort, client detached.
+10-31 07:12:29.860 I/MicroDetectionState( 1687): Should stop hotword detection immediately - true
+10-31 07:12:29.860 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:29.860 I/A       ( 1687): Using proto config with mendel
+10-31 07:12:29.860 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:29.861 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:29.863 I/PermissionControllerServiceImpl(  847): Updating user sensitive for uid 10154
+10-31 07:12:29.868 I/Icing   ( 5373): Indexing done com.google.android.gms-apps
+10-31 07:12:29.879 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-31 07:12:29.879 V/MediaPlayerList( 1028): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-31 07:12:29.880 D/CarrierSvcBindHelper( 1052): onPackageModified: com.google.android.apps.docs
+10-31 07:12:29.890 I/ImeTracker( 1097): com.google.android.apps.nexuslauncher:d707c57b: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+10-31 07:12:29.890 D/CarrierSvcBindHelper( 1052): No carrier app for: 0
+10-31 07:12:29.891 I/ImeTracker(  522): com.google.android.apps.nexuslauncher:d707c57b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-31 07:12:29.897 D/ImsResolver( 1052): maybeAddedImsService, packageName: com.google.android.apps.docs
+10-31 07:12:29.898 I/InputReader(  522): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS
+10-31 07:12:29.901 D/StylusManager(  842): Stylus InputDevice changed: 14 virtio_input_multi_touch_11
+10-31 07:12:29.901 D/ControlsListingControllerImpl(  842): ServiceConfig reloaded, count: 0
+10-31 07:12:29.902 D/StylusManager(  842): Stylus InputDevice changed: 13 virtio_input_multi_touch_10
+10-31 07:12:29.904 D/StylusManager(  842): Stylus InputDevice changed: 12 virtio_input_multi_touch_9
+10-31 07:12:29.905 D/StylusManager(  842): Stylus InputDevice changed: 5 virtio_input_multi_touch_2
+10-31 07:12:29.906 D/StylusManager(  842): Stylus InputDevice changed: 6 virtio_input_multi_touch_3
+10-31 07:12:29.906 D/StylusManager(  842): Stylus InputDevice changed: 7 virtio_input_multi_touch_4
+10-31 07:12:29.906 D/StylusManager(  842): Stylus InputDevice changed: 4 virtio_input_multi_touch_1
+10-31 07:12:29.907 D/StylusManager(  842): Stylus InputDevice changed: 11 virtio_input_multi_touch_8
+10-31 07:12:29.910 D/StylusManager(  842): Stylus InputDevice changed: 8 virtio_input_multi_touch_5
+10-31 07:12:29.915 D/StylusManager(  842): Stylus InputDevice changed: 9 virtio_input_multi_touch_6
+10-31 07:12:29.924 I/Icing   ( 5373): Indexing com.google.android.gms-apps from com.google.android.gms
+10-31 07:12:29.924 I/Icing   ( 5373): Indexing done com.google.android.gms-apps
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f080305.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f130689.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f130689.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f080301.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f130687.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f130687.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f080303.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f130688.
+10-31 07:12:29.932 E/system_server(  522): No package ID 7f found for resource ID 0x7f130688.
+10-31 07:12:29.932 W/ShortcutService(  522): Invalid tag 'capability' found at depth 2
+10-31 07:12:29.932 E/ShortcutService(  522): Ignoring excessive intent tag.
+10-31 07:12:29.932 W/ShortcutService(  522): Invalid tag 'parameter' found at depth 4
+10-31 07:12:29.932 W/ShortcutService(  522): Invalid tag 'capability' found at depth 2
+10-31 07:12:29.932 W/ShortcutService(  522): Invalid tag 'slice' found at depth 3
+10-31 07:12:29.932 W/ShortcutService(  522): Invalid tag 'url-template' found at depth 4
+10-31 07:12:29.932 D/AppWidgetServiceImpl(  522): Provider info from ComponentInfo{com.google.android.apps.docs/com.google.android.apps.docs.drive.widget.suggestion.SuggestionAppWidgetProvider} won't be persisted.
+10-31 07:12:29.932 D/AppWidgetServiceImpl(  522): Provider info from ComponentInfo{com.google.android.apps.docs/com.google.android.apps.docs.drive.widget.CakemixAppWidgetProvider} won't be persisted.
+10-31 07:12:29.936 D/CompatibilityChangeReporter(  522): Compat change id reported: 214016041; UID 10194; state: ENABLED
+10-31 07:12:29.936 I/ImeTracker(  522): com.sonali.bharatvoicestudio:8c393214: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-31 07:12:29.936 I/ImeTracker(  522): com.sonali.bharatvoicestudio:8c393214: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-31 07:12:29.942 D/StylusManager(  842): Stylus InputDevice changed: 10 virtio_input_multi_touch_7
+10-31 07:12:29.948 I/GoogleInputMethodService( 1530): GoogleInputMethodService.onFinishInput():3227 
+10-31 07:12:29.949 I/GoogleInputMethodService( 1530): GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 0, unlocked = true
+10-31 07:12:29.949 I/GoogleInputMethodService( 1530): GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.sonali.bharatvoicestudio fieldId=0 fieldName=null extras=null}, false)
+10-31 07:12:29.949 I/GoogleInputMethodService( 1530): GoogleInputMethodService.shouldHideHeaderOnInitialState():4008 ShouldHideHeaderOnInitialState = false
+10-31 07:12:29.949 I/GoogleInputMethodService( 1530): GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 2, unlocked = true
+10-31 07:12:29.958 I/AiAiEcho( 1621): AppFetcherImpl onPackageChanged com.google.android.apps.docs.
+10-31 07:12:29.959 I/AiAiEcho( 1621): AppIndexer Package:[com.google.android.apps.docs] UserProfile:[0] Enabled:[true].
+10-31 07:12:29.959 I/AiAiEcho( 1621): AppFetcherImplV2 updateApps package:[com.google.android.apps.docs], userId:[0], reason:[package is updated.].
+10-31 07:12:30.004 W/RankedDispatcher( 2710): The requested voice is not available for this app identifier
+10-31 07:12:30.004 I/GoogleTTSServiceImpl( 2710): currentLocale = en-US
+10-31 07:12:30.005 W/RankedDispatcher( 2710): The requested voice is not available for this app identifier
+10-31 07:12:30.005 I/GoogleTTSServiceImpl( 2710): currentLocale = en-US
+10-31 07:12:30.005 W/RankedDispatcher( 2710): The requested voice is not available for this app identifier
+10-31 07:12:30.005 I/GoogleTTSServiceImpl( 2710): For default lang en-us is name en-US-language (en-us-x-iog-server)
+10-31 07:12:30.173 I/ActivityManager(  522): Background started FGS: Allowed [callingPackage: com.google.android.apps.wellbeing; callingUid: 10119; uidState: BFGS; uidBFSL: [BFSL]; intent: Intent { cmp=com.google.android.apps.wellbeing/com.google.apps.tiktok.concurrent.InternalForegroundService (has extras) }; code:BACKGROUND_ACTIVITY_PERMISSION; tempAllowListReason:<null>; targetSdkVersion:33; callerTargetSdkVersion:33; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+10-31 07:12:30.198 D/StatusBarIconController(  842): ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-31 07:12:30.213 D/TileServices(  842): Couldn't find tile for ComponentInfo{com.google.android.apps.wellbeing/com.google.android.apps.wellbeing.focusmode.quicksettings.FocusModeTileService}(0)
+10-31 07:12:30.340 I/Fitness ( 5320): OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x45000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-31 07:12:30.342 D/CompatibilityChangeReporter(  522): Compat change id reported: 161252188; UID 10154; state: DISABLED
+10-31 07:12:30.353 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:30.356 I/Fitness ( 5320): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-31 07:12:30.366 W/ChimeraUtils( 5320): Module com.google.android.gms.nearby_en missing resource null(0)
+10-31 07:12:30.391 I/Icing   ( 5373): Indexing com.google.android.gms-apps from com.google.android.gms
+10-31 07:12:30.394 I/Icing   ( 5373): Indexing done com.google.android.gms-apps
+10-31 07:12:30.592 D/StatusBarIconController(  842): ignoring old pipeline callback because the new wifi icon is enabled
+10-31 07:12:30.635 D/ConnectivityService(  522): requestNetwork for uid/pid:10132/1687 activeRequest: null callbackRequest: 159 [NetworkRequest [ REQUEST id=159, [ Transports: CELLULAR Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_VCN_MANAGED Uid: 10132 RequestorUid: 10132 RequestorPkg: com.google.android.googlequicksearchbox UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+10-31 07:12:30.637 I/netd    (  336): networkSetPermissionForNetwork(101, 0) <1.13ms>
+10-31 07:12:30.641 D/ConnectivityService(  522): NetReassign [159 : null → 101] [c 0] [a 5] [i 1]
+10-31 07:12:30.641 D/ConnectivityService(  522): reportNetworkConnectivity(100, false) by 10132
+10-31 07:12:30.648 D/NetworkMonitor/100( 1003): Forcing reevaluation for UID 10132. Dns signal count: 0
+10-31 07:12:30.650 D/TrafficStats( 1003): tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+10-31 07:12:30.650 D/TrafficStats( 1003): tagSocket(107) with statsTag=0xffffff81, statsUid=-1
+10-31 07:12:30.651 D/TrafficStats( 1003): tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+10-31 07:12:30.652 D/TrafficStats( 1003): tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+10-31 07:12:30.653 I/resolv  (  336): ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+10-31 07:12:30.653 I/resolv  (  336): ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+10-31 07:12:30.655 I/resolv  (  336): ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+10-31 07:12:30.656 I/resolv  (  336): ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+10-31 07:12:30.658 I/resolv  (  336): res_nsend: used send_dg 256 terrno: 0
+10-31 07:12:30.659 I/resolv  (  336): res_nsend: used send_dg 160 terrno: 0
+10-31 07:12:30.660 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.660 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.661 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.662 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.662 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.662 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.663 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.664 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.664 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.665 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.666 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.666 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.667 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.667 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.668 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.669 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.670 D/NetworkMonitor/100( 1003): PROBE_DNS www.google.com 20ms OK 142.251.155.119,142.251.153.119,142.251.156.119,142.251.151.119,142.251.152.119,142.251.157.119,142.251.150.119,142.251.154.119,2001:4860:4826:7700::,2001:4860:482a:7700::,2001:4860:4828:7700::,2001:4860:4827:7700::,2001:4860:482d:7700::,2001:4860:4829:7700::,2001:4860:482c:7700::,2001:4860:482b:7700::
+10-31 07:12:30.671 I/resolv  (  336): GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+10-31 07:12:30.672 I/resolv  (  336): res_nmkquery: (QUERY, IN, AAAA)
+10-31 07:12:30.672 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578676cf790
+10-31 07:12:30.673 I/resolv  (  336): doQuery: rcode=0, ancount=8, return value=256
+10-31 07:12:30.673 I/resolv  (  336): res_nmkquery: (QUERY, IN, A)
+10-31 07:12:30.673 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7579a76c8330
+10-31 07:12:30.673 I/resolv  (  336): doQuery: rcode=0, ancount=8, return value=160
+10-31 07:12:30.675 D/TrafficStats( 1003): tagSocket(68) with statsTag=0xffffff81, statsUid=-1
+10-31 07:12:30.687 I/resolv  (  336): res_nsend: used send_dg 75 terrno: 0
+10-31 07:12:30.691 I/resolv  (  336): res_nsend: used send_dg 63 terrno: 0
+10-31 07:12:30.691 D/TrafficStats( 1003): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.692 D/TrafficStats( 1003): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+10-31 07:12:30.693 D/NetworkMonitor/100( 1003): PROBE_DNS connectivitycheck.gstatic.com 42ms OK 142.251.108.94,2607:f8b0:4023:807::5e
+10-31 07:12:30.696 I/resolv  (  336): GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+10-31 07:12:30.697 I/resolv  (  336): res_nmkquery: (QUERY, IN, A)
+10-31 07:12:30.697 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578a76c6f90
+10-31 07:12:30.698 I/resolv  (  336): doQuery: rcode=0, ancount=1, return value=63
+10-31 07:12:30.698 I/resolv  (  336): res_nmkquery: (QUERY, IN, AAAA)
+10-31 07:12:30.698 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578a76c6510
+10-31 07:12:30.698 I/resolv  (  336): doQuery: rcode=0, ancount=1, return value=75
+10-31 07:12:30.699 D/TrafficStats( 1003): tagSocket(108) with statsTag=0xffffff81, statsUid=-1
+10-31 07:12:30.726 D/NetworkMonitor/100( 1003): PROBE_HTTP http://connectivitycheck.gstatic.com/generate_204 time=32ms ret=204 request={Connection=[close], User-Agent=[Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.32 Safari/537.36]} headers={null=[HTTP/1.1 204 No Content], Connection=[close], Content-Length=[0], Cross-Origin-Resource-Policy=[cross-origin], Date=[Sat, 31 Oct 2026 07:12:30 GMT], X-Android-Received-Millis=[1793430750725], X-Android-Response-Source=[NETWORK 204], X-Android-Selected-Protocol=[http/1.1], X-Android-Sent-Millis=[1793430750713]}
+10-31 07:12:30.738 D/NetworkMonitor/100( 1003): PROBE_HTTPS https://www.google.com/generate_204 time=67ms ret=204 request={Connection=[close], User-Agent=[Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.32 Safari/537.36]} headers={null=[HTTP/1.1 204 No Content], Alt-Svc=[h3=":443"; ma=2592000,h3-29=":443"; ma=2592000], Connection=[close], Content-Length=[0], Cross-Origin-Resource-Policy=[cross-origin], Date=[Sat, 31 Oct 2026 07:12:30 GMT], X-Android-Received-Millis=[1793430750738], X-Android-Response-Source=[NETWORK 204], X-Android-Selected-Protocol=[http/1.1], X-Android-Sent-Millis=[1793430750723]}
+10-31 07:12:30.739 D/NetworkMonitor/100( 1003): isCaptivePortal: isSuccessful()=true isPortal()=false RedirectUrl=null isPartialConnectivity()=false Time=90ms
+10-31 07:12:30.743 D/ConnectivityService(  522): [100 WIFI] validation passed
+10-31 07:12:31.204 I/GmscoreIpa( 5373): Starting mediastore instant index [CONTEXT service_id=255 ]
+10-31 07:12:31.789 W/DynamiteModule( 8409): Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+10-31 07:12:31.791 W/ProviderHelper( 5320): Unknown dynamite feature providerinstaller.dynamite
+10-31 07:12:31.792 W/ProviderInstaller( 8409): Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+10-31 07:12:31.966 E/TaskPersister(  522): File error accessing recents directory (directory doesn't exist?).
+10-31 07:12:32.043 I/ContentMaintenance( 5373): Internal cache bytes used: 0; limit: 100000000; download size: 0
+10-31 07:12:32.045 I/RealtimeCacheCleanup( 5373): Beginning Realtime garbage collection.
+10-31 07:12:32.046 I/RealtimeCacheCleanup( 5373): Finished Realtime garbage collection.
+10-31 07:12:32.183 W/A       ( 1687): [Download] response code: 400
+10-31 07:12:32.502 W/healthd (    0): battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+10-31 07:12:32.920 I/AidlLazyServiceRegistrar( 8115): Process has 0 (of 1 available) client(s) in use after notification artd has clients: 0
+10-31 07:12:32.920 I/AidlLazyServiceRegistrar( 8115): Trying to shut down the service. No clients in use for any service in process.
+10-31 07:12:33.120 I/servicemanager(    0): Notifying artd they don't (previously: do) have clients when we now have no record of a client
+10-31 07:12:33.126 I/servicemanager(    0): Unregistering artd
+10-31 07:12:33.128 I/BpBinder(    0): onLastStrongRef automatically unlinking death recipients:
+10-31 07:12:32.926 I/AidlLazyServiceRegistrar( 8115): Unregistered all clients and exiting
+10-31 07:12:33.136 I/init    (    0): Service 'artd' (pid 8115) exited with status 0 oneshot service took 32.484001 seconds in background
+10-31 07:12:33.142 I/init    (    0): Sending signal 9 to service 'artd' (pid 8115) process group...
+10-31 07:12:33.145 I/libprocessgroup(    0): Successfully killed process cgroup uid 1082 pid 8115 in 0ms
+10-31 07:12:32.950 W/TimedProcessReaper( 1534): Memory state is: 125
+10-31 07:12:33.285 D/EGL_emulation( 8497): app_time_stats: avg=1165.37ms min=39.03ms max=3256.67ms count=3
+10-31 07:12:33.292 I/OpenGLRenderer( 8497): Davey! duration=3183ms; Flags=0, FrameTimelineVsyncId=54773, IntendedVsync=548029857345, Vsync=548029857345, InputEventId=0, HandleInputStart=548030085250, AnimationStart=548030085841, PerformTraversalsStart=548030448718, DrawStart=548030469367, FrameDeadline=548046524011, FrameInterval=548030081463, FrameStartTime=16666666, SyncQueued=548031742780, SyncStart=548031785122, IssueDrawCommandsStart=548031814357, SwapBuffers=551210178607, FrameCompleted=551213356970, DequeueBufferDuration=3867, QueueBufferDuration=451714, GpuCompleted=551213356970, SwapBuffersCompleted=551213104328, DisplayPresentTime=0, CommandSubmissionCompleted=551210178607, 
+10-31 07:12:33.306 W/BVS     ( 8497): missing asset favicon.ico
+10-31 07:12:33.306 I/resolv  (  336): GetAddrInfoHandler::run: {100 100 100 983140 10194 0}
+10-31 07:12:33.307 I/resolv  (  336): res_nmkquery: (QUERY, IN, AAAA)
+10-31 07:12:33.307 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578676cae10
+10-31 07:12:33.307 I/resolv  (  336): doQuery: rcode=0, ancount=8, return value=273
+10-31 07:12:33.307 I/resolv  (  336): res_nmkquery: (QUERY, IN, A)
+10-31 07:12:33.307 I/resolv  (  336): resolv_cache_lookup: FOUND IN CACHE entry=0x7578b76cc210
+10-31 07:12:33.307 I/resolv  (  336): doQuery: rcode=0, ancount=8, return value=177
+10-31 07:12:33.309 I/Choreographer( 8497): Skipped 189 frames!  The application may be doing too much work on its main thread.
+10-31 07:12:34.095 D/OomAdjuster(  522): Not killing cached processes
+10-31 07:12:35.033 I/netd    (  336): setProcSysNet(4, 2, wlan0, retrans_time_ms, 750) <0.06ms>
+10-31 07:12:35.033 I/netd    (  336): setProcSysNet(4, 2, wlan0, ucast_solicit, 10) <0.02ms>
+10-31 07:12:35.033 I/netd    (  336): setProcSysNet(6, 2, wlan0, retrans_time_ms, 750) <0.02ms>
+10-31 07:12:35.033 I/netd    (  336): setProcSysNet(6, 2, wlan0, ucast_solicit, 10) <0.01ms>
+10-31 07:12:38.212 W/ProcessStats(  522): Tracking association SourceState{5b0f95b com.google.android.gms.persistent/10131 BTop #14872} whose proc state 2 is better than process ProcessState{45e5072 com.google.android.gms/10131 pkg=com.google.android.gms} proc state 14 (1359 skipped)
+10-31 07:12:38.216 D/ActivityManager(  522): freezing 1892 com.google.process.gapps
+10-31 07:12:38.227 D/CompatibilityChangeReporter(  522): Compat change id reported: 261072174; UID 10194; state: ENABLED
+10-31 07:12:38.430 I/logd    (    0): start watching /data/system/packages.list ...
+10-31 07:12:38.431 I/logd    (    0): ReadPackageList, total packages: 200
+10-31 07:12:38.429 D/ActivityManager(  522): freezing 2709 com.android.chrome
+10-31 07:12:38.442 D/ActivityManager(  522): freezing 2431 com.google.android.documentsui
+10-31 07:12:38.512 D/ActivityManager(  522): freezing 2090 android.process.media
+10-31 07:12:38.538 W/FileUtils(  522): Failed to chmod(AtomicFile[/data/system_de/0/system/game-manager-service.xml]): android.system.ErrnoException: chmod failed: ENOENT (No such file or directory)
+10-31 07:12:39.426 I/keystore2(  158): system/security/keystore2/src/watchdog.rs:319 - Watchdog thread idle -> terminating. Have a great day.
+10-31 07:12:39.532 D/ActivityManager(  522): freezing 8409 com.google.android.apps.docs
+10-31 07:12:39.532 D/ActivityManager(  522): freezing 1630 com.google.process.gservices
+10-31 07:12:39.605 D/StatusBarIconController(  842): ignoring old pipeline callback because the new wifi icon is enabled
+10-31 07:12:39.888 D/ActivityManager(  522): freezing 2962 com.google.android.webview:webview_service
+10-31 07:12:39.905 D/OomAdjuster(  522): Not killing cached processes
+10-31 07:12:40.195 D/StatusBarIconController(  842): ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-31 07:12:44.527 W/BatteryExternalStatsWorker(  522): error reading Bluetooth stats: 11
+10-31 07:12:44.994 D/OomAdjuster(  522): Not killing cached processes
+10-31 07:12:50.195 D/StatusBarIconController(  842): ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-31 07:12:54.858 W/BpBinder( 8647): Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-31 07:12:54.858 W/ProcessState( 8647): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-31 07:12:55.068 I/servicemanager(    0): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-31 07:12:54.864 I/hwservicemanager(  135): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-31 07:12:54.864 I/Gralloc4( 8647): mapper 4.x is not supported
+10-31 07:12:54.947 D/CompatibilityChangeReporter(  522): Compat change id reported: 168419799; UID 10194; state: DISABLED
+10-31 07:12:54.947 D/CompatibilityChangeReporter(  522): Compat change id reported: 273564678; UID 10194; state: DISABLED
+10-31 07:12:54.947 D/CompatibilityChangeReporter(  522): Compat change id reported: 184838306; UID 10194; state: DISABLED
+10-31 07:12:54.948 D/CompatibilityChangeReporter(  522): Compat change id reported: 185004937; UID 10194; state: DISABLED
+10-31 07:12:55.172 I/logd    (    0): logdr: UID=2000 GID=2000 PID=8657 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+10-31 07:12:55.044 D/ActivityManager(  522): freezing 847 com.google.android.permissioncontroller
+10-31 07:12:55.111 W/BpBinder( 8672): Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-31 07:12:55.111 W/ProcessState( 8672): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-31 07:12:55.116 I/hwservicemanager(  135): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-31 07:12:55.116 I/Gralloc4( 8672): mapper 4.x is not supported
+10-31 07:12:55.321 I/servicemanager(    0): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-31 07:12:55.381 I/logd    (    0): logdr: UID=2000 GID=2000 PID=8674 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
