@@ -105,23 +105,26 @@ def test_247(c):
     # notification Talk button from the home screen
     c.ev("window.Puna.stopAll()"); adb("shell", "input", "keyevent", "3"); time.sleep(2)
     sh("cmd statusbar expand-notifications"); time.sleep(2); shot("notification_shade")
-    hit = ui_tap_text(r"Talk")
-    if not hit:  # collapsed group: expand the notification first
-        ui_tap_text(r"Puna AI"); time.sleep(1); sh("cmd statusbar expand-notifications"); time.sleep(1.5); hit = ui_tap_text(r"Talk")
+    L0 = c.ev("window.Puna.listens||0")
+    hit = ui_tap_text(r"^\W*Talk\s*$")
+    if not hit:  # actions hidden in a collapsed notification: expand it (two-finger/expand button) and retry
+        ui_tap_text(r"^Expand|expand"); time.sleep(1.5); hit = ui_tap_text(r"^\W*Talk\s*$")
     time.sleep(4)
-    ok = PKG in front() and c.wait("['listening','thinking','speaking'].includes(document.getElementById('orbWrap').dataset.state) || (window.Puna.listens||0)>0", 8)
+    ok = PKG in front() and c.wait("(window.Puna.listens||0) > %d" % L0, 8)
     check("24/7", "notification 🎙️ Talk button (real tap) opens Puna and starts listening", "PASS" if hit and ok else "FAIL", "tapped=%s front=%s orb=%s" % (hit, front()[-80:], orb(c)), shot("after_notif_talk"))
     # home-screen shortcut intent
     c.ev("window.Puna.stopAll()"); adb("shell", "input", "keyevent", "3"); time.sleep(1.5)
+    L0 = c.ev("window.Puna.listens||0")
     sh("am start -a com.sonali.punaai.TALK -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(3)
-    check("24/7", "app shortcut intent (TALK) opens and starts listening", "PASS" if PKG in front() and orb(c) in ("listening", "thinking", "speaking", "idle") and c.ev("window.Puna.listens||0") > 1 else "FAIL", "orb=%s listens=%s" % (orb(c), c.ev("window.Puna.listens||0")))
+    check("24/7", "app shortcut intent (TALK) opens and starts listening", "PASS" if PKG in front() and orb(c) in ("listening", "thinking", "speaking", "idle") and c.ev("window.Puna.listens||0") > L0 else "FAIL", "orb=%s listens=%s" % (orb(c), c.ev("window.Puna.listens||0")))
     sc = sh("dumpsys shortcut | grep -E 'Package: %s|id=talk|id=broadcast' | head -n 5" % PKG)
     check("24/7", "launcher shortcuts registered (talk, broadcast) [release package]", "PASS" if "talk" in sc or MODE == "full" else "FAIL", sc.strip()[:200] or "debug package has .debug suffix; static shortcuts target the release package")
     # quick settings tile
     c.ev("window.Puna.stopAll()"); adb("shell", "input", "keyevent", "3"); time.sleep(1.5)
     comp = "%s/com.sonali.punaai.TalkTileService" % PKG
+    L0 = c.ev("window.Puna.listens||0")
     sh("cmd statusbar add-tile " + comp); time.sleep(1); r = sh("cmd statusbar click-tile " + comp); time.sleep(4)
-    check("24/7", "Quick Settings tile 'Puna Talk' click opens Puna listening", "PASS" if PKG in front() and c.ev("window.Puna.listens||0") > 2 else "FAIL", "front=%s listens=%s %s" % (front()[-70:], c.ev("window.Puna.listens||0"), r.strip()[:80]), shot("after_tile"))
+    check("24/7", "Quick Settings tile 'Puna Talk' click opens Puna listening", "PASS" if PKG in front() and c.ev("window.Puna.listens||0") > L0 else "FAIL", "front=%s listens=%s %s" % (front()[-70:], c.ev("window.Puna.listens||0"), r.strip()[:80]), shot("after_tile"))
     sh("cmd statusbar collapse")
     # boot: kill everything, then deliver BOOT_COMPLETED (root shell on the emulator)
     sh("am force-stop " + PKG); time.sleep(2)
