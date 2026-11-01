@@ -125,14 +125,15 @@ public final class EdgeTts {
         return all.toByteArray();
     }
 
-    private static byte[] synthOnce(String text, String voice, String rate, String pitch) throws Exception {
-        final ByteArrayOutputStream audio = new ByteArrayOutputStream();
-        final CountDownLatch done = new CountDownLatch(1);
-        final Exception[] err = new Exception[1];
+    /** Last synth stats (for the latency readout): first-audio ms, total ms, whether a warm socket was used. */
+    static volatile long lastFirstMs, lastTotalMs;
+    static volatile boolean lastWarm;
+
+    private static Request buildRequest() {
         String url = WSS + "&ConnectionId=" + uuid()
                 + "&Sec-MS-GEC=" + EdgeDrm.secMsGec(System.currentTimeMillis() / 1000.0 + skewSeconds)
                 + "&Sec-MS-GEC-Version=" + SEC_MS_GEC_VERSION;
-        Request req = new Request.Builder().url(url)
+        return new Request.Builder().url(url)
                 .header("Pragma", "no-cache")
                 .header("Cache-Control", "no-cache")
                 .header("Origin", "chrome-extension://jdiccldimpdaibmpdkjnbmckianbfold")
@@ -140,74 +141,214 @@ public final class EdgeTts {
                 .header("Accept-Language", "en-US,en;q=0.9")
                 .header("Cookie", "muid=" + muid() + ";")
                 .build();
-        final String ssml = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>"
+    }
+
+    private static String configMsg() {
+        return "X-Timestamp:" + jsDate() + "\r\n"
+                + "Content-Type:application/json; charset=utf-8\r\n"
+                + "Path:speech.config\r\n\r\n"
+                + "{\"context\":{\"synthesis\":{\"audio\":{\"metadataoptions\":{"
+                + "\"sentenceBoundaryEnabled\":\"true\",\"wordBoundaryEnabled\":\"false\"},"
+                + "\"outputFormat\":\"audio-24khz-48kbitrate-mono-mp3\"}}}}\r\n";
+    }
+
+    private static String ssmlMsg(String text, String voice, String rate, String pitch) {
+        String ssml = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>"
                 + "<voice name='" + voice + "'><prosody pitch='" + pitch + "' rate='" + rate + "' volume='+0%'>"
                 + escape(text) + "</prosody></voice></speak>";
-        WebSocket ws = client().newWebSocket(req, new WebSocketListener() {
-            @Override public void onOpen(WebSocket w, Response r) {
-                w.send("X-Timestamp:" + jsDate() + "\r\n"
-                        + "Content-Type:application/json; charset=utf-8\r\n"
-                        + "Path:speech.config\r\n\r\n"
-                        + "{\"context\":{\"synthesis\":{\"audio\":{\"metadataoptions\":{"
-                        + "\"sentenceBoundaryEnabled\":\"true\",\"wordBoundaryEnabled\":\"false\"},"
-                        + "\"outputFormat\":\"audio-24khz-48kbitrate-mono-mp3\"}}}}\r\n");
-                w.send("X-RequestId:" + uuid() + "\r\n"
-                        + "Content-Type:application/ssml+xml\r\n"
-                        + "X-Timestamp:" + jsDate() + "Z\r\n"
-                        + "Path:ssml\r\n\r\n" + ssml);
-            }
+        return "X-RequestId:" + uuid() + "\r\n"
+                + "Content-Type:application/ssml+xml\r\n"
+                + "X-Timestamp:" + jsDate() + "Z\r\n"
+                + "Path:ssml\r\n\r\n" + ssml;
+    }
 
-            @Override public void onMessage(WebSocket w, String t) {
-                int h = t.indexOf("\r\n\r\n");
-                String head = h >= 0 ? t.substring(0, h) : t;
-                if (head.contains("Path:turn.end")) {
-                    w.close(1000, null);
-                    done.countDown();
-                }
-            }
+    private static void noteSkew(Response r) {
+        if (r == null || r.code() != 403) return;
+        String date = r.header("Date");
+        if (date == null) return;
+        try {
+            SimpleDateFormat f = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
+            double server = f.parse(date).getTime() / 1000.0;
+            skewSeconds += server - (System.currentTimeMillis() / 1000.0 + skewSeconds);
+        } catch (Exception ignored) {}
+    }
 
-            @Override public void onMessage(WebSocket w, ByteString bytes) {
-                byte[] d = bytes.toByteArray();
-                if (d.length < 2) return;
-                int hl = ((d[0] & 0xFF) << 8) | (d[1] & 0xFF);
-                if (hl + 2 > d.length) return;
-                String head = new String(d, 2, hl, StandardCharsets.UTF_8);
-                if (!head.contains("Path:audio")) return;
-                int start = 2 + hl;
-                if (d.length > start && head.contains("Content-Type:audio/mpeg")) audio.write(d, start, d.length - start);
-            }
+    /** One in-flight synthesis on a connection. */
+    static final class Job {
+        final ByteArrayOutputStream audio = new ByteArrayOutputStream();
+        final CountDownLatch done = new CountDownLatch(1);
+        volatile Exception err;
+        volatile long firstAt;
+    }
 
-            @Override public void onFailure(WebSocket w, Throwable t, Response r) {
-                int code = r != null ? r.code() : 0;
-                if (r != null && code == 403) {
-                    String date = r.header("Date");
-                    if (date != null) {
-                        try {
-                            SimpleDateFormat f = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
-                            double server = f.parse(date).getTime() / 1000.0;
-                            skewSeconds += server - (System.currentTimeMillis() / 1000.0 + skewSeconds);
-                        } catch (Exception ignored) {}
-                    }
-                }
-                err[0] = new EdgeException("Edge TTS: " + (code > 0 ? "HTTP " + code + " " : "") + t, code);
-                done.countDown();
-            }
+    /**
+     * A reusable Edge WebSocket. Measured 2026-11-01 from the sandbox: a new connection's first request takes
+     * 0.5–5 s to first audio, a request on an already-open connection ~140 ms; the service drops idle sockets
+     * after 30–60 s (pings do not keep them alive), so idle sockets older than MAX_IDLE_MS are thrown away.
+     */
+    static final class Conn extends WebSocketListener {
+        WebSocket ws;
+        final CountDownLatch opened = new CountDownLatch(1);
+        volatile boolean open, dead, busy;
+        volatile long lastUsed = System.currentTimeMillis();
+        volatile Job job;
+        int uses;
 
-            @Override public void onClosing(WebSocket w, int code, String reason) {
-                w.close(1000, null);
-                done.countDown();
-            }
+        void start() { ws = client().newWebSocket(buildRequest(), this); }
 
-            @Override public void onClosed(WebSocket w, int code, String reason) { done.countDown(); }
-        });
-        if (!done.await(45, TimeUnit.SECONDS)) {
-            ws.cancel();
-            throw new EdgeException("Edge TTS timeout", 0);
+        boolean fresh(long now) { return !dead && now - lastUsed < MAX_IDLE_MS; }
+
+        void kill() {
+            dead = true;
+            try { if (ws != null) ws.cancel(); } catch (Exception ignored) {}
+            Job j = job;
+            if (j != null) { if (j.err == null) j.err = new EdgeException("Edge TTS: connection closed", 0); j.done.countDown(); }
+            opened.countDown();
         }
-        if (audio.size() == 0) {
-            if (err[0] != null) throw err[0];
-            throw new EdgeException("Edge TTS: no audio (voice '" + voice + "' may not exist)", 1);
+
+        @Override public void onOpen(WebSocket w, Response r) {
+            w.send(configMsg());
+            open = true;
+            lastUsed = System.currentTimeMillis();
+            opened.countDown();
         }
-        return audio.toByteArray();
+
+        @Override public void onMessage(WebSocket w, String t) {
+            int h = t.indexOf("\r\n\r\n");
+            String head = h >= 0 ? t.substring(0, h) : t;
+            Job j = job;
+            if (j != null && head.contains("Path:turn.end")) j.done.countDown();
+        }
+
+        @Override public void onMessage(WebSocket w, ByteString bytes) {
+            Job j = job;
+            if (j == null) return;
+            byte[] d = bytes.toByteArray();
+            if (d.length < 2) return;
+            int hl = ((d[0] & 0xFF) << 8) | (d[1] & 0xFF);
+            if (hl + 2 > d.length) return;
+            String head = new String(d, 2, hl, StandardCharsets.UTF_8);
+            if (!head.contains("Path:audio")) return;
+            int start = 2 + hl;
+            if (d.length > start && head.contains("Content-Type:audio/mpeg")) {
+                if (j.firstAt == 0) j.firstAt = System.currentTimeMillis();
+                synchronized (j.audio) { j.audio.write(d, start, d.length - start); }
+            }
+        }
+
+        @Override public void onFailure(WebSocket w, Throwable t, Response r) {
+            int code = r != null ? r.code() : 0;
+            noteSkew(r);
+            Job j = job;
+            if (j != null && j.err == null) j.err = new EdgeException("Edge TTS: " + (code > 0 ? "HTTP " + code + " " : "") + t, code);
+            dead = true;
+            if (j != null) j.done.countDown();
+            opened.countDown();
+        }
+
+        @Override public void onClosing(WebSocket w, int code, String reason) {
+            dead = true;
+            w.close(1000, null);
+            Job j = job;
+            if (j != null) j.done.countDown();
+            opened.countDown();
+        }
+
+        @Override public void onClosed(WebSocket w, int code, String reason) {
+            dead = true;
+            Job j = job;
+            if (j != null) j.done.countDown();
+            opened.countDown();
+        }
+    }
+
+    static final long MAX_IDLE_MS = 22000;
+    static final int MAX_POOL = 3;
+    private static final List<Conn> pool = new ArrayList<>();
+
+    private static synchronized Conn acquire(boolean allowWarm) {
+        long now = System.currentTimeMillis();
+        for (int i = pool.size() - 1; i >= 0; i--) {
+            Conn c = pool.get(i);
+            if (!c.busy && !c.fresh(now)) { pool.remove(i); c.kill(); }
+        }
+        if (allowWarm) {
+            for (Conn c : pool) if (!c.busy && !c.dead) { c.busy = true; return c; }
+        }
+        Conn c = new Conn();
+        c.busy = true;
+        pool.add(c);
+        c.start();
+        return c;
+    }
+
+    private static synchronized void release(Conn c, boolean ok) {
+        c.busy = false;
+        c.job = null;
+        c.lastUsed = System.currentTimeMillis();
+        int idle = 0;
+        for (Conn x : pool) if (x != c && !x.busy && !x.dead) idle++;
+        if (!ok || c.dead || idle >= MAX_POOL) { pool.remove(c); c.kill(); }
+    }
+
+    /** Open up to n idle connections ahead of time (called when the user starts talking). */
+    public static synchronized void prewarm(int n) {
+        long now = System.currentTimeMillis();
+        int ready = 0;
+        for (int i = pool.size() - 1; i >= 0; i--) {
+            Conn c = pool.get(i);
+            if (!c.busy && !c.fresh(now)) { pool.remove(i); c.kill(); continue; }
+            // a socket about to expire is not worth counting: the reply would arrive after it is dropped
+            if (!c.busy && now - c.lastUsed < MAX_IDLE_MS - 8000) ready++;
+        }
+        for (int k = ready; k < Math.min(n, MAX_POOL); k++) {
+            Conn c = new Conn();
+            pool.add(c);
+            c.start();
+        }
+    }
+
+    public static synchronized int poolSize() { return pool.size(); }
+
+    private static byte[] synthOnce(String text, String voice, String rate, String pitch) throws Exception {
+        try {
+            return synthOn(acquire(true), text, voice, rate, pitch);
+        } catch (EdgeException e) {
+            if (e.code == 403) throw e;
+            // a pooled socket can die while idle: retry once on a brand-new connection
+            return synthOn(acquire(false), text, voice, rate, pitch);
+        }
+    }
+
+    private static byte[] synthOn(Conn c, String text, String voice, String rate, String pitch) throws Exception {
+        long t0 = System.currentTimeMillis();
+        boolean warm = c.open;
+        Job j = new Job();
+        boolean ok = false;
+        try {
+            if (!c.opened.await(15, TimeUnit.SECONDS) || c.dead || !c.open) {
+                c.kill();
+                throw new EdgeException("Edge TTS: connect failed", 0);
+            }
+            c.job = j;
+            c.uses++;
+            if (!c.ws.send(ssmlMsg(text, voice, rate, pitch))) { c.kill(); throw new EdgeException("Edge TTS: send failed", 0); }
+            if (!j.done.await(30, TimeUnit.SECONDS)) { c.kill(); throw new EdgeException("Edge TTS timeout", 0); }
+            byte[] out;
+            synchronized (j.audio) { out = j.audio.toByteArray(); }
+            if (out.length == 0) {
+                if (j.err != null) throw j.err;
+                throw new EdgeException("Edge TTS: no audio (voice '" + voice + "' may not exist)", c.dead ? 0 : 1);
+            }
+            if (c.dead) { // closed right after turn.end: still a good result
+                ok = false;
+            } else ok = true;
+            lastFirstMs = j.firstAt > 0 ? j.firstAt - t0 : -1;
+            lastTotalMs = System.currentTimeMillis() - t0;
+            lastWarm = warm;
+            return out;
+        } finally {
+            release(c, ok);
+        }
     }
 }

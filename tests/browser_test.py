@@ -46,6 +46,36 @@ try:
         r = pg.evaluate("window.Puna.localCommand('Ab se hamesha Hindi Devanagari mein baat karna')")
         check("language command sets replyLang=hi + saves memory", pg.evaluate("window.Puna.S.replyLang") == "hi" and any("Hindi" in m["text"] for m in pg.evaluate("window.Puna.memory.list()")), r)
         pg.evaluate("window.Puna.S.replyLang='auto'; window.Puna.save()")
+        # Fast mode: web-search routing, fast model, streamed first sentence -> TTS before the reply finishes
+        st = pg.evaluate("window.Puna.S")
+        check("Fast mode is ON by default", st.get("fast") is True, st.get("fast"))
+        cases = {"abhi kya kar rahi ho": False, "aaj main bahut thak gayi": False, "mujhe ek joke sunao": False, "aaj ki news batao": True,
+                 "Bhubaneswar ka mausam kaisa hai": True, "aaj petrol ka price kya hai": True, "kal match kaun jeeta": True, "Python mein list kaise banate hain": False}
+        bad = {k: v for k, v in cases.items() if pg.evaluate("t => window.Puna.needsWeb(t)", k) != v}
+        check("web search only for current-info questions (8 phrases)", not bad, bad or "all correct")
+        pg.evaluate("window.Puna.stopAll(); window.__mockCalls.length=0; window.Puna.S.groqKey='gsk_test'; window.Puna.S.replyLang='hinglish'; window.Puna.save();"
+                    "window.Puna.mockCalls=[]; window.Puna.mockLLM={ttft:300, cps:400, text:'Haan Sonali, main theek hoon. Tum batao, aaj ka din kaisa raha? Kuch naya seekha ya bas aaram kiya?'}")
+        pg.evaluate("window.Puna.ask('mera naam Sonali hai, tum kaisi ho', 'voice')")
+        pg.wait_for_function("window.__mockCalls.some(c=>c.m==='edgeSynth')", timeout=8000)
+        first = [x for x in pg.evaluate("window.__mockCalls") if x["m"] == "edgeSynth"][0]
+        mc = pg.evaluate("window.Puna.mockCalls[0]")
+        check("voice turn uses fast model openai/gpt-oss-20b, low effort, short max tokens", mc["model"] == "openai/gpt-oss-20b" and mc["effort"] == "low" and mc["max"] == 400 and mc["stream"], {k: mc[k] for k in ("model", "effort", "max", "stream")})
+        check("fast voice system prompt asks for 1-3 short sentences", "1-3 short spoken sentences" in mc["sys"], mc["sys"][-300:])
+        check("first sentence sent to TTS on its own while the reply is still streaming", first["text"].startswith("Haan Sonali") and "Tum batao" not in first["text"], first["text"])
+        pg.wait_for_function("window.Puna.lastLatency && window.Puna.lastLatency.play", timeout=15000)
+        lat = pg.evaluate("window.Puna.lastLatency")
+        check("latency readout recorded (mock LLM ttft 300 ms; real Edge TTS via server)", lat["firstToken"] is not None and lat["play"] is not None, lat)
+        time.sleep(0.5)
+        n1 = len(pg.evaluate("window.Puna.mockCalls")); time.sleep(3.5); n2 = len(pg.evaluate("window.Puna.mockCalls"))
+        check("memory extraction runs in the background only after the reply started speaking", n1 == 1 and n2 == 2, "calls at first audio=%d, 3.5 s later=%d" % (n1, n2))
+        pg.evaluate("window.Puna.stopAll(); window.__mockCalls.length=0; window.Puna.mockCalls=[]; window.Puna.mockLLM.searchText='Aaj ki badi khabar: test headline.'")
+        pg.evaluate("window.Puna.ask('aaj ki news batao', 'voice')")
+        pg.wait_for_function("window.__mockCalls.some(c=>c.m==='edgeSynth')", timeout=8000)
+        f = [x for x in pg.evaluate("window.__mockCalls") if x["m"] == "edgeSynth"][0]
+        mc = pg.evaluate("window.Puna.mockCalls[0]")
+        check("news question -> web search call + instant filler line spoken", mc["search"] and "second" in f["text"].lower(), {"search": mc["search"], "filler": f["text"]})
+        pg.evaluate("window.Puna.stopAll(); delete window.Puna.mockLLM; window.Puna.S.groqKey=''; window.Puna.S.replyLang='auto'; window.Puna.save()")
+        check("echo filter: own words ignored, new words accepted", pg.evaluate("(window.Puna.Speaker.recent=['Haan Sonali, main theek hoon.'], [window.Puna.isEcho('haan sonali main theek'), window.Puna.isEcho('ruko mujhe kuch aur poochna hai')])") == [True, False])
         # all voices synthesize for real through Edge (server) and decode in Chromium
         res = pg.evaluate("""async () => { const out = {}; for (const v of window.Puna.VOICES) { try { const t = v.scripts.includes('deva') ? 'नमस्ते, मैं ' + v.name + ' हूँ।' : 'Hello, I am ' + v.name + '.'; const pcm = await window.Puna.synthLine(v.id, t, 1.3); out[v.name] = pcm.length / 24000; } catch (e) { out[v.name] = 'ERR ' + e.message; } } return out; }""")
         for k, v in res.items(): check("Edge voice %s synthesizes + decodes" % k, isinstance(v, (int, float)) and v > 0.5, "%s sec" % v)

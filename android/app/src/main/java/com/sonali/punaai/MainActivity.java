@@ -83,6 +83,7 @@ public class MainActivity extends Activity {
 
     private SpeechRecognizer recognizer;
     private int srActiveId;
+    private int srSilenceMs;
     private Object[] pendingSr;
     private PermissionRequest pendingWebPermission;
 
@@ -488,8 +489,9 @@ public class MainActivity extends Activity {
         i.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
         i.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
         i.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
-        i.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 1800L);
-        i.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 1500L);
+        long sil = srSilenceMs > 0 ? srSilenceMs : 1800L;
+        i.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, sil);
+        i.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, Math.max(500L, sil - 300L));
         try {
             recognizer.startListening(i);
         } catch (Exception e) {
@@ -701,7 +703,9 @@ public class MainActivity extends Activity {
             });
         }
 
-        @JavascriptInterface public void srStart(int id, String lang) { if (trustedPage) main.post(() -> srStartMain(id, lang)); }
+        @JavascriptInterface public void srStart(int id, String lang) { if (trustedPage) main.post(() -> { srSilenceMs = 0; srStartMain(id, lang); }); }
+        /** silenceMs > 0: end-of-speech silence for Fast mode (default recogniser waits ~1.5-2 s). */
+        @JavascriptInterface public void srStartEx(int id, String lang, int silenceMs) { if (trustedPage) main.post(() -> { srSilenceMs = silenceMs; srStartMain(id, lang); }); }
         @JavascriptInterface public void srStop(int id) {
             if (trustedPage) main.post(() -> { if (recognizer != null && srActiveId == id) recognizer.stopListening(); });
         }
@@ -737,9 +741,16 @@ public class MainActivity extends Activity {
                     String name = "tts-" + safeName(id) + ".mp3";
                     try (FileOutputStream o = new FileOutputStream(new File(mediaDir(MainActivity.this), name))) { o.write(mp3); }
                     cb(id, new JSONObject().put("ok", true).put("name", name).put("url", "/media/" + name)
-                            .put("bytes", mp3.length).put("ms", System.currentTimeMillis() - t0));
+                            .put("bytes", mp3.length).put("ms", System.currentTimeMillis() - t0)
+                            .put("first", EdgeTts.lastFirstMs).put("warm", EdgeTts.lastWarm));
                 } catch (Throwable e) { cbErr(id, e); }
             });
+        }
+
+        /** Open n Edge sockets ahead of time so the first reply sentence is voiced in ~150 ms instead of 0.5-5 s. */
+        @JavascriptInterface public void edgeWarm(final int n) {
+            if (!trustedPage) return;
+            net.execute(() -> { try { EdgeTts.prewarm(n); } catch (Throwable e) { Log.w(TAG, "edgeWarm", e); } });
         }
 
         @JavascriptInterface public String writeBegin(String name) {

@@ -29,6 +29,7 @@
       </div>
       <p class="status" id="aStatus">Mic dabao aur bolo · Tap the mic &amp; talk</p>
       <p class="heard" id="aHeard"></p>
+      <p class="lat" id="aLat" hidden></p>
       <div class="reply card" id="aReplyCard" hidden>
         <div class="reply-who"><span class="avatar" id="aReplyAvatar">S</span><b id="aReplyName">Sonali</b><span class="tag" id="aReplyTag"></span></div>
         <div class="md" id="aReply"></div>
@@ -201,6 +202,13 @@
         <select id="sOdia"><option value="auto">Auto (phone ki Odia awaaz, warna Bengali-lipi neural)</option><option value="android">Phone (Android TTS) Odia</option><option value="bengali">Neural (Odia → Bengali lipi, approx)</option><option value="mms">Open-source Meta MMS Odia (on-device, ~100 MB)</option></select>
         <label class="toggle"><input type="checkbox" id="sAutoSpeak" checked><span></span>Jawab bol kar sunao</label>
         <label class="toggle"><input type="checkbox" id="sContinuous" checked><span></span>Lagatar baat (jawab ke baad mic phir chalu)</label>
+      </div>
+      <div class="card" id="sFastCard">
+        <h4>⚡ Fast mode (voice)</h4>
+        <label class="toggle"><input type="checkbox" id="sFast" checked><span></span>Fast mode — chhote, turant jawab (fast model, pehla sentence turant bolna)</label>
+        <label class="toggle"><input type="checkbox" id="sBarge"><span></span>Bol kar rokna (beta) — jab Puna bol rahi ho, aap bolo to ruk jaaye</label>
+        <label class="toggle"><input type="checkbox" id="sShowLat"><span></span>Latency dikhao (debug, ms)</label>
+        <p class="hint">Fast mode: voice mein openai/gpt-oss-20b (low reasoning), 1-3 sentence jawab, mic jaldi band (≈0.9 s chup), awaaz pehle se connected. Text chat par asar nahi. Mic/orb dabane se Puna turant chup ho kar sunne lagti hai.</p>
       </div>
       <div class="card" id="sBgCard">
         <h4>⏰ 24/7 Assistant</h4>

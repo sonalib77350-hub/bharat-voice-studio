@@ -207,6 +207,34 @@ def main():
       try{o['Odia(Archita-Bengali)']=+((await window.Puna.synthLine('sonali','ନମସ୍କାର, ମୁଁ ସୋନାଲୀ। ଆଜି କଣ କରିବା?',1.0)).length/24000).toFixed(2)}catch(e){o['Odia']='ERR '+e.message} return o})()""", aw=True)
     for k, v in (res or {}).items():
         check("Voices", "Edge voice %s (native)" % k, "PASS" if isinstance(v, (int, float)) and v > 0.5 else "FAIL", "%s sec" % v)
+    # 3b) Fast-mode voice latency: scripted streaming LLM (time-to-first-token 350 ms, 400 chars/s) + REAL Edge TTS from the emulator
+    try:
+        c.ev("window.Puna.stopAll(); window.Puna.S.groqKey='gsk_test'; window.Puna.S.replyLang='hinglish'; window.Puna.S.showLat=true; window.Puna.save(); window.Puna.latHist=[];"
+             "window.Puna.mockLLM={ttft:350, cps:400, text:'Haan Sonali, main bilkul theek hoon. Tum batao, aaj ka din kaisa raha? Kuch naya seekha?'}")
+        qs = ["tum kaisi ho", "ek joke sunao", "mujhe neend aa rahi hai", "kuch accha bolo", "chalo baat karte hain", "tumhara naam kya hai"]
+        def turn(q, prewarm):
+            n = c.ev("window.Puna.latHist.length")
+            if prewarm: c.ev("PunaNative.edgeWarm(2)"); time.sleep(2.0)   # real flow: sockets open when the mic starts, user talks ~2 s
+            c.ev("window.Puna.ask(%s,'voice')" % json.dumps(q))
+            ok = c.wait("window.Puna.latHist.length > %d" % n, 20)
+            time.sleep(1.2); c.ev("window.Puna.stopAll()"); time.sleep(0.3)
+            return c.ev("window.Puna.latHist[window.Puna.latHist.length-1]") if ok else None
+        warm = [turn(q, True) for q in qs[:4]]
+        time.sleep(26)   # let pooled sockets expire (service drops idle sockets after 30-60 s; pool discards after 22 s)
+        cold = [turn(qs[4], False)]; time.sleep(26); cold.append(turn(qs[5], False))
+        def med(rows, k):
+            v = sorted(r[k] for r in rows if r and r.get(k) is not None); return v[len(v) // 2] if v else None
+        sw = {k: med(warm, k) for k in ("firstToken", "firstSentence", "tts", "ttsFirstAudio", "play")}
+        sc = {k: med(cold, k) for k in ("firstToken", "firstSentence", "tts", "ttsFirstAudio", "play")}
+        json.dump({"warm": warm, "cold": cold}, open(os.path.join(OUT, "latency.json"), "w"), indent=1)
+        check("Fast mode", "reply-start -> first audio playing, sockets pre-warmed at mic start (median of 4; LLM mocked ttft 350 ms)", "PASS" if sw["play"] and sw["play"] < 1500 else "FAIL",
+              "median ms: %s | each play: %s" % (json.dumps(sw), [r and r.get("play") for r in warm]), shot("latency_readout"))
+        check("Fast mode", "same without pre-warm (sockets expired; warm-up starts only when the question is sent)", "INFO",
+              "median ms: %s | each play: %s" % (json.dumps(sc), [r and r.get("play") for r in cold]))
+        check("Fast mode", "fast model chosen for voice", "PASS" if all(r and "gpt-oss-20b" in (r.get("model") or "") for r in warm) else "FAIL", [r and r.get("model") for r in warm])
+        c.ev("delete window.Puna.mockLLM; window.Puna.S.groqKey=''; window.Puna.S.replyLang='auto'; window.Puna.save(); window.Puna.stopAll()")
+    except Exception:
+        check("Fast mode", "harness exception", "FAIL", traceback.format_exc()[-500:])
     # 4) speech recognition availability
     check("Mic", "SpeechRecognizer service available on this image", "PASS" if c.ev("PunaNative.srAvailable()") else "NOT TESTABLE", "emulator google_apis image")
     # 5) Broadcast (custom script, no key) with real taps

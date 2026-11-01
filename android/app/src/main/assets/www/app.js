@@ -55,7 +55,8 @@ var SR_LANGS = [["hi-IN", "Hindi / Hinglish"], ["en-IN", "English (India)"], ["o
 function load(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
 function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { toast("Storage full: " + e.message); } }
 var DEF = { groqKey: "", geminiKey: "", brain: "groq", level: "high", model: "", callMe: "", gender: "", replyLang: "auto", srLang: "hi-IN",
-  voice: "sonali", speed: 1.3, continuous: true, autoSpeak: true, web: "auto", memoryOn: true, odia: "auto" };
+  voice: "sonali", speed: 1.3, continuous: true, autoSpeak: true, web: "auto", memoryOn: true, odia: "auto",
+  fast: true, bargeIn: false, showLat: false };
 var S = Object.assign({}, DEF, load("puna.settings", {}));
 function saveS() { save("puna.settings", S); refreshBadges(); }
 var MEM = load("puna.memory", []);
@@ -219,8 +220,25 @@ function wavBlob(chunks, rate) {
 var ttsWait = {};
 window.__punaTTS = function (id, type, p) { var w = ttsWait[id]; if (!w) return; if (type === "end" || type === "error") { delete ttsWait[id]; w(type === "error" ? (p && p.message) || "error" : null); } };
 var player = $("player");
+/* ------------------------------------------------------------------ latency readout (Fast mode) */
+var LAT = null, DEBUG = false;
+function now() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
+function markPlay() { if (LAT && !LAT.play) { LAT.play = now(); renderLat(); } }
+player.addEventListener("playing", markPlay);
+function renderLat() {
+  var L = LAT; if (!L) return;
+  var r = function (a, b) { return (a && b) ? Math.round(a - b) : null; };
+  var o = { stt: r(L.t0, L.speechEnd), firstToken: r(L.tok, L.t0), firstSentence: r(L.sent, L.t0), tts: r(L.tts, L.sent), ttsNative: L.ttsNative, ttsFirstAudio: L.first,
+    warm: L.warm, play: r(L.play, L.t0), total: r(L.play, L.speechEnd || L.t0), model: L.model, search: !!L.search, filler: !!L.filler };
+  window.Puna.lastLatency = o; (window.Puna.latHist = window.Puna.latHist || []).push(o);
+  var el = $("aLat"); if (!el) return;
+  if (!(S.showLat || DEBUG)) { el.hidden = true; return; }
+  el.hidden = false;
+  el.textContent = "⏱ " + [o.stt != null ? "mic " + o.stt : "", o.firstToken != null ? "LLM " + o.firstToken : "", o.firstSentence != null ? "vakya " + o.firstSentence : "",
+    o.tts != null ? "awaaz " + o.tts + (o.warm ? " warm" : " cold") : "", o.play != null ? "bajna " + o.play : "", o.total != null ? "= " + o.total + " ms" : ""].filter(Boolean).join(" · ") + (o.filler ? " (filler)" : "") + (o.model ? " · " + o.model : "");
+}
 var Speaker = {
-  q: [], gen: 0, running: false, buf: "", pid: null, warned: false, lastText: "", onState: null,
+  q: [], gen: 0, running: false, buf: "", pid: null, warned: false, lastText: "", onState: null, fed: 0, recent: [],
   _item: function (text, pid) {
     var p = persona(pid), v = resolveVoice(p, text, false), it = { text: text, p: p, v: v, prep: null };
     return it;
@@ -229,7 +247,7 @@ var Speaker = {
     if (it.prep) return it.prep;
     var sp = S.speed;
     if (it.v.engine === "edge") {
-      it.prep = edgeSynth(it.v.text || it.text, it.v.voice, sp, it.v.pitch).then(function (r) { return { url: r.url }; }, function (e) {
+      it.prep = edgeSynth(it.v.text || it.text, it.v.voice, sp, it.v.pitch).then(function (r) { return { url: r.url, ms: r.ms, warm: r.warm, first: r.first }; }, function (e) {
         if (!Speaker.warned) { Speaker.warned = true; toast("Neural awaaz nahi chali (" + e.message + ") — phone ki awaaz se bol rahi hoon"); }
         return { android: SCRIPT_SR[scriptOf(it.text)] || "hi-IN" };
       });
@@ -248,14 +266,18 @@ var Speaker = {
   feed: function (delta, pid) {
     this.buf += delta; this.pid = pid;
     var m, re = /^([\s\S]*?[.!?।॥\n])(\s+|$)/;
-    while ((m = this.buf.match(/^[\s\S]{12,}?[.!?।॥:\n](?=\s)/))) {
+    for (;;) {
+      m = this.buf.match(/^[\s\S]{12,}?[.!?।॥:\n](?=\s)/);
+      // Fast mode: don't wait for a long first sentence to end — voice its first clause right away
+      if (!m && S.fast && this.fed === 0 && this.buf.length >= 48) m = this.buf.match(/^[\s\S]{20,}?[,;—–](?=\s)/);
+      if (!m) break;
       var s = m[0]; this.buf = this.buf.slice(s.length);
-      var t = speakable(s); if (t) { this.q.push(this._item(t, pid)); this._run(); }
+      var t = speakable(s); if (t) { this.fed++; if (LAT && !LAT.sent) LAT.sent = now(); this.q.push(this._item(t, pid)); this._run(); }
     }
   },
-  flush: function (pid) { var t = speakable(this.buf); this.buf = ""; if (t) { this.q.push(this._item(t, pid || this.pid)); } this._run(); },
+  flush: function (pid) { var t = speakable(this.buf); this.buf = ""; if (t) { this.fed++; if (LAT && !LAT.sent) LAT.sent = now(); this.q.push(this._item(t, pid || this.pid)); } this._run(); },
   stop: function () {
-    this.gen++; this.q = []; this.buf = ""; this.running = false;
+    this.gen++; this.q = []; this.buf = ""; this.running = false; this.fed = 0;
     try { player.pause(); player.removeAttribute("src"); player.load(); } catch (e) {}
     try { if (N && N.ttsCancel) N.ttsCancel(); else if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {}
     Object.keys(ttsWait).forEach(function (k) { var w = ttsWait[k]; delete ttsWait[k]; w("stopped"); });
@@ -274,6 +296,8 @@ var Speaker = {
       if (this.q[1]) this._prepare(this.q[1]);
       var r = await it.prep;
       if (g !== this.gen) break;
+      if (LAT && LAT.sent && !LAT.tts) { LAT.tts = now(); LAT.ttsNative = r.ms; LAT.warm = r.warm; LAT.first = r.first; }
+      this.lastText = it.text; this.recent.push(it.text); if (this.recent.length > 3) this.recent.shift();
       try {
         if (r.url) await playUrl(r.url, r.rate || 1);
         else await speakAndroid(it.text, r.android || "hi-IN");
@@ -299,6 +323,7 @@ function playUrl(url, rate) {
   });
 }
 function speakAndroid(text, lang) {
+  markPlay();
   return new Promise(function (res) {
     if (N && N.ttsSpeak) {
       var id = "s" + uid(); ttsWait[id] = function () { res(); };
@@ -317,15 +342,17 @@ window.__punaSR = function (id, type, p) {
   var h = SRec.h;
   if (type === "start") h.onStart && h.onStart();
   else if (type === "result") { if (p.final) h.onFinal && h.onFinal(p.text); else h.onPartial && h.onPartial(p.text); }
+  else if (type === "speechend") h.onSpeechEnd && h.onSpeechEnd();
   else if (type === "error") h.onError && h.onError(p && p.error, p && p.message);
   else if (type === "nomatch") h.onError && h.onError("no-speech");
   else if (type === "end") { var e = h.onEnd; SRec.h = null; e && e(); }
 };
 window.__punaRms = function (db) { document.documentElement.style.setProperty("--lvl", Math.max(0, Math.min(1, (db + 2) / 12)).toFixed(2)); };
-function listen(lang, h) {
+function listen(lang, h, opt) {
   stopListening(true);
   window.Puna.listens = (window.Puna.listens || 0) + 1;
   SRec.id++; SRec.h = h;
+  if (opt && opt.silence && N && N.srStartEx) { N.srStartEx(SRec.id, lang, opt.silence); return; }
   if (N && N.srStart) { N.srStart(SRec.id, lang); return; }
   var W = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!W) { setTimeout(function () { window.__punaSR(SRec.id, "error", { error: "unsupported", message: "Is browser mein mic nahi" }); window.__punaSR(SRec.id, "end"); }, 0); return; }
@@ -401,12 +428,29 @@ async function readSSE(resp, onData, signal) {
     }
   }
 }
+// Test hook: a scripted streaming "LLM" (time-to-first-token + chars/sec) so the voice pipeline can be timed without a key.
+async function mockChat(messages, o) {
+  var m = window.Puna.mockLLM, model = o.model || (brainKind() === "gemini" ? gemModel() : groqModel(o.fast ? "fast" : "chat"));
+  (window.Puna.mockCalls = window.Puna.mockCalls || []).push({ model: model, fast: !!o.fast, search: !!o.search, max: o.max, effort: o.effort, stream: !!o.onDelta, sys: (messages[0] && messages[0].content || "").slice(0, 4000) });
+  await sleep(m.ttft || 300);
+  if (o.json) return { text: m.json || '{"add":[],"remove":[],"settings":{}}', sources: [], model: "mock:" + model };
+  var t = (o.search ? m.searchText : null) || m.text || "Haan, main yahan hoon.", out = "", per = Math.max(1, Math.round((m.cps || 600) / 50));
+  if (!o.onDelta) { await sleep(t.length / (m.cps || 600) * 1000); return { text: t, sources: [], model: "mock:" + model }; }
+  for (var i = 0; i < t.length; i += per) {
+    if (o.signal && o.signal.aborted) { var ab = new Error("aborted"); ab.name = "AbortError"; throw ab; }
+    var ch = t.slice(i, i + per); out += ch; o.onDelta(ch, out); await sleep(20);
+  }
+  return { text: out, sources: [], model: "mock:" + model };
+}
+var FAST_CHAIN = ["openai/gpt-oss-20b", "llama-3.1-8b-instant", "llama-3.3-70b-versatile", "openai/gpt-oss-120b"];
 async function groqChat(messages, o) {
+  if (window.Puna.mockLLM) return mockChat(messages, o);
   var model = o.model || groqModel(o.fast ? "fast" : "chat"), oss = /gpt-oss/.test(model);
   var body = { model: model, messages: messages, stream: !!o.onDelta, temperature: o.temperature == null ? 0.7 : o.temperature, max_completion_tokens: o.max || 2048 };
   if (oss) { body.reasoning_effort = o.effort || effort(); body.include_reasoning = false; }
   if (o.json) body.response_format = { type: "json_object" };
   if (o.search) { body.tools = [{ type: "browser_search" }]; body.tool_choice = "required"; body.stream = false; delete body.include_reasoning; body.reasoning_effort = "low"; }
+  if (!oss) delete body.reasoning_effort;
   var send = async function (b) {
     return fetch(GROQ + "/chat/completions", { method: "POST", signal: o.signal, headers: { Authorization: "Bearer " + S.groqKey, "Content-Type": "application/json" }, body: JSON.stringify(b) });
   };
@@ -434,7 +478,7 @@ async function groqChat(messages, o) {
 }
 function dedupe(src) { var seen = {}, out = []; src.forEach(function (s) { var k = s.url.split("#")[0]; if (!seen[k]) { seen[k] = 1; out.push(s); } }); return out.slice(0, 8); }
 async function groqSearch(messages, o) {
-  try { return await groqChat(messages, Object.assign({}, o, { search: true, model: S.level === "low" ? "openai/gpt-oss-20b" : "openai/gpt-oss-120b" })); }
+  try { return await groqChat(messages, Object.assign({}, o, { search: true, model: (o.fast || S.level === "low") ? "openai/gpt-oss-20b" : "openai/gpt-oss-120b" })); }
   catch (e) {
     if (e.status === 401 || o.signal && o.signal.aborted) throw e;
     var alt = (MODELS.groq || []).filter(function (m) { return /^groq\/compound/.test(m); })[0];
@@ -443,6 +487,7 @@ async function groqSearch(messages, o) {
   }
 }
 async function gemChat(messages, o) {
+  if (window.Puna.mockLLM) return mockChat(messages, o);
   var sys = messages.filter(function (m) { return m.role === "system"; }).map(function (m) { return m.content; }).join("\n\n");
   var contents = messages.filter(function (m) { return m.role !== "system"; }).map(function (m) { return { role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] }; });
   var model = gemModel(), stream = !!o.onDelta && !o.search;
@@ -450,8 +495,11 @@ async function gemChat(messages, o) {
   if (sys) body.systemInstruction = { parts: [{ text: sys }] };
   if (o.search) body.tools = [{ google_search: {} }];
   if (o.json) body.generationConfig.responseMimeType = "application/json";
+  if (o.fast && /2\.5-flash/.test(model)) body.generationConfig.thinkingConfig = { thinkingBudget: 0 };   // no "thinking" pause in Fast voice mode
   var url = GEM + "/models/" + model + (stream ? ":streamGenerateContent?alt=sse" : ":generateContent");
-  var r = await fetch(url, { method: "POST", signal: o.signal, headers: { "x-goog-api-key": S.geminiKey, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  var post = function () { return fetch(url, { method: "POST", signal: o.signal, headers: { "x-goog-api-key": S.geminiKey, "Content-Type": "application/json" }, body: JSON.stringify(body) }); };
+  var r = await post();
+  if (!r.ok && r.status === 400 && body.generationConfig.thinkingConfig) { delete body.generationConfig.thinkingConfig; r = await post(); }
   if (!r.ok) await httpErr(r, "Gemini");
   var text = "", src = [];
   function eat(j) {
@@ -466,7 +514,16 @@ var Brain = {
   ask: async function (messages, o) {
     var k = brainKind(); if (!k) throw NoKey();
     if (k === "gemini") return gemChat(messages, o);
-    return o.search ? groqSearch(messages, o) : groqChat(messages, o);
+    if (o.search) return groqSearch(messages, o);
+    if (!o.fast || o.model) return groqChat(messages, o);
+    // Fast: try the quick models in order; skip one the key can't use (model not found / no access)
+    var list = FAST_CHAIN.filter(function (m) { return !(MODELS.groq || []).length || MODELS.groq.indexOf(m) >= 0; }), last = null;
+    if (!list.length) list = FAST_CHAIN.slice(0, 1);
+    for (var i = 0; i < list.length; i++) {
+      try { return await groqChat(messages, Object.assign({}, o, { model: list[i] })); }
+      catch (e) { last = e; if (!(e.status === 400 || e.status === 403 || e.status === 404) || !/model|access|decommission|not.?found|permission/i.test(e.message)) throw e; }
+    }
+    throw last;
   }
 };
 window.Puna.Brain = Brain;
@@ -478,8 +535,16 @@ function friendlyErr(e) {
   if (/Failed to fetch|NetworkError|network/i.test(e.message)) return "Internet nahi mil raha. Connection check karo.";
   return "Gadbad ho gayi: " + e.message;
 }
-var WEB_RE = /\b(news|khabar|khabre|samachar|headlines?|aaj ki|aaj ka|today|latest|current|abhi|live|score|match|weather|mausam|price|rate|bhav|stock|share market|sensex|nifty|election|result|chunav|kaun jeeta|who won|2025|2026|2027|recent|update|trending|kal kya hua|yesterday)\b|समाचार|ख़बर|खबर|आज|ଖବର|ଆଜି|খবর|আজ/i;
-function needsWeb(t) { return S.web === "always" || (S.web !== "never" && WEB_RE.test(t)); }
+// Web search only when the question needs fresh facts. Strong words alone trigger it; a time word ("aaj", "abhi",
+// "latest") needs a topic word too, so small talk like "abhi kya kar rahi ho" or "aaj main thak gayi" stays fast.
+var WEB_STRONG = /\b(news|khabar|khabre|khabrein|samachar|headlines?|weather|mausam|temperature|forecast|baarish hogi|score|scorecard|sensex|nifty|share market|stock market|stock price|share price|election|chunav|kaun jeeta|who won|trending|breaking|exchange rate|gold rate|petrol price|diesel price|sone ka bhav)\b|समाचार|ख़बर|खबर|मौसम|ଖବର|ପାଣିପାଗ|খবর|আবহাওয়া/i;
+var WEB_TIME = /\b(aaj|aaj ki|aaj ka|today|tonight|latest|current|currently|abhi|live|recent|recently|kal|yesterday|tomorrow|this week|is hafte|2025|2026|2027|right now)\b|आज|अभी|ଆଜି|আজ/i;
+var WEB_TOPIC = /\b(price|prices|rate|rates|bhav|daam|kitne ka|kimat|keemat|result|results|match|game|update|updates|happened|hua|hui|release|released|launch|launched|ipl|cricket|movie|film|box office|dollar|rupee|gold|petrol|stock|share|weather|traffic|flight|train|holiday|chhutti|festival|tyohar|kaun|who is|what is the|minister|president|pm|cm)\b|कीमत|दाम|रिजल्ट|मैच|क्या हुआ/i;
+function needsWeb(t) {
+  if (S.web === "always") return true; if (S.web === "never") return false;
+  t = String(t || ""); return WEB_STRONG.test(t) || (WEB_TIME.test(t) && WEB_TOPIC.test(t));
+}
+window.Puna.needsWeb = needsWeb;
 
 function systemPrompt(mode) {
   var p = persona(S.voice), L = LBYID[S.replyLang] || LBYID.auto;
@@ -488,7 +553,9 @@ function systemPrompt(mode) {
   var g = S.gender === "female" ? "The user is female — use feminine grammar when addressing her in Hindi/Hinglish (e.g. 'aap kaisi ho')." :
     S.gender === "male" ? "The user is male — use masculine grammar when addressing him in Hindi/Hinglish (e.g. 'aap kaise ho')." : "";
   var mem = MEM.length ? "Things you know about the user (memory):\n" + MEM.slice(-40).map(function (m) { return "- " + m.text; }).join("\n") : "";
-  var style = mode === "voice"
+  var style = (mode === "voice" && S.fast)
+    ? "This is a live VOICE conversation (Fast mode): answer in 1-3 short spoken sentences like a caring friend, and make the FIRST sentence very short (under 10 words) so it can be spoken instantly. Only give long answers, steps or lists when the user explicitly asks. No tables, markdown symbols, emojis or URLs."
+    : mode === "voice"
     ? "This is a VOICE conversation: keep answers short and natural (1-4 sentences) like a caring friend talking, unless the user asks for details, steps, a list or a recipe. No tables, no markdown symbols, no emojis, no URLs read aloud."
     : "This is the text chat: use helpful Markdown (lists, code blocks) when useful; be clear and complete but not padded.";
   return [
@@ -660,27 +727,33 @@ async function ask(text, mode, opt) {
     am.content = cmd.reply; am.voice = S.voice; finishTurn(c, am, mode, speak, true); return;
   }
   var ctrl = new AbortController(); active.ctrl = ctrl; active.busy = true; active.mode = mode;
+  var fast = mode === "voice" && S.fast;
+  if (speak && N && N.edgeWarm) N.edgeWarm(2);          // open the voice connection while the brain thinks
   setOrb("thinking"); setStatus(needsWeb(text) ? "Web par dhoondh rahi hoon… 🌐" : "Soch rahi hoon…");
-  var hist = c.messages.slice(0, -1).filter(function (m) { return !m.error && m.content; }).slice(-16).map(function (m) { return { role: m.role, content: m.content }; });
+  var hist = c.messages.slice(0, -1).filter(function (m) { return !m.error && m.content; }).slice(fast ? -10 : -16).map(function (m) { return { role: m.role, content: m.content }; });
   var msgs = [{ role: "system", content: systemPrompt(mode) }].concat(hist);
   var search = needsWeb(hist.length ? hist[hist.length - 1].content : text);
   var pid = S.voice, first = true;
+  if (speak) LAT = { t0: now(), speechEnd: opt.speechEnd || null, search: search };
+  if (speak && fast && search) { Speaker.say(fillerLine(), pid); if (LAT) { LAT.filler = true; LAT.sent = now(); } }
   try {
     var r = await Brain.ask(msgs, {
-      signal: ctrl.signal, search: search,
+      signal: ctrl.signal, search: search, fast: fast, effort: fast ? "low" : undefined, max: fast ? 400 : undefined,
       onDelta: search ? null : function (d, full) {
         if (ctrl !== active.ctrl) return;
-        if (first) { first = false; setOrb(speak ? "speaking" : "idle"); setStatus(""); }
+        if (first) { first = false; if (LAT && !LAT.tok) LAT.tok = now(); setOrb(speak ? "speaking" : "idle"); setStatus(""); }
         am.content = full; updateStreaming(am);
         if (speak) Speaker.feed(d, pid);
       }
     });
     if (ctrl !== active.ctrl) return;
     am.content = r.text || am.content || "…"; am.sources = r.sources || []; am.model = r.model;
+    if (LAT) { LAT.model = r.model; if (!LAT.tok) LAT.tok = now(); if (LAT.play) renderLat(); }
     if (search && r.noWeb) am.content += "\n\n_(Web search abhi nahi chal paya — ye jawab bina live web ke hai.)_";
     if (speak) { if (search) Speaker.say(am.content, pid); else Speaker.flush(pid); }
     finishTurn(c, am, mode, false);
-    extractMemory(text, am.content);
+    // memory is learnt in the background, after the reply has started speaking — never in front of it
+    var memText = am.content; setTimeout(function () { extractMemory(text, memText); }, speak ? 2500 : 200);
   } catch (e) {
     if (ctrl.signal.aborted) { am.content = am.content || "(ruk gaya)"; finishTurn(c, am, mode, false); return; }
     am.content = friendlyErr(e); am.error = true;
@@ -688,6 +761,13 @@ async function ask(text, mode, opt) {
   } finally { if (ctrl === active.ctrl) { active.busy = false; active.ctrl = null; } }
 }
 window.Puna.ask = ask;
+function fillerLine() {
+  var f = persona(S.voice).g === "F", L = S.replyLang;
+  if (L === "hi") return "एक सेकंड, देख " + (f ? "रही" : "रहा") + " हूँ।";
+  if (L === "en") return "One second, let me check.";
+  if (L === "or") return "ଟିକେ ରୁହ, ଦେଖୁଛି।";
+  return "Ek second, dekh " + (f ? "rahi" : "raha") + " hoon.";
+}
 function finishTurn(c, am, mode, speakNow, local) {
   c.updated = Date.now(); saveConvs(); renderChat(); showReply(am, false);
   if (speakNow && am.content) Speaker.say(am.content, am.voice || S.voice);
@@ -701,22 +781,30 @@ function setOrb(st) { $("orbWrap").dataset.state = st; }
 function setStatus(t) { $("aStatus").textContent = t; }
 function idleStatus() { return brainKind() ? "Mic dabao aur bolo · Tap the mic & talk" : "Settings mein Groq key daalo, phir mic dabao 🎙️"; }
 Speaker.onState = function (on) {
-  if (on) { if ($("orbWrap").dataset.state !== "listening") setOrb("speaking"); }
+  if (on) { if ($("orbWrap").dataset.state !== "listening") setOrb("speaking"); if (S.bargeIn && voiceLoop) setTimeout(startBarge, 300); }
   else { if (!active.busy && $("orbWrap").dataset.state === "speaking") setOrb("idle"); if (!active.busy) { setStatus(idleStatus()); maybeContinue(); } }
 };
 function maybeContinue() {
   if (!voiceLoop || !S.continuous || active.busy || Speaker.busy() || currentTab !== "assistant") return;
-  setTimeout(function () { if (voiceLoop && !active.busy && !Speaker.busy() && !SRec.h && currentTab === "assistant") startVoice(); }, 450);
+  setTimeout(function () { if (voiceLoop && !active.busy && !Speaker.busy() && !SRec.h && currentTab === "assistant") startVoice(); }, S.fast ? 250 : 450);
 }
 function startVoice() {
   Speaker.stop();
   voiceLoop = true;
   setOrb("listening"); setStatus("Sun rahi hoon… bolo 👂"); $("aHeard").textContent = "";
-  var got = "";
-  listen(S.srLang, {
+  if (N && N.edgeWarm && S.autoSpeak) N.edgeWarm(2);
+  var got = "", fired = false, speechEnd = null, stableT = null, h;
+  function go(t) {   // Fast mode: send as soon as the final text is in, without waiting for the recogniser to wind down
+    if (fired || !t.trim()) return; fired = true; clearTimeout(stableT); ask(t, "voice", { speechEnd: speechEnd || now() });
+  }
+  listen(S.srLang, h = {
     onStart: function () { setOrb("listening"); },
-    onPartial: function (t) { $("aHeard").textContent = t; },
-    onFinal: function (t) { got = t; $("aHeard").textContent = t; },
+    onSpeechEnd: function () { speechEnd = now(); },
+    onPartial: function (t) {
+      $("aHeard").textContent = t;
+      if (S.fast) { clearTimeout(stableT); stableT = setTimeout(function () { if (SRec.h === h && !fired) { speechEnd = speechEnd || now(); stopListening(false); } }, 1300); }
+    },
+    onFinal: function (t) { got = t; $("aHeard").textContent = t; if (S.fast) go(t); },
     onError: function (e, m) {
       if (e === "no-speech") { setStatus("Kuch suna nahi — phir se mic dabao"); voiceLoop = false; }
       else if (e === "not-allowed") { setStatus("Mic ki permission do (Settings › Apps › Puna AI › Permissions)"); voiceLoop = false; }
@@ -725,16 +813,43 @@ function startVoice() {
       else if (e !== "aborted") { setStatus("Mic error: " + e); voiceLoop = false; }
     },
     onEnd: function () {
-      document.documentElement.style.setProperty("--lvl", 0);
-      if (got.trim()) ask(got, "voice");
+      document.documentElement.style.setProperty("--lvl", 0); clearTimeout(stableT);
+      if (fired) return;
+      if (got.trim()) { fired = true; ask(got, "voice", { speechEnd: speechEnd }); }
       else if ($("orbWrap").dataset.state === "listening") { setOrb("idle"); if (!/Kuch suna|permission|bhasha|error|nahi/i.test($("aStatus").textContent)) setStatus(idleStatus()); }
     }
-  });
+  }, S.fast ? { silence: 900 } : null);
+}
+/* Barge-in (beta): keep the mic open while Puna speaks; real speech (not her own voice echoed back) cuts her off. */
+function isEcho(t) {
+  var w = String(t || "").toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(function (x) { return x.length > 1; });
+  if (w.length < 2) return true;
+  var spoken = (" " + Speaker.recent.join(" ").toLowerCase() + " ");
+  var hit = w.filter(function (x) { return spoken.indexOf(x) >= 0; }).length;
+  return hit / w.length >= 0.5;
+}
+window.Puna.isEcho = isEcho;
+function startBarge() {
+  if (!S.bargeIn || !voiceLoop || SRec.h || active.mode === "chat" || currentTab !== "assistant") return;
+  var got = "", cut = false;
+  listen(S.srLang, {
+    onPartial: function (t) { if (!cut && Speaker.busy() && !isEcho(t)) { cut = true; Speaker.stop(); if (active.ctrl) { try { active.ctrl.abort(); } catch (e) {} } setOrb("listening"); setStatus("Sun rahi hoon… 👂"); } if (cut) $("aHeard").textContent = t; },
+    onFinal: function (t) { got = t; },
+    onError: function () {},
+    onEnd: function () {
+      if (got.trim() && (cut || !isEcho(got))) { $("aHeard").textContent = got; ask(got, "voice"); return; }
+      if (Speaker.busy()) setTimeout(startBarge, 150); else if (!active.busy) { setOrb("idle"); maybeContinue(); }
+    }
+  }, { silence: 900 });
 }
 $("micBtn").addEventListener("click", function () {
   var st = $("orbWrap").dataset.state;
   if (st === "listening") { voiceLoop = false; stopListening(false); return; }
-  if (st === "thinking" || st === "speaking" || Speaker.busy()) { stopAll(); setStatus("Ruk gayi. Phir se bolo ya mic dabao."); return; }
+  // Tap while Puna thinks/speaks = interrupt and listen right away (barge-in by tap)
+  if (st === "thinking" || st === "speaking" || Speaker.busy()) {
+    if (active.ctrl) { try { active.ctrl.abort(); } catch (e) {} }
+    active.ctrl = null; active.busy = false; stopListening(true); Speaker.stop(); startVoice(); return;
+  }
   startVoice();
 });
 $("aTypeForm").addEventListener("submit", function (e) {
@@ -1145,6 +1260,7 @@ function syncSettingsUI() {
   $("sGroqKey").value = S.groqKey; $("sGemKey").value = S.geminiKey; $("sBrain").value = S.brain; $("sLevel").value = S.level; $("sWeb").value = S.web;
   $("sCallMe").value = S.callMe; $("sGender").value = S.gender; $("sReplyLang").value = S.replyLang; $("sSrLang").value = S.srLang;
   $("sSpeed").value = S.speed; $("sSpeedVal").textContent = (+S.speed).toFixed(1) + "×"; $("aSpeed").value = S.speed; $("aSpeedVal").textContent = (+S.speed).toFixed(1) + "×";
+  $("sFast").checked = S.fast; $("sBarge").checked = S.bargeIn; $("sShowLat").checked = S.showLat; $("aLat").hidden = !(S.showLat || DEBUG) || !window.Puna.lastLatency;
   $("sOdia").value = S.odia; $("sAutoSpeak").checked = S.autoSpeak; $("sContinuous").checked = S.continuous; $("aContinuous").checked = S.continuous; $("sMemOn").checked = S.memoryOn;
   fillModelSelect(); refreshBadges();
 }
@@ -1159,6 +1275,9 @@ bindS("sSpeed", "speed", "input", function (e) { return parseFloat(e.value); });
 bindS("sAutoSpeak", "autoSpeak", "change", function (e) { return e.checked; });
 bindS("sContinuous", "continuous", "change", function (e) { return e.checked; });
 bindS("sMemOn", "memoryOn", "change", function (e) { return e.checked; });
+bindS("sFast", "fast", "change", function (e) { return e.checked; });
+bindS("sBarge", "bargeIn", "change", function (e) { return e.checked; });
+bindS("sShowLat", "showLat", "change", function (e) { return e.checked; });
 async function testKey(kind) {
   S.groqKey = $("sGroqKey").value.trim(); S.geminiKey = $("sGemKey").value.trim(); saveS();
   var msg = $("sKeyMsg");
@@ -1242,6 +1361,7 @@ function init() {
   renderBVoices(); renderBHist(); syncSettingsUI(); renderMem(); renderChat();
   setStatus(idleStatus());
   var info = {}; try { info = N && N.info ? JSON.parse(N.info()) : {}; } catch (e) {}
+  DEBUG = !!info.debug;
   $("sAbout").textContent = "Puna AI v" + (info.version || "web") + " · Android " + (info.sdk || "-") + " · WebView " + (info.webview || "-") + " · Phase 1";
   $("sVoiceMap").innerHTML = VOICES.map(function (v) { return "<div><b>" + v.name + "</b> (" + v.g + ") → " + v.edge + "</div>"; }).join("") + "<div><b>Odia</b> → phone Odia voice, ya Bengali-lipi neural (Archita/Anup), ya Meta MMS Odia</div>";
   if (S.groqKey && !(MODELS.groq || []).length) fetchModels("groq").catch(function () {});
