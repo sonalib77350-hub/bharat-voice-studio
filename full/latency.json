@@ -1,0 +1,90 @@
+{
+ "warm": [
+  {
+   "stt": null,
+   "firstToken": 352,
+   "firstSentence": 447,
+   "tts": 178,
+   "ttsNative": 136,
+   "ttsFirstAudio": 106,
+   "warm": true,
+   "play": 667,
+   "total": 667,
+   "model": "mock:openai/gpt-oss-20b",
+   "search": false,
+   "filler": false
+  },
+  {
+   "stt": null,
+   "firstToken": 350,
+   "firstSentence": 454,
+   "tts": 215,
+   "ttsNative": 170,
+   "ttsFirstAudio": 50,
+   "warm": true,
+   "play": 756,
+   "total": 756,
+   "model": "mock:openai/gpt-oss-20b",
+   "search": false,
+   "filler": false
+  },
+  {
+   "stt": null,
+   "firstToken": 352,
+   "firstSentence": 482,
+   "tts": 176,
+   "ttsNative": 144,
+   "ttsFirstAudio": 46,
+   "warm": true,
+   "play": 777,
+   "total": 777,
+   "model": "mock:openai/gpt-oss-20b",
+   "search": false,
+   "filler": false
+  },
+  {
+   "stt": null,
+   "firstToken": 350,
+   "firstSentence": 476,
+   "tts": 208,
+   "ttsNative": 159,
+   "ttsFirstAudio": 78,
+   "warm": true,
+   "play": 791,
+   "total": 791,
+   "model": "mock:openai/gpt-oss-20b",
+   "search": false,
+   "filler": false
+  }
+ ],
+ "cold": [
+  {
+   "stt": null,
+   "firstToken": 351,
+   "firstSentence": 518,
+   "tts": 212,
+   "ttsNative": 181,
+   "ttsFirstAudio": 74,
+   "warm": true,
+   "play": 981,
+   "total": 981,
+   "model": "mock:openai/gpt-oss-20b",
+   "search": false,
+   "filler": false
+  },
+  {
+   "stt": null,
+   "firstToken": 350,
+   "firstSentence": 436,
+   "tts": 150,
+   "ttsNative": 140,
+   "ttsFirstAudio": 69,
+   "warm": true,
+   "play": 625,
+   "total": 625,
+   "model": "mock:openai/gpt-oss-20b",
+   "search": false,
+   "filler": false
+  }
+ ]
+}

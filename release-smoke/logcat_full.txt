@@ -1,0 +1,583 @@
+--------- beginning of main
+11-01 08:47:52.876 D/SafetySourceDataValidator(  519): No cert check requested for package com.google.android.permissioncontroller
+11-01 08:47:52.876 I/RoleService(  519): Granting default roles...
+11-01 08:47:52.884 D/SafetySourceDataValidator(  519): No cert check requested for package com.google.android.permissioncontroller
+--------- beginning of system
+11-01 08:47:52.884 D/CompatibilityChangeReporter(  519): Compat change id reported: 262645982; UID 10193; state: ENABLED
+11-01 08:47:52.887 I/InputReader(  519): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS
+--------- beginning of kernel
+11-01 08:47:53.099 W/logd    (    0): Skipping entries from slow reader, pid 452, fd 14, from LogBuffer::Prune()
+11-01 08:47:52.893 D/CarrierSvcBindHelper( 1054): onPackageModified: com.sonali.punaai
+11-01 08:47:52.894 D/CarrierSvcBindHelper( 1054): No carrier app for: 0
+11-01 08:47:52.900 D/StylusManager(  841): Stylus InputDevice changed: 14 virtio_input_multi_touch_11
+11-01 08:47:52.902 D/StylusManager(  841): Stylus InputDevice changed: 13 virtio_input_multi_touch_10
+11-01 08:47:52.903 D/StylusManager(  841): Stylus InputDevice changed: 12 virtio_input_multi_touch_9
+11-01 08:47:52.911 D/StylusManager(  841): Stylus InputDevice changed: 11 virtio_input_multi_touch_8
+11-01 08:47:52.912 D/StylusManager(  841): Stylus InputDevice changed: 10 virtio_input_multi_touch_7
+11-01 08:47:52.912 D/StylusManager(  841): Stylus InputDevice changed: 6 virtio_input_multi_touch_3
+11-01 08:47:52.912 D/StylusManager(  841): Stylus InputDevice changed: 7 virtio_input_multi_touch_4
+11-01 08:47:52.913 D/StylusManager(  841): Stylus InputDevice changed: 5 virtio_input_multi_touch_2
+11-01 08:47:52.914 D/StylusManager(  841): Stylus InputDevice changed: 9 virtio_input_multi_touch_6
+11-01 08:47:52.914 D/StylusManager(  841): Stylus InputDevice changed: 8 virtio_input_multi_touch_5
+11-01 08:47:52.914 D/StylusManager(  841): Stylus InputDevice changed: 4 virtio_input_multi_touch_1
+11-01 08:47:52.915 V/MediaPlayerList( 1027): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-01 08:47:52.916 V/MediaPlayerList( 1027): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+11-01 08:47:52.917 I/PermissionControllerServiceImpl(  856): Updating user sensitive for uid 10193
+11-01 08:47:52.924 I/PermissionControllerServiceImpl(  856): Updating user sensitive for uid 10193
+11-01 08:47:52.937 I/BgTaskExecutorImpl( 1740): Starting EXCLUSIVE background task INTERNAL_PERIODIC_TASK_SYNC.
+11-01 08:47:52.950 I/BgTaskExecutorImpl( 1740): Starting PERIODIC background task OPA_ASSISTANT_LANGUAGE_TRANSITION_TASK.
+11-01 08:47:52.954 W/JobScheduler(  519): Job didn't exist in JobStore: 400b4b4 #u0a131/-49 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-01 08:47:52.971 E/RoleControllerServiceImpl(  856): Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+11-01 08:47:52.974 I/Role    (  856): com.google.android.gms not qualified for android.app.role.SYSTEM_CALL_STREAMING due to missing RequiredComponent{mIntentFilterData=IntentFilterData{mAction='android.telecom.CallStreamingService', mCategories='[]', mDataScheme='null', mDataType='null'}, mMinTargetSdkVersion=1, mFlags='0', mPermission='android.permission.BIND_CALL_STREAMING_SERVICE', mQueryFlags=0, mMetaData=[]}
+11-01 08:47:52.974 E/RoleControllerServiceImpl(  856): Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.SYSTEM_CALL_STREAMING
+11-01 08:47:52.976 W/Role    (  856): Default holder doesn't have required signing certificate: com.google.android.apps.work.clouddpc:23962F4B43B9857638EA66F4D419518EAE282491ACDA4B94707BD59003C45E58
+11-01 08:47:52.976 D/ImsResolver( 1054): maybeAddedImsService, packageName: com.sonali.punaai
+11-01 08:47:53.217 I/logd    (    0): start watching /data/system/packages.list ...
+11-01 08:47:53.219 I/logd    (    0): ReadPackageList, total packages: 201
+11-01 08:47:53.014 I/system_server(  519): Background concurrent copying GC freed 310622(12MB) AllocSpace objects, 35(692KB) LOS objects, 45% free, 28MB/52MB, paused 49us,39us total 219.228ms
+11-01 08:47:53.016 E/libprocessgroup(  519): No such cgroup attribute: /sys/fs/cgroup/uid_10193/cgroup.freeze
+11-01 08:47:53.016 W/libprocessgroup(  519): Failed to apply Frozen process profile: No such file or directory
+11-01 08:47:53.016 E/system_server(  519): No package ID 7f found for resource ID 0x7f010004.
+11-01 08:47:53.021 E/libprocessgroup(  519): No such cgroup attribute: /sys/fs/cgroup/uid_10193/cgroup.freeze
+11-01 08:47:53.021 W/libprocessgroup(  519): Failed to apply Unfrozen process profile: No such file or directory
+11-01 08:47:53.021 E/system_server(  519): No package ID 7f found for resource ID 0x7f030004.
+11-01 08:47:53.021 E/system_server(  519): No package ID 7f found for resource ID 0x7f030005.
+11-01 08:47:53.023 E/system_server(  519): No package ID 7f found for resource ID 0x7f010003.
+11-01 08:47:53.023 E/system_server(  519): No package ID 7f found for resource ID 0x7f030003.
+11-01 08:47:53.023 E/system_server(  519): No package ID 7f found for resource ID 0x7f030003.
+11-01 08:47:53.038 D/CompatibilityChangeReporter(  519): Compat change id reported: 161252188; UID 10193; state: DISABLED
+11-01 08:47:53.038 W/ActivityTaskManager(  519): callingPackage for (uid=2000, pid=8783) has no WPC
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 265464455; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 265452344; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 266124927; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 265451093; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 265456536; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 255940284; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 236283604; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 263959004; UID 10193; state: DISABLED
+11-01 08:47:53.039 D/CompatibilityChangeReporter(  519): Compat change id reported: 264304459; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 264301586; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 254631730; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 273509367; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 263259275; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 174042980; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 174042936; UID 10193; state: DISABLED
+11-01 08:47:53.040 D/CompatibilityChangeReporter(  519): Compat change id reported: 181136395; UID 10193; state: DISABLED
+11-01 08:47:53.041 D/CompatibilityChangeReporter(  519): Compat change id reported: 194480991; UID 10193; state: ENABLED
+11-01 08:47:53.043 D/CompatibilityChangeReporter(  519): Compat change id reported: 184838306; UID 10193; state: DISABLED
+11-01 08:47:53.043 D/CompatibilityChangeReporter(  519): Compat change id reported: 185004937; UID 10193; state: DISABLED
+11-01 08:47:53.043 D/CompatibilityChangeReporter(  519): Compat change id reported: 197654537; UID 10193; state: ENABLED
+11-01 08:47:53.045 D/CompatibilityChangeReporter(  519): Compat change id reported: 205907456; UID 10193; state: ENABLED
+11-01 08:47:53.047 V/WindowManagerShell(  841): Transition requested: android.os.BinderProxy@1bbe8af TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=20 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.sonali.punaai/.MainActivity } baseActivity=ComponentInfo{com.sonali.punaai/com.sonali.punaai.MainActivity} topActivity=ComponentInfo{com.sonali.punaai/com.sonali.punaai.MainActivity} origActivity=null realActivity=ComponentInfo{com.sonali.punaai/com.sonali.punaai.MainActivity} numActivities=1 lastActiveTime=464175 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@44194bc} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{a5cc45 com.sonali.punaai.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-01 08:47:53.050 I/ActivityTaskManager(  519): START u0 {flg=0x10000000 cmp=com.sonali.punaai/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+11-01 08:47:53.052 D/SplashScreenView(  841): Build android.window.SplashScreenView{d221e43 V.E...... ......ID 0,0-0,0}
+11-01 08:47:53.052 D/SplashScreenView(  841): Icon: view: android.widget.ImageView{7917cc0 V.ED..... ......I. 0,0-0,0 #10204f0 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@974cdf9 size: 160
+11-01 08:47:53.052 D/SplashScreenView(  841): Branding: view: android.view.View{513c13e G.ED..... ......I. 0,0-0,0 #10204ef android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+11-01 08:47:53.053 D/CompatibilityChangeReporter(  519): Compat change id reported: 135634846; UID 10193; state: DISABLED
+11-01 08:47:53.053 D/CompatibilityChangeReporter(  519): Compat change id reported: 177438394; UID 10193; state: DISABLED
+11-01 08:47:53.053 D/CompatibilityChangeReporter(  519): Compat change id reported: 135772972; UID 10193; state: DISABLED
+11-01 08:47:53.053 D/CompatibilityChangeReporter(  519): Compat change id reported: 135754954; UID 10193; state: ENABLED
+11-01 08:47:53.055 D/CompatibilityChangeReporter(  519): Compat change id reported: 143937733; UID 10193; state: ENABLED
+11-01 08:47:53.065 D/Zygote  (  336): Forked child process 8786
+11-01 08:47:53.069 I/ActivityManager(  519): Start proc 8786:com.sonali.punaai/u0a193 for next-top-activity {com.sonali.punaai/com.sonali.punaai.MainActivity}
+11-01 08:47:53.070 D/CompatibilityChangeReporter(  519): Compat change id reported: 265195908; UID 10193; state: ENABLED
+11-01 08:47:53.077 I/BpBinder(  399): onLastStrongRef automatically unlinking death recipients: 
+11-01 08:47:53.081 I/AiAiEcho( 1642): AppFetcherImplV2 updateApps package:[com.sonali.punaai], userId:[0], reason:[package is added.].
+11-01 08:47:53.092 D/CompatibilityChangeReporter(  519): Compat change id reported: 197654537; UID 10192; state: ENABLED
+11-01 08:47:53.093 W/PackageManager(  519): Failed registering loading progress callback. Package is fully loaded.
+11-01 08:47:53.103 V/WindowManagerShell(  841): onTransitionReady android.os.BinderProxy@1bbe8af: {id=78 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e29a584} m=OPEN f=NONE leash=Surface(name=Task=20)/@0xb8d4331 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@41e16d} m=TO_BACK f=NONE leash=Surface(name=Task=19)/@0xe84ba16 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-01 08:47:53.104 V/WindowManagerShell(  841): Playing animation for (#78)android.os.BinderProxy@1bbe8af@0
+11-01 08:47:53.105 V/WindowManagerShell(  841):  try handler com.android.wm.shell.transition.DefaultMixedHandler@650ceac
+11-01 08:47:53.105 V/WindowManagerShell(  841):  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4689775
+11-01 08:47:53.105 V/WindowManagerShell(  841):  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@82c530a
+11-01 08:47:53.106 I/m.sonali.punaai( 8786): Using CollectorTypeCC GC.
+11-01 08:47:53.106 V/WindowManagerShell(  841):  try handler com.android.wm.shell.recents.RecentsTransitionHandler@fe8977b
+11-01 08:47:53.106 V/ShellRecents(  841): RecentsTransitionHandler.startAnimation: no controller found
+11-01 08:47:53.106 V/WindowManagerShell(  841):  try handler com.android.wm.shell.pip.PipTransition@8522998
+11-01 08:47:53.106 V/WindowManagerShell(  841):  try handler com.android.wm.shell.splitscreen.StageCoordinator@73835f1
+11-01 08:47:53.106 V/WindowManagerShell(  841):  try handler com.android.wm.shell.transition.RemoteTransitionHandler@cc495d6
+11-01 08:47:53.107 V/WindowManagerShell(  841): Transition doesn't have explicit remote, search filters for match for {id=78 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e29a584} m=OPEN f=NONE leash=Surface(name=Task=20)/@0xb8d4331 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@41e16d} m=TO_BACK f=NONE leash=Surface(name=Task=19)/@0xe84ba16 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-01 08:47:53.107 V/WindowManagerShell(  841):  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@7488f67, appThread = android.app.IApplicationThread$Stub$Proxy@640a114, debugName = LauncherToDream }}
+11-01 08:47:53.107 V/WindowManagerShell(  841):  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@410ddbd, appThread = android.app.IApplicationThread$Stub$Proxy@bec2fb2, debugName = QuickstepLaunchHome }}
+11-01 08:47:53.107 V/WindowManagerShell(  841):  Delegate animation for #78 to null
+11-01 08:47:53.107 V/WindowManagerShell(  841):  try handler com.android.wm.shell.transition.DefaultTransitionHandler@3c7af3
+11-01 08:47:53.107 V/WindowManagerShell(  841): start default transition animation, info = {id=78 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e29a584} m=OPEN f=NONE leash=Surface(name=Task=20)/@0xb8d4331 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@41e16d} m=TO_BACK f=NONE leash=Surface(name=Task=19)/@0xe84ba16 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-01 08:47:53.108 W/m.sonali.punaai( 8786): Unexpected CPU variant for x86: x86_64.
+11-01 08:47:53.108 W/m.sonali.punaai( 8786): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-01 08:47:53.111 V/WindowManagerShell(  841): loadAnimation: anim=android.view.animation.AnimationSet@950f5ee animAttr=0x9 type=OPEN isEntrance=false
+11-01 08:47:53.111 V/WindowManagerShell(  841): loadAnimation: anim=android.view.animation.AnimationSet@69e211c animAttr=0x8 type=OPEN isEntrance=true
+11-01 08:47:53.113 V/WindowManagerShell(  841):  animated by com.android.wm.shell.transition.DefaultTransitionHandler@3c7af3
+11-01 08:47:53.118 E/m.sonali.punaai( 8786): Not starting debugger since process cannot load the jdwp agent.
+11-01 08:47:53.121 V/WindowManager(  519): Sent Transition #78 createdAt=11-01 08:47:53.041 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=20 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=com.sonali.punaai/.MainActivity } baseActivity=ComponentInfo{com.sonali.punaai/com.sonali.punaai.MainActivity} topActivity=ComponentInfo{com.sonali.punaai/com.sonali.punaai.MainActivity} origActivity=null realActivity=ComponentInfo{com.sonali.punaai/com.sonali.punaai.MainActivity} numActivities=1 lastActiveTime=464175 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{735971 Task{a723d2f #20 type=standard A=10193:com.sonali.punaai}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{4c3b356 com.sonali.punaai.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-01 08:47:53.121 V/WindowManager(  519):     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-01 08:47:53.121 V/WindowManager(  519):     info={id=78 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{735971 Task{a723d2f #20 type=standard A=10193:com.sonali.punaai}}} m=OPEN f=NONE leash=Surface(name=Task=20)/@0x4ac988a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{RemoteToken{55b4a9b Task{3e3bfdd #19 type=standard A=10192:com.sonali.punaai.debug}}} m=TO_BACK f=NONE leash=Surface(name=Task=19)/@0x115c94c sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-01 08:47:53.133 V/WindowManagerShell(  841): Transition animation finished (aborted=false), notifying core (#78)android.os.BinderProxy@1bbe8af@0
+11-01 08:47:53.137 V/WindowManager(  519): Finish Transition #78: created at 11-01 08:47:53.041 collect-started=0.165ms request-sent=5.997ms started=10.297ms ready=50.348ms sent=59.73ms finished=93.193ms
+11-01 08:47:53.138 V/WindowManagerShell(  841): Track 0 became idle
+11-01 08:47:53.138 V/WindowManagerShell(  841): All active transition animations finished
+11-01 08:47:53.142 W/TextView( 1102): onProvideContentCaptureStructure(): calling assumeLayout()
+11-01 08:47:53.160 D/CompatibilityChangeReporter( 8786): Compat change id reported: 171979766; UID 10193; state: ENABLED
+11-01 08:47:53.160 D/CompatibilityChangeReporter( 8786): Compat change id reported: 242716250; UID 10193; state: ENABLED
+11-01 08:47:53.168 W/WindowMagnificationMgr(  519): requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-01 08:47:53.171 D/CompatibilityChangeReporter(  519): Compat change id reported: 170503758; UID 10193; state: ENABLED
+11-01 08:47:53.174 D/nativeloader( 8786): Configuring clns-6 for other apk /data/app/~~OhNZYKoYIfbdLb9LLA09uA==/com.sonali.punaai-VLxL3C9qxNrXChOfVGWEFw==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~OhNZYKoYIfbdLb9LLA09uA==/com.sonali.punaai-VLxL3C9qxNrXChOfVGWEFw==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.sonali.punaai
+11-01 08:47:53.176 E/system_server(  519): No package ID 7f found for resource ID 0x7f010004.
+11-01 08:47:53.176 E/system_server(  519): No package ID 7f found for resource ID 0x7f030004.
+11-01 08:47:53.176 E/system_server(  519): No package ID 7f found for resource ID 0x7f030005.
+11-01 08:47:53.176 E/system_server(  519): No package ID 7f found for resource ID 0x7f010003.
+11-01 08:47:53.176 E/system_server(  519): No package ID 7f found for resource ID 0x7f030003.
+11-01 08:47:53.176 E/system_server(  519): No package ID 7f found for resource ID 0x7f030003.
+11-01 08:47:53.181 I/AiAiEcho( 1642): AppFetcherImpl onPackageChanged com.sonali.punaai.
+11-01 08:47:53.182 I/AiAiEcho( 1642): AppIndexer Package:[com.sonali.punaai] UserProfile:[0] Enabled:[true].
+11-01 08:47:53.182 I/AiAiEcho( 1642): AppFetcherImplV2 updateApps package:[com.sonali.punaai], userId:[0], reason:[package is updated.].
+11-01 08:47:53.182 V/GraphicsEnvironment( 8786): Currently set values for:
+11-01 08:47:53.182 V/GraphicsEnvironment( 8786):   angle_gl_driver_selection_pkgs=[]
+11-01 08:47:53.182 V/GraphicsEnvironment( 8786):   angle_gl_driver_selection_values=[]
+11-01 08:47:53.182 V/GraphicsEnvironment( 8786): ANGLE GameManagerService for com.sonali.punaai: false
+11-01 08:47:53.182 V/GraphicsEnvironment( 8786): com.sonali.punaai is not listed in per-application setting
+11-01 08:47:53.182 V/GraphicsEnvironment( 8786): Neither updatable production driver nor prerelease driver is supported.
+11-01 08:47:53.188 I/ActivityManager(  519): Flag disabled. Ignoring finishAttachApplication from uid: 10193. pid: 8786
+11-01 08:47:53.197 D/libEGL  ( 8786): loaded /vendor/lib64/egl/libEGL_emulation.so
+11-01 08:47:53.200 I/AiAiStatsd( 1642): Successfully logged feature enablement for HYBRID_HOTSEAT.
+11-01 08:47:53.202 D/libEGL  ( 8786): loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+11-01 08:47:53.204 D/libEGL  ( 8786): loaded /vendor/lib64/egl/libGLESv2_emulation.so
+11-01 08:47:53.214 I/WebViewFactory( 8786): Loading com.google.android.webview version 113.0.5672.136 (code 567263637)
+11-01 08:47:53.215 W/ziparchive( 8786): Unable to open '/data/app/~~7CyRD4xNyOZ2spLCJKrz3A==/com.google.android.trichromelibrary_567263637-DY-x_Z5aF5pSvy596kkGpQ==/TrichromeLibrary.dm': No such file or directory
+11-01 08:47:53.215 W/ziparchive( 8786): Unable to open '/data/app/~~7CyRD4xNyOZ2spLCJKrz3A==/com.google.android.trichromelibrary_567263637-DY-x_Z5aF5pSvy596kkGpQ==/TrichromeLibrary.dm': No such file or directory
+11-01 08:47:53.215 W/m.sonali.punaai( 8786): Entry not found
+11-01 08:47:53.216 D/nativeloader( 8786): Configuring clns-7 for other apk /data/app/~~7CyRD4xNyOZ2spLCJKrz3A==/com.google.android.trichromelibrary_567263637-DY-x_Z5aF5pSvy596kkGpQ==/TrichromeLibrary.apk. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~qr_oLk_tIKDPVvU2T5LghA==/com.google.android.webview-mazZ9m2mF9sbRw8jwQuSHw==/lib/x86_64:/data/app/~~qr_oLk_tIKDPVvU2T5LghA==/com.google.android.webview-mazZ9m2mF9sbRw8jwQuSHw==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~7CyRD4xNyOZ2spLCJKrz3A==/com.google.android.trichromelibrary_567263637-DY-x_Z5aF5pSvy596kkGpQ==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+11-01 08:47:53.217 D/nativeloader( 8786): Configuring clns-8 for other apk /data/app/~~qr_oLk_tIKDPVvU2T5LghA==/com.google.android.webview-mazZ9m2mF9sbRw8jwQuSHw==/WebViewGoogle.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~qr_oLk_tIKDPVvU2T5LghA==/com.google.android.webview-mazZ9m2mF9sbRw8jwQuSHw==/lib/x86_64:/data/app/~~qr_oLk_tIKDPVvU2T5LghA==/com.google.android.webview-mazZ9m2mF9sbRw8jwQuSHw==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~7CyRD4xNyOZ2spLCJKrz3A==/com.google.android.trichromelibrary_567263637-DY-x_Z5aF5pSvy596kkGpQ==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+11-01 08:47:53.219 I/AiAiEcho( 1642): EchoSearch: WidgetFetcherImpl is initialized with [28] widgets [reason=package added for userId: 0]
+11-01 08:47:53.231 I/cr_WVCFactoryProvider( 8786): Loaded version=113.0.5672.136 minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+11-01 08:47:53.232 I/AiAiStatsd( 1642): Successfully logged feature enablement for ECHO_ALL_APPS.
+11-01 08:47:53.242 I/cr_LibraryLoader( 8786): Successfully loaded native library
+11-01 08:47:53.243 I/cr_CachingUmaRecorder( 8786): Flushed 8 samples from 8 histograms.
+11-01 08:47:53.246 I/cr_VariationsUtils( 8786): Failed reading seed file "/data/user/0/com.sonali.punaai/app_webview/variations_seed_new"
+11-01 08:47:53.246 I/cr_VariationsUtils( 8786): Failed reading seed file "/data/user/0/com.sonali.punaai/app_webview/variations_seed"
+11-01 08:47:53.248 I/cr_VariationsUtils( 8786): Requesting new seed from IVariationsSeedServer
+11-01 08:47:53.249 D/CompatibilityChangeReporter(  519): Compat change id reported: 161145287; UID 10193; state: ENABLED
+11-01 08:47:53.260 D/CompatibilityChangeReporter( 8786): Compat change id reported: 183155436; UID 10193; state: ENABLED
+11-01 08:47:53.287 D/ActivityManager(  519): sync unfroze 2858 com.google.android.webview:webview_service for 6
+11-01 08:47:53.288 D/CompatibilityChangeReporter(  519): Compat change id reported: 261072174; UID 10193; state: ENABLED
+11-01 08:47:53.290 D/CompatibilityChangeReporter(  519): Compat change id reported: 135634846; UID 99002; state: DISABLED
+11-01 08:47:53.291 D/CompatibilityChangeReporter(  519): Compat change id reported: 143937733; UID 10193; state: ENABLED
+11-01 08:47:53.293 D/BtGatt.ScanManager( 1027): uid 10132 isForeground true scanMode -1
+11-01 08:47:53.294 D/BtGatt.ScanManager( 1027): uid 10132 isForeground true scanMode -1
+11-01 08:47:53.297 D/ActivityManager(  519): sync unfroze 5441 com.google.android.gms for 6
+11-01 08:47:53.300 D/Zygote  (  987): Forked child process 8822
+11-01 08:47:53.304 I/ActivityManager(  519): Start proc 8822:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i2 for  {com.sonali.punaai/org.chromium.content.app.SandboxedProcessService0:0}
+11-01 08:47:53.305 I/ocessService0:0( 8822): Using CollectorTypeCC GC.
+11-01 08:47:53.305 D/ControlsListingControllerImpl(  841): ServiceConfig reloaded, count: 0
+11-01 08:47:53.306 W/ocessService0:0( 8822): Unexpected CPU variant for x86: x86_64.
+11-01 08:47:53.306 W/ocessService0:0( 8822): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-01 08:47:53.307 D/ControlsListingControllerImpl(  841): ServiceConfig reloaded, count: 0
+11-01 08:47:53.314 D/BoundBrokerSvc( 5441): onBind: Intent { act=com.google.android.gms.safetynet.service.START pkg=com.google.android.gms }
+11-01 08:47:53.314 D/BoundBrokerSvc( 5441): Loading bound service for intent: Intent { act=com.google.android.gms.safetynet.service.START pkg=com.google.android.gms }
+11-01 08:47:53.320 W/chromium( 8786): [WARNING:dns_config_service_android.cc(115)] Failed to read DnsConfig.
+11-01 08:47:53.323 E/ocessService0:0( 8822): Not starting debugger since process cannot load the jdwp agent.
+11-01 08:47:53.330 I/GsaVoiceInteractionSrv( 1649): O received Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 (has extras) }
+11-01 08:47:53.337 D/ActivityManager(  519): sync unfroze 1575 com.google.android.apps.wellbeing for 7
+11-01 08:47:53.344 E/chromium( 8786): [ERROR:simple_version_upgrade.cc(152)] Failed to write a new fake index.
+11-01 08:47:53.344 E/chromium( 8786): [ERROR:simple_version_upgrade.cc(152)] Failed to write a new fake index.
+11-01 08:47:53.353 D/CompatibilityChangeReporter( 8822): Compat change id reported: 171979766; UID 99002; state: ENABLED
+11-01 08:47:53.354 D/CompatibilityChangeReporter( 8822): Compat change id reported: 242716250; UID 99002; state: ENABLED
+11-01 08:47:53.367 I/LoadedApk( 8822): No resource references to update in package com.google.android.trichromelibrary
+11-01 08:47:53.368 I/cr_WebViewApkApp( 8822): Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+11-01 08:47:53.368 I/ActivityManager(  519): Flag disabled. Ignoring finishAttachApplication from uid: 99002. pid: 8822
+11-01 08:47:53.369 W/SystemServiceRegistry( 8822): No service published for: virtualdevice
+11-01 08:47:53.369 I/cr_ChildProcessService( 8822): Creating new ChildProcessService pid=8822
+11-01 08:47:53.369 D/CompatibilityChangeReporter( 8786): Compat change id reported: 214741472; UID 10193; state: ENABLED
+11-01 08:47:53.373 D/CompatibilityChangeReporter( 8786): Compat change id reported: 171228096; UID 10193; state: ENABLED
+11-01 08:47:53.375 I/Fitness ( 5340): OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+11-01 08:47:53.389 I/Fitness ( 5340): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+11-01 08:47:53.393 I/ProximityAuth( 5340): [RecentAppsMediator] Package added: (user=UserHandle{0}) com.sonali.punaai
+11-01 08:47:53.396 W/GCM     ( 5340): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+11-01 08:47:53.400 I/FontLog ( 5340): Package com.sonali.punaai has no metadata [CONTEXT service_id=132 ]
+11-01 08:47:53.400 W/GCM     ( 5340): Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package: flg=0x4000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+11-01 08:47:53.407 I/Fitness ( 5340): OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x5000010 pkg=com.google.android.gms cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+11-01 08:47:53.410 D/AutofillManager( 8786): Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+11-01 08:47:53.417 I/TextToSpeech( 8786): Sucessfully bound to com.google.android.tts
+11-01 08:47:53.420 D/TextToSpeechManagerPerUserService(  519): Trying to start connection to TTS engine: com.google.android.tts
+11-01 08:47:53.420 D/TextToSpeechManagerPerUserService(  519): Connected successfully to TTS engine: com.google.android.tts
+11-01 08:47:53.421 I/TextToSpeech( 8786): Connected to TTS engine
+11-01 08:47:53.424 I/Fitness ( 5340): FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+11-01 08:47:53.426 I/cr_LibraryLoader( 8822): Successfully loaded native library
+11-01 08:47:53.426 W/RankedDispatcher( 2999): The requested voice is not available for this app identifier
+11-01 08:47:53.427 I/GoogleTTSServiceImpl( 2999): currentLocale = en-US
+11-01 08:47:53.427 W/RankedDispatcher( 2999): The requested voice is not available for this app identifier
+11-01 08:47:53.428 I/GoogleTTSServiceImpl( 2999): For default lang en-us is name en-US-language (en-us-x-iog-server)
+11-01 08:47:53.429 I/cr_CachingUmaRecorder( 8822): Flushed 2 samples from 2 histograms.
+11-01 08:47:53.435 I/TextToSpeech( 8786): Setting up the connection to TTS engine...
+11-01 08:47:53.436 W/SystemServiceRegistry( 8822): No service published for: uimode
+11-01 08:47:53.439 W/cr_media( 8786): BLUETOOTH_CONNECT permission is missing.
+11-01 08:47:53.440 D/CompatibilityChangeReporter( 8786): Compat change id reported: 237531167; UID 10193; state: DISABLED
+11-01 08:47:53.441 W/OpenGLRenderer( 8786): Unknown dataspace 0
+11-01 08:47:53.445 W/cr_media( 8786): registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+11-01 08:47:53.458 I/cr_VariationsUtils( 2858): Throttling seed download job
+11-01 08:47:53.458 I/cr_VariationsUtils( 2858): Writing new seed to app's data directory
+11-01 08:47:53.470 D/CompatibilityChangeReporter( 8786): Compat change id reported: 193247900; UID 10193; state: ENABLED
+11-01 08:47:53.473 D/CoreBackPreview(  519): Window{5bb0cee u0 com.sonali.punaai/com.sonali.punaai.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@290c59b, mPriority=-1, mIsAnimationCallback=false}
+11-01 08:47:53.473 D/CoreBackPreview(  519): Window{5bb0cee u0 com.sonali.punaai/com.sonali.punaai.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@4bb8d38, mPriority=0, mIsAnimationCallback=false}
+11-01 08:47:53.492 W/ServiceManagerCppClient(  399): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10193 pid=8786
+11-01 08:47:53.492 D/PermissionCache(  399): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10193 => denied (124 us)
+11-01 08:47:53.492 W/ServiceManagerCppClient(  399): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10193 pid=0
+11-01 08:47:53.492 D/PermissionCache(  399): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10193 => denied (700 us)
+11-01 08:47:53.492 W/ServiceManagerCppClient(  399): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10193 pid=0
+11-01 08:47:53.492 D/PermissionCache(  399): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10193 => denied (111 us)
+11-01 08:47:53.492 W/ServiceManagerCppClient(  399): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10193 pid=8786
+11-01 08:47:53.492 D/PermissionCache(  399): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10193 => denied (761 us)
+11-01 08:47:53.493 I/FontLog ( 5340): Received query name=Google Sans&weight=700&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+11-01 08:47:53.493 W/ServiceManagerCppClient(  399): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10193 pid=0
+11-01 08:47:53.493 D/PermissionCache(  399): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10193 => denied (877 us)
+11-01 08:47:53.495 I/FontLog ( 5340): Query [name=Google Sans&weight=700&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-01 08:47:53.500 I/FontLog ( 5340): Fetch {Google Sans, wdth 100.0, wght 700, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+11-01 08:47:53.501 W/ServiceManagerCppClient(  399): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10193 pid=8786
+11-01 08:47:53.501 D/PermissionCache(  399): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10193 => denied (8361 us)
+11-01 08:47:53.504 W/OpenGLRenderer( 8786): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-01 08:47:53.736 I/servicemanager(    0): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-01 08:47:53.531 I/hwservicemanager(  136): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-01 08:47:53.531 I/Gralloc4( 8786): mapper 4.x is not supported
+11-01 08:47:53.551 I/Auth    ( 5441): [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+11-01 08:47:53.552 I/FontLog ( 5340): Pulling font file for id = 28, cache size = 11 [CONTEXT service_id=132 ]
+11-01 08:47:53.564 W/ChimeraUtils( 5340): Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 08:47:53.571 D/BoundBrokerSvc( 5441): onBind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+11-01 08:47:53.572 D/BoundBrokerSvc( 5441): Loading bound service for intent: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+11-01 08:47:53.573 I/BlockstoreStorage( 5441): Clearing Blockstore Data for package com.sonali.punaai [CONTEXT service_id=258 ]
+11-01 08:47:53.574 I/BlockstoreStorage( 5441): Keyless data not found or its IsLastInstallationData = false. [CONTEXT service_id=258 ]
+11-01 08:47:53.574 D/EGL_emulation(  841): app_time_stats: avg=1005.14ms min=1005.14ms max=1005.14ms count=1
+11-01 08:47:53.575 I/Dck     ( 5441): doesDeviceHaveSupportedWirelessCapabilities: wccSysProp:0, wccMendel:3, deviceWccOverride:false [CONTEXT service_id=289 ]
+11-01 08:47:53.575 I/Dck     ( 5441): isDckModuleEligible: isAtLeastR:true, hasWccSupport:false, downloadAllowed:false [CONTEXT service_id=289 ]
+11-01 08:47:53.576 W/Dck     ( 5441): Dck module not eligible for asynchronous downloading [CONTEXT service_id=289 ]
+11-01 08:47:53.584 I/FontLog ( 5340): Received query name=Noto Color Emoji Compat&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+11-01 08:47:53.585 D/CompatibilityChangeReporter(  519): Compat change id reported: 161252188; UID 10193; state: DISABLED
+11-01 08:47:53.585 I/FontLog ( 5340): Query [name=Noto Color Emoji Compat&weight=400&besteffort=false] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-01 08:47:53.586 I/FontLog ( 5340): Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+11-01 08:47:53.590 D/BoundBrokerSvc( 5340): onBind: Intent { act=com.google.android.gms.nearby.exposurenotification.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps }
+11-01 08:47:53.590 D/BoundBrokerSvc( 5340): Loading bound service for intent: Intent { act=com.google.android.gms.nearby.exposurenotification.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps }
+11-01 08:47:53.602 W/ChimeraUtils( 5340): Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 08:47:53.610 I/FontLog ( 5340): Pulling font file for id = 29, cache size = 6 [CONTEXT service_id=132 ]
+11-01 08:47:53.619 I/FontLog ( 5340): Received query name=Google Sans&weight=400&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+11-01 08:47:53.620 I/FontLog ( 5340): Query [name=Google Sans&weight=400&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-01 08:47:53.621 I/FontLog ( 5340): Font PFD returned from cache for {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-01 08:47:53.623 I/FontLog ( 5340): Fetch {Google Sans, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+11-01 08:47:53.627 D/BoundBrokerSvc( 5441): onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+11-01 08:47:53.628 I/FontLog ( 5340): Pulling font file for id = 30, cache size = 7 [CONTEXT service_id=132 ]
+11-01 08:47:53.635 I/FontLog ( 5340): Received query name=Google Sans&weight=500&besteffort=false, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+11-01 08:47:53.636 I/FontLog ( 5340): Query [name=Google Sans&weight=500&besteffort=false] resolved to {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-01 08:47:53.636 I/FontLog ( 5340): Font PFD returned from cache for {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-01 08:47:53.638 I/FontLog ( 5340): Fetch {Google Sans, wdth 100.0, wght 500, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+11-01 08:47:53.651 W/ChimeraUtils( 5340): Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 08:47:53.657 I/FontLog ( 5340): Pulling font file for id = 31, cache size = 8 [CONTEXT service_id=132 ]
+11-01 08:47:53.673 W/ChimeraUtils( 5340): Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 08:47:53.710 W/ChimeraUtils( 5340): Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 08:47:53.711 D/nativeloader( 5441): Configuring clns-10 for other apk . target_sdk_version=33, uses_libraries=ALL, library_path=/data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk!/lib/x86_64:/data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand
+11-01 08:47:53.713 I/Icing   ( 5441): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+11-01 08:47:53.718 W/ChimeraUtils( 5340): Module com.google.android.gms.nearby_en missing resource null(0)
+11-01 08:47:53.727 D/ConnectivityService(  519): requestNetwork for uid/pid:10132/5441 activeRequest: null callbackRequest: 194 [NetworkRequest [ REQUEST id=195, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10132 RequestorUid: 10132 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+11-01 08:47:53.728 D/ConnectivityService(  519): NetReassign [195 : null → 100] [c 0] [a 1] [i 0]
+11-01 08:47:53.729 D/WifiNetworkFactory(  519): got request NetworkRequest [ REQUEST id=195, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10132 RequestorUid: 10132 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+11-01 08:47:53.730 D/UntrustedWifiNetworkFactory(  519): got request NetworkRequest [ REQUEST id=195, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10132 RequestorUid: 10132 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+11-01 08:47:53.730 D/OemPaidWifiNetworkFactory(  519): got request NetworkRequest [ REQUEST id=195, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10132 RequestorUid: 10132 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+11-01 08:47:53.730 D/MultiInternetWifiNetworkFactory(  519): got request NetworkRequest [ REQUEST id=195, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10132 RequestorUid: 10132 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+11-01 08:47:53.731 D/ConnectivityService(  519): NetReassign [no changes] [c 1] [a 0] [i 1]
+11-01 08:47:53.731 D/BoundBrokerSvc( 5441): onBind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-01 08:47:53.732 D/BoundBrokerSvc( 5441): Loading bound service for intent: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-01 08:47:53.735 I/cr_CronetLibraryLoader( 5441): Cronet version: 113.0.5672.51, arch: x86_64
+11-01 08:47:53.757 E/native  ( 5441): E0000 00:00:1793522873.757547    5558 document-store.cc:1358] Failed to update per-doc-data with usage report
+11-01 08:47:53.762 I/Icing   ( 5441): Usage reports ok 1, Failed Usage reports 1, indexed 0, rejected 0
+11-01 08:47:53.776 I/Icing   ( 5441): IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+11-01 08:47:53.791 W/ServiceManagerCppClient(  519): Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10193 pid=0
+11-01 08:47:53.791 D/PermissionCache(  519): checking android.permission.ROTATE_SURFACE_FLINGER for uid=10193 => denied (169 us)
+11-01 08:47:53.791 W/ServiceManagerCppClient(  519): Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10193 pid=0
+11-01 08:47:53.793 D/PermissionCache(  519): checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10193 => denied (1217 us)
+11-01 08:47:53.793 W/ServiceManagerCppClient(  519): Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10193 pid=0
+11-01 08:47:53.793 D/PermissionCache(  519): checking android.permission.ACCESS_SURFACE_FLINGER for uid=10193 => denied (128 us)
+11-01 08:47:53.799 I/cujd    ( 5441): Network metric disabled. Skip initializing network monitor.
+11-01 08:47:53.816 I/resolv  (  335): GetAddrInfoHandler::run: {100 786532 100 983140 10132 0}
+11-01 08:47:53.819 I/ActivityTaskManager(  519): Displayed com.sonali.punaai/.MainActivity for user 0: +766ms
+11-01 08:47:53.821 I/resolv  (  335): res_nmkquery: (QUERY, IN, A)
+11-01 08:47:53.826 I/resolv  (  335): res_nmkquery: (QUERY, IN, AAAA)
+11-01 08:47:53.834 I/resolv  (  335): res_nsend: used send_dg 176 terrno: 0
+11-01 08:47:53.834 I/resolv  (  335): doQuery: rcode=0, ancount=8, return value=176
+11-01 08:47:53.839 I/resolv  (  335): res_nsend: used send_dg 272 terrno: 0
+11-01 08:47:53.839 I/resolv  (  335): doQuery: rcode=0, ancount=8, return value=272
+11-01 08:47:53.850 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.857 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.872 I/RecognitionServiceImpl( 2999): RecognitionService#onStartListening
+11-01 08:47:53.873 I/Icing   ( 5441): Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+11-01 08:47:53.874 I/RecognitionServiceInten( 2999): Trigger application overridden to com.sonali.punaai.debug
+11-01 08:47:53.874 I/IntentParsingUtil( 2999): Using language specified in RecognizerIntent: hi-IN
+11-01 08:47:53.874 I/RecognitionServiceImpl( 2999): Create an attribution context to skip platform permission check
+11-01 08:47:53.880 I/ALT.AFClient( 2999): #audio# acquire audio focus for client(TNG_TRANSCRIPTION)
+11-01 08:47:53.880 I/ALT.AFCSessionMgr( 2999): #audio# acquire audio focus for client(TNG_TRANSCRIPTION) session(token(9))
+11-01 08:47:53.881 I/ALT.ARCProvider( 2999): #audio# activate audio request client(TNG_TRANSCRIPTION) and start listening
+11-01 08:47:53.881 I/ALT.ARCProvider( 2999): #audio# activate audio request client(TNG_TRANSCRIPTION)
+11-01 08:47:53.881 I/ALT.ClientsMgr( 2999): #audio# deactivate(status(DEACTIVATED_NEW_CLIENT)) client(name(TNG_TRANSCRIPTION), token(245792412))
+11-01 08:47:53.881 I/ALT.ARCRoutingMgr( 2999): #audio# disconnect(reason(DISCONNECT_REASON_CLIENT_DEACTIVATED)) audio route(BUILTIN_AUDIO_ROUTE)
+11-01 08:47:53.882 W/InputManager-JNI(  519): Input channel object '8463f6c Splash Screen com.sonali.punaai (client)' was disposed without first being removed with the input manager!
+11-01 08:47:53.883 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.886 I/ALT.ClientsMgr( 2999): #audio# activate audio request client(name(TNG_TRANSCRIPTION), token(1137784010))
+11-01 08:47:53.886 I/ALT.ARClient( 2999): #audio# start listening for audio request client(token(1137784010))
+11-01 08:47:53.886 I/MediaFocusControl(  519): requestAudioFocus() from uid/pid 10147/2999 AA=USAGE_MEDIA/CONTENT_TYPE_MUSIC clientId=android.media.AudioManager@b5c0217efn@e9feea5 callingPack=com.google.android.tts req=4 flags=0x0 sdk=33
+11-01 08:47:53.889 I/ALT.ARCSessionMgr( 2999): #audio# audio request client(token(1137784010)) session(token(1951868696)) is being started on route(BUILTIN_AUDIO_ROUTE)
+11-01 08:47:53.889 I/ALT.SourceMgr( 2999): #audio# audio request client(token(1137784010)) session(token(1951868696)) is being started
+11-01 08:47:53.890 I/ALT.SourceSequencer( 2999): #audio# open audio source(egq@d6d127a)
+11-01 08:47:53.890 I/ALT.AudioRecordSource( 2999): #audio# open audio source(egq@d6d127a)
+11-01 08:47:53.891 I/SodaSpeechRecognizer( 2999): Offline recognizer - start listening
+11-01 08:47:53.891 I/SodaSpeechRecognizer( 2999): Initialize Soda [locale: hi-IN]
+11-01 08:47:53.891 I/DefaultLPManager( 2999): #getAvailablePackages
+11-01 08:47:53.891 I/egf     ( 2999): #audio# createAudioRecordWithAttribution
+11-01 08:47:53.892 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.892 I/evk     ( 2999): #getDownloadableLanguagePacks
+11-01 08:47:53.902 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.905 W/SystemLPSourceImpl( 2999): #getAvailablePackages: Note there is not reason to call this method, as getInstalledPackages() returns the same LanguagePacks for this impl.
+11-01 08:47:53.906 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.908 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.917 I/AudioService.FadeOutManager(  519): unfadeOutUid() uid:10147
+11-01 08:47:53.918 I/ALT.AudioEventsHolder( 2999): #audio# audio focus session(token(9)) acquire status(ACQUIRED)
+11-01 08:47:53.919 I/AudioLibraryAudioContro( 2999): Audio focus acquiring status: ACQUIRED
+11-01 08:47:53.924 D/CompatibilityChangeReporter(  519): Compat change id reported: 214016041; UID 10193; state: ENABLED
+11-01 08:47:53.924 I/DefaultLPManager( 2999): #getInstalledPackages
+11-01 08:47:53.924 I/ImeTracker(  519): com.sonali.punaai:8499cb1c: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+11-01 08:47:53.925 I/ImeTracker(  519): com.sonali.punaai:8499cb1c: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-01 08:47:53.925 I/evk     ( 2999): #getInstalledPackages
+11-01 08:47:53.933 D/TrafficStats( 5441): tagSocket(128) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.934 I/GoogleInputMethodService( 1559): GoogleInputMethodService.onFinishInput():3227 
+11-01 08:47:53.935 I/GoogleInputMethodService( 1559): GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 0, unlocked = true
+11-01 08:47:53.936 I/GoogleInputMethodService( 1559): GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.sonali.punaai fieldId=0 fieldName=null extras=null}, false)
+11-01 08:47:53.936 I/GoogleInputMethodService( 1559): GoogleInputMethodService.shouldHideHeaderOnInitialState():4008 ShouldHideHeaderOnInitialState = false
+11-01 08:47:53.943 D/TrafficStats( 5441): tagSocket(136) with statsTag=0x8004901, statsUid=10132
+11-01 08:47:53.951 I/GoogleInputMethodService( 1559): GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 2, unlocked = true
+11-01 08:47:53.972 I/Icing   ( 5441): Indexing com.google.android.gms-apps from com.google.android.gms
+11-01 08:47:53.992 I/SodaLPDirGenerator( 2999): Found matching installed packs: 
+11-01 08:47:53.994 D/KeyguardService(  841): setOccluded(false)
+11-01 08:47:53.995 D/KeyguardViewMediator(  841): setOccluded(false)
+11-01 08:47:54.004 D/KeyguardViewMediator(  841): handleSetOccluded(false)
+11-01 08:47:54.006 I/DefaultLPManager( 2999): #getAvailablePackages
+11-01 08:47:54.006 I/evk     ( 2999): #getDownloadableLanguagePacks
+11-01 08:47:54.008 W/SystemLPSourceImpl( 2999): #getAvailablePackages: Note there is not reason to call this method, as getInstalledPackages() returns the same LanguagePacks for this impl.
+11-01 08:47:54.010 W/SodaLPDirGenerator( 2999): Returning no LP, as MDD does not support this locale.
+11-01 08:47:54.015 E/SodaSpeechRecognizer( 2999): Failed to get language pack of required locale: error 12
+11-01 08:47:54.016 W/RecognitionClient( 2999): #onError space agsa_transcription_LANGUAGE_PACK_ERROR code 12!
+11-01 08:47:54.016 I/ALT.ARCSession( 2999): #audio# stop(reason(CLIENT_REQUESTED)) listening audio request client(token(1137784010)) session(token(1951868696))
+11-01 08:47:54.016 I/ALT.ARCSessionMgr( 2999): #audio# stop(reason(CLIENT_REQUESTED)) listening audio request session(token(1951868696))
+11-01 08:47:54.018 I/ALT.SourceMgr( 2999): #audio# stopListening
+11-01 08:47:54.019 I/ALT.SourceSequencer( 2999): #audio# close audio source(egq@d6d127a)
+11-01 08:47:54.019 I/ALT.AFCSession( 2999): #audio# release audio focus session(token(9))
+11-01 08:47:54.025 I/AudioFlinger(  395): AudioFlinger's thread 0x7971c020abb0 tid=8923 ready to run
+11-01 08:47:54.033 D/AudioFlinger(  395): Client defaulted notificationFrames to 3500 for frameCount 7000
+11-01 08:47:54.037 D/EGL_emulation(  841): app_time_stats: avg=1192.20ms min=17.74ms max=2366.66ms count=2
+11-01 08:47:54.038 D/AF::TrackHandle(  395): OpPlayAudio: track:89 usage:10 not muted
+11-01 08:47:54.038 I/MediaFocusControl(  519): abandonAudioFocus() from uid/pid 10147/2999 clientId=android.media.AudioManager@b5c0217efn@e9feea5
+11-01 08:47:54.039 I/AudioService.FadeOutManager(  519): unfadeOutUid() uid:10152
+11-01 08:47:54.043 I/ALT.AudioRecordSource( 2999): #audio# create audio stream for audio record source(identity(egq@d6d127a), recordId(401))
+11-01 08:47:54.053 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.054 D/audioserver(  395): -129
+11-01 08:47:54.054 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.054 D/audioserver(  395): -129
+11-01 08:47:54.057 E/android.hardware.audio@7.1-impl.ranchu(  341): updateSinkMetadata:364 failure: Result::NOT_SUPPORTED
+11-01 08:47:54.058 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.058 D/audioserver(  395): -129
+11-01 08:47:54.066 I/Icing   ( 5441): Indexing done com.google.android.gms-apps
+11-01 08:47:54.067 I/Icing   ( 5441): Indexing com.google.android.gms-apps from com.google.android.gms
+11-01 08:47:54.067 I/ely     ( 2999): #audio# AudioRequestListeningSession start listening status: OPENED
+11-01 08:47:54.068 I/Icing   ( 5441): Indexing done com.google.android.gms-apps
+11-01 08:47:54.074 I/ALT.AudioEventsHolder( 2999): #audio# audio request client(token(1137784010)) session(token(1951868696)) start listening status(OPENED)
+11-01 08:47:54.074 I/AudioLibraryAudioContro( 2999): Audio focus releasing status: RELEASED
+11-01 08:47:54.074 I/MicUpdateReporter( 2999): #audio# reportMicUpdate
+11-01 08:47:54.075 I/ALT.AudioEventsHolder( 2999): #audio# audio focus session(token(9)) release status(RELEASED)
+11-01 08:47:54.076 I/AudioPlayer( 2999): Playing beep com.google.android.tts:raw/failure (size 14000 bytes)
+11-01 08:47:54.077 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.077 D/audioserver(  395): -129
+11-01 08:47:54.105 I/ALT.FirstByteReporter( 2999): #audio# mark first byte read result as non-empty, 20ms spent reading
+11-01 08:47:54.107 I/resolv  (  335): GetAddrInfoHandler::run: {100 100 100 983140 10193 0}
+11-01 08:47:54.107 I/resolv  (  335): res_nmkquery: (QUERY, IN, AAAA)
+11-01 08:47:54.107 I/resolv  (  335): resolv_cache_lookup: FOUND IN CACHE entry=0x7a0284a89b90
+11-01 08:47:54.107 I/resolv  (  335): doQuery: rcode=0, ancount=8, return value=273
+11-01 08:47:54.110 I/ALT.AudioRecordSource( 2999): #audio# close audio source(identity(egq@d6d127a), recordId(401))
+11-01 08:47:54.118 I/resolv  (  335): res_nmkquery: (QUERY, IN, A)
+11-01 08:47:54.132 I/resolv  (  335): res_nsend: used send_dg 177 terrno: 0
+11-01 08:47:54.132 D/android.hardware.audio@7.1-impl.ranchu(  341): TinyalsaSource::read:143 pcm_readi was late delivering frames, inserting 16000 us of silence
+11-01 08:47:54.132 I/resolv  (  335): doQuery: rcode=0, ancount=8, return value=177
+11-01 08:47:54.133 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.134 D/audioserver(  395): -129
+11-01 08:47:54.138 E/android.hardware.audio@7.1-impl.ranchu(  341): updateSinkMetadata:364 failure: Result::NOT_SUPPORTED
+11-01 08:47:54.179 I/ALT.AudioEventsHolder( 2999): #audio# audio request client(token(1137784010)) session(token(1951868696)) stop listening status(CLOSED)
+11-01 08:47:54.181 I/ely     ( 2999): #audio# AudioRequestListeningSession stop listening status: CLOSED
+11-01 08:47:54.189 I/AudioLibraryAudioContro( 2999): Mic closing result: # ecx@7bca4
+11-01 08:47:54.196 I/MicUpdateReporter( 2999): #audio# reportMicUpdate
+11-01 08:47:54.206 I/ALT.BytesAccessorBuffer( 2999): #audio# mark buffer(eew@a944e07) closed, available bytes(2048)
+11-01 08:47:54.208 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.208 D/audioserver(  395): -129
+11-01 08:47:54.295 I/cr_CronetUrlRequestContext( 5441): destroyNativeStreamLocked org.chromium.net.impl.CronetBidirectionalStream@bf78cf0
+11-01 08:47:54.296 W/AudioInputStreamProduce( 2999): #audio# read failed: read EOF from AudioAccessor.
+11-01 08:47:54.552 D/BufferPoolAccessor2.0(  469): bufferpool2 0x7f20702a19d8 : 9(294912 size) total buffers - 5(163840 size) used buffers - 11907/11916 (recycle/alloc) - 18/23766 (fetch/transfer)
+11-01 08:47:54.553 D/BufferPoolAccessor2.0(  478): bufferpool2 0x74e51a79c188 : 4(65536 size) total buffers - 1(16384 size) used buffers - 11878/11882 (recycle/alloc) - 6/11853 (fetch/transfer)
+11-01 08:47:54.557 I/AudioPlayer( 2999): Audio track end of file reached
+11-01 08:47:54.559 D/AudioTrack( 2999): stop(66): called with 7000 frames delivered
+11-01 08:47:54.635 D/EGL_emulation(  841): app_time_stats: avg=28.48ms min=2.69ms max=218.15ms count=28
+11-01 08:47:54.684 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.684 D/audioserver(  395): -129
+11-01 08:47:54.707 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:54.707 D/audioserver(  395): -129
+11-01 08:47:54.857 I/AidlLazyServiceRegistrar( 8755): Process has 0 (of 1 available) client(s) in use after notification artd has clients: 0
+11-01 08:47:54.857 I/AidlLazyServiceRegistrar( 8755): Trying to shut down the service. No clients in use for any service in process.
+11-01 08:47:55.064 I/servicemanager(    0): Notifying artd they don't (previously: do) have clients when we now have no record of a client
+11-01 08:47:55.067 I/servicemanager(    0): Unregistering artd
+11-01 08:47:55.069 I/BpBinder(    0): onLastStrongRef automatically unlinking death recipients:
+11-01 08:47:55.072 I/init    (    0): Service 'artd' (pid 8755) exited with status 0 oneshot service took 2.317000 seconds in background
+11-01 08:47:54.861 I/AidlLazyServiceRegistrar( 8755): Unregistered all clients and exiting
+11-01 08:47:55.075 I/init    (    0): Sending signal 9 to service 'artd' (pid 8755) process group...
+11-01 08:47:55.077 I/libprocessgroup(    0): Successfully killed process cgroup uid 1082 pid 8755 in 0ms
+11-01 08:47:55.661 D/EGL_emulation(  841): app_time_stats: avg=112.49ms min=8.68ms max=263.98ms count=9
+11-01 08:47:56.135 E/TaskPersister(  519): File error accessing recents directory (directory doesn't exist?).
+11-01 08:47:56.153 D/StatusBarIconController(  841): ignoring old pipeline callback because the new wifi icon is enabled
+11-01 08:47:56.342 D/AudioFlinger(  395): mixer(0x7971c3e48930) throttle end: throttle time(22)
+11-01 08:47:56.387 D/AudioFlinger(  395): mixer(0x7971c3e48930) throttle end: throttle time(24)
+11-01 08:47:56.827 D/EGL_emulation(  841): app_time_stats: avg=14.61ms min=1.48ms max=106.79ms count=18
+11-01 08:47:56.831 D/AudioFlinger(  395): mixer(0x7971c3e48930) throttle end: throttle time(40)
+11-01 08:47:56.920 D/StatusBarIconController(  841): ignoring old pipeline callbacks, because the new mobile icons are enabled
+11-01 08:47:57.131 D/AudioFlinger(  395): mixer(0x7971c3e48930) throttle end: throttle time(12)
+11-01 08:47:57.538 D/AudioFlinger(  395): mixer(0x7971c3e48930) throttle end: throttle time(50)
+11-01 08:47:57.724 D/EGL_emulation( 8786): app_time_stats: avg=1306.82ms min=10.77ms max=3723.77ms count=3
+11-01 08:47:57.725 I/Choreographer( 8786): Skipped 157 frames!  The application may be doing too much work on its main thread.
+11-01 08:47:57.733 D/EGL_emulation(  841): app_time_stats: avg=439.93ms min=1.29ms max=2982.95ms count=8
+11-01 08:47:57.733 I/OpenGLRenderer( 8786): Davey! duration=3616ms; Flags=0, FrameTimelineVsyncId=144571, IntendedVsync=465238652807, Vsync=465238652807, InputEventId=0, HandleInputStart=465241145948, AnimationStart=465241146188, PerformTraversalsStart=465242492623, DrawStart=465242512801, FrameDeadline=465255319473, FrameInterval=465241142632, FrameStartTime=16666666, SyncQueued=465249424459, SyncStart=465249482699, IssueDrawCommandsStart=465249516772, SwapBuffers=468768762630, FrameCompleted=468855470188, DequeueBufferDuration=4198, QueueBufferDuration=391221, GpuCompleted=468855470188, SwapBuffersCompleted=468852839445, DisplayPresentTime=0, CommandSubmissionCompleted=468768762630, 
+11-01 08:47:57.868 D/EGL_emulation(  841): app_time_stats: avg=32.83ms min=1.89ms max=247.26ms count=15
+11-01 08:47:58.858 D/OomAdjuster(  519): Not killing cached processes
+11-01 08:47:58.859 D/ActivityManager(  519): sync unfroze 1055 com.android.settings for 10
+11-01 08:47:58.864 I/Choreographer( 5352): Skipped 1558 frames!  The application may be doing too much work on its main thread.
+11-01 08:47:58.866 D/ActivityManager(  519): sync unfroze 5352 com.google.android.settings.intelligence for 10
+11-01 08:47:58.866 D/ActivityManager(  519): sync unfroze 3654 com.android.dynsystem:dynsystem for 10
+11-01 08:47:58.867 D/ActivityManager(  519): sync unfroze 3612 com.android.dynsystem for 10
+11-01 08:47:58.867 D/ActivityManager(  519): sync unfroze 2415 com.android.localtransport for 10
+11-01 08:47:58.867 D/ActivityManager(  519): sync unfroze 2060 com.android.keychain for 10
+11-01 08:47:58.867 W/ProcessStats(  519): Tracking association SourceState{5722d68 com.google.android.gms/10132 BFgs #15496} whose proc state 4 is better than process ProcessState{412c8e8 com.google.process.gservices/10132 pkg=com.google.android.gsf} proc state 13 (285 skipped)
+11-01 08:47:58.884 I/netd    (  335): setProcSysNet(4, 2, wlan0, retrans_time_ms, 750) <0.07ms>
+11-01 08:47:58.884 I/netd    (  335): setProcSysNet(4, 2, wlan0, ucast_solicit, 10) <0.01ms>
+11-01 08:47:58.884 I/netd    (  335): setProcSysNet(6, 2, wlan0, retrans_time_ms, 750) <0.02ms>
+11-01 08:47:58.885 I/netd    (  335): setProcSysNet(6, 2, wlan0, ucast_solicit, 10) <0.01ms>
+11-01 08:47:59.083 D/EGL_emulation(  841): app_time_stats: avg=303.85ms min=198.89ms max=597.32ms count=4
+11-01 08:47:59.290 D/AudioTrack(  469): stop(24): called with 657182 frames delivered
+11-01 08:47:59.707 W/AudioTrack(  469): pauseAndWait: timeout expired state:7 still pausing:7 after 40 ms
+11-01 08:47:59.708 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:59.708 D/audioserver(  395): -129
+11-01 08:47:59.709 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:47:59.709 D/audioserver(  395): -129
+11-01 08:47:59.711 D/MediaCodec(  469): keep callback message for reclaim
+11-01 08:47:59.711 I/CCodecConfig(  469): query failed after returning 7 values (BAD_INDEX)
+11-01 08:47:59.712 D/BufferPoolAccessor2.0(  469): bufferpool2 0x7f20702a19d8 : 9(294912 size) total buffers - 5(163840 size) used buffers - 12275/12284 (recycle/alloc) - 18/24500 (fetch/transfer)
+11-01 08:47:59.712 W/Codec2Client(  469): query -- param skipped: index = 1342179345.
+11-01 08:47:59.712 W/Codec2Client(  469): query -- param skipped: index = 2415921170.
+11-01 08:47:59.713 D/BufferPoolAccessor2.0(  478): bufferpool2 0x74e51a79c188 : 4(65536 size) total buffers - 1(16384 size) used buffers - 12245/12249 (recycle/alloc) - 6/12220 (fetch/transfer)
+11-01 08:47:59.713 D/C2SoftVorbisDec(  478): vorbis_dsp_synthesis returned -135; ignored
+11-01 08:47:59.714 D/C2SoftVorbisDec(  478): vorbis_dsp_synthesis returned -135; ignored
+11-01 08:47:59.715 D/AudioTrack(  469): getTimestamp_l(24): device stall time corrected using current time 470843997968
+11-01 08:48:00.033 I/AiAiEcho( 1642): Predicting[0]: 
+11-01 08:48:00.034 I/AiAiEcho( 1642): EchoTargets: 
+11-01 08:48:00.034 I/AiAiEcho( 1642): Filtered by AiAi flag check: 
+11-01 08:48:00.034 I/AiAiEcho( 1642): Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-01 08:48:00.034 I/AiAiEcho( 1642): #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-01 08:48:00.044 W/PageIndicator(  841): Total number of pages invalid: 0. Assuming 1 page.
+11-01 08:48:00.862 D/EGL_emulation(  841): app_time_stats: avg=444.69ms min=20.06ms max=827.06ms count=4
+11-01 08:48:01.862 D/EGL_emulation(  841): app_time_stats: avg=1000.00ms min=1000.00ms max=1000.00ms count=1
+11-01 08:48:01.940 W/BpBinder( 8940): Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+11-01 08:48:01.940 W/ProcessState( 8940): Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+11-01 08:48:01.946 I/hwservicemanager(  136): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-01 08:48:01.946 I/Gralloc4( 8940): mapper 4.x is not supported
+11-01 08:48:02.153 I/servicemanager(    0): Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-01 08:48:02.162 D/StatusBarIconController(  841): ignoring old pipeline callback because the new wifi icon is enabled
+11-01 08:48:02.746 I/logd    (    0): start watching /data/system/packages.list ...
+11-01 08:48:02.747 I/logd    (    0): ReadPackageList, total packages: 201
+11-01 08:48:02.857 D/CompatibilityChangeReporter(  519): Compat change id reported: 261072174; UID 10193; state: ENABLED
+11-01 08:48:02.863 D/EGL_emulation(  841): app_time_stats: avg=1000.13ms min=1000.13ms max=1000.13ms count=1
+11-01 08:48:03.033 I/RecognitionServiceImpl( 2999): RecognitionService#onStartListening
+11-01 08:48:03.033 I/RecognitionServiceInten( 2999): Trigger application overridden to com.sonali.punaai.debug
+11-01 08:48:03.034 I/IntentParsingUtil( 2999): Using language specified in RecognizerIntent: hi-IN
+11-01 08:48:03.034 I/RecognitionServiceImpl( 2999): Create an attribution context to skip platform permission check
+11-01 08:48:03.035 I/ALT.AFClient( 2999): #audio# acquire audio focus for client(TNG_TRANSCRIPTION)
+11-01 08:48:03.035 I/ALT.AFCSessionMgr( 2999): #audio# acquire audio focus for client(TNG_TRANSCRIPTION) session(token(10))
+11-01 08:48:03.036 I/ALT.ARCProvider( 2999): #audio# activate audio request client(TNG_TRANSCRIPTION) and start listening
+11-01 08:48:03.036 I/ALT.ARCProvider( 2999): #audio# activate audio request client(TNG_TRANSCRIPTION)
+11-01 08:48:03.036 I/ALT.ClientsMgr( 2999): #audio# deactivate(status(DEACTIVATED_NEW_CLIENT)) client(name(TNG_TRANSCRIPTION), token(1137784010))
+11-01 08:48:03.036 I/ALT.ARCRoutingMgr( 2999): #audio# disconnect(reason(DISCONNECT_REASON_CLIENT_DEACTIVATED)) audio route(BUILTIN_AUDIO_ROUTE)
+11-01 08:48:03.036 I/MediaFocusControl(  519): requestAudioFocus() from uid/pid 10147/2999 AA=USAGE_MEDIA/CONTENT_TYPE_MUSIC clientId=android.media.AudioManager@b5c0217efn@85a26a0 callingPack=com.google.android.tts req=4 flags=0x0 sdk=33
+11-01 08:48:03.036 I/ALT.ClientsMgr( 2999): #audio# activate audio request client(name(TNG_TRANSCRIPTION), token(795225129))
+11-01 08:48:03.036 I/ALT.ARClient( 2999): #audio# start listening for audio request client(token(795225129))
+11-01 08:48:03.037 I/AudioService.FadeOutManager(  519): unfadeOutUid() uid:10147
+11-01 08:48:03.037 I/ALT.ARCSessionMgr( 2999): #audio# audio request client(token(795225129)) session(token(1567614089)) is being started on route(BUILTIN_AUDIO_ROUTE)
+11-01 08:48:03.037 I/ALT.SourceMgr( 2999): #audio# audio request client(token(795225129)) session(token(1567614089)) is being started
+11-01 08:48:03.037 I/ALT.SourceSequencer( 2999): #audio# open audio source(egq@5e76259)
+11-01 08:48:03.037 I/AudioLibraryAudioContro( 2999): Audio focus acquiring status: ACQUIRED
+11-01 08:48:03.037 I/ALT.AudioEventsHolder( 2999): #audio# audio focus session(token(10)) acquire status(ACQUIRED)
+11-01 08:48:03.037 I/ALT.AudioRecordSource( 2999): #audio# open audio source(egq@5e76259)
+11-01 08:48:03.038 I/egf     ( 2999): #audio# createAudioRecordWithAttribution
+11-01 08:48:03.038 I/SodaSpeechRecognizer( 2999): Offline recognizer - start listening
+11-01 08:48:03.038 I/SodaSpeechRecognizer( 2999): Initialize Soda [locale: hi-IN]
+11-01 08:48:03.038 I/DefaultLPManager( 2999): #getAvailablePackages
+11-01 08:48:03.038 I/evk     ( 2999): #getDownloadableLanguagePacks
+11-01 08:48:03.039 W/SystemLPSourceImpl( 2999): #getAvailablePackages: Note there is not reason to call this method, as getInstalledPackages() returns the same LanguagePacks for this impl.
+11-01 08:48:03.040 I/DefaultLPManager( 2999): #getInstalledPackages
+11-01 08:48:03.040 I/evk     ( 2999): #getInstalledPackages
+11-01 08:48:03.041 I/SodaLPDirGenerator( 2999): Found matching installed packs: 
+11-01 08:48:03.041 I/DefaultLPManager( 2999): #getAvailablePackages
+11-01 08:48:03.041 I/evk     ( 2999): #getDownloadableLanguagePacks
+11-01 08:48:03.042 W/SystemLPSourceImpl( 2999): #getAvailablePackages: Note there is not reason to call this method, as getInstalledPackages() returns the same LanguagePacks for this impl.
+11-01 08:48:03.043 W/SodaLPDirGenerator( 2999): Returning no LP, as MDD does not support this locale.
+11-01 08:48:03.044 I/AudioFlinger(  395): AudioFlinger's thread 0x7971c020abb0 tid=8943 ready to run
+11-01 08:48:03.045 I/ALT.AudioRecordSource( 2999): #audio# create audio stream for audio record source(identity(egq@5e76259), recordId(417))
+11-01 08:48:03.046 E/SodaSpeechRecognizer( 2999): Failed to get language pack of required locale: error 12
+11-01 08:48:03.046 W/RecognitionClient( 2999): #onError space agsa_transcription_LANGUAGE_PACK_ERROR code 12!
+11-01 08:48:03.047 I/ALT.ARCSession( 2999): #audio# stop(reason(CLIENT_REQUESTED)) listening audio request client(token(795225129)) session(token(1567614089))
+11-01 08:48:03.047 I/ALT.ARCSessionMgr( 2999): #audio# stop(reason(CLIENT_REQUESTED)) listening audio request session(token(1567614089))
+11-01 08:48:03.047 I/ALT.SourceMgr( 2999): #audio# stopListening
+11-01 08:48:03.047 I/ALT.SourceSequencer( 2999): #audio# close audio source(egq@5e76259)
+11-01 08:48:03.047 I/ALT.AFCSession( 2999): #audio# release audio focus session(token(10))
+11-01 08:48:03.048 I/MediaFocusControl(  519): abandonAudioFocus() from uid/pid 10147/2999 clientId=android.media.AudioManager@b5c0217efn@85a26a0
+11-01 08:48:03.048 I/AudioService.FadeOutManager(  519): unfadeOutUid() uid:10152
+11-01 08:48:03.048 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.048 D/audioserver(  395): -129
+11-01 08:48:03.048 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.048 D/audioserver(  395): -129
+11-01 08:48:03.049 E/android.hardware.audio@7.1-impl.ranchu(  341): updateSinkMetadata:364 failure: Result::NOT_SUPPORTED
+11-01 08:48:03.050 I/AudioLibraryAudioContro( 2999): Audio focus releasing status: RELEASED
+11-01 08:48:03.050 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.050 D/audioserver(  395): -129
+11-01 08:48:03.050 I/ALT.AudioEventsHolder( 2999): #audio# audio focus session(token(10)) release status(RELEASED)
+11-01 08:48:03.051 I/ALT.AudioEventsHolder( 2999): #audio# audio request client(token(795225129)) session(token(1567614089)) start listening status(OPENED)
+11-01 08:48:03.051 I/MicUpdateReporter( 2999): #audio# reportMicUpdate
+11-01 08:48:03.052 I/ely     ( 2999): #audio# AudioRequestListeningSession start listening status: OPENED
+11-01 08:48:03.052 I/ALT.AudioRecordSource( 2999): #audio# close audio source(identity(egq@5e76259), recordId(417))
+11-01 08:48:03.053 D/AudioFlinger(  395): Client defaulted notificationFrames to 3500 for frameCount 7000
+11-01 08:48:03.053 D/AF::TrackHandle(  395): OpPlayAudio: track:91 usage:10 not muted
+11-01 08:48:03.056 I/AudioPlayer( 2999): Playing beep com.google.android.tts:raw/failure (size 14000 bytes)
+11-01 08:48:03.056 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.056 D/audioserver(  395): -129
+11-01 08:48:03.068 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.068 D/audioserver(  395): -129
+11-01 08:48:03.069 E/android.hardware.audio@7.1-impl.ranchu(  341): updateSinkMetadata:364 failure: Result::NOT_SUPPORTED
+11-01 08:48:03.070 I/ALT.AudioEventsHolder( 2999): #audio# audio request client(token(795225129)) session(token(1567614089)) stop listening status(CLOSED)
+11-01 08:48:03.071 I/ely     ( 2999): #audio# AudioRequestListeningSession stop listening status: CLOSED
+11-01 08:48:03.071 I/MicUpdateReporter( 2999): #audio# reportMicUpdate
+11-01 08:48:03.071 I/AudioLibraryAudioContro( 2999): Mic closing result: # ecx@7bca4
+11-01 08:48:03.075 I/ALT.FirstByteReporter( 2999): #audio# mark first byte read result as non-empty, 16ms spent reading
+11-01 08:48:03.075 I/ALT.BytesAccessorBuffer( 2999): #audio# mark buffer(eew@66f0e2a) closed, available bytes(512)
+11-01 08:48:03.076 W/AudioInputStreamProduce( 2999): #audio# read failed: read EOF from AudioAccessor.
+11-01 08:48:03.085 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.085 D/audioserver(  395): -129
+11-01 08:48:03.164 D/EGL_emulation(  841): app_time_stats: avg=174.03ms min=1.24ms max=4965.46ms count=29
+11-01 08:48:03.308 I/keystore2(  159): system/security/keystore2/src/watchdog.rs:319 - Watchdog thread idle -> terminating. Have a great day.
+11-01 08:48:03.385 I/WorkerManager( 1740): dispose()
+11-01 08:48:03.385 W/A       ( 1740): Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+11-01 08:48:03.526 I/AudioPlayer( 2999): Audio track end of file reached
+11-01 08:48:03.526 D/AudioTrack( 2999): stop(71): called with 7000 frames delivered
+11-01 08:48:03.632 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.632 D/audioserver(  395): -129
+11-01 08:48:03.655 D/audioserver(  395): FGS Logger Transaction failed
+11-01 08:48:03.655 D/audioserver(  395): -129
+11-01 08:48:03.864 D/EGL_emulation(  841): app_time_stats: avg=250.30ms min=17.68ms max=746.85ms count=4
+11-01 08:48:03.945 D/ActivityManager(  519): freezing 2858 com.google.android.webview:webview_service
+11-01 08:48:05.111 D/BufferPoolAccessor2.0(  469): bufferpool2 0x7f20702a19d8 : 9(294912 size) total buffers - 5(163840 size) used buffers - 12808/12817 (recycle/alloc) - 19/25564 (fetch/transfer)
+11-01 08:48:05.111 D/BufferPoolAccessor2.0(  478): bufferpool2 0x74e51a79c188 : 4(65536 size) total buffers - 1(16384 size) used buffers - 12777/12781 (recycle/alloc) - 7/12749 (fetch/transfer)
+11-01 08:48:05.862 D/EGL_emulation(  841): app_time_stats: avg=998.88ms min=998.25ms max=999.50ms count=2
+11-01 08:48:06.225 I/logd    (    0): logdr: UID=2000 GID=2000 PID=8948 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
