@@ -324,6 +324,7 @@ window.__punaSR = function (id, type, p) {
 window.__punaRms = function (db) { document.documentElement.style.setProperty("--lvl", Math.max(0, Math.min(1, (db + 2) / 12)).toFixed(2)); };
 function listen(lang, h) {
   stopListening(true);
+  window.Puna.listens = (window.Puna.listens || 0) + 1;
   SRec.id++; SRec.h = h;
   if (N && N.srStart) { N.srStart(SRec.id, lang); return; }
   var W = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1152,7 +1153,8 @@ bindS("sGroqKey", "groqKey", "change", function (e) { return e.value.trim(); });
 bindS("sGemKey", "geminiKey", "change", function (e) { return e.value.trim(); });
 bindS("sBrain", "brain"); bindS("sLevel", "level"); bindS("sModel", "model"); bindS("sWeb", "web");
 bindS("sCallMe", "callMe", "change", function (e) { return e.value.trim(); }); bindS("sGender", "gender");
-bindS("sReplyLang", "replyLang"); bindS("sSrLang", "srLang"); bindS("sOdia", "odia");
+bindS("sReplyLang", "replyLang"); bindS("sSrLang", "srLang");
+$("sSrLang").addEventListener("change", function () { var st = bgStatus(); if (st && (st.alwaysOn || st.wake)) N.setBackground(st.alwaysOn, st.wake, S.srLang); }); bindS("sOdia", "odia");
 bindS("sSpeed", "speed", "input", function (e) { return parseFloat(e.value); });
 bindS("sAutoSpeak", "autoSpeak", "change", function (e) { return e.checked; });
 bindS("sContinuous", "continuous", "change", function (e) { return e.checked; });
@@ -1182,6 +1184,35 @@ $("sMediaClear").addEventListener("click", function () {
   BHIST.forEach(deleteItemFiles); BHIST = []; save("puna.broadcasts", BHIST); renderBHist(); toast("Cache saaf");
 });
 
+/* ------------------------------------------------------------------ 24/7 background */
+function bgStatus() { try { return N && N.bgStatus ? JSON.parse(N.bgStatus()) : null; } catch (e) { return null; } }
+function renderBg() {
+  var st = bgStatus(), el = $("sBgStat");
+  if (!st) { $("sBgCard").querySelectorAll("input,button").forEach(function (x) { x.disabled = true; }); el.innerHTML = "<span class='no'>Sirf Android app mein</span>"; return; }
+  $("sAlways").checked = st.alwaysOn; $("sWake").checked = st.wake;
+  function chip(ok, a, b) { return "<span class='" + (ok ? "ok" : "no") + "'>" + (ok ? "✓ " + a : "• " + b) + "</span>"; }
+  el.innerHTML = chip(st.running, "Service chal rahi hai", "Service band") + chip(st.notif, "Notification on", "Notification permission chahiye") +
+    chip(st.battery, "Battery limit hata hua", "Battery optimization ON (Android band kar sakta hai)") +
+    (st.wake ? chip(st.overlay, "Apps ke upar khul sakti hai", "‘Apps ke upar dikhao’ do, warna sirf notification aayegi") : "") +
+    (st.wakePending ? "<span class='no'>• Restart ke baad Hey Puna: app ek baar kholo</span>" : "");
+  $("sBattBtn").hidden = st.battery; $("sOverlayBtn").hidden = !st.wake || st.overlay;
+}
+function applyBg() { if (N && N.setBackground) { N.setBackground($("sAlways").checked, $("sWake").checked, S.srLang); setTimeout(renderBg, 800); setTimeout(renderBg, 2500); } }
+$("sAlways").addEventListener("change", function () { applyBg(); if (this.checked) { var st = bgStatus(); if (st && !st.battery) toast("24/7 ke liye ‘Battery limit hatao’ bhi dabao 🔋", 4500); } });
+$("sWake").addEventListener("change", function () {
+  if (this.checked && !confirm("“Hey Puna” mic ko lagatar sunta hai — battery zyada lagegi. On karein?")) { this.checked = false; return; }
+  applyBg(); if (this.checked) { var st = bgStatus(); if (st && !st.overlay) toast("Lock/dusre app se khulne ke liye ‘Apps ke upar dikhao’ allow karo", 5000); }
+});
+$("sBattBtn").addEventListener("click", function () { if (N && N.requestBattery) N.requestBattery(); });
+$("sOverlayBtn").addEventListener("click", function () { if (N && N.requestOverlay) N.requestOverlay(); });
+document.addEventListener("visibilitychange", function () { if (!document.hidden && currentTab === "settings") renderBg(); });
+window.__punaIntent = function (a) {
+  if (!window.Puna.ready) return false;
+  if (a === "talk") { showTab("assistant"); stopAll(); setTimeout(startVoice, 350); }
+  else if (a === "broadcast") showTab("broadcast");
+  return true;
+};
+
 /* ------------------------------------------------------------------ tabs + init */
 var currentTab = "assistant";
 function showTab(t) {
@@ -1191,7 +1222,7 @@ function showTab(t) {
   $("cDrawer").hidden = true;
   if (t !== "assistant") { voiceLoop = false; if ($("orbWrap").dataset.state === "listening") { stopListening(true); setOrb("idle"); } }
   if (t === "chat") renderChat();
-  if (t === "settings") { renderMem(); syncSettingsUI(); }
+  if (t === "settings") { renderMem(); syncSettingsUI(); renderBg(); }
 }
 window.Puna.showTab = showTab;
 $("tabs").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) showTab(b.dataset.tab); });
@@ -1215,6 +1246,8 @@ function init() {
   $("sVoiceMap").innerHTML = VOICES.map(function (v) { return "<div><b>" + v.name + "</b> (" + v.g + ") → " + v.edge + "</div>"; }).join("") + "<div><b>Odia</b> → phone Odia voice, ya Bengali-lipi neural (Archita/Anup), ya Meta MMS Odia</div>";
   if (S.groqKey && !(MODELS.groq || []).length) fetchModels("groq").catch(function () {});
   window.Puna.ready = true;
+  var pendingAct = N && N.consumeIntent ? N.consumeIntent() : "";
+  if (pendingAct) window.__punaIntent(pendingAct);
 }
 window.Puna.S = S;
 window.Puna.VOICES = VOICES;

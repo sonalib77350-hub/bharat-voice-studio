@@ -202,6 +202,18 @@
         <label class="toggle"><input type="checkbox" id="sAutoSpeak" checked><span></span>Jawab bol kar sunao</label>
         <label class="toggle"><input type="checkbox" id="sContinuous" checked><span></span>Lagatar baat (jawab ke baad mic phir chalu)</label>
       </div>
+      <div class="card" id="sBgCard">
+        <h4>⏰ 24/7 Assistant</h4>
+        <label class="toggle"><input type="checkbox" id="sAlways"><span></span>Hamesha chalu (notification mein 🎙️ Talk / ⏹ Stop)</label>
+        <label class="toggle"><input type="checkbox" id="sWake"><span></span>“Hey Puna” hands-free (beta)</label>
+        <div class="bgstat" id="sBgStat"></div>
+        <div class="grid2">
+          <button class="btn" id="sBattBtn">🔋 Battery limit hatao</button>
+          <button class="btn" id="sOverlayBtn">🪟 Apps ke upar dikhao</button>
+        </div>
+        <p class="hint">⚠️ <b>Battery:</b> sirf notification wala mode bahut kam battery leta hai. “Hey Puna” mode mic ko lagatar sunta hai — din bhar mein kaafi battery (aur thoda mobile data, agar phone offline recognition support nahi karta) kha sakta hai; kuch phones har baar halki “beep” bhi karte hain. Charging par ya zarurat ho tab hi on rakho.</p>
+        <p class="hint">Shortcut: app icon ko long-press karo → “Puna se baat”. Quick Settings (upar se swipe) → ✏️ edit → “Puna Talk” tile jodo.</p>
+      </div>
       <div class="card">
         <h4>💾 Memory <small id="sMemCount"></small></h4>
         <label class="toggle"><input type="checkbox" id="sMemOn" checked><span></span>Chat se baatein khud yaad rakho</label>

@@ -8,6 +8,7 @@ Branch `puna-ai` of this repo holds Sonali's **Puna AI** app (separate from Bhar
 - **Memory:** facts auto-extracted from chat, listed in Settings with delete/clear.
 - **Broadcast:** topic → web research → multi-voice script → stitched audio (M4A) → optional Short/Landscape MP4 with animated text → save to Download/PunaAI or share to WhatsApp/Telegram. “Apna script” mode works without any key.
 - **Chat:** multiple conversations, markdown, copy, regenerate, share.
+- **24/7:** Settings → “Hamesha chalu” runs a foreground service with a persistent notification (🎙️ Talk / ⏹ Stop), restarts after reboot, asks to lift battery optimization. Optional “Hey Puna” hands-free mode (beta, on-device SpeechRecognizer loop — uses noticeable battery). Also a Quick Settings tile “Puna Talk” and launcher shortcuts (long-press icon).
 - Builder/IDE (Phase 2) and Automation (Phase 3): coming soon.
 
 | Voice | Gender | Edge neural voice |

@@ -145,7 +145,42 @@ public class MainActivity extends Activity {
                     (OnBackInvokedCallback) this::handleBack);
         }
         initTts();
+        handleIntent(getIntent());
         web.loadUrl(START_URL);
+        PunaService.sync(this);
+    }
+
+    private volatile String pendingAction = "";
+
+    private void handleIntent(Intent i) {
+        if (i == null || i.getAction() == null) return;
+        String a = i.getAction();
+        if (PunaService.ACTION_TALK.equals(a)) {
+            pendingAction = "talk";
+            if (Build.VERSION.SDK_INT >= 27) { setShowWhenLocked(true); setTurnScreenOn(true); }
+            android.app.NotificationManager nm = getSystemService(android.app.NotificationManager.class);
+            if (nm != null) nm.cancel(PunaService.NOTE_WAKE);
+        } else if ("com.sonali.punaai.BROADCAST".equals(a)) {
+            pendingAction = "broadcast";
+        } else return;
+        final String act = pendingAction;
+        main.post(() -> {
+            if (web != null) web.evaluateJavascript("(window.__punaIntent&&window.__punaIntent(" + JSONObject.quote(act) + "))?'1':'0'",
+                    r -> { if (r != null && r.contains("1") && act.equals(pendingAction)) pendingAction = ""; });
+        });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        PunaService.appVisible = true;
     }
 
     private void handleBack() {
@@ -163,6 +198,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        PunaService.appVisible = false;
+        if (Build.VERSION.SDK_INT >= 27) { setShowWhenLocked(false); setTurnScreenOn(false); }
         js("window.__punaLife&&window.__punaLife('pause')");
     }
 
@@ -591,6 +628,77 @@ public class MainActivity extends Activity {
             int[] xy = new int[2];
             if (web != null) web.getLocationOnScreen(xy);
             return xy[0] + "," + xy[1];
+        }
+
+        /** Intent action waiting for the page ("talk" | "broadcast" | ""), cleared when read. */
+        @JavascriptInterface public String consumeIntent() {
+            String a = pendingAction;
+            pendingAction = "";
+            return a;
+        }
+
+        @JavascriptInterface public String bgStatus() {
+            try {
+                android.content.SharedPreferences p = PunaService.prefs(MainActivity.this);
+                android.os.PowerManager pm = (android.os.PowerManager) getSystemService(POWER_SERVICE);
+                boolean batt = Build.VERSION.SDK_INT < 23 || (pm != null && pm.isIgnoringBatteryOptimizations(getPackageName()));
+                boolean notif = Build.VERSION.SDK_INT < 33 || checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
+                return new JSONObject().put("alwaysOn", p.getBoolean("alwaysOn", false)).put("wake", p.getBoolean("wake", false))
+                        .put("running", PunaService.running).put("battery", batt).put("overlay", PunaService.overlayOk(MainActivity.this))
+                        .put("notif", notif).put("wakePending", p.getBoolean("wakePending", false)).put("lastHeard", PunaService.lastHeard)
+                        .put("wakeCycles", PunaService.wakeCycles).toString();
+            } catch (Exception e) { return "{}"; }
+        }
+
+        @JavascriptInterface public void setBackground(boolean alwaysOn, boolean wake, String srLang) {
+            if (!trustedPage) return;
+            PunaService.prefs(MainActivity.this).edit().putBoolean("alwaysOn", alwaysOn).putBoolean("wake", wake)
+                    .putString("srLang", srLang == null || srLang.isEmpty() ? "hi-IN" : srLang).apply();
+            main.post(() -> {
+                if ((alwaysOn || wake) && Build.VERSION.SDK_INT >= 33
+                        && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 204);
+                }
+                if (wake && !hasMic()) requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 205);
+                PunaService.sync(MainActivity.this);
+            });
+        }
+
+        @SuppressLint("BatteryLife")
+        @JavascriptInterface public void requestBattery() {
+            if (!trustedPage || Build.VERSION.SDK_INT < 23) return;
+            main.post(() -> {
+                try {
+                    startActivity(new Intent(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:" + getPackageName())));
+                } catch (Exception e) {
+                    try { startActivity(new Intent(android.provider.Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)); } catch (Exception ignored) {}
+                }
+            });
+        }
+
+        /** Debug builds only: simulate the service hearing a phrase after delayMs (emulator tests have no real voice). */
+        @JavascriptInterface public void wakeTest(int delayMs, String text) {
+            if (!trustedPage || !debuggable) return;
+            main.postDelayed(() -> {
+                try {
+                    startService(new Intent(MainActivity.this, PunaService.class).setAction(PunaService.ACTION_WAKE_TEST).putExtra("text", text));
+                } catch (Exception e) { Log.w(TAG, "wakeTest", e); }
+            }, delayMs);
+        }
+
+        @JavascriptInterface public void requestOverlay() {
+            if (!trustedPage || Build.VERSION.SDK_INT < 23) return;
+            main.post(() -> {
+                try { startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()))); }
+                catch (Exception e) { toast("Settings nahi khul payi"); }
+            });
+        }
+
+        @JavascriptInterface public void openAppSettings() {
+            if (!trustedPage) return;
+            main.post(() -> {
+                try { startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()))); } catch (Exception ignored) {}
+            });
         }
 
         @JavascriptInterface public void srStart(int id, String lang) { if (trustedPage) main.post(() -> srStartMain(id, lang)); }

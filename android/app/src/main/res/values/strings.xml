@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Puna AI</string>
+    <string name="sc_talk">Puna se baat</string>
+    <string name="sc_talk_long">Puna se baat karo (Talk)</string>
+    <string name="sc_bc">Broadcast</string>
+    <string name="tile_label">Puna Talk</string>
 </resources>

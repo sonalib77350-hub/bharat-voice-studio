@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="talk" android:enabled="true" android:icon="@drawable/ic_shortcut_talk"
+        android:shortcutShortLabel="@string/sc_talk" android:shortcutLongLabel="@string/sc_talk_long">
+        <intent android:action="com.sonali.punaai.TALK" android:targetPackage="com.sonali.punaai" android:targetClass="com.sonali.punaai.MainActivity" />
+    </shortcut>
+    <shortcut android:shortcutId="broadcast" android:enabled="true" android:icon="@drawable/ic_shortcut_bc"
+        android:shortcutShortLabel="@string/sc_bc" android:shortcutLongLabel="@string/sc_bc">
+        <intent android:action="com.sonali.punaai.BROADCAST" android:targetPackage="com.sonali.punaai" android:targetClass="com.sonali.punaai.MainActivity" />
+    </shortcut>
+</shortcuts>

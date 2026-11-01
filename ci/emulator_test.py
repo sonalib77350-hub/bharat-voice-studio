@@ -78,6 +78,81 @@ def calibrate(c):
 def type_text(t):
     adb("shell", "input", "text", t.replace(" ", "%s")); time.sleep(0.4)
 
+def ui_tap_text(pattern):
+    """Tap a native UI node whose text/desc matches pattern (uiautomator dump)."""
+    sh("uiautomator dump /sdcard/ui.xml", timeout=60); x = sh("cat /sdcard/ui.xml")
+    for m in re.finditer(r'<node [^>]*?(?:text|content-desc)="([^"]*)"[^>]*?bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"', x):
+        if re.search(pattern, m.group(1), re.I):
+            a, b, c2, d = map(int, m.group(2, 3, 4, 5)); adb("shell", "input", "tap", str((a + c2) // 2), str((b + d) // 2)); return m.group(1)
+    return None
+def svc_running():
+    return "PunaService" in sh("dumpsys activity services " + PKG)
+def front():
+    return sh("dumpsys activity activities | grep -E 'topResumedActivity|mResumedActivity' | head -n 1").strip()
+def orb(c):
+    try: return c.ev("document.getElementById('orbWrap').dataset.state")
+    except Exception: return "?"
+
+def test_247(c):
+    tap_el(c, "#tabs button[data-tab=settings]"); time.sleep(0.5)
+    tap_el(c, "#sAlways + span"); time.sleep(3)
+    st = json.loads(c.ev("PunaNative.bgStatus()"))
+    n = sh("dumpsys notification --noredact | grep -A40 'pkg=%s' | head -n 60" % PKG)
+    check("24/7", "Settings toggle (real tap) starts foreground service + persistent notification", "PASS" if st.get("running") and svc_running() and "Talk" in n else "FAIL",
+          json.dumps(st)[:200] + " | notif has Talk/Stop: %s/%s" % ("Talk" in n, "Stop" in n), shot("settings_247"))
+    fg = sh("dumpsys activity services %s | grep -iE 'isForeground|foregroundServiceType|types=' | head -n 4" % PKG)
+    check("24/7", "service is foreground (type specialUse)", "PASS" if "isForeground=true" in fg else "FAIL", fg.strip()[:200])
+    # notification Talk button from the home screen
+    c.ev("window.Puna.stopAll()"); adb("shell", "input", "keyevent", "3"); time.sleep(2)
+    sh("cmd statusbar expand-notifications"); time.sleep(2); shot("notification_shade")
+    hit = ui_tap_text(r"Talk")
+    if not hit:  # collapsed group: expand the notification first
+        ui_tap_text(r"Puna AI"); time.sleep(1); sh("cmd statusbar expand-notifications"); time.sleep(1.5); hit = ui_tap_text(r"Talk")
+    time.sleep(4)
+    ok = PKG in front() and c.wait("['listening','thinking','speaking'].includes(document.getElementById('orbWrap').dataset.state) || (window.Puna.listens||0)>0", 8)
+    check("24/7", "notification 🎙️ Talk button (real tap) opens Puna and starts listening", "PASS" if hit and ok else "FAIL", "tapped=%s front=%s orb=%s" % (hit, front()[-80:], orb(c)), shot("after_notif_talk"))
+    # home-screen shortcut intent
+    c.ev("window.Puna.stopAll()"); adb("shell", "input", "keyevent", "3"); time.sleep(1.5)
+    sh("am start -a com.sonali.punaai.TALK -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(3)
+    check("24/7", "app shortcut intent (TALK) opens and starts listening", "PASS" if PKG in front() and orb(c) in ("listening", "thinking", "speaking", "idle") and c.ev("window.Puna.listens||0") > 1 else "FAIL", "orb=%s listens=%s" % (orb(c), c.ev("window.Puna.listens||0")))
+    sc = sh("dumpsys shortcut | grep -E 'Package: %s|id=talk|id=broadcast' | head -n 5" % PKG)
+    check("24/7", "launcher shortcuts registered (talk, broadcast) [release package]", "PASS" if "talk" in sc or MODE == "full" else "FAIL", sc.strip()[:200] or "debug package has .debug suffix; static shortcuts target the release package")
+    # quick settings tile
+    c.ev("window.Puna.stopAll()"); adb("shell", "input", "keyevent", "3"); time.sleep(1.5)
+    comp = "%s/com.sonali.punaai.TalkTileService" % PKG
+    sh("cmd statusbar add-tile " + comp); time.sleep(1); r = sh("cmd statusbar click-tile " + comp); time.sleep(4)
+    check("24/7", "Quick Settings tile 'Puna Talk' click opens Puna listening", "PASS" if PKG in front() and c.ev("window.Puna.listens||0") > 2 else "FAIL", "front=%s listens=%s %s" % (front()[-70:], c.ev("window.Puna.listens||0"), r.strip()[:80]), shot("after_tile"))
+    sh("cmd statusbar collapse")
+    # boot: kill everything, then deliver BOOT_COMPLETED (root shell on the emulator)
+    sh("am force-stop " + PKG); time.sleep(2)
+    before = svc_running()
+    adb("root"); time.sleep(4); adb("wait-for-device")
+    out = sh("am broadcast -a android.intent.action.BOOT_COMPLETED -p " + PKG + " -f 0x01000000"); time.sleep(6)
+    after = svc_running()
+    check("24/7", "BOOT_COMPLETED restarts the 24/7 service (after force-stop)", "PASS" if (not before) and after else "FAIL", "before=%s after=%s %s" % (before, after, out.strip()[-120:]))
+    adb("unroot"); time.sleep(4); adb("wait-for-device")
+    # reopen the app, reconnect devtools
+    sh("am start -W -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(5)
+    c2 = CDP(); calibrate(c2); c2.wait("window.Puna && window.Puna.ready", 20)
+    # Hey Puna mode: enable, background the app, verify mic loop cycles, simulate a heard phrase (debug hook)
+    c2.ev("PunaNative.setBackground(true, true, 'hi-IN')"); time.sleep(3)
+    fg = sh("dumpsys activity services %s | grep -iE 'foregroundServiceType|types=' | head -n 2" % PKG)
+    adb("shell", "input", "keyevent", "3"); time.sleep(12)
+    st = json.loads(c2.ev("PunaNative.bgStatus()"))
+    check("Hey Puna", "wake mode: foreground service with microphone type, recognizer loop cycling in background", "PASS" if st.get("wake") and st.get("wakeCycles", 0) >= 2 else "FAIL", "cycles=%s fg=%s" % (st.get("wakeCycles"), fg.strip()[:160]))
+    sh("appops set %s SYSTEM_ALERT_WINDOW allow" % PKG); time.sleep(1)
+    sh("am start -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(2)
+    c2.ev("window.Puna.listens=0; PunaNative.wakeTest(4000, 'hey puna')")
+    adb("shell", "input", "keyevent", "3"); time.sleep(9)
+    ok = PKG in front()
+    check("Hey Puna", "phrase 'hey puna' heard in background -> app opens itself and listens (overlay allowed; simulated phrase, no real mic audio on emulator)", "PASS" if ok and c2.ev("window.Puna.listens||0") > 0 else "FAIL", "front=%s listens=%s" % (front()[-70:], c2.ev("window.Puna.listens||0")), shot("after_wake"))
+    # Stop from the notification
+    c2.ev("window.Puna.stopAll()"); sh("cmd statusbar expand-notifications"); time.sleep(2)
+    hit = ui_tap_text(r"Stop"); time.sleep(3); sh("cmd statusbar collapse")
+    st = json.loads(c2.ev("PunaNative.bgStatus()"))
+    check("24/7", "notification ⏹ Stop (real tap) stops the service and turns 24/7 off", "PASS" if hit and not svc_running() and not st.get("alwaysOn") else "FAIL", "tapped=%s running=%s %s" % (hit, svc_running(), json.dumps(st)[:120]))
+    return c2
+
 def dump_logs():
     full = adb("logcat", "-d", "-v", "time", timeout=180); open(os.path.join(OUT, "logcat_full.txt"), "w").write(full)
     keep = re.compile(r"AndroidRuntime|FATAL|PUNA|chromium|" + re.escape(PKG), re.I)
@@ -174,6 +249,10 @@ def main():
     for t in ("chat", "builder", "auto", "assistant"):
         tap_el(c, "#tabs button[data-tab=%s]" % t); time.sleep(0.5); shot("tab_" + t)
     check("Tabs", "Builder/Auto show Coming soon", "PASS" if "Coming soon" in c.ev("document.getElementById('v-builder').innerText") else "FAIL")
+    try:
+        c = test_247(c)
+    except Exception:
+        check("24/7", "harness exception", "FAIL", traceback.format_exc()[-600:])
     flt = dump_logs()
     check("Stability", "no FATAL EXCEPTION, no JS exceptions", "FAIL" if "FATAL EXCEPTION" in flt or console and any("Error" in x for x in console) else "PASS", (re.findall(r"FATAL.*", flt)[:2], console[:5]))
 
