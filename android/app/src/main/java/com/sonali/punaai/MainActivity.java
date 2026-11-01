@@ -809,6 +809,7 @@ public class MainActivity extends Activity {
             final java.util.concurrent.CountDownLatch l = new java.util.concurrent.CountDownLatch(1);
             main.post(() -> { try { out[0] = s.overlayPos(which); } finally { l.countDown(); } });
             try { l.await(2, java.util.concurrent.TimeUnit.SECONDS); } catch (InterruptedException ignored) {}
+            Log.i(TAG, "overlayPos " + which + " -> " + out[0]);
             return out[0];
         }
 

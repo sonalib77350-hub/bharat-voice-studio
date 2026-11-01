@@ -157,13 +157,32 @@ def test_247(c):
     return c2
 
 
+def overlay_frames():
+    """Frames [x1,y1,x2,y2] of our accessibility-overlay windows from dumpsys window (uiautomator can't see them)."""
+    out = sh("dumpsys window windows", timeout=60); frames = []
+    for blk in re.split(r"\n  Window #", out):
+        if PKG.split(".debug")[0] in blk and re.search(r"ty=ACCESSIBILITY_OVERLAY|type=ACCESSIBILITY_OVERLAY|ty=2032", blk):
+            m = re.search(r"mFrame=\[(\d+),(\d+)\]\[(\d+),(\d+)\]", blk) or re.search(r"frame=\[(\d+),(\d+)\]\[(\d+),(\d+)\]", blk)
+            if m: frames.append(list(map(int, m.groups())))
+    return frames
 def tap_overlay(c, which, pattern):
     hit = ui_tap_text(pattern)
     if hit: return hit
-    pos = c.ev("PunaNative.overlayPos(%s)" % json.dumps(which))
+    pos = None
+    try: pos = c.ev("PunaNative.overlayPos(%s)" % json.dumps(which))
+    except Exception as e: log("overlayPos error %s" % e)
+    log("overlayPos(%s) -> %r" % (which, pos))
     if pos:
-        x, y = pos.split(","); adb("shell", "input", "tap", x, y); return "overlay@" + pos
-    return None
+        x, y = pos.split(","); adb("shell", "input", "tap", x, y); return "overlayPos@" + pos
+    fr = overlay_frames(); log("overlay frames %s" % fr)
+    if not fr: return None
+    if which == "bubble":
+        f = min(fr, key=lambda f: (f[2] - f[0]) * (f[3] - f[1]))
+        x, y = (f[0] + f[2]) // 2, (f[1] + f[3]) // 2
+    else:
+        f = max(fr, key=lambda f: (f[2] - f[0]) * (f[3] - f[1]))
+        x = f[0] + int((f[2] - f[0]) * (0.75 if which == "no" else 0.25)); y = f[3] - int((f[3] - f[1]) * 0.33)
+    adb("shell", "input", "tap", str(x), str(y)); return "frame@%d,%d" % (x, y)
 def tool(c, name, args):
     return c.ev("window.Puna.agTool(%s, %s)" % (json.dumps(name), json.dumps(args)), aw=True) or {}
 def scr_text(r):
@@ -257,6 +276,7 @@ def test_agent(c):
     c.ev("window.Puna.agentRun('test send', {})"); time.sleep(6)
     shot("confirm_overlay"); hit = tap_overlay(c, "no", r"Nahi"); time.sleep(2)
     ok = c.wait("window.Puna.lastAgent", 20); la = c.ev("window.Puna.lastAgent") or {}
+    if not ok: c.ev("window.__punaAgentStop && window.__punaAgentStop('test')"); c.wait("window.Puna.lastAgent", 10)
     check("Agent safety", "'Send' tap needs confirmation: Yes/No card shown over Settings, real tap on 'Nahi' -> not executed", "PASS" if hit and ok and any("Nahi" in l["text"] for l in la.get("log", [])) and not any(l["kind"] == "ok" and "Send" in l["text"] for l in la.get("log", [])) else "FAIL",
           "tapped=%s | %s" % (hit, [l["text"] for l in la.get("log", [])]))
     # confirm 'Haan' path (in-app sheet, real tap)
@@ -279,6 +299,7 @@ def test_agent(c):
     c.ev("window.Puna.lastAgent=null; window.Puna.mockAgent=[{name:'open_app',args:{name:'Settings'}}].concat(Array(30).fill({name:'wait',args:{ms:1500}}))")
     c.ev("window.Puna.agentRun('bubble test', {})"); time.sleep(5); shot("stop_bubble")
     hit = tap_overlay(c, "bubble", r"Stop Puna"); ok = c.wait("window.Puna.lastAgent", 15); la = c.ev("window.Puna.lastAgent") or {}
+    if not ok: c.ev("window.__punaAgentStop && window.__punaAgentStop('test')"); c.wait("window.Puna.lastAgent", 10)
     check("Agent safety", "floating '⏹ Stop Puna' bubble over other apps (real tap) stops the agent", "PASS" if hit and ok and "ruk" in la["result"]["summary"] else "FAIL", "tapped=%s %s" % (hit, la.get("result")))
     # voice/assistant route
     to_app(c); tap_el(c, "#tabs button[data-tab=assistant]")
