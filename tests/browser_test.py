@@ -126,8 +126,17 @@ try:
         pg.click("#sVoiceBtn"); time.sleep(0.2); pg.screenshot(path=OUT + "/08_voice_picker.png")
         check("voice picker lists all 13 voices", pg.locator("#vsList .vitem").count() == 13, pg.locator("#vsList .vitem").count())
         pg.click("#vsList .vitem[data-id=prince]"); check("picker selects Prince", pg.evaluate("window.Puna.S.voice") == "prince")
-        for t in ["builder", "auto"]:
-            pg.click("#tabs button[data-tab=%s]" % t); check("%s tab shows Coming soon" % t, "Coming soon" in pg.inner_text("#v-" + t)); pg.screenshot(path=OUT + "/09_%s.png" % t)
+        pg.click("#tabs button[data-tab=builder]"); check("builder tab shows Coming soon", "Coming soon" in pg.inner_text("#v-builder")); pg.screenshot(path=OUT + "/09_builder.png")
+        pg.click("#tabs button[data-tab=auto]"); time.sleep(0.3)
+        check("Agent tab replaces Coming soon (setup + task box)", "Coming soon" not in pg.inner_text("#v-auto") and pg.is_visible("#agGo"), pg.inner_text("#v-auto")[:120])
+        check("phone-task intent detection", [pg.evaluate("t=>window.Puna.isPhoneTask(t)", t) for t in ["WhatsApp kholo aur Sonali ko good morning bhejo", "torch on karo", "alarm kaise lagate hain", "aaj ki news batao"]] == [True, True, False, False])
+        pg.evaluate("window.__mockCalls.length=0; window.Puna.autoConfirm=false; window.Puna.mockAgent=[{name:'open_app',args:{name:'Settings'}},{name:'tap',args:{index:0}},{name:'tap',args:{text:'Send'}},{name:'finish',args:{summary:'Settings khola.'}}]")
+        pg.fill("#agTask", "Settings kholo"); pg.click("#agGo")
+        pg.wait_for_function("window.Puna.lastAgent", timeout=15000)
+        la = pg.evaluate("window.Puna.lastAgent"); tc = [c for c in pg.evaluate("window.__mockCalls") if c["m"] == "agentTool"]
+        check("agent loop (mock planner): open_app -> tap -> risky 'Send' asked & declined (not executed) -> finish", [c["name"] for c in tc] == ["open_app", "tap"] and any("Nahi" in l["text"] for l in la["log"]) and la["result"]["summary"] == "Settings khola.", ([c["name"] for c in tc], [l["text"] for l in la["log"]]))
+        pg.screenshot(path=OUT + "/10_agent.png", full_page=True)
+        pg.evaluate("delete window.Puna.mockAgent; delete window.Puna.autoConfirm")
         check("no page JS errors", not [e for e in errs if "favicon" not in e], errs[:5])
         b.close()
 finally:

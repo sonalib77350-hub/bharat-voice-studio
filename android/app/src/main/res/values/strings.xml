@@ -4,4 +4,6 @@
     <string name="sc_talk_long">Puna se baat karo (Talk)</string>
     <string name="sc_bc">Broadcast</string>
     <string name="tile_label">Puna Talk</string>
+    <string name="a11y_label">Puna AI Agent</string>
+    <string name="a11y_desc">Puna AI Agent aapke kehne par phone chalata hai: screen padhna, tap/type/scroll, back/home, apps kholna. Sirf tab kaam karta hai jab aap Puna ko koi kaam dete ho. Message bhejne, call, delete ya payment se pehle hamesha poochta hai. Screen ka data kahin save ya upload nahi hota — sirf aapki di hui AI key (Groq) ko us kaam ke liye bheja jata hai.</string>
 </resources>

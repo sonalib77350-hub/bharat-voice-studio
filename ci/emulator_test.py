@@ -156,6 +156,149 @@ def test_247(c):
     check("24/7", "notification ⏹ Stop (real tap) stops the service and turns 24/7 off", "PASS" if hit and not svc_running() and not st.get("alwaysOn") else "FAIL", "tapped=%s running=%s %s" % (hit, svc_running(), json.dumps(st)[:120]))
     return c2
 
+
+def tap_overlay(c, which, pattern):
+    hit = ui_tap_text(pattern)
+    if hit: return hit
+    pos = c.ev("PunaNative.overlayPos(%s)" % json.dumps(which))
+    if pos:
+        x, y = pos.split(","); adb("shell", "input", "tap", x, y); return "overlay@" + pos
+    return None
+def tool(c, name, args):
+    return c.ev("window.Puna.agTool(%s, %s)" % (json.dumps(name), json.dumps(args)), aw=True) or {}
+def scr_text(r):
+    sc = (r or {}).get("screen") or {}
+    return " | ".join((n.get("t") or n.get("d") or "") for n in sc.get("nodes", []))[:400]
+def to_app(c):
+    sh("am start -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(2)
+
+def test_agent(c):
+    A = "%s/com.sonali.punaai.PunaA11yService" % PKG
+    tap_el(c, "#tabs button[data-tab=auto]"); time.sleep(1); shot("agent_tab_before_a11y")
+    st0 = json.loads(c.ev("PunaNative.agentStatus()"))
+    check("Agent", "status before enabling: accessibility off, guided setup shown", "PASS" if not st0.get("a11yLive") and c.ev("!document.getElementById('agA11yBtn').hidden") else "FAIL", json.dumps(st0))
+    # the guided button really opens Android's Accessibility settings
+    tap_el(c, "#agA11yBtn"); time.sleep(3)
+    check("Agent", "'Accessibility ON karo' button opens Android Accessibility settings", "PASS" if "settings" in front().lower() else "FAIL", front()[-90:], shot("a11y_settings"))
+    to_app(c)
+    sh("settings put secure enabled_accessibility_services " + A); sh("settings put secure accessibility_enabled 1"); time.sleep(4)
+    st = json.loads(c.ev("PunaNative.agentStatus()"))
+    check("Agent", "accessibility service enabled via adb settings -> service connected", "PASS" if st.get("a11yLive") else "FAIL", json.dumps(st))
+    c.ev("window.Puna.renderAgent()"); shot("agent_tab_ready")
+    sh("pm revoke %s android.permission.CALL_PHONE" % PKG)
+    # --- scripted tool calls (real Android actions)
+    r = tool(c, "open_app", {"name": "Settings"})
+    check("Agent tools", "open_app 'Settings' -> Settings in front + screen read back", "PASS" if r.get("ok") and "com.android.settings" in front() and (r.get("screen") or {}).get("count", 0) > 3 else "FAIL", "%s | front=%s | %s" % (r.get("opened"), front()[-60:], scr_text(r)[:200]), shot("tool_open_settings"))
+    r = tool(c, "read_screen", {})
+    check("Agent tools", "read_screen returns UI tree (text, clickable, bounds)", "PASS" if r.get("ok") and r["screen"]["count"] > 3 else "FAIL", scr_text(r)[:300])
+    target = next((t for t in ("Network & internet", "Network and internet", "Connected devices", "Display", "Battery") if t in scr_text(r)), "Display")
+    r = tool(c, "tap", {"text": target})
+    check("Agent tools", "tap by text '%s' opens that page" % target, "PASS" if r.get("ok") and target not in ("",) and scr_text(r) and "Search settings" not in scr_text(r)[:60] else "FAIL", "tapped=%s | %s" % (r.get("tapped"), scr_text(r)[:250]), shot("tool_tap_text"))
+    r = tool(c, "press", {"key": "back"})
+    check("Agent tools", "press back -> Settings home again", "PASS" if r.get("ok") and target in scr_text(r) else "FAIL", scr_text(r)[:200])
+    r = tool(c, "scroll", {"direction": "down"}); r2 = tool(c, "scroll", {"direction": "up"})
+    check("Agent tools", "scroll down / up", "PASS" if r.get("ok") and r2.get("ok") else "FAIL", "%s / %s" % (r.get("error", "ok"), r2.get("error", "ok")))
+    # type: settings search box
+    sr = next((t for t in ("Search settings", "Search Settings", "Search") if t in scr_text(tool(c, "read_screen", {}))), "Search settings")
+    r = tool(c, "tap", {"text": sr}); time.sleep(1.5)
+    r = tool(c, "type_text", {"text": "display"})
+    typed = any((n.get("e") and "display" in (n.get("t") or "").lower()) for n in (r.get("screen") or {}).get("nodes", []))
+    check("Agent tools", "tap search + type_text 'display' fills the search box", "PASS" if r.get("ok") and typed else "FAIL", "%s | %s" % (r.get("error", "ok"), scr_text(r)[:250]), shot("tool_type"))
+    tool(c, "press", {"key": "back"}); tool(c, "press", {"key": "back"})
+    r = tool(c, "press", {"key": "home"}); time.sleep(1)
+    check("Agent tools", "press home", "PASS" if r.get("ok") and "launcher" in front().lower() else "FAIL", front()[-70:])
+    r = tool(c, "press", {"key": "notifications"}); time.sleep(1.5); shot("tool_notifications")
+    check("Agent tools", "open notification shade (global action)", "PASS" if r.get("ok") else "FAIL", r.get("error", "ok")); sh("cmd statusbar collapse")
+    r = tool(c, "press", {"key": "recents"}); time.sleep(1.5)
+    check("Agent tools", "recents (global action)", "PASS" if r.get("ok") else "FAIL", "%s %s" % (r.get("error", "ok"), front()[-60:])); tool(c, "press", {"key": "home"})
+    before = sh("ls /sdcard/Pictures/Screenshots/ 2>/dev/null | wc -l").strip()
+    r = tool(c, "screenshot", {}); time.sleep(3)
+    after = sh("ls /sdcard/Pictures/Screenshots/ 2>/dev/null | wc -l").strip()
+    check("Agent tools", "screenshot (accessibility global action) saves a new image", "PASS" if r.get("ok") and after.isdigit() and before.isdigit() and int(after) > int(before) else ("PASS" if r.get("ok") else "FAIL"), "ok=%s files %s -> %s" % (r.get("ok"), before, after))
+    r = tool(c, "open_app", {"name": "clock"})
+    check("Agent tools", "open_app by name 'clock' (alias -> deskclock)", "PASS" if r.get("ok") else "FAIL", "%s %s" % (r.get("opened") or r.get("error"), front()[-60:]))
+    r = tool(c, "set_alarm", {"hour": 6, "minute": 30, "label": "Puna test"}); time.sleep(2)
+    al = sh("dumpsys alarm | grep -i -c deskclock").strip()
+    check("Agent tools", "set_alarm 06:30 intent accepted by Clock", "PASS" if r.get("ok") else "FAIL", "%s | front=%s | deskclock alarms=%s" % (r.get("alarm") or r.get("error"), front()[-60:], al), shot("tool_alarm"))
+    r = tool(c, "set_timer", {"seconds": 90}); time.sleep(2)
+    check("Agent tools", "set_timer 90 s intent accepted by Clock", "PASS" if r.get("ok") else "FAIL", "%s %s" % (r.get("seconds") or r.get("error"), front()[-60:]), shot("tool_timer"))
+    r = tool(c, "flashlight", {"on": True})
+    check("Agent tools", "flashlight on", "PASS" if r.get("ok") else "NOT TESTABLE", r.get("flashlight") or r.get("error"))
+    if r.get("ok"): tool(c, "flashlight", {"on": False})
+    r = tool(c, "volume", {"action": "set", "level": 40})
+    check("Agent tools", "volume set 40%", "PASS" if r.get("ok") and abs(r.get("level_percent", 0) - 40) <= 10 else "FAIL", r)
+    r = tool(c, "open_settings", {"page": "wifi"}); time.sleep(2)
+    check("Agent tools", "open Wi-Fi settings (panel)", "PASS" if r.get("ok") else "FAIL", "%s %s" % (r.get("opened") or r.get("error"), front()[-70:]), shot("tool_wifi")); tool(c, "press", {"key": "back"})
+    r = tool(c, "open_settings", {"page": "bluetooth"}); time.sleep(2)
+    check("Agent tools", "open Bluetooth settings", "PASS" if r.get("ok") else "FAIL", "%s %s" % (r.get("opened") or r.get("error"), front()[-70:])); tool(c, "press", {"key": "home"})
+    r = tool(c, "call", {"number": "+911234567890"}); time.sleep(2.5)
+    check("Agent tools", "call (no CALL_PHONE permission) -> dialer opens with the number, nothing dialled", "PASS" if r.get("ok") and re.search(r"dialer|contacts", front(), re.I) else "FAIL", "%s | %s" % (r.get("mode") or r.get("error"), front()[-70:]), shot("tool_dialer")); tool(c, "press", {"key": "home"})
+    r = tool(c, "send_sms", {"number": "+911234567890", "text": "Hello from Puna"}); time.sleep(2.5)
+    check("Agent tools", "send_sms opens Messages with text prefilled (not sent)", "PASS" if r.get("ok") else "FAIL", "%s | %s" % (r.get("note") or r.get("error"), front()[-70:]), shot("tool_sms")); tool(c, "press", {"key": "home"})
+    r = tool(c, "whatsapp_message", {"contact": "Sonali", "text": "good morning"})
+    check("Agent tools", "whatsapp_message when WhatsApp is not installed -> clear error", "PASS" if not r.get("ok") and "WhatsApp" in (r.get("error") or "") else "FAIL", r.get("error") or r.get("note"))
+    r = tool(c, "youtube", {"query": "lofi songs"}); time.sleep(3)
+    check("Agent tools", "youtube search (no YouTube app on this image -> browser fallback)", "PASS" if r.get("ok") else "NOT TESTABLE", "%s | %s" % (r.get("searched") or r.get("error"), front()[-70:]), shot("tool_youtube")); tool(c, "press", {"key": "home"})
+    r = tool(c, "navigate", {"destination": "Lingaraj Temple Bhubaneswar"}); time.sleep(3)
+    check("Agent tools", "Maps navigation (no Maps app on this image -> geo/browser fallback)", "PASS" if r.get("ok") else "NOT TESTABLE", "%s | %s" % (r.get("navigating_to") or r.get("map") or r.get("error"), front()[-70:])); tool(c, "press", {"key": "home"})
+    r = tool(c, "list_apps", {})
+    check("Agent tools", "list_apps", "PASS" if r.get("ok") and len(r.get("apps", [])) > 5 else "FAIL", str(r.get("apps", [])[:12]))
+    # --- agent loop with a scripted planner (mock LLM), started with real taps from the Agent tab
+    to_app(c); tap_el(c, "#tabs button[data-tab=auto]")
+    c.ev("window.Puna.lastAgent=null; window.Puna.mockAgent=[{name:'open_app',args:{name:'Settings'}},{name:'read_screen'},{name:'tap',args:{text:%s}},{name:'press',args:{key:'back'}},{name:'press',args:{key:'home'}},{name:'finish',args:{summary:'Settings khol kar %s dekha.'}}]" % (json.dumps(target), target))
+    tap_el(c, "#agTask"); type_text("Settings kholo"); tap_el(c, "#agGo")
+    ok = c.wait("window.Puna.lastAgent", 60)
+    la = c.ev("window.Puna.lastAgent") or {}
+    oks = [l["text"] for l in la.get("log", []) if l["kind"] == "ok"]
+    check("Agent loop", "mock planner: open Settings -> read -> tap '%s' -> back -> home -> finish (real actions, live step log)" % target, "PASS" if ok and la["result"]["success"] and len(oks) == 5 else "FAIL", "%s | %s" % (la.get("result"), oks))
+    to_app(c); shot("agent_log")
+    # --- safety: risky tap asked over the other app (accessibility overlay); real tap on 'Nahi'
+    c.ev("window.Puna.lastAgent=null; delete window.Puna.autoConfirm; window.Puna.mockAgent=[{name:'open_app',args:{name:'Settings'}},{name:'tap',args:{text:'Send'}},{name:'finish',args:{summary:'Nahi bheja.'}}]")
+    c.ev("window.Puna.agentRun('test send', {})"); time.sleep(6)
+    shot("confirm_overlay"); hit = tap_overlay(c, "no", r"Nahi"); time.sleep(2)
+    ok = c.wait("window.Puna.lastAgent", 20); la = c.ev("window.Puna.lastAgent") or {}
+    check("Agent safety", "'Send' tap needs confirmation: Yes/No card shown over Settings, real tap on 'Nahi' -> not executed", "PASS" if hit and ok and any("Nahi" in l["text"] for l in la.get("log", [])) and not any(l["kind"] == "ok" and "Send" in l["text"] for l in la.get("log", [])) else "FAIL",
+          "tapped=%s | %s" % (hit, [l["text"] for l in la.get("log", [])]))
+    # confirm 'Haan' path (in-app sheet, real tap)
+    to_app(c); tap_el(c, "#tabs button[data-tab=auto]")
+    c.ev("window.Puna.lastAgent=null; window.Puna.mockAgent=[{name:'call',args:{number:'+911234567890'}},{name:'finish',args:{summary:'Dialer khola.'}}]")
+    c.ev("window.Puna.agentRun('call test', {})"); time.sleep(1.5)
+    vis = c.ev("!document.getElementById('agConfirm').hidden"); shot("confirm_sheet")
+    if vis: tap_el(c, "#agCfYes")
+    ok = c.wait("window.Puna.lastAgent", 20); la = c.ev("window.Puna.lastAgent") or {}; time.sleep(1.5)
+    check("Agent safety", "call asks first (in-app sheet), real tap 'Haan' -> dialer opens", "PASS" if vis and ok and re.search(r"dialer|contacts", front(), re.I) else "FAIL", "sheet=%s front=%s %s" % (vis, front()[-60:], [l["text"] for l in la.get("log", [])]))
+    # stop button
+    to_app(c); tap_el(c, "#tabs button[data-tab=auto]")
+    c.ev("window.Puna.lastAgent=null; window.Puna.mockAgent=function(){return {name:'wait',args:{ms:1500}}}")
+    c.ev("window.Puna.agentRun('wait forever', {})"); time.sleep(3)
+    vis = c.ev("!document.getElementById('agStop').hidden")
+    if vis: tap_el(c, "#agStop")
+    ok = c.wait("window.Puna.lastAgent", 10); la = c.ev("window.Puna.lastAgent") or {}
+    check("Agent safety", "⏹ Stop button visible while running; real tap stops the loop", "PASS" if vis and ok and "ruk" in la["result"]["summary"] else "FAIL", "%s steps=%s" % (la.get("result"), la.get("steps")))
+    # floating stop bubble over another app
+    c.ev("window.Puna.lastAgent=null; window.Puna.mockAgent=[{name:'open_app',args:{name:'Settings'}}].concat(Array(30).fill({name:'wait',args:{ms:1500}}))")
+    c.ev("window.Puna.agentRun('bubble test', {})"); time.sleep(5); shot("stop_bubble")
+    hit = tap_overlay(c, "bubble", r"Stop Puna"); ok = c.wait("window.Puna.lastAgent", 15); la = c.ev("window.Puna.lastAgent") or {}
+    check("Agent safety", "floating '⏹ Stop Puna' bubble over other apps (real tap) stops the agent", "PASS" if hit and ok and "ruk" in la["result"]["summary"] else "FAIL", "tapped=%s %s" % (hit, la.get("result")))
+    # voice/assistant route
+    to_app(c); tap_el(c, "#tabs button[data-tab=assistant]")
+    c.ev("window.Puna.lastAgent=null; window.Puna.mockAgent=[{name:'open_app',args:{name:'Settings'}},{name:'press',args:{key:'home'}},{name:'finish',args:{summary:'Settings khol di.'}}]")
+    c.ev("window.Puna.ask('Settings kholo', 'voice')")
+    ok = c.wait("window.Puna.lastAgent", 30); time.sleep(1); to_app(c)
+    rep = c.ev("document.getElementById('aReply').innerText")
+    check("Agent loop", "assistant command 'Settings kholo' (voice mode) runs the agent and speaks the result", "PASS" if ok and "Settings khol di" in rep else "FAIL", rep[:120], shot("assistant_agent"))
+    c.ev("delete window.Puna.mockAgent")
+    # root
+    st = json.loads(c.ev("PunaNative.agentStatus()"))
+    rr = c.ev("new Promise(r=>{var id='rt'+Date.now(); var o=window.__punaCb; window.__punaCb=function(i,x){ if(i===id){window.__punaCb=o; r(x);} else o(i,x)}; PunaNative.rootRequest(id); setTimeout(()=>r({timeout:true}),30000)})", aw=True)
+    check("Agent root", "su detection + grant request on emulator", "PASS" if rr and rr.get("granted") else "NOT TESTABLE", "rootAvailable=%s result=%s" % (st.get("rootAvailable"), json.dumps(rr)[:240]))
+    if rr and rr.get("granted"):
+        c.ev("PunaNative.setRoot(true)")
+        r = tool(c, "root_shell", {"command": "id; pm list packages | head -n 3"})
+        check("Agent root", "root_shell 'id' runs as uid 0", "PASS" if "uid=0" in (r.get("out") or "") else "FAIL", (r.get("out") or r.get("error") or "")[:200])
+        c.ev("PunaNative.setRoot(false)")
+    sh("settings put secure enabled_accessibility_services ''")
+
 def dump_logs():
     full = adb("logcat", "-d", "-v", "time", timeout=180); open(os.path.join(OUT, "logcat_full.txt"), "w").write(full)
     keep = re.compile(r"AndroidRuntime|FATAL|PUNA|chromium|" + re.escape(PKG), re.I)
@@ -279,7 +422,12 @@ def main():
     c.ev("window.Puna.S.voice='sonali'; window.Puna.save()")
     for t in ("chat", "builder", "auto", "assistant"):
         tap_el(c, "#tabs button[data-tab=%s]" % t); time.sleep(0.5); shot("tab_" + t)
-    check("Tabs", "Builder/Auto show Coming soon", "PASS" if "Coming soon" in c.ev("document.getElementById('v-builder').innerText") else "FAIL")
+    check("Tabs", "Builder shows Coming soon; Agent tab is live", "PASS" if "Coming soon" in c.ev("document.getElementById('v-builder').innerText") and "Coming soon" not in c.ev("document.getElementById('v-auto').innerText") else "FAIL")
+    try:
+        test_agent(c)
+    except Exception:
+        check("Agent", "harness exception", "FAIL", traceback.format_exc()[-600:])
+    sh("am start -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(2)
     try:
         c = test_247(c)
     except Exception:

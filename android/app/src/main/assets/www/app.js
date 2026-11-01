@@ -56,7 +56,7 @@ function load(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.par
 function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { toast("Storage full: " + e.message); } }
 var DEF = { groqKey: "", geminiKey: "", brain: "groq", level: "high", model: "", callMe: "", gender: "", replyLang: "auto", srLang: "hi-IN",
   voice: "sonali", speed: 1.3, continuous: true, autoSpeak: true, web: "auto", memoryOn: true, odia: "auto",
-  fast: true, bargeIn: false, showLat: false };
+  fast: true, bargeIn: false, showLat: false, agentVoice: true };
 var S = Object.assign({}, DEF, load("puna.settings", {}));
 function saveS() { save("puna.settings", S); refreshBadges(); }
 var MEM = load("puna.memory", []);
@@ -564,7 +564,7 @@ function systemPrompt(mode) {
     "You speak with the voice named \"" + p.name + "\" (" + (p.g === "F" ? "female" : "male") + "). When talking about yourself in Hindi/Hinglish/Odia use " + (p.g === "F" ? "feminine forms (e.g. 'main karungi', 'main bataungi')" : "masculine forms (e.g. 'main karunga', 'main bataunga')") + ". If asked your name, you are Puna speaking in " + p.name + "'s voice.",
     who, g, "LANGUAGE: " + L.rule, style, mem,
     "If the user asks you to remember something, confirm warmly in one line (the app saves it to memory automatically).",
-    "The user can change your voice by saying e.g. 'Rohan se baat karni hai'. Voices: " + VOICES.map(function (v) { return v.name; }).join(", ") + ". The Broadcast tab turns any topic into a multi-voice audio or video to share on WhatsApp/Telegram. Builder (app/website IDE) and phone Automation are coming soon.",
+    "The user can change your voice by saying e.g. 'Rohan se baat karni hai'. Voices: " + VOICES.map(function (v) { return v.name; }).join(", ") + ". The Broadcast tab turns any topic into a multi-voice audio or video to share on WhatsApp/Telegram. The Agent tab (and voice commands like 'WhatsApp kholo') operates the phone: open apps, call, WhatsApp/SMS, alarms, torch, volume, settings, YouTube, Maps, tapping/typing on screen. The Builder (app/website IDE) is coming soon.",
     "Never invent current events, prices or scores. When web results are available use them and mention the source names briefly."
   ].filter(Boolean).join("\n");
 }
@@ -704,6 +704,7 @@ function stopAll() {
   if (active.ctrl) { try { active.ctrl.abort(); } catch (e) {} }
   active.ctrl = null; active.busy = false;
   Speaker.stop(); stopListening(true); setOrb("idle"); voiceLoop = false;
+  if (typeof agentStop === "function") agentStop("stopAll");
 }
 window.Puna.stopAll = stopAll;
 
@@ -723,6 +724,12 @@ async function ask(text, mode, opt) {
   var am = { id: uid(), role: "assistant", content: "", at: Date.now(), voice: S.voice, sources: [], via: mode };
   c.messages.push(am); renderChat(); showReply(am, true);
   var speak = mode === "voice" ? S.autoSpeak : false;
+  if (!cmd && !opt.regenerate && mode === "voice" && S.agentVoice && N && N.agentTool && isPhoneTask(text) && (brainKind() || window.Puna.mockAgent)) {
+    am.content = "🤖 Phone par kar rahi hoon: " + text; showReply(am, true); setOrb("thinking"); setStatus("Agent kaam kar raha hai… (⏹ Stop)");
+    voiceLoop = false;
+    var ar = await agentRun(text, { voice: true });
+    am.content = (ar && ar.summary) || "…"; am.model = "agent"; finishTurn(c, am, mode, speak, true); return;
+  }
   if (cmd && (!cmd.lang || !brainKind())) {
     am.content = cmd.reply; am.voice = S.voice; finishTurn(c, am, mode, speak, true); return;
   }
@@ -753,7 +760,11 @@ async function ask(text, mode, opt) {
     if (speak) { if (search) Speaker.say(am.content, pid); else Speaker.flush(pid); }
     finishTurn(c, am, mode, false);
     // memory is learnt in the background, after the reply has started speaking — never in front of it
-    var memText = am.content; setTimeout(function () { extractMemory(text, memText); }, speak ? 2500 : 200);
+    var memText = am.content, myLat = LAT, waited = 0;
+    (function memLater() {   // wait until the first words are actually playing (or speech is over), then learn
+      if (!speak || (myLat && myLat.play) || !Speaker.busy() || waited > 12000) { setTimeout(function () { extractMemory(text, memText); }, speak ? 400 : 100); return; }
+      waited += 250; setTimeout(memLater, 250);
+    })();
   } catch (e) {
     if (ctrl.signal.aborted) { am.content = am.content || "(ruk gaya)"; finishTurn(c, am, mode, false); return; }
     am.content = friendlyErr(e); am.error = true;
@@ -887,7 +898,9 @@ $("aReplay").addEventListener("click", function () { if (lastReply) { Speaker.st
 $("aStopSpeak").addEventListener("click", function () { voiceLoop = false; stopAll(); });
 $("aSpeed").addEventListener("input", function () { S.speed = parseFloat(this.value); saveS(); syncSettingsUI(); });
 $("aContinuous").addEventListener("change", function () { S.continuous = this.checked; saveS(); syncSettingsUI(); });
-window.__punaLife = function (ev) { if (ev === "pause") { voiceLoop = false; stopListening(true); if ($("orbWrap").dataset.state === "listening") setOrb("idle"); } };
+window.__punaLife = function (ev) {
+  if (ev === "resume") { if (currentTab === "auto") renderAgent(); if (currentTab === "settings") renderBg(); return; }
+  if (ev === "pause") { voiceLoop = false; stopListening(true); if ($("orbWrap").dataset.state === "listening") setOrb("idle"); } };
 
 /* ------------------------------------------------------------------ Chat view */
 function scrollChat() { var s = $("cScroll"); s.scrollTop = s.scrollHeight; }
@@ -1332,6 +1345,298 @@ window.__punaIntent = function (a) {
   return true;
 };
 
+
+/* ------------------------------------------------------------------ Phase 3: phone Agent (tool-calling loop) */
+var AG_TOOLS = [
+  ["open_app", "Open an installed app by its name (e.g. WhatsApp, Settings, YouTube, Camera).", { name: { type: "string" } }, ["name"]],
+  ["read_screen", "Read the current screen as a list of UI nodes: i=index, t=text, d=description, id=view id, c=class, k=clickable, e=editable, s=scrollable, on=checked, b=centre x,y.", {}, []],
+  ["tap", "Tap a UI element. Prefer index from the last screen; else exact visible text; else view id; x/y only as last resort.", { index: { type: "integer" }, text: { type: "string" }, id: { type: "string" }, x: { type: "integer" }, y: { type: "integer" } }, []],
+  ["type_text", "Type text into a text box (the focused one, or the one given by index / into=its text). submit=true presses Enter/Search.", { text: { type: "string" }, index: { type: "integer" }, into: { type: "string" }, append: { type: "boolean" }, submit: { type: "boolean" } }, ["text"]],
+  ["scroll", "Scroll the screen.", { direction: { type: "string", enum: ["down", "up", "left", "right"] } }, ["direction"]],
+  ["press", "Press a system button.", { key: { type: "string", enum: ["back", "home", "recents", "notifications", "quick_settings", "enter", "lock"] } }, ["key"]],
+  ["screenshot", "Take a screenshot (saved to the gallery).", {}, []],
+  ["wait", "Wait for the screen to load.", { ms: { type: "integer" } }, []],
+  ["list_apps", "List installed app names (optionally filtered).", { filter: { type: "string" } }, []],
+  ["find_contact", "Look up phone contacts by name.", { name: { type: "string" } }, ["name"]],
+  ["call", "Phone call to a number or contact name.", { number: { type: "string" }, contact: { type: "string" } }, []],
+  ["send_sms", "Open the SMS app with the message pre-filled for a number/contact (the user still needs Send to be tapped).", { number: { type: "string" }, contact: { type: "string" }, text: { type: "string" } }, ["text"]],
+  ["whatsapp_message", "Open the WhatsApp chat of a contact/number with the text pre-filled. Afterwards tap the Send button to send it.", { contact: { type: "string" }, number: { type: "string" }, text: { type: "string" } }, ["text"]],
+  ["set_alarm", "Set an alarm (24-hour clock).", { hour: { type: "integer" }, minute: { type: "integer" }, label: { type: "string" } }, ["hour", "minute"]],
+  ["set_timer", "Start a countdown timer.", { seconds: { type: "integer" }, label: { type: "string" } }, ["seconds"]],
+  ["flashlight", "Turn the flashlight/torch on or off.", { on: { type: "boolean" } }, ["on"]],
+  ["volume", "Change volume: action up/down/mute/unmute/set (level 0-100).", { action: { type: "string", enum: ["up", "down", "mute", "unmute", "set"] }, level: { type: "integer" }, stream: { type: "string", enum: ["media", "ring", "alarm", "notification"] } }, ["action"]],
+  ["open_settings", "Open a settings page.", { page: { type: "string", enum: ["main", "wifi", "bluetooth", "internet", "display", "sound", "location", "battery", "apps", "accessibility", "date", "airplane", "hotspot"] } }, ["page"]],
+  ["youtube", "Search YouTube for a video/song.", { query: { type: "string" } }, ["query"]],
+  ["navigate", "Start Google Maps navigation to a place.", { destination: { type: "string" }, mode: { type: "string", enum: ["driving", "walking", "bicycling", "two-wheeler"] } }, ["destination"]],
+  ["open_url", "Open a web page in the browser.", { url: { type: "string" } }, ["url"]],
+  ["web_search", "Open a Google search in the browser.", { query: { type: "string" } }, ["query"]],
+  ["root_shell", "ROOTED PHONES ONLY (when root is enabled): run a shell command as root, e.g. 'input tap 540 1200', 'input swipe ...', 'input text hello', 'am start -n pkg/.Activity', 'pm list packages', 'settings put system screen_brightness 120', 'screencap -p /sdcard/x.png'.", { command: { type: "string" } }, ["command"]],
+  ["ask_user", "Ask the user a short question when you need information you cannot find (which contact, what message, etc.).", { question: { type: "string" } }, ["question"]],
+  ["finish", "Call when the task is done or impossible. summary = one or two short sentences for the user, in their language.", { summary: { type: "string" }, success: { type: "boolean" } }, ["summary"]]
+];
+function agToolDefs(root) {
+  return AG_TOOLS.filter(function (t) { return root || t[0] !== "root_shell"; }).map(function (t) {
+    return { type: "function", function: { name: t[0], description: t[1], parameters: { type: "object", properties: t[2], required: t[3] } } };
+  });
+}
+function appHidden() { try { if (N && N.appVisible) return !N.appVisible(); } catch (e) {} return document.hidden; }
+var AG = { running: false, stop: false, log: [], ctrl: null, voice: false, steps: 0, lastScreen: null, history: [] };
+window.Puna.Agent = AG;
+function agStatus() { try { return N && N.agentStatus ? JSON.parse(N.agentStatus()) : null; } catch (e) { return null; } }
+function agRootOn() { var st = agStatus(); return !!(st && st.rootOn && st.rootGranted); }
+function agSystem(st) {
+  var L = LBYID[S.replyLang] || LBYID.auto;
+  return [
+    "You are Puna Agent: you operate the user's Android phone for them by calling tools, one step at a time, until the task is done, then call finish.",
+    "Phone: Android " + (st && st.sdk || "?") + ". Accessibility (screen reading/tapping): " + (st && st.a11yLive ? "ON" : "OFF — only use direct tools like open_app, call, whatsapp_message, set_alarm, flashlight, volume, open_settings, youtube, navigate") + ". Root: " + (agRootOn() ? "ON (root_shell available)" : "off") + ".",
+    "Rules:",
+    "- Prefer direct tools (whatsapp_message, call, set_alarm, set_timer, flashlight, volume, open_settings, youtube, navigate) over tapping through menus.",
+    "- After a UI action the result includes the new screen; use the node index (i) for tap/type_text. Call read_screen if you need a fresh look.",
+    "- To send a WhatsApp message: whatsapp_message(contact, text), then tap the Send button (desc 'Send' / id 'send'). If the contact number isn't found, WhatsApp opens: tap search, type the name, tap the chat, type_text the message, tap Send.",
+    "- The app itself asks the user before sending messages, calls, deleting or paying — just call the tool; if a tool result says the user declined, stop and finish.",
+    "- Never invent contacts, numbers or messages. If something essential is missing, use ask_user. Don't loop: if the same action fails twice, try another way or finish with an explanation.",
+    "- Keep going without asking for confirmation of harmless steps. Max ~20 steps.",
+    "- finish.summary: 1-2 short friendly sentences. LANGUAGE: " + L.rule,
+    S.callMe ? "Call the user \"" + S.callMe + "\"." : "",
+    "Current date/time in India: " + new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + "."
+  ].filter(Boolean).join("\n");
+}
+var AG_RISK = /\b(send|sent|bhej\w*|pay|payment|pay now|paisa|delete|remove|uninstall|clear data|clear all|erase|format|buy|buy now|place order|order now|checkout|transfer|confirm|call|video call|voice call|dial|reset|sign out|log ?out|block|report)\b|भेज|डिलीट|पेमेंट/i;
+var AG_ROOT_RISK = /\b(rm|pm uninstall|pm clear|reboot|wipe|dd|mkfs|format|setprop|svc (data|wifi)|service call|am force-stop|input keyevent (5|6|66))\b/;
+function agNode(i) { var s = AG.lastScreen; if (!s || !s.nodes) return null; for (var k = 0; k < s.nodes.length; k++) if (s.nodes[k].i === i) return s.nodes[k]; return null; }
+function agRisk(name, a) {
+  var app = (AG.lastScreen && AG.lastScreen.app) || "";
+  var msgApp = /whatsapp|telegram|messag|mms|sms|gm$|gmail|instagram|signal/i.test(app);
+  if (name === "call") return "📞 " + (a.contact || a.number) + " ko call karun?";
+  if (name === "tap") {
+    var n = a.index != null ? agNode(a.index) : null;
+    var lbl = a.text || (n && (n.t || n.d || n.id)) || a.id || "";
+    if (AG_RISK.test(lbl) || /(^|_)(send|delete|pay|call)/i.test(a.id || (n && n.id) || "")) return "👉 “" + lbl + "” dabaun?" + (msgApp ? " (message chala jayega)" : "");
+  }
+  if ((name === "type_text" && a.submit && msgApp) || (name === "press" && a.key === "enter" && msgApp)) return "✉️ Message bhejun?";
+  if (name === "root_shell" && AG_ROOT_RISK.test(a.command || "")) return "⚠️ Root command chalaun: " + a.command + " ?";
+  return null;
+}
+var agConfirmWait = {};
+window.__punaAgentConfirm = function (id, yes) { var w = agConfirmWait[id]; if (w) { delete agConfirmWait[id]; w(!!yes); } };
+function agConfirm(text) {
+  return new Promise(function (res) {
+    var id = "c" + uid(), done = false;
+    function fin(v) { if (done) return; done = true; delete agConfirmWait[id]; $("agConfirm").hidden = true; if (N && N.agentConfirmHide) N.agentConfirmHide(); stopListening(true); agLog("ask", (v ? "✅ Haan: " : "✖ Nahi: ") + text); res(v); }
+    agConfirmWait[id] = fin;
+    agLog("ask", "🛡️ " + text);
+    $("agCfText").textContent = text; $("agConfirm").hidden = false;
+    $("agCfYes").onclick = function () { fin(true); }; $("agCfNo").onclick = function () { fin(false); };
+    if (window.Puna.autoConfirm != null) { setTimeout(function () { fin(window.Puna.autoConfirm); }, 300); return; }   // tests only
+    if (appHidden() && N && N.agentConfirm) N.agentConfirm(id, text);
+    if (AG.voice && S.autoSpeak) {
+      Speaker.stop(); Speaker.say(text.replace(/[^\p{L}\p{N}\s?.,'“”]/gu, " "), S.voice);
+      var tries = 0, waitSpeak = setInterval(function () {
+        if (done) { clearInterval(waitSpeak); return; }
+        if (Speaker.busy() && ++tries < 40) return;
+        clearInterval(waitSpeak);
+        listen(S.srLang, { onFinal: function (t) {
+          if (/\b(haan|han|ha|yes|ok|okay|theek|thik|kar do|karo|bhej do|bhejo|sure|ji)\b|हाँ|हां|ହଁ/i.test(t)) fin(true);
+          else if (/\b(nahi|nahin|na|no|mat|ruko|cancel|stop)\b|नहीं|ନା/i.test(t)) fin(false);
+        }, onError: function () {}, onEnd: function () {} }, { silence: 900 });
+      }, 250);
+    }
+    setTimeout(function () { fin(false); }, 90000);
+  });
+}
+function agLog(kind, text, sub) {
+  AG.log.push({ kind: kind, text: text, sub: sub || "", at: Date.now() });
+  $("agLogCard").hidden = false;
+  var el = document.createElement("div"); el.className = "st " + kind;
+  el.textContent = text; if (sub) { var s = document.createElement("small"); s.textContent = sub; el.appendChild(s); }
+  $("agLog").appendChild(el); el.scrollIntoView({ block: "nearest" });
+}
+function agTool(name, args) {
+  if (!N || !N.agentTool) return Promise.resolve({ ok: false, error: "Agent sirf Android app mein chalta hai" });
+  return nativeTask(function (id) { N.agentTool(id, name, JSON.stringify(args || {})); }, null, 45000).catch(function (e) { return { ok: false, error: e.message }; });
+}
+function agTrimHistory(msgs) {
+  // keep only the 2 newest screens in full; older ones shrink to save tokens and time
+  var seen = 0;
+  for (var i = msgs.length - 1; i >= 0; i--) {
+    var m = msgs[i]; if (m.role !== "tool" || m.content.indexOf('"screen"') < 0) continue;
+    if (++seen > 2) { try { var j = JSON.parse(m.content); if (j.screen) { j.screen = { app: j.screen.app, note: "old screen omitted" }; m.content = JSON.stringify(j); } } catch (e) {} }
+  }
+  return msgs;
+}
+async function agBrain(msgs, tools, signal) {
+  if (window.Puna.mockAgent) {   // tests: scripted planner
+    var mk = window.Puna.mockAgent, step = typeof mk === "function" ? mk(msgs) : mk.shift();
+    await sleep(150);
+    if (!step) return { content: "", tool_calls: [{ id: "f", type: "function", function: { name: "finish", arguments: JSON.stringify({ summary: "Ho gaya." }) } }] };
+    return { content: step.say || "", tool_calls: (step.calls || [step]).filter(function (c) { return c.name; }).map(function (c, k) { return { id: "m" + uid() + k, type: "function", function: { name: c.name, arguments: JSON.stringify(c.args || {}) } }; }) };
+  }
+  var k = brainKind(); if (!k) throw NoKey();
+  if (k === "gemini") return agGemini(msgs, tools, signal);
+  var chain = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "openai/gpt-oss-20b"].filter(function (m) { return !(MODELS.groq || []).length || MODELS.groq.indexOf(m) >= 0; });
+  if (!chain.length) chain = ["openai/gpt-oss-120b"];
+  var last;
+  for (var i = 0; i < chain.length; i++) {
+    var body = { model: chain[i], messages: msgs, tools: tools, tool_choice: "required", temperature: 0.2, max_completion_tokens: 1200 };
+    if (/gpt-oss/.test(chain[i])) body.reasoning_effort = "low";
+    var r = await fetch(GROQ + "/chat/completions", { method: "POST", signal: signal, headers: { Authorization: "Bearer " + S.groqKey, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    if (r.ok) { var j = await r.json(), m = j.choices[0].message; m.model = chain[i]; return m; }
+    try { await httpErr(r, "Groq"); } catch (e) {
+      last = e;
+      if (r.status === 400 && /tool_use_failed|failed to call/i.test(e.message)) { body.tool_choice = "auto"; continue; }
+      if (!(r.status === 400 || r.status === 403 || r.status === 404) || !/model|access|decommission|not.?found|permission/i.test(e.message)) throw e;
+    }
+  }
+  throw last;
+}
+async function agGemini(msgs, tools, signal) {
+  var sys = msgs[0].content, contents = [];
+  msgs.slice(1).forEach(function (m) {
+    if (m.role === "user") contents.push({ role: "user", parts: [{ text: m.content }] });
+    else if (m.role === "assistant") {
+      var parts = []; if (m.content) parts.push({ text: m.content });
+      (m.tool_calls || []).forEach(function (c) { parts.push({ functionCall: { name: c.function.name, args: JSON.parse(c.function.arguments || "{}") } }); });
+      contents.push({ role: "model", parts: parts });
+    } else if (m.role === "tool") contents.push({ role: "user", parts: [{ functionResponse: { name: m.name, response: { result: m.content.slice(0, 6000) } } }] });
+  });
+  var decl = tools.map(function (t) { var p = JSON.parse(JSON.stringify(t.function.parameters)); if (!Object.keys(p.properties).length) delete p.properties; return { name: t.function.name, description: t.function.description, parameters: Object.keys(p.properties || {}).length ? p : undefined }; });
+  var body = { systemInstruction: { parts: [{ text: sys }] }, contents: contents, tools: [{ functionDeclarations: decl }], toolConfig: { functionCallingConfig: { mode: "ANY" } }, generationConfig: { temperature: 0.2 } };
+  var r = await fetch(GEM + "/models/" + gemModel() + ":generateContent", { method: "POST", signal: signal, headers: { "x-goog-api-key": S.geminiKey, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  if (!r.ok) await httpErr(r, "Gemini");
+  var j = await r.json(), parts = (j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || [], text = "", calls = [];
+  parts.forEach(function (p, k) { if (p.text) text += p.text; if (p.functionCall) calls.push({ id: "g" + uid() + k, type: "function", function: { name: p.functionCall.name, arguments: JSON.stringify(p.functionCall.args || {}) } }); });
+  return { content: text, tool_calls: calls, model: gemModel() };
+}
+function agAskUser(q) {
+  return new Promise(function (res) {
+    agLog("ask", "❓ " + q);
+    if (window.Puna.autoAnswer != null) { setTimeout(function () { res(window.Puna.autoAnswer); }, 200); return; }
+    if (N && N.bringToFront && appHidden()) N.bringToFront();
+    if (AG.voice && S.autoSpeak) Speaker.say(q, S.voice);
+    var a = prompt(q); res(a == null ? "" : a);
+  });
+}
+async function agentRun(task, opt) {
+  opt = opt || {};
+  task = String(task || "").trim(); if (!task) return null;
+  if (AG.running) { toast("Agent pehle se chal raha hai — ⏹ Stop dabao"); return null; }
+  if (!window.Puna.mockAgent && !brainKind()) { var m0 = "Agent ke liye Settings mein Groq key daalo 🙏"; toast(m0); return { summary: m0, success: false }; }
+  var st = agStatus() || {};
+  AG.running = true; AG.stop = false; AG.voice = !!opt.voice; AG.steps = 0; AG.lastScreen = null; AG.log = []; AG.ctrl = new AbortController();
+  $("agLog").innerHTML = ""; $("agLogCard").hidden = false; $("agState").textContent = "chal raha hai…"; $("agStop").hidden = false; $("agGo").disabled = true;
+  if (N && N.agentBubble) N.agentBubble(task);
+  agLog("fin", "🎯 " + task, (st.a11yLive ? "Accessibility ✓" : "Accessibility ✗ (sirf direct tools)") + (agRootOn() ? " · Root ✓" : ""));
+  var tools = agToolDefs(agRootOn());
+  var msgs = [{ role: "system", content: agSystem(st) }, { role: "user", content: task }];
+  var result = { summary: "", success: false }, repeats = {}, MAXS = 22;
+  try {
+    while (!AG.stop && AG.steps < MAXS) {
+      var m = await agBrain(agTrimHistory(msgs), tools, AG.ctrl.signal);
+      if (AG.stop) break;
+      var calls = m.tool_calls || [];
+      msgs.push({ role: "assistant", content: m.content || "", tool_calls: calls.length ? calls : undefined });
+      if (!calls.length) { result = { summary: m.content || "Ho gaya.", success: true }; break; }
+      var finished = false;
+      for (var ci = 0; ci < calls.length && !AG.stop; ci++) {
+        var c = calls[ci], name = c.function.name, args = {};
+        try { args = JSON.parse(c.function.arguments || "{}") || {}; } catch (e) { args = {}; }
+        AG.steps++;
+        var res;
+        if (name === "finish") { result = { summary: args.summary || "Ho gaya.", success: args.success !== false }; finished = true; res = { ok: true }; }
+        else if (name === "ask_user") { var ans = await agAskUser(args.question || "?"); res = { ok: true, answer: ans || "(no answer)" }; }
+        else {
+          var key = name + JSON.stringify(args); repeats[key] = (repeats[key] || 0) + 1;
+          var risk = agRisk(name, args);
+          if (risk && !(await agConfirm(risk))) { res = { ok: false, error: "USER DECLINED this action. Do not retry it; finish." }; agLog("bad", "✖ " + name + " — aapne mana kiya"); }
+          else if (repeats[key] > 2 && !/^(read_screen|wait|scroll|press)$/.test(name)) { res = { ok: false, error: "Same action already tried twice — do something different or finish." }; agLog("bad", "↻ " + name + " baar baar — roka"); }
+          else {
+            if (N && N.agentBubble) N.agentBubble(name + " " + (args.text || args.name || args.contact || args.query || args.page || ""));
+            res = await agTool(name, args);
+            if (res.screen) AG.lastScreen = res.screen;
+            agLog(res.ok ? "ok" : "bad", (res.ok ? "✓ " : "✗ ") + agDescribe(name, args, res), res.ok ? (res.screen ? "📱 " + (res.screen.app || "") + " · " + (res.screen.count || 0) + " items" : (res.note || "")) : res.error);
+          }
+        }
+        msgs.push({ role: "tool", tool_call_id: c.id, name: name, content: JSON.stringify(res).slice(0, 7000) });
+        if (finished) break;
+      }
+      if (finished) break;
+    }
+    if (AG.stop) result = { summary: "Theek hai, ruk gayi.", success: false };
+    else if (!result.summary) result = { summary: "Bahut steps ho gaye, isliye ruk gayi. Thoda aasaan karke batao?", success: false };
+  } catch (e) {
+    result = { summary: AG.stop ? "Theek hai, ruk gayi." : friendlyErr(e), success: false };
+  } finally {
+    AG.running = false; $("agStop").hidden = true; $("agGo").disabled = false; $("agConfirm").hidden = true;
+    if (N && N.agentBubble) N.agentBubble("");
+    $("agState").textContent = (result.success ? "✓ ho gaya" : "• ruka") + " · " + AG.steps + " steps";
+    agLog("fin", (result.success ? "✅ " : "⏹ ") + result.summary);
+    AG.history.unshift({ task: task, at: Date.now(), steps: AG.steps, summary: result.summary, ok: result.success }); AG.history = AG.history.slice(0, 20);
+    window.Puna.lastAgent = { task: task, result: result, log: AG.log.slice(), steps: AG.steps };
+  }
+  return result;
+}
+window.Puna.agentRun = agentRun;
+function agDescribe(n, a, r) {
+  switch (n) {
+    case "open_app": return "App khola: " + (r.opened || a.name);
+    case "tap": return "Tap: " + (r.tapped || a.text || (a.index != null ? "#" + a.index : a.id || (a.x + "," + a.y)));
+    case "type_text": return "Likha: " + a.text;
+    case "read_screen": return "Screen padhi";
+    case "whatsapp_message": return "WhatsApp: " + (a.contact || a.number) + " — “" + a.text + "”";
+    case "send_sms": return "SMS: " + (a.contact || a.number);
+    case "call": return "Call: " + (r.number || a.contact || a.number) + (r.mode ? " (" + r.mode + ")" : "");
+    case "set_alarm": return "Alarm: " + (r.alarm || (a.hour + ":" + a.minute));
+    case "set_timer": return "Timer: " + a.seconds + " s";
+    case "flashlight": return "Torch " + (a.on ? "ON" : "OFF");
+    case "open_settings": return "Settings: " + a.page;
+    default: return n + " " + JSON.stringify(a).slice(0, 80);
+  }
+}
+function agentStop(why) { if (!AG.running) return; AG.stop = true; try { AG.ctrl.abort(); } catch (e) {} Object.keys(agConfirmWait).forEach(function (k) { agConfirmWait[k](false); }); if (N && N.bringToFront && why === "bubble") N.bringToFront(); }
+window.__punaAgentStop = agentStop;
+$("agStop").addEventListener("click", function () { agentStop("button"); });
+$("agGo").addEventListener("click", function () { var t = $("agTask").value.trim(); if (!t) { toast("Pehle kaam likho ya 🎤 se bolo"); return; } agentRun(t, { voice: false }); });
+document.querySelectorAll("#agQuick .pill").forEach(function (b) { b.addEventListener("click", function () { $("agTask").value = b.dataset.q; agentRun(b.dataset.q, {}); }); });
+$("agMic").addEventListener("click", function () {
+  var btn = this; if (btn.classList.contains("on")) { stopListening(false); return; }
+  btn.classList.add("on");
+  listen(S.srLang, { onPartial: function (t) { $("agTask").value = t; }, onFinal: function (t) { $("agTask").value = t; }, onError: function (e, m) { if (e !== "no-speech" && e !== "aborted") toast("Mic: " + (m || e)); },
+    onEnd: function () { btn.classList.remove("on"); var t = $("agTask").value.trim(); if (t) agentRun(t, { voice: true }); } }, { silence: 1000 });
+});
+function renderAgent() {
+  var st = agStatus(), el = $("agStat");
+  if (!st) { el.innerHTML = "<span class='no'>Sirf Android app mein</span>"; return; }
+  function chip(ok, a, b) { return "<span class='" + (ok ? "ok" : "no") + "'>" + (ok ? "✓ " + a : "• " + b) + "</span>"; }
+  el.innerHTML = chip(st.a11yLive, "Accessibility ON", st.a11y ? "Accessibility ON hai par service connect nahi hui — toggle off/on karo" : "Accessibility OFF (screen padhna/tap band)") +
+    chip(st.contacts, "Contacts", "Contacts permission nahi") + chip(st.callPhone, "Direct call", "Call = dialer khulega") +
+    (st.rootAvailable ? chip(st.rootGranted && st.rootOn, "Root ON", "Root mila — chahiye to ON karo") : "<span class='no'>• Root nahi (normal phone — basic mode)</span>");
+  $("agA11yBtn").hidden = st.a11yLive; $("agGuide").open = !st.a11yLive && !$("agGuide").dataset.seen;
+  $("agContactsBtn").hidden = st.contacts; $("agCallBtn").hidden = st.callPhone;
+  $("agVoice").checked = S.agentVoice;
+  $("agRoot").checked = st.rootOn && st.rootGranted; $("agRoot").disabled = !st.rootAvailable;
+}
+window.Puna.renderAgent = renderAgent;
+window.Puna.agTool = agTool;
+$("agVoice").addEventListener("change", function () { S.agentVoice = this.checked; saveS(); });
+$("agA11yBtn").addEventListener("click", function () { $("agGuide").open = true; $("agGuide").dataset.seen = "1"; if (N && N.openA11ySettings) N.openA11ySettings(); });
+$("agContactsBtn").addEventListener("click", function () { if (N && N.agentPermission) N.agentPermission("contacts"); setTimeout(renderAgent, 3000); });
+$("agCallBtn").addEventListener("click", function () { if (N && N.agentPermission) N.agentPermission("call"); setTimeout(renderAgent, 3000); });
+$("agRoot").addEventListener("change", async function () {
+  var on = this.checked, msg = $("agRootMsg");
+  if (!on) { N.setRoot(false); msg.textContent = "Root band."; renderAgent(); return; }
+  if (!confirm("Root se Puna phone ko poori tarah chala sakti hai (system commands). Sirf apne phone par ON karo. Continue?")) { this.checked = false; return; }
+  msg.textContent = "Root permission maang rahi hoon — Magisk/KernelSU prompt mein Grant dabao…";
+  try { var r = await nativeTask(function (id) { N.rootRequest(id); }, null, 40000); N.setRoot(!!r.granted); msg.textContent = r.granted ? "✅ Root mil gaya — full automation ON." : "❌ Root nahi mila: " + (r.error || r.out || ""); }
+  catch (e) { N.setRoot(false); msg.textContent = "❌ " + e.message; }
+  renderAgent();
+});
+document.addEventListener("visibilitychange", function () { if (!document.hidden && currentTab === "auto") renderAgent(); });
+// Assistant -> Agent: phone commands said to the assistant run the agent and the result is spoken back
+var AG_INTENT = /\b(kholo|khol do|kholna|open|launch|start karo|chalao|chala do|bajao|play karo|call karo|call lagao|phone karo|phone lagao|bhejo|bhej do|send karo|message karo|msg karo|alarm|timer|torch|flashlight|flash light|volume|wifi|wi-fi|bluetooth|screenshot|navigate|rasta dikhao|le chalo|on karo|off karo|tap karo|scroll karo|type karo)\b|खोलो|भेजो|कॉल करो|चलाओ|ଖୋଲ|ପଠାଅ/i;
+var AG_NOT = /\b(kaise|kaisa|how (do|to|can)|what is|kya hota|kyun|why|matlab|explain|samjhao|batao ki|meaning)\b/i;
+function isPhoneTask(t) { return AG_INTENT.test(t) && !AG_NOT.test(t); }
+window.Puna.isPhoneTask = isPhoneTask;
+
 /* ------------------------------------------------------------------ tabs + init */
 var currentTab = "assistant";
 function showTab(t) {
@@ -1342,12 +1647,15 @@ function showTab(t) {
   if (t !== "assistant") { voiceLoop = false; if ($("orbWrap").dataset.state === "listening") { stopListening(true); setOrb("idle"); } }
   if (t === "chat") renderChat();
   if (t === "settings") { renderMem(); syncSettingsUI(); renderBg(); }
+  if (t === "auto") renderAgent();
 }
 window.Puna.showTab = showTab;
 $("tabs").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) showTab(b.dataset.tab); });
 window.__punaBack = function () {
   if (!$("voiceSheet").hidden) { $("voiceSheet").hidden = true; return true; }
   if (!$("langSheet").hidden) { $("langSheet").hidden = true; return true; }
+  if (!$("agConfirm").hidden) { window.__punaAgentConfirm && Object.keys(agConfirmWait).forEach(function (k) { agConfirmWait[k](false); }); return true; }
+  if (AG.running) { agentStop("back"); return true; }
   if (!$("cDrawer").hidden) { $("cDrawer").hidden = true; return true; }
   if (currentTab !== "assistant") { showTab("assistant"); return true; }
   if (Speaker.busy() || active.busy || SRec.h) { stopAll(); return true; }
@@ -1362,7 +1670,7 @@ function init() {
   setStatus(idleStatus());
   var info = {}; try { info = N && N.info ? JSON.parse(N.info()) : {}; } catch (e) {}
   DEBUG = !!info.debug;
-  $("sAbout").textContent = "Puna AI v" + (info.version || "web") + " · Android " + (info.sdk || "-") + " · WebView " + (info.webview || "-") + " · Phase 1";
+  $("sAbout").textContent = "Puna AI v" + (info.version || "web") + " · Android " + (info.sdk || "-") + " · WebView " + (info.webview || "-") + " · Phase 1 + Fast voice + Phase 3 Agent";
   $("sVoiceMap").innerHTML = VOICES.map(function (v) { return "<div><b>" + v.name + "</b> (" + v.g + ") → " + v.edge + "</div>"; }).join("") + "<div><b>Odia</b> → phone Odia voice, ya Bengali-lipi neural (Archita/Anup), ya Meta MMS Odia</div>";
   if (S.groqKey && !(MODELS.groq || []).length) fetchModels("groq").catch(function () {});
   window.Puna.ready = true;

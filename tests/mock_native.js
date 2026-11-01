@@ -23,6 +23,10 @@
     share: function (name, text, target) { calls.push({ m: "share", name: name, target: target }); return target ? "app-missing" : "ok"; },
     shareText: function (t) { calls.push({ m: "shareText" }); }, listMedia: function () { return "[]"; },
     deleteMedia: function (n) { calls.push({ m: "deleteMedia", name: n }); }, openUrl: function (u) { calls.push({ m: "openUrl", url: u }); },
+    agentStatus: function () { return JSON.stringify({ a11y: true, a11yLive: true, rootAvailable: false, rootGranted: false, rootOn: false, sdk: 34, contacts: true, callPhone: false }); },
+    agentTool: function (id, name, args) { calls.push({ m: "agentTool", name: name, args: JSON.parse(args) });
+      later(id, { ok: true, opened: name === "open_app" ? "Settings" : undefined, screen: { app: "com.android.settings", count: 3, nodes: [{ i: 0, t: "Network & internet", k: 1, b: "200,300" }, { i: 1, t: "Send", k: 1, b: "900,1800" }, { i: 2, t: "Search settings", k: 1, b: "500,200" }] } }); },
+    agentBubble: function () {}, agentConfirmHide: function () {}, edgeWarm: function () { calls.push({ m: "edgeWarm" }); },
     toast: function () {}, keepAwake: function () {}, copy: function (t) { calls.push({ m: "copy", text: t }); }
   };
 })();

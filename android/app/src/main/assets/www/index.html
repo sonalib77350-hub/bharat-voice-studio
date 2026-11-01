@@ -143,19 +143,49 @@
     </div>
   </section>
 
-  <!-- ============ AUTOMATION (Phase 3) ============ -->
+  <!-- ============ AGENT (Phase 3: phone automation) ============ -->
   <section class="view" id="v-auto" data-tab="auto">
-    <header class="topbar"><div class="brand"><span class="logo d"></span><div><b>Automation</b><small>Phase 3</small></div></div></header>
+    <header class="topbar"><div class="brand"><span class="logo d"></span><div><b>Agent</b><small>Phone automation · Phase 3</small></div></div></header>
     <div class="scroll">
-      <div class="card soon">
-        <span class="soon-badge">Coming soon · जल्द आ रहा है</span>
-        <h3>Phone automation agent</h3>
-        <ul class="plan">
-          <li>📱 Bol kar phone ke kaam (apps kholna, settings, reminders)</li>
-          <li>🔓 Non-rooted: basic tasks (Accessibility)</li>
-          <li>⚡ Rooted: full automation</li>
-          <li>🔌 MCP servers / tools</li>
-        </ul>
+      <div class="card" id="agSetup">
+        <h4>🔓 Setup</h4>
+        <div class="bgstat" id="agStat"></div>
+        <button class="btn wide" id="agA11yBtn">♿ Accessibility mein “Puna AI Agent” ON karo</button>
+        <details id="agGuide"><summary>Kaise ON karein? (4 steps)</summary>
+          <ol class="plan">
+            <li>Upar wala button dabao — Accessibility settings khulegi.</li>
+            <li><b>Downloaded / Installed apps</b> mein <b>Puna AI Agent</b> chuno.</li>
+            <li>Toggle <b>ON</b> karo → <b>Allow</b>.</li>
+            <li>Android 13+ par “Restricted setting” aaye to: Settings › Apps › Puna AI › ⋮ (upar kona) › <b>Allow restricted settings</b>, phir dobara ON karo.</li>
+            <li>Wapas Puna mein aao — yahan ✓ dikhega.</li>
+          </ol>
+          <p class="hint">Bina Accessibility ke bhi chalega: apps kholna, call, SMS/WhatsApp chat, alarm/timer, torch, volume, Wi-Fi/Bluetooth settings, YouTube, Maps. Screen padhna/tap/type ke liye Accessibility chahiye.</p>
+        </details>
+        <div class="grid2">
+          <button class="btn" id="agContactsBtn">👥 Contacts allow</button>
+          <button class="btn" id="agCallBtn">📞 Direct call allow</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="agVoice" checked><span></span>Assistant ko bole phone-commands (jaise “WhatsApp kholo…”) Agent se karwao</label>
+        <label class="toggle"><input type="checkbox" id="agRoot"><span></span>⚡ Root use karo (rooted phone: full automation via su)</label>
+        <p class="hint" id="agRootMsg"></p>
+      </div>
+      <div class="card">
+        <h4>🤖 Kya karna hai?</h4>
+        <div class="with-mic"><textarea id="agTask" rows="2" placeholder="Jaise: WhatsApp kholo aur Sonali ko 'good morning' bhejo"></textarea><button class="mini" id="agMic" aria-label="Bolo">🎤</button></div>
+        <button class="btn primary big" id="agGo">▶ Shuru karo</button>
+        <div class="quick" id="agQuick">
+          <button class="pill" data-q="Settings kholo">⚙️ Settings kholo</button>
+          <button class="pill" data-q="Torch on karo">🔦 Torch on</button>
+          <button class="pill" data-q="Kal subah 6 baje ka alarm lagao">⏰ Alarm 6 baje</button>
+          <button class="pill" data-q="YouTube par lofi songs chalao">▶️ YouTube lofi</button>
+          <button class="pill" data-q="Screenshot lo">📸 Screenshot</button>
+          <button class="pill" data-q="Wi-Fi settings kholo">📶 Wi-Fi</button>
+        </div>
+        <p class="hint">🛡️ Message bhejne, call karne, delete ya payment se pehle Puna hamesha poochegi (button ya “haan/nahi”). ⏹ Stop hamesha dikhega.</p>
+      </div>
+      <div class="card" id="agLogCard" hidden>
+        <h4>📋 Steps <small id="agState"></small></h4>
+        <div id="agLog" class="aglog"></div>
       </div>
     </div>
   </section>
@@ -258,6 +288,15 @@
       <div id="lsList" class="vlist"></div>
     </div>
   </div>
+  <!-- agent confirmation -->
+  <div class="sheet" id="agConfirm" hidden>
+    <div class="sheet-body">
+      <div class="drawer-head"><b>🛡️ Pakka karein?</b></div>
+      <p id="agCfText" class="cftext"></p>
+      <div class="grid2"><button class="btn primary" id="agCfYes">✅ Haan, karo</button><button class="btn" id="agCfNo">✖ Nahi</button></div>
+    </div>
+  </div>
+  <button class="agstop" id="agStop" hidden>⏹ Stop agent</button>
   <div class="toast" id="toast" hidden></div>
 
   <nav class="tabs" id="tabs">
@@ -265,7 +304,7 @@
     <button data-tab="broadcast"><i>📻</i><span>Broadcast</span></button>
     <button data-tab="chat"><i>💬</i><span>Chat</span></button>
     <button data-tab="builder"><i>🛠️</i><span>Builder</span><em>soon</em></button>
-    <button data-tab="auto"><i>🤖</i><span>Auto</span><em>soon</em></button>
+    <button data-tab="auto"><i>🤖</i><span>Agent</span></button>
     <button data-tab="settings"><i>⚙️</i><span>Settings</span></button>
   </nav>
 </div>

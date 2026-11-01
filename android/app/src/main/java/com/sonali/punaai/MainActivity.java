@@ -77,6 +77,8 @@ public class MainActivity extends Activity {
     private final Handler main = new Handler(Looper.getMainLooper());
     private final ExecutorService net = Executors.newFixedThreadPool(4);
     private final ExecutorService media = Executors.newSingleThreadExecutor();
+    private final ExecutorService agentExec = Executors.newSingleThreadExecutor();
+    private AgentTools agentTools;
     private boolean debuggable;
     private volatile boolean trustedPage;
     private WebView web;
@@ -146,6 +148,8 @@ public class MainActivity extends Activity {
                     (OnBackInvokedCallback) this::handleBack);
         }
         initTts();
+        agentTools = new AgentTools(this);
+        PunaA11yService.onStopTapped = () -> js("window.__punaAgentStop&&window.__punaAgentStop('bubble')");
         handleIntent(getIntent());
         web.loadUrl(START_URL);
         PunaService.sync(this);
@@ -182,6 +186,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         PunaService.appVisible = true;
+        js("window.__punaLife&&window.__punaLife('resume')");
     }
 
     private void handleBack() {
@@ -210,6 +215,7 @@ public class MainActivity extends Activity {
         if (tts != null) try { tts.stop(); tts.shutdown(); } catch (Exception ignored) {}
         net.shutdownNow();
         media.shutdownNow();
+        agentExec.shutdownNow();
         if (web != null) { web.destroy(); web = null; }
         super.onDestroy();
     }
@@ -751,6 +757,101 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void edgeWarm(final int n) {
             if (!trustedPage) return;
             net.execute(() -> { try { EdgeTts.prewarm(n); } catch (Throwable e) { Log.w(TAG, "edgeWarm", e); } });
+        }
+
+        // ------------------------------------------------------------ Phase 3: phone agent
+        @JavascriptInterface public boolean appVisible() { return PunaService.appVisible; }
+
+        @JavascriptInterface public String agentStatus() {
+            try {
+                android.content.SharedPreferences p = PunaService.prefs(MainActivity.this);
+                return new JSONObject().put("a11y", PunaA11yService.enabled(MainActivity.this)).put("a11yLive", PunaA11yService.instance != null)
+                        .put("rootAvailable", AgentTools.RootShell.available()).put("rootGranted", Boolean.TRUE.equals(AgentTools.RootShell.granted))
+                        .put("rootOn", p.getBoolean("rootOn", false)).put("sdk", Build.VERSION.SDK_INT)
+                        .put("contacts", checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
+                        .put("callPhone", checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED).toString();
+            } catch (Exception e) { return "{}"; }
+        }
+
+        /** Run one agent tool on the agent thread; result through __punaCb(id, {ok,...}). */
+        @JavascriptInterface public void agentTool(final String id, final String name, final String argsJson) {
+            if (!trustedPage) return;
+            agentExec.execute(() -> {
+                JSONObject a;
+                try { a = new JSONObject(argsJson == null || argsJson.isEmpty() ? "{}" : argsJson); } catch (Exception e) { a = new JSONObject(); }
+                JSONObject r = agentTools.run(name, a);
+                cb(id, r);
+            });
+        }
+
+        @JavascriptInterface public void agentBubble(String text) {
+            if (!trustedPage) return;
+            PunaA11yService s = PunaA11yService.instance;
+            if (s == null) return;
+            if (text == null || text.isEmpty()) s.hideBubble(); else s.showBubble(text);
+        }
+
+        /** Yes/No card over whatever app is open (accessibility overlay); answer through __punaAgentConfirm(id, yes). */
+        @JavascriptInterface public boolean agentConfirm(final String id, final String text) {
+            if (!trustedPage) return false;
+            PunaA11yService s = PunaA11yService.instance;
+            if (s == null) return false;
+            s.askConfirm(text, yes -> js("window.__punaAgentConfirm&&window.__punaAgentConfirm(" + JSONObject.quote(id) + "," + yes + ")"));
+            return true;
+        }
+
+        /** Debug builds only: where an agent overlay control is on screen (tests tap it with adb). */
+        @JavascriptInterface public String overlayPos(String which) {
+            if (!debuggable) return "";
+            PunaA11yService s = PunaA11yService.instance;
+            final String[] out = {""};
+            if (s == null) return "";
+            final java.util.concurrent.CountDownLatch l = new java.util.concurrent.CountDownLatch(1);
+            main.post(() -> { try { out[0] = s.overlayPos(which); } finally { l.countDown(); } });
+            try { l.await(2, java.util.concurrent.TimeUnit.SECONDS); } catch (InterruptedException ignored) {}
+            return out[0];
+        }
+
+        @JavascriptInterface public void agentConfirmHide() {
+            PunaA11yService s = PunaA11yService.instance;
+            if (s != null) s.hideConfirm();
+        }
+
+        @JavascriptInterface public void openA11ySettings() {
+            if (!trustedPage) return;
+            main.post(() -> {
+                try { startActivity(new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS)); } catch (Exception e) { toast("Accessibility settings nahi khuli"); }
+            });
+        }
+
+        @JavascriptInterface public void bringToFront() {
+            if (!trustedPage) return;
+            main.post(() -> {
+                try {
+                    Intent i = new Intent(MainActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    PunaA11yService s = PunaA11yService.instance;
+                    if (s != null) s.startActivity(i); else startActivity(i);
+                } catch (Exception ignored) {}
+            });
+        }
+
+        /** perm: "contacts" | "call" */
+        @JavascriptInterface public void agentPermission(String perm) {
+            if (!trustedPage) return;
+            String p = "call".equals(perm) ? Manifest.permission.CALL_PHONE : Manifest.permission.READ_CONTACTS;
+            main.post(() -> requestPermissions(new String[]{p}, 206));
+        }
+
+        @JavascriptInterface public void rootRequest(final String id) {
+            if (!trustedPage) return;
+            agentExec.execute(() -> {
+                try { cb(id, AgentTools.RootShell.request().put("ok", true)); } catch (Throwable e) { cbErr(id, e); }
+            });
+        }
+
+        @JavascriptInterface public void setRoot(boolean on) {
+            if (!trustedPage) return;
+            PunaService.prefs(MainActivity.this).edit().putBoolean("rootOn", on).apply();
         }
 
         @JavascriptInterface public String writeBegin(String name) {
