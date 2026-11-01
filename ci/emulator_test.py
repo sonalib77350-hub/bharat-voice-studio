@@ -185,7 +185,7 @@ def test_agent(c):
     st = json.loads(c.ev("PunaNative.agentStatus()"))
     check("Agent", "accessibility service enabled via adb settings -> service connected", "PASS" if st.get("a11yLive") else "FAIL", json.dumps(st))
     c.ev("window.Puna.renderAgent()"); shot("agent_tab_ready")
-    sh("pm revoke %s android.permission.CALL_PHONE" % PKG)
+    # (CALL_PHONE was revoked before launch: revoking a runtime permission kills the app process)
     # --- scripted tool calls (real Android actions)
     r = tool(c, "open_app", {"name": "Settings"})
     check("Agent tools", "open_app 'Settings' -> Settings in front + screen read back", "PASS" if r.get("ok") and "com.android.settings" in front() and (r.get("screen") or {}).get("count", 0) > 3 else "FAIL", "%s | front=%s | %s" % (r.get("opened"), front()[-60:], scr_text(r)[:200]), shot("tool_open_settings"))
@@ -311,6 +311,7 @@ def main():
     check("Install", "adb install " + os.path.basename(APK), "PASS" if "Success" in r else "FAIL", r.strip()[-200:])
     adb("logcat", "-c")
     sh("pm grant %s android.permission.RECORD_AUDIO" % PKG)
+    sh("pm revoke %s android.permission.CALL_PHONE" % PKG)   # agent 'call' test must open the dialer, never really dial
     sh("am start -W -n %s/com.sonali.punaai.MainActivity" % PKG); time.sleep(8)
     pid = sh("pidof " + PKG).strip()
     check("Launch", "app process alive after start", "PASS" if pid else "FAIL", "pid=" + pid, shot("launch"))
