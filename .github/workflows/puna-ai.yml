@@ -1,0 +1,117 @@
+# Puna AI (Android). Runs only on the puna-ai branch: builds debug + signed release APKs,
+# tests the UI in a headless phone-sized browser and on an Android 14 emulator (real adb taps),
+# and publishes PunaAI.apk to the GitHub Release "puna-ai-latest". Never touches main.
+name: puna-ai
+on:
+  push:
+    branches: [puna-ai]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: puna-ai-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - name: Install SDK packages
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-36" "build-tools;36.0.0" > /dev/null
+      - name: Build APKs
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace :app:assembleDebug :app:assembleRelease
+          mkdir -p "$GITHUB_WORKSPACE/apks"
+          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/apks/debug.apk"
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/apks/PunaAI.apk"
+          BT="$ANDROID_HOME/build-tools/36.0.0"
+          "$BT/aapt2" dump badging "$GITHUB_WORKSPACE/apks/PunaAI.apk" | head -n 4
+          "$BT/apksigner" verify --print-certs "$GITHUB_WORKSPACE/apks/PunaAI.apk" | tee /tmp/cert.txt
+          grep -qi 'de3ff5cc3b8c502c381149234edc54e956a2986eef19bc8bf43aaa431c5f92f3' /tmp/cert.txt
+          ls -la "$GITHUB_WORKSPACE/apks"
+      - uses: actions/upload-artifact@v4
+        with: { name: apks, path: apks/ }
+      - name: Move the puna-ai-latest tag to this commit
+        working-directory: .
+        run: |
+          git tag -f puna-ai-latest "$GITHUB_SHA"
+          git push -f origin refs/tags/puna-ai-latest
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: puna-ai-latest
+          name: Puna AI (latest Android build)
+          body: |
+            Puna AI Android app — release APK built from ${{ github.sha }} (run #${{ github.run_number }}), signed with the fixed Puna key so new builds install over old ones.
+            Download PunaAI.apk on your phone and open it (allow "install unknown apps"). Then Settings → AI Brain → paste your Groq key.
+          prerelease: false
+          make_latest: false
+          files: apks/PunaAI.apk
+          fail_on_unmatched_files: true
+
+  browser-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install
+        run: |
+          pip install -q playwright edge-tts
+          python -m playwright install --with-deps chromium > /dev/null
+          sudo apt-get install -y -qq ffmpeg > /dev/null || true
+      - name: Headless phone-sized browser test (mock native bridge, real Edge TTS)
+        run: python tests/browser_test.py android/app/src/main/assets/www results/browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: browser-results, path: results/browser }
+
+  emulator:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: apks, path: apks }
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Test tools
+        run: |
+          pip install websocket-client
+          sudo apt-get install -y -qq ffmpeg > /dev/null || true
+      - name: Run tests on emulator (API 34)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-boot-anim -camera-back none
+          disable-animations: true
+          ram-size: 4096M
+          disk-size: 6000M
+          script: bash ci/run_emulator_tests.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: emulator-results, path: results/ }
+      - name: Push results to branch puna-emu-results
+        if: always()
+        run: |
+          mkdir -p results && cd results
+          echo "run ${{ github.run_id }} sha ${{ github.sha }}" > RUN.txt
+          git init -q && git checkout -q -b r && git add -A
+          git -c user.name=ci -c user.email=ci@users.noreply.github.com commit -qm "puna emulator results run ${{ github.run_id }}"
+          git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" r:refs/heads/puna-emu-results

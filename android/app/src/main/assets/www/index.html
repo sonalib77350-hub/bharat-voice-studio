@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#070A14">
+<title>Puna AI</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <!-- ============ ASSISTANT ============ -->
+  <section class="view active" id="v-assistant" data-tab="assistant">
+    <header class="topbar">
+      <div class="brand"><span class="logo"></span><div><b>Puna AI</b><small id="brainBadge">Groq · High</small></div></div>
+      <div class="chips">
+        <button class="chip" id="voiceChip" aria-label="Voice chuno"><span class="dot"></span><span id="voiceChipName">Sonali</span></button>
+        <button class="chip" id="langChip" aria-label="Bhasha"><span id="langChipName">Auto</span></button>
+      </div>
+    </header>
+    <div class="stage">
+      <div class="orb-wrap" id="orbWrap" data-state="idle">
+        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+        <button class="orb" id="micBtn" aria-label="Bolo">
+          <svg viewBox="0 0 24 24" class="ic-mic"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12z"/></svg>
+          <svg viewBox="0 0 24 24" class="ic-stop"><path d="M7 7h10v10H7z"/></svg>
+        </button>
+      </div>
+      <p class="status" id="aStatus">Mic dabao aur bolo · Tap the mic &amp; talk</p>
+      <p class="heard" id="aHeard"></p>
+      <div class="reply card" id="aReplyCard" hidden>
+        <div class="reply-who"><span class="avatar" id="aReplyAvatar">S</span><b id="aReplyName">Sonali</b><span class="tag" id="aReplyTag"></span></div>
+        <div class="md" id="aReply"></div>
+        <div class="sources" id="aSources"></div>
+        <div class="row-actions">
+          <button class="mini" id="aCopy">Copy</button>
+          <button class="mini" id="aReplay">Phir se suno</button>
+          <button class="mini" id="aStopSpeak">Chup</button>
+        </div>
+      </div>
+      <div class="quick" id="aQuick">
+        <button class="pill" data-q="Aaj ki top news short mein batao">📰 Aaj ki news</button>
+        <button class="pill" data-q="Rohan se baat karni hai">🎙️ Rohan se baat</button>
+        <button class="pill" data-q="Mera naam yaad rakho">🧠 Yaad rakho</button>
+        <button class="pill" data-q="Ek motivational line sunao">✨ Motivation</button>
+      </div>
+    </div>
+    <div class="dock">
+      <div class="speed"><label>Speed <b id="aSpeedVal">1.3×</b></label><input type="range" id="aSpeed" min="0.8" max="1.6" step="0.1" value="1.3"></div>
+      <div class="dock-row">
+        <label class="toggle"><input type="checkbox" id="aContinuous" checked><span></span>Lagatar baat</label>
+        <form class="typebox" id="aTypeForm"><input id="aType" placeholder="Ya yahan likho…" autocomplete="off" enterkeyhint="send"><button class="send" aria-label="Bhejo">➤</button></form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BROADCAST ============ -->
+  <section class="view" id="v-broadcast" data-tab="broadcast">
+    <header class="topbar"><div class="brand"><span class="logo b"></span><div><b>Broadcast</b><small>Topic → script → awaaz → video</small></div></div></header>
+    <div class="scroll">
+      <div class="card">
+        <div class="seg" id="bMode"><button class="on" data-v="ai">🤖 AI research</button><button data-v="script">✍️ Apna script</button></div>
+        <label class="lbl" for="bTopic" id="bTopicLbl">Topic / kya batana hai?</label>
+        <div class="with-mic"><textarea id="bTopic" rows="3" placeholder="Jaise: Aloo paratha ki recipe — girlfriend ko bhejni hai 😄"></textarea><button class="mic-sm" id="bMic" aria-label="Bolkar likho">🎤</button></div>
+        <p class="hint" id="bScriptHint" hidden>Har line: <b>Naam: baat</b> — jaise <i>Sonali: Namaste dosto!</i> / <i>Rohan: Aaj hum…</i></p>
+        <label class="lbl">Awaazein (All ya 1–2 chuno)</label>
+        <div class="voice-chips" id="bVoices"></div>
+        <div class="grid2">
+          <div><label class="lbl" for="bLang">Bhasha</label><select id="bLang"></select></div>
+          <div><label class="lbl">Speed <b id="bSpeedVal">1.3×</b></label><input type="range" id="bSpeed" min="0.8" max="1.6" step="0.1" value="1.3"></div>
+        </div>
+        <label class="lbl">Output</label>
+        <div class="seg" id="bOut"><button class="on" data-v="audio">🎧 Audio</button><button data-v="video">🎬 Video</button></div>
+        <div class="seg" id="bFormat" hidden><button class="on" data-v="short">📱 Short 9:16</button><button data-v="landscape">🖥️ Landscape 16:9</button></div>
+        <label class="lbl" for="bTone">Andaaz</label>
+        <select id="bTone"><option value="fun">Mazedaar / friendly</option><option value="pro">Professional</option><option value="news">News style</option><option value="story">Kahani style</option></select>
+        <button class="btn primary big" id="bGo">✨ Broadcast banao</button>
+        <p class="err" id="bErr"></p>
+      </div>
+      <div class="card" id="bProgCard" hidden>
+        <div class="steps" id="bSteps"></div>
+        <div class="bar"><i id="bBar"></i></div>
+        <p class="hint" id="bProgText"></p>
+        <button class="mini" id="bCancel">Cancel</button>
+      </div>
+      <div class="card" id="bResult" hidden>
+        <h3 id="bTitle"></h3>
+        <audio id="bAudio" controls hidden></audio>
+        <video id="bVideo" controls playsinline hidden></video>
+        <div class="share-row">
+          <button class="btn" id="bSave">⬇️ Save</button>
+          <button class="btn wa" id="bWa">WhatsApp</button>
+          <button class="btn tg" id="bTg">Telegram</button>
+          <button class="btn" id="bShare">Share…</button>
+        </div>
+        <button class="mini" id="bMakeVideo">🎬 Iski video bhi banao</button>
+        <details><summary>Script dekho</summary><div id="bScript" class="script"></div></details>
+      </div>
+      <div class="card" id="bHistCard">
+        <h4>Pichhle broadcasts</h4>
+        <div id="bHist" class="hist"><p class="hint">Abhi koi nahi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAT ============ -->
+  <section class="view" id="v-chat" data-tab="chat">
+    <header class="topbar">
+      <div class="brand"><button class="icon-btn" id="cListBtn" aria-label="Chats">☰</button><div><b id="cTitle">Nayi chat</b><small id="cSub">Chat history</small></div></div>
+      <button class="chip" id="cNew">＋ Nayi</button>
+    </header>
+    <div class="drawer" id="cDrawer" hidden>
+      <div class="drawer-head"><b>Saari chats</b><button class="mini" id="cDrawerClose">Band karo</button></div>
+      <input id="cSearch" placeholder="Chat dhoondo…">
+      <div id="cList"></div>
+    </div>
+    <div class="scroll" id="cScroll"><div id="cMsgs"></div></div>
+    <form class="composer" id="cForm">
+      <button type="button" class="mic-sm" id="cMic" aria-label="Bolo">🎤</button>
+      <textarea id="cInput" rows="1" placeholder="Message likho…"></textarea>
+      <button class="send" id="cSend" aria-label="Bhejo">➤</button>
+    </form>
+  </section>
+
+  <!-- ============ BUILDER (Phase 2) ============ -->
+  <section class="view" id="v-builder" data-tab="builder">
+    <header class="topbar"><div class="brand"><span class="logo c"></span><div><b>Builder / IDE</b><small>Phase 2</small></div></div></header>
+    <div class="scroll">
+      <div class="card soon">
+        <span class="soon-badge">Coming soon · जल्द आ रहा है</span>
+        <h3>Apps, websites aur code — phone se</h3>
+        <ul class="plan">
+          <li>📥 Git clone (GitHub link se project import)</li>
+          <li>🗂️ File manager (projects, root, delete)</li>
+          <li>📝 Code editor (syntax highlight)</li>
+          <li>👀 Live preview + browser mein kholo</li>
+          <li>🤖 AI code edits — “cyberpunk theme lagao” → diff → Keep all</li>
+          <li>🖥️ Running servers list (stop/refresh)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUTOMATION (Phase 3) ============ -->
+  <section class="view" id="v-auto" data-tab="auto">
+    <header class="topbar"><div class="brand"><span class="logo d"></span><div><b>Automation</b><small>Phase 3</small></div></div></header>
+    <div class="scroll">
+      <div class="card soon">
+        <span class="soon-badge">Coming soon · जल्द आ रहा है</span>
+        <h3>Phone automation agent</h3>
+        <ul class="plan">
+          <li>📱 Bol kar phone ke kaam (apps kholna, settings, reminders)</li>
+          <li>🔓 Non-rooted: basic tasks (Accessibility)</li>
+          <li>⚡ Rooted: full automation</li>
+          <li>🔌 MCP servers / tools</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="view" id="v-settings" data-tab="settings">
+    <header class="topbar"><div class="brand"><span class="logo e"></span><div><b>Settings</b><small>सेटिंग्स</small></div></div></header>
+    <div class="scroll">
+      <div class="card">
+        <h4>🧠 AI Brain</h4>
+        <label class="lbl" for="sGroqKey">Groq API key</label>
+        <div class="keyrow"><input type="password" id="sGroqKey" placeholder="gsk_…" autocomplete="off"><button class="mini" id="sGroqTest">Test</button></div>
+        <p class="hint">Key sirf is phone mein save hoti hai. <a href="https://console.groq.com/keys" class="ext">console.groq.com/keys</a></p>
+        <label class="lbl" for="sGemKey">Gemini API key (optional)</label>
+        <div class="keyrow"><input type="password" id="sGemKey" placeholder="AIza…" autocomplete="off"><button class="mini" id="sGemTest">Test</button></div>
+        <p class="hint" id="sKeyMsg"></p>
+        <div class="grid2">
+          <div><label class="lbl" for="sBrain">Brain</label><select id="sBrain"><option value="groq">Groq</option><option value="gemini">Gemini</option></select></div>
+          <div><label class="lbl" for="sLevel">Model level</label><select id="sLevel"><option value="high">High</option><option value="medium">Medium</option><option value="low">Low (fast)</option></select></div>
+        </div>
+        <label class="lbl" for="sModel">Model (auto ya khud chuno)</label>
+        <select id="sModel"><option value="">Auto (level ke hisaab se)</option></select>
+        <label class="lbl" for="sWeb">Web search (news / aaj ki baatein)</label>
+        <select id="sWeb"><option value="auto">Auto — zarurat ho to</option><option value="always">Hamesha</option><option value="never">Kabhi nahi</option></select>
+      </div>
+      <div class="card">
+        <h4>🙋 Profile</h4>
+        <label class="lbl" for="sCallMe">Mujhe kya bulao (what to call me)</label>
+        <input id="sCallMe" placeholder="Jaise: Sonali">
+        <label class="lbl" for="sGender">Gender</label>
+        <select id="sGender"><option value="">Na batayein</option><option value="female">Female · लड़की</option><option value="male">Male · लड़का</option><option value="neutral">Neutral</option></select>
+      </div>
+      <div class="card">
+        <h4>🗣️ Awaaz &amp; Bhasha</h4>
+        <label class="lbl">Assistant ki awaaz</label>
+        <button class="btn wide" id="sVoiceBtn">Sonali</button>
+        <label class="lbl" for="sReplyLang">Jawab ki bhasha</label>
+        <select id="sReplyLang"></select>
+        <label class="lbl" for="sSrLang">Main kis bhasha mein bolungi (mic)</label>
+        <select id="sSrLang"></select>
+        <label class="lbl">Speed <b id="sSpeedVal">1.3×</b></label>
+        <input type="range" id="sSpeed" min="0.8" max="1.6" step="0.1" value="1.3">
+        <label class="lbl" for="sOdia">Odia awaaz engine</label>
+        <select id="sOdia"><option value="auto">Auto (phone ki Odia awaaz, warna Bengali-lipi neural)</option><option value="android">Phone (Android TTS) Odia</option><option value="bengali">Neural (Odia → Bengali lipi, approx)</option><option value="mms">Open-source Meta MMS Odia (on-device, ~100 MB)</option></select>
+        <label class="toggle"><input type="checkbox" id="sAutoSpeak" checked><span></span>Jawab bol kar sunao</label>
+        <label class="toggle"><input type="checkbox" id="sContinuous" checked><span></span>Lagatar baat (jawab ke baad mic phir chalu)</label>
+      </div>
+      <div class="card">
+        <h4>💾 Memory <small id="sMemCount"></small></h4>
+        <label class="toggle"><input type="checkbox" id="sMemOn" checked><span></span>Chat se baatein khud yaad rakho</label>
+        <div class="keyrow"><input id="sMemAdd" placeholder="Khud jodo: jaise 'Mujhe Odia gaane pasand hain'"><button class="mini" id="sMemAddBtn">Jodo</button></div>
+        <div id="sMemList" class="memlist"></div>
+        <button class="btn danger" id="sMemClear">Saari memory mitao</button>
+      </div>
+      <div class="card">
+        <h4>🗂️ Data</h4>
+        <button class="btn danger" id="sChatsClear">Saari chats mitao</button>
+        <button class="btn" id="sMediaClear">Broadcast files (cache) mitao</button>
+      </div>
+      <div class="card">
+        <h4>ℹ️ About</h4>
+        <p class="hint" id="sAbout"></p>
+        <details><summary>Voices ki list</summary><div id="sVoiceMap" class="voicemap"></div></details>
+        <p class="hint">Awaaz: Microsoft Edge neural voices (free). Brain: Groq / Gemini (aapki key). Odia MMS: Meta MMS-TTS (CC-BY-NC-4.0) via onnxruntime-web (MIT).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- voice picker sheet -->
+  <div class="sheet" id="voiceSheet" hidden>
+    <div class="sheet-body">
+      <div class="drawer-head"><b>Awaaz chuno · Choose a voice</b><button class="mini" id="vsClose">Band karo</button></div>
+      <div class="seg small" id="vsFilter"><button class="on" data-v="all">Sab</button><button data-v="F">Female</button><button data-v="M">Male</button></div>
+      <div id="vsList" class="vlist"></div>
+    </div>
+  </div>
+  <!-- language sheet -->
+  <div class="sheet" id="langSheet" hidden>
+    <div class="sheet-body">
+      <div class="drawer-head"><b>Jawab ki bhasha</b><button class="mini" id="lsClose">Band karo</button></div>
+      <div id="lsList" class="vlist"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="assistant" class="on"><i>🎙️</i><span>Assistant</span></button>
+    <button data-tab="broadcast"><i>📻</i><span>Broadcast</span></button>
+    <button data-tab="chat"><i>💬</i><span>Chat</span></button>
+    <button data-tab="builder"><i>🛠️</i><span>Builder</span><em>soon</em></button>
+    <button data-tab="auto"><i>🤖</i><span>Auto</span><em>soon</em></button>
+    <button data-tab="settings"><i>⚙️</i><span>Settings</span></button>
+  </nav>
+</div>
+<audio id="player" preload="auto"></audio>
+<script src="app.js"></script>
+</body>
+</html>

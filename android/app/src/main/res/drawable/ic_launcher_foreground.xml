@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- glowing orb -->
+    <path android:fillColor="#33FFFFFF" android:pathData="M54,54m-26,0a26,26 0,1 1,52 0a26,26 0,1 1,-52 0" />
+    <!-- sound wave bars (voice) -->
+    <path android:fillColor="#FFFFFFFF" android:pathData="M37,48h4a2,2 0,0 1,2 2v8a2,2 0,0 1,-2 2h-4a2,2 0,0 1,-2 -2v-8a2,2 0,0 1,2 -2z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M45,40h4a2,2 0,0 1,2 2v24a2,2 0,0 1,-2 2h-4a2,2 0,0 1,-2 -2v-24a2,2 0,0 1,2 -2z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M53,34h4a2,2 0,0 1,2 2v36a2,2 0,0 1,-2 2h-4a2,2 0,0 1,-2 -2v-36a2,2 0,0 1,2 -2z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M61,42h4a2,2 0,0 1,2 2v20a2,2 0,0 1,-2 2h-4a2,2 0,0 1,-2 -2v-20a2,2 0,0 1,2 -2z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M69,49h4a2,2 0,0 1,2 2v6a2,2 0,0 1,-2 2h-4a2,2 0,0 1,-2 -2v-6a2,2 0,0 1,2 -2z" />
+    <!-- sparkle -->
+    <path android:fillColor="#FFFFF7AE" android:pathData="M76,30l1.6,4.4l4.4,1.6l-4.4,1.6l-1.6,4.4l-1.6,-4.4l-4.4,-1.6l4.4,-1.6z" />
+</vector>
